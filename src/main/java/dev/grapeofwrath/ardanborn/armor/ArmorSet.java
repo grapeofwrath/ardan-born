@@ -38,8 +38,8 @@ public interface ArmorSet {
         return Optional.empty();
     }
 
-    /// Default dye for pieces whose base material is dyeable (leather). Players can re-dye them.
-    default Optional<Color> dyeColor() {
+    /// Default dye, per tier, for pieces whose base material is dyeable (leather). Players can re-dye them.
+    default Optional<Color> dyeColor(ArmorTier tier) {
         return Optional.empty();
     }
 

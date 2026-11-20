@@ -9,6 +9,7 @@ import io.papermc.paper.datacomponent.item.ItemLore;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemRarity;
@@ -70,12 +71,9 @@ public final class CustomArmor {
             // Keeps enchantments, trim, damage and custom name.
             item = item.withType(base);
             applyTierStats(item, tier, slot);
-            ItemStack converted = item;
-            set.dyeColor().ifPresent(color -> {
-                if (!converted.hasData(DataComponentTypes.DYED_COLOR)) {
-                    converted.setData(DataComponentTypes.DYED_COLOR, DyedItemColor.dyedItemColor(color));
-                }
-            });
+            if (!item.hasData(DataComponentTypes.DYED_COLOR)) {
+                setDye(item, set.dyeColor(tier).orElse(null));
+            }
         }
         item.editPersistentDataContainer(pdc -> pdc.set(Keys.ARMOR_SET, PersistentDataType.STRING, set.id()));
         // Lets a resource pack retexture set pieces later without code changes.
@@ -93,6 +91,20 @@ public final class CustomArmor {
         copyDefault(item, vanilla, DataComponentTypes.ENCHANTABLE);
         copyDefault(item, vanilla, DataComponentTypes.REPAIRABLE);
         copyDefault(item, vanilla, DataComponentTypes.DAMAGE_RESISTANT);
+    }
+
+    /// Moves a piece from one tier's default dye to another's, e.g. brown to gold on a netherite upgrade.
+    /// A color the player chose themselves is kept.
+    public static void updateDefaultDye(ItemStack item, ArmorSet set, ArmorTier from, ArmorTier to) {
+        DyedItemColor current = item.getData(DataComponentTypes.DYED_COLOR);
+        Color oldDefault = set.dyeColor(from).orElse(null);
+        if (current == null || current.color().equals(oldDefault)) {
+            setDye(item, set.dyeColor(to).orElse(null));
+        }
+    }
+
+    private static void setDye(ItemStack item, @Nullable Color color) {
+        if (color != null) item.setData(DataComponentTypes.DYED_COLOR, DyedItemColor.dyedItemColor(color));
     }
 
     private static <T> void copyDefault(ItemStack item, Material from, DataComponentType.Valued<T> type) {

@@ -2,6 +2,7 @@ package dev.grapeofwrath.ardanborn.armor.sets;
 
 import dev.grapeofwrath.ardanborn.armor.ArmorSet;
 import dev.grapeofwrath.ardanborn.armor.ArmorSets;
+import dev.grapeofwrath.ardanborn.armor.ArmorTier;
 import dev.grapeofwrath.ardanborn.armor.CustomItems;
 import dev.grapeofwrath.ardanborn.Keys;
 import dev.grapeofwrath.ardanborn.armor.SetEffect;
@@ -29,8 +30,10 @@ import java.util.Optional;
 public final class ArkenstoneSet implements ArmorSet {
     public static final String ID = "arkenstone";
     private static final TextColor COLOR = TextColor.color(0xD8ECFF);
-    /// Default dye of the leather-based boots: a dark brown between brown and black.
-    private static final Color BOOTS_DYE = Color.fromRGB(0x3B2A20);
+    /// Default dye of the leather-based boots: a dark brown between brown and black for diamond, and
+    /// gold for netherite.
+    private static final Color DIAMOND_BOOTS_DYE = Color.fromRGB(0x3B2A20);
+    private static final Color NETHERITE_BOOTS_DYE = Color.fromRGB(0xE6B422);
 
     private final SnowtreadEffect snowtread = new SnowtreadEffect();
 
@@ -93,8 +96,8 @@ public final class ArkenstoneSet implements ArmorSet {
     }
 
     @Override
-    public Optional<Color> dyeColor() {
-        return Optional.of(BOOTS_DYE);
+    public Optional<Color> dyeColor(ArmorTier tier) {
+        return Optional.of(tier == ArmorTier.NETHERITE ? NETHERITE_BOOTS_DYE : DIAMOND_BOOTS_DYE);
     }
 
     @Override

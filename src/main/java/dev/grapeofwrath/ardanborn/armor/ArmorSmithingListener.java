@@ -39,6 +39,7 @@ public final class ArmorSmithingListener implements Listener {
             }
             ItemStack upgraded = base.asOne();
             CustomArmor.applyTierStats(upgraded, ArmorTier.NETHERITE, slot);
+            CustomArmor.updateDefaultDye(upgraded, CustomArmor.setOf(upgraded), ArmorTier.DIAMOND, ArmorTier.NETHERITE);
             event.setResult(CustomArmor.refresh(upgraded));
             return;
         }
