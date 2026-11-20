@@ -10,6 +10,7 @@ import dev.grapeofwrath.ardanborn.armor.RecipeGuardListener;
 import dev.grapeofwrath.ardanborn.origins.OriginAbilities;
 import dev.grapeofwrath.ardanborn.origins.OriginFiles;
 import dev.grapeofwrath.ardanborn.origins.OriginsDefaults;
+import dev.grapeofwrath.ardanborn.origins.PowerText;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -41,6 +42,7 @@ public final class ArdanBorn extends OriginsAddon {
         // Must run before Origins-Reborn reads plugins/ArdanBorn/origins/.
         OriginFiles.syncBundled(this);
         OriginsDefaults.apply(getLogger());
+        PowerText.apply(getLogger());
 
         // Once a second, update every ability that needs periodic work.
         Bukkit.getScheduler().runTaskTimer(this, () -> {

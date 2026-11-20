@@ -1,5 +1,6 @@
 package dev.grapeofwrath.ardanborn.origins;
 
+import dev.grapeofwrath.ardanborn.ArdanBorn;
 import dev.grapeofwrath.ardanborn.Keys;
 import com.starshootercity.abilities.types.Ability;
 import com.starshootercity.abilities.types.VisibleAbility;
@@ -11,6 +12,7 @@ import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.entity.AbstractHorse;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -34,11 +36,13 @@ import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.PlayerExpChangeEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
@@ -70,7 +74,7 @@ public final class OriginAbilities {
                 new GiftOfMen(), new LastStand(), new EldarBody(), new EldarLore(),
                 new WoodlandStride(), new FalmariLungs(), new DelversInstinct(), new ForgeHardened(),
                 new SecondBreakfast(), new FortunateFolk(), new Bloodlust(), new IronStomach(),
-                new Moonbound(),
+                new Moonbound(), new ElvenWrought(), new Lembas(), new StarOfEarendil(), new SwiftMessenger(),
                 // Classes
                 new FirstStrike(), new Cleave(), new KeenTracker(), new Wayfarer(),
                 new ShieldWall(), new KingsHands(), new WizardStaff(), new GentleFriend(),
@@ -104,6 +108,13 @@ public final class OriginAbilities {
         @Override
         public String description() {
             return description;
+        }
+
+        /// Use our text as written. Origins-Reborn would otherwise cache it in its translations.yml
+        /// the first time it sees a power, so later edits here would never reach existing servers.
+        @Override
+        public boolean useTranslator() {
+            return false;
         }
     }
 
@@ -399,6 +410,94 @@ public final class OriginAbilities {
                     default -> effect(p, PotionEffectType.STRENGTH, 60, 0);
                 }
             });
+        }
+    }
+
+    /** Noldor: the work of their hands endures. */
+    public static final class ElvenWrought extends Base implements Listener {
+        public ElvenWrought() {
+            super("elven_wrought", "Elven-wrought",
+                    "Elven craft endures. Your tools, weapons and armor have a 40% chance to take no wear when used.");
+        }
+
+        @EventHandler(ignoreCancelled = true)
+        public void onWear(PlayerItemDamageEvent e) {
+            runForAbility(e.getPlayer(), p -> {
+                if (ThreadLocalRandom.current().nextDouble() < 0.4) e.setCancelled(true);
+            });
+        }
+    }
+
+    /** Sindar: the waybread of the Elves. */
+    public static final class Lembas extends Base implements Listener {
+        private final Cooldown cooldown = new Cooldown();
+
+        public Lembas() {
+            super("lembas", "Lembas",
+                    "The waybread of the Elves: bread fills you completely and briefly heals you. Once a minute.");
+        }
+
+        @EventHandler(ignoreCancelled = true)
+        public void onEat(PlayerItemConsumeEvent e) {
+            if (e.getItem().getType() != Material.BREAD) return;
+            runForAbility(e.getPlayer(), p -> {
+                if (!cooldown.tryUseQuiet(p, 60_000)) return;
+                // Vanilla adds the bread's food after this event, so top up on the next tick.
+                p.getScheduler().run(JavaPlugin.getPlugin(ArdanBorn.class), _ -> {
+                    p.setFoodLevel(20);
+                    p.setSaturation(20f);
+                }, null);
+                effect(p, PotionEffectType.REGENERATION, 100, 0);
+                p.getWorld().spawnParticle(Particle.HAPPY_VILLAGER, p.getLocation().add(0, 1, 0), 8, 0.3, 0.4, 0.3, 0);
+            });
+        }
+    }
+
+    /** Peredhil: Eärendil, their father, sails the sky as the evening star. */
+    public static final class StarOfEarendil extends Base implements Tickable {
+        public StarOfEarendil() {
+            super("star_of_earendil", "Star of Eärendil",
+                    "Your father sails the night sky as the evening star. Beneath it you slowly heal and see clearly.");
+        }
+
+        @Override
+        public void tick(Player player) {
+            runForAbility(player, p -> {
+                World world = p.getWorld();
+                if (world.getEnvironment() != World.Environment.NORMAL) return;
+                long time = world.getTime();
+                if (time < 13000 || time > 23000) return; // night only
+                if (p.getEyeLocation().getBlock().getLightFromSky() < 15) return; // open sky only
+                effect(p, PotionEffectType.REGENERATION, 60, 0);
+                effect(p, PotionEffectType.NIGHT_VISION, 320, 0);
+            });
+        }
+    }
+
+    /** Peredhil: Glorfindel's ride to the Ford of Bruinen. */
+    public static final class SwiftMessenger extends Base implements Listener, Tickable {
+        public SwiftMessenger() {
+            super("swift_messenger", "Swift Messenger",
+                    "Like Glorfindel riding for the Ford: horses, donkeys and mules you ride run faster and take no fall damage.");
+        }
+
+        @Override
+        public void tick(Player player) {
+            runForAbility(player, p -> {
+                if (p.getVehicle() instanceof AbstractHorse mount) effect(mount, PotionEffectType.SPEED, 60, 0);
+            });
+        }
+
+        @EventHandler(ignoreCancelled = true)
+        public void onFall(EntityDamageEvent e) {
+            if (e.getCause() != EntityDamageEvent.DamageCause.FALL) return;
+            if (!(e.getEntity() instanceof AbstractHorse mount)) return;
+            for (Entity rider : mount.getPassengers()) {
+                if (rider instanceof Player player && hasAbility(player)) {
+                    e.setCancelled(true);
+                    return;
+                }
+            }
         }
     }
 

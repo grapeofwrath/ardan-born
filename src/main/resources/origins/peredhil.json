@@ -2,8 +2,8 @@
     "powers": [
         "origins:tailwind",
         "ardanborn:eldar_body",
-        "ardanborn:last_stand",
-        "fantasyorigins:elegy"
+        "ardanborn:star_of_earendil",
+        "ardanborn:swift_messenger"
     ],
     "icon": {
         "item": "minecraft:nether_star"
@@ -12,5 +12,5 @@
     "impact": 1,
     "layer": "origin",
     "name": "Peredhil (Half-elf)",
-    "description": "Of Elven and Mortal blood, like Elrond and Elros. Swift of step, free of sickness, and never without hope."
+    "description": "Of Elven and Mortal blood, like Elrond and Elros. Swift of step and swifter in the saddle, free of sickness, and healed beneath their father's star."
 }
