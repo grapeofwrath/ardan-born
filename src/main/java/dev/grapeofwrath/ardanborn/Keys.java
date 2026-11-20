@@ -11,6 +11,8 @@ public final class Keys {
     public static final NamespacedKey ARMOR_SET = key("armor_set");
     /// On custom items such as set templates: the item id.
     public static final NamespacedKey ITEM = key("item");
+    /// On set pieces whose material isn't their tier (e.g. leather-based boots): the [armor.ArmorTier] name.
+    public static final NamespacedKey ARMOR_TIER = key("armor_tier");
 
     private Keys() {}
 

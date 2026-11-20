@@ -31,6 +31,24 @@ public final class ArmorSets {
 
     public static void registerAll(Plugin plugin) {
         register(plugin, new ArkenstoneSet());
+        registerNetheriteUpgrade();
+    }
+
+    /// Vanilla's netherite upgrade needs a real diamond piece as its base, so pieces on another base
+    /// material (leather-based boots) get their own recipe. The result is built in [ArmorSmithingListener].
+    private static void registerNetheriteUpgrade() {
+        NamespacedKey key = Keys.key("netherite_upgrade");
+        Bukkit.addRecipe(new SmithingTransformRecipe(key, new ItemStack(Material.NETHERITE_BOOTS),
+                new RecipeChoice.MaterialChoice(Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
+                RecipeChoice.predicateChoice(ArmorSets::isUpgradeable, new ItemStack(Material.LEATHER_BOOTS)),
+                new RecipeChoice.MaterialChoice(Material.NETHERITE_INGOT),
+                false));
+        RECIPES.add(key);
+    }
+
+    /// A diamond-tier set piece on another base material, which only our upgrade recipe can upgrade.
+    public static boolean isUpgradeable(@Nullable ItemStack item) {
+        return CustomArmor.isConverted(item) && CustomArmor.tierOf(item) == ArmorTier.DIAMOND;
     }
 
     private static void register(Plugin plugin, ArmorSet set) {

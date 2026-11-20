@@ -43,6 +43,7 @@ amethyst shard | echo shard | amethyst shard
 Making a piece: put the Arkenstone, a **diamond or netherite** helmet/chestplate/leggings/boots, and nothing else into a smithing table.
 - Each set therefore comes in two variants, diamond and netherite. Effects can be stronger on netherite.
 - It is still the same vanilla armor, so it can be enchanted, trimmed and repaired. A diamond piece can be netherite-upgraded into the netherite variant.
+- **Boots are the exception:** they become dark-brown leather boots with the diamond or netherite stats (armor, toughness, durability, enchantability, repair material, and fire resistance for netherite). Vanilla only lets leather boots walk on powder snow, so this is what gives Snowtread. They can be re-dyed, and netherite-upgraded at a smithing table as usual. A resource pack can retexture them through `custom_model_data` string `arkenstone`.
 
 | Piece | Effect |
 |---|---|

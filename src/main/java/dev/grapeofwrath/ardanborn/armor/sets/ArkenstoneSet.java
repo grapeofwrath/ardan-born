@@ -14,6 +14,7 @@ import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.EquipmentSlot;
@@ -28,6 +29,8 @@ import java.util.Optional;
 public final class ArkenstoneSet implements ArmorSet {
     public static final String ID = "arkenstone";
     private static final TextColor COLOR = TextColor.color(0xD8ECFF);
+    /// Default dye of the leather-based boots: a dark brown between brown and black.
+    private static final Color BOOTS_DYE = Color.fromRGB(0x3B2A20);
 
     private final SnowtreadEffect snowtread = new SnowtreadEffect();
 
@@ -80,6 +83,18 @@ public final class ArkenstoneSet implements ArmorSet {
         recipe.setIngredient('D', Material.DIAMOND);
         Bukkit.addRecipe(recipe);
         ArmorSets.trackRecipe(key);
+    }
+
+    /// The boots are leather boots with diamond or netherite stats: vanilla lets only leather boots walk on
+    /// powder snow (on both server and client), which is what Snowtread is.
+    @Override
+    public Optional<Material> baseMaterial(EquipmentSlot slot) {
+        return slot == EquipmentSlot.FEET ? Optional.of(Material.LEATHER_BOOTS) : Optional.empty();
+    }
+
+    @Override
+    public Optional<Color> dyeColor() {
+        return Optional.of(BOOTS_DYE);
     }
 
     @Override

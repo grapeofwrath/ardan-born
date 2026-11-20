@@ -36,6 +36,18 @@ public enum ArmorTier {
         return null;
     }
 
+    /// The vanilla armor item of this tier for a slot, e.g. DIAMOND + FEET -> DIAMOND_BOOTS.
+    public Material material(EquipmentSlot slot) {
+        String piece = switch (slot) {
+            case HEAD -> "HELMET";
+            case CHEST -> "CHESTPLATE";
+            case LEGS -> "LEGGINGS";
+            case FEET -> "BOOTS";
+            default -> throw new IllegalArgumentException("Not an armor slot: " + slot);
+        };
+        return Material.valueOf(name() + "_" + piece);
+    }
+
     /// The slot an armor item is worn in, or null if it isn't a helmet/chestplate/leggings/boots.
     public static @Nullable EquipmentSlot slotOf(@Nullable Material material) {
         if (material == null) return null;
