@@ -18,3 +18,8 @@ dependencies:
       load: BEFORE
       required: false
   bootstrap: {}
+
+permissions:
+  ardanborn.give:
+    description: Use /ardanborn give to get ArdanBorn custom items
+    default: op

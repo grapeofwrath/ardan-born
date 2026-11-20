@@ -41,6 +41,15 @@ Making a piece: put the Arkenstone, a **diamond or netherite** helmet/chestplate
 | Boots | **Snowtread**: walk on powder snow without sinking (sneak to sink in), immune to freezing |
 | Helmet, chestplate, leggings, full set | not designed yet |
 
+## Commands
+
+| Command | Permission | Description |
+|---|---|---|
+| `/ardanborn` | none | Shows the plugin version |
+| `/ardanborn give <players> <item> [amount]` | `ardanborn.give` (op) | Gives custom items. Tab-complete `item`: a set template (`arkenstone`) or a set piece (`arkenstone_diamond_boots`, `arkenstone_netherite_helmet`, ...) |
+
+Custom items are vanilla items marked with plugin data, so vanilla `/give` can't create them.
+
 ## Development
 
 Requires Nix with flakes and direnv (`direnv allow`), or JDK 25.

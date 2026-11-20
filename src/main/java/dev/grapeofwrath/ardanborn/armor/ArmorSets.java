@@ -17,8 +17,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Supplier;
 
 /// Registry of all armor sets. Add new sets in [#registerAll].
 public final class ArmorSets {
@@ -83,5 +85,19 @@ public final class ArmorSets {
 
     public static Iterable<ArmorSet> all() {
         return SETS.values();
+    }
+
+    /// Every plugin item obtainable by command, keyed by id: each set's template (`arkenstone`) and
+    /// each of its pieces (`arkenstone_diamond_boots`).
+    public static Map<String, Supplier<ItemStack>> giveableItems() {
+        Map<String, Supplier<ItemStack>> items = new LinkedHashMap<>();
+        for (ArmorSet set : SETS.values()) {
+            items.put(set.id(), set::createTemplate);
+            for (Material material : ArmorTier.armorMaterials()) {
+                items.put(set.id() + "_" + material.name().toLowerCase(Locale.ROOT),
+                        () -> CustomArmor.apply(ItemStack.of(material), set));
+            }
+        }
+        return items;
     }
 }
