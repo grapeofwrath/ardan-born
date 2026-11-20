@@ -1,6 +1,6 @@
 {
     "powers": [
-        "origins:natural_armor",
+        "ardanborn:axe_of_durin",
         "ardanborn:delvers_instinct",
         "ardanborn:forge_hardened",
         "fantasyorigins:fortune_increaser"
@@ -12,5 +12,5 @@
     "impact": 2,
     "layer": "origin",
     "name": "Naugrim (Dwarf)",
-    "description": "Stubborn children of Aul\u00eb, made to endure. Hard as the stone they delve, at home in the deep places and unmoved by fire."
+    "description": "Stubborn children of Aul\u00eb, made to endure. Deadly with the axe, at home in the deep places and unmoved by fire."
 }

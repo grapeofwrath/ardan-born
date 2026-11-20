@@ -7,6 +7,7 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import dev.grapeofwrath.ardanborn.armor.ArmorSets;
+import dev.grapeofwrath.ardanborn.weapons.HavensTrident;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import io.papermc.paper.command.brigadier.Commands;
 import io.papermc.paper.command.brigadier.argument.ArgumentTypes;
@@ -21,8 +22,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.function.Supplier;
 
 /// Runs before the server finishes starting. Use for commands, registry edits and datapack discovery.
@@ -54,7 +57,7 @@ public final class ArdanBornBootstrap implements PluginBootstrap {
                         .then(Commands.argument("item", StringArgumentType.word())
                                 .suggests((ctx, builder) -> {
                                     String typed = builder.getRemainingLowerCase();
-                                    for (String id : ArmorSets.giveableItems().keySet()) {
+                                    for (String id : giveableItems().keySet()) {
                                         if (id.startsWith(typed)) builder.suggest(id);
                                     }
                                     return builder.buildFuture();
@@ -64,10 +67,17 @@ public final class ArdanBornBootstrap implements PluginBootstrap {
                                         .executes(ctx -> give(ctx, IntegerArgumentType.getInteger(ctx, "amount"))))));
     }
 
+    /// Every plugin item obtainable by command: armor set templates and pieces, and weapon items.
+    private static Map<String, Supplier<ItemStack>> giveableItems() {
+        Map<String, Supplier<ItemStack>> items = new LinkedHashMap<>(ArmorSets.giveableItems());
+        items.putAll(HavensTrident.giveableItems());
+        return items;
+    }
+
     private static int give(CommandContext<CommandSourceStack> ctx, int amount) throws CommandSyntaxException {
         var sender = ctx.getSource().getSender();
         String id = StringArgumentType.getString(ctx, "item").toLowerCase(Locale.ROOT);
-        Supplier<ItemStack> factory = ArmorSets.giveableItems().get(id);
+        Supplier<ItemStack> factory = giveableItems().get(id);
         if (factory == null) {
             sender.sendMessage(Component.text("Unknown ArdanBorn item: " + id, NamedTextColor.RED));
             return 0;

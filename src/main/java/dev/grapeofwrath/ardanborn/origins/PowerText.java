@@ -52,7 +52,6 @@ public final class PowerText {
             desc("fantasyorigins:strong_skin",
                     "You've got naturally thicker skin than regular humans, so arrows do a lot less damage.",
                     "Your hide is tough enough that arrows do much less damage to you."),
-            title("origins:water_vision", "Wet Eyes", "Clear Sight"),
             title("monsterorigins:infinite_arrows", "Infinite Arrows", "Endless Quiver"),
             desc("monsterorigins:infinite_arrows",
                     "Arrows you shoot are not used up.",

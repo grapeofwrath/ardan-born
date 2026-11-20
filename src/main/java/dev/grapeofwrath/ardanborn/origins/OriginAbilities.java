@@ -16,9 +16,11 @@ import org.bukkit.entity.AbstractHorse;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Trident;
 import org.bukkit.entity.Villager;
 import org.bukkit.entity.WanderingTrader;
 import org.bukkit.event.EventHandler;
@@ -34,6 +36,7 @@ import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.PlayerExpChangeEvent;
+import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemDamageEvent;
@@ -68,6 +71,9 @@ public final class OriginAbilities {
         void tick(Player player);
     }
 
+    /// Shared so items can grant Teleri wielders their extra bonus (see weapons.HavensTrident).
+    public static final TidesFury TIDES_FURY = new TidesFury();
+
     public static List<Ability> all() {
         return List.of(
                 // Ancestries
@@ -75,6 +81,7 @@ public final class OriginAbilities {
                 new WoodlandStride(), new FalmariLungs(), new DelversInstinct(), new ForgeHardened(),
                 new SecondBreakfast(), new FortunateFolk(), new Bloodlust(), new IronStomach(),
                 new Moonbound(), new ElvenWrought(), new Lembas(), new StarOfEarendil(), new SwiftMessenger(),
+                new PearlsOfAlqualonde(), TIDES_FURY, new AxeOfDurin(),
                 // Classes
                 new FirstStrike(), new Cleave(), new KeenTracker(), new Wayfarer(),
                 new ShieldWall(), new KingsHands(), new WizardStaff(), new GentleFriend(),
@@ -498,6 +505,70 @@ public final class OriginAbilities {
                     return;
                 }
             }
+        }
+    }
+
+    /** Teleri: the sea gives up its treasures. */
+    public static final class PearlsOfAlqualonde extends Base implements Listener, Tickable {
+        public PearlsOfAlqualonde() {
+            super("pearls_of_alqualonde", "Pearls of Alqualondë",
+                    "The sea gives up its treasures to the Teleri. While you hold a fishing rod you have Luck, and each catch has a 25% chance to bring up a second.");
+        }
+
+        @EventHandler(ignoreCancelled = true)
+        public void onFish(PlayerFishEvent e) {
+            if (e.getState() != PlayerFishEvent.State.CAUGHT_FISH) return;
+            if (!(e.getCaught() instanceof Item caught)) return;
+            runForAbility(e.getPlayer(), p -> {
+                if (ThreadLocalRandom.current().nextDouble() >= 0.25) return;
+                Item extra = caught.getWorld().dropItem(caught.getLocation(), caught.getItemStack().clone());
+                extra.setVelocity(caught.getVelocity());
+            });
+        }
+
+        @Override
+        public void tick(Player player) {
+            runForAbility(player, p -> {
+                if (p.getInventory().getItemInMainHand().getType() == Material.FISHING_ROD
+                        || p.getInventory().getItemInOffHand().getType() == Material.FISHING_ROD) {
+                    effect(p, PotionEffectType.LUCK, 60, 0);
+                }
+            });
+        }
+    }
+
+    /** Teleri: the wrath of the sea, as at the Kinslaying of Alqualondë. */
+    public static final class TidesFury extends Base implements Listener {
+        public TidesFury() {
+            super("tides_fury", "Tide's Fury",
+                    "The strength of the sea is in you. While you stand in water or rain, your melee and trident hits deal 25% more damage.");
+        }
+
+        @EventHandler
+        public void onHit(EntityDamageByEntityEvent e) {
+            Player attacker = null;
+            if (e.getDamager() instanceof Player p && isMelee(e)) attacker = p;
+            else if (e.getDamager() instanceof Trident t && t.getShooter() instanceof Player p) attacker = p;
+            if (attacker == null || !attacker.isInWaterOrRain()) return;
+            runForAbility(attacker, p -> e.setDamage(e.getDamage() * 1.25));
+        }
+    }
+
+    /** Naugrim: the axe is the dwarves' weapon. */
+    public static final class AxeOfDurin extends Base implements Listener {
+        public AxeOfDurin() {
+            super("axe_of_durin", "Axe of Durin",
+                    "Dwarves fight best with the axe. Your axe blows deal 20% more damage and briefly slow your foe.");
+        }
+
+        @EventHandler
+        public void onHit(EntityDamageByEntityEvent e) {
+            if (!(e.getDamager() instanceof Player damager) || !isMelee(e)) return;
+            if (!damager.getInventory().getItemInMainHand().getType().name().endsWith("_AXE")) return;
+            runForAbility(damager, p -> {
+                e.setDamage(e.getDamage() * 1.2);
+                if (e.getEntity() instanceof LivingEntity victim) effect(victim, PotionEffectType.SLOWNESS, 40, 0);
+            });
         }
     }
 

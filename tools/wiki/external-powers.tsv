@@ -4,13 +4,10 @@ origins:cat_vision	Nocturnal	You can slightly see in the dark when not in water.
 origins:elytra	Winged	You have wings of your own and can glide without equipping an Elytra.
 origins:extra_reach	Long Reach	You can reach blocks and entities further away than others can.
 origins:fall_immunity	Acrobatics	You never take fall damage, no matter from which height you fall.
-origins:natural_armor	Sturdy Skin	Even without wearing armor, your skin provides natural protection.
 origins:shulker_inventory	Hoarder	You have access to an additional 9 slots of inventory, which keep the items on death.
 origins:sprint_jump	Strong Ankles	You are able to jump higher by jumping while sprinting.
 origins:strong_arms	Strong Arms	You are strong enough to break natural stones without using a pickaxe.
-origins:swim_speed	Fins	Your underwater speed is increased.
 origins:tailwind	Tailwind	You are a little bit quicker on foot than others.
-origins:water_vision	Clear Sight	Your vision underwater is perfect.
 fantasyorigins:double_health	Mighty Frame	Your great frame gives you twice the health of others.
 fantasyorigins:fortune_increaser	Careful Miner	Your care and mastery in the art of extracting minerals results in a much higher yield from ores than other creatures.
 fantasyorigins:increased_arrow_speed	Masterful Speed	Arrows you shoot fly twice as fast as other archers'.

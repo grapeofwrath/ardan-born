@@ -1,8 +1,8 @@
 {
     "powers": [
         "origins:aqua_affinity",
-        "origins:swim_speed",
-        "origins:water_vision",
+        "ardanborn:pearls_of_alqualonde",
+        "ardanborn:tides_fury",
         "ardanborn:falmari_lungs"
     ],
     "icon": {
@@ -12,5 +12,5 @@
     "impact": 2,
     "layer": "origin",
     "name": "Teleri (Sea Elf)",
-    "description": "Elves of the Havens and the shore, shipwrights who sing to the waves. The sea is a second home."
+    "description": "Elves of the Havens and the shore, shipwrights who sing to the waves. The sea is a second home: it gives up its treasures to them, and its fury fills them in battle."
 }
