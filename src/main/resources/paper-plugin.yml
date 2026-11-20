@@ -3,9 +3,18 @@ version: '${version}'
 main: dev.grapeofwrath.ardanborn.ArdanBorn
 bootstrapper: dev.grapeofwrath.ardanborn.ArdanBornBootstrap
 api-version: '${apiVersion}'
-description: Ardan Born
+description: Tolkien origins for Origins-Reborn and custom armor sets
 authors: [grapeofwrath]
 
 dependencies:
-  server: {}
+  server:
+    # Main class extends Origins-Reborn's OriginsAddon, so it must be loaded first and visible to us.
+    Origins-Reborn:
+      load: BEFORE
+      required: true
+      join-classpath: true
+    # Provides fantasyorigins:* powers used by naugrim and size_small.
+    Origins-Fantasy:
+      load: BEFORE
+      required: false
   bootstrap: {}

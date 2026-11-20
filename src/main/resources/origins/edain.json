@@ -1,0 +1,16 @@
+{
+    "powers": [
+        "ardanborn:gift_of_men",
+        "ardanborn:last_stand",
+        "origins:extra_reach",
+        "origins:sprint_jump"
+    ],
+    "icon": {
+        "item": "minecraft:white_banner"
+    },
+    "order": 1,
+    "impact": 1,
+    "layer": "origin",
+    "name": "Edain (Man)",
+    "description": "Mortal Men, whose short lives are filled with courage and change. Quick to learn, and hardest to break when all seems lost."
+}
