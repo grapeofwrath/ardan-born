@@ -33,7 +33,7 @@ public final class ArkenstoneSet implements ArmorSet {
     /// Default dye of the leather-based boots: a dark brown between brown and black for diamond, and
     /// gold for netherite.
     private static final Color DIAMOND_BOOTS_DYE = Color.fromRGB(0x3B2A20);
-    private static final Color NETHERITE_BOOTS_DYE = Color.fromRGB(0xE6B422);
+    private static final Color NETHERITE_BOOTS_DYE = Color.fromRGB(0xFFD83D);
 
     private final SnowtreadEffect snowtread = new SnowtreadEffect();
 
