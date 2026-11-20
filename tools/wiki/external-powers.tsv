@@ -1,0 +1,31 @@
+origins:aerial_combatant	Aerial Combatant	You deal substantially more damage while in Elytra flight.
+origins:aqua_affinity	Aqua Affinity	You may break blocks underwater as others do on land.
+origins:cat_vision	Nocturnal	You can slightly see in the dark when not in water.
+origins:elytra	Winged	You have Elytra wings without needing to equip any.
+origins:extra_reach	Slender Body	You can reach blocks and entities further away.
+origins:fall_immunity	Acrobatics	You never take fall damage, no matter from which height you fall.
+origins:natural_armor	Sturdy Skin	Even without wearing armor, your skin provides natural protection.
+origins:shulker_inventory	Shulker Inventory	You have access to an additional 9 slots of inventory, which keep the items on death.
+origins:sprint_jump	Strong Ankles	You are able to jump higher by jumping while sprinting.
+origins:strong_arms	Strong Arms	You are strong enough to break natural stones without using a pickaxe.
+origins:swim_speed	Fins	Your underwater speed is increased.
+origins:tailwind	Tailwind	You are a little bit quicker on foot than others.
+origins:water_vision	Wet Eyes	Your vision underwater is perfect.
+fantasyorigins:chime	Chime	You can absorb the chime of amethyst shards to regenerate health.
+fantasyorigins:double_health	Double Health	As you're larger than humans, you have more health as your body protects you from damage.
+fantasyorigins:elegy	Elegy	You become stronger when at less than 3 hearts.
+fantasyorigins:fortune_increaser	Careful Miner	Your care and mastery in the art of extracting minerals results in a much higher yield from ores than other creatures.
+fantasyorigins:increased_arrow_speed	Masterful Speed	Arrows you shoot are twice as fast than ones shot by a regular human.
+fantasyorigins:small_body	Small Body	You're only one block tall, half as tall as a regular human.
+fantasyorigins:strong_skin	Thick Skin	You've got naturally thicker skin than regular humans, so arrows do a lot less damage.
+magicorigins:kill_boost	Dark Magic	Whenever you kill something, you absorb some of its health for up to 30 extra hearts.
+magicorigins:potion_master	Potion Master	Potions you drink and throw are much stronger.
+magicorigins:regeneration_when_still	Healing Focus	When standing still you focus your energy to regenerate health.
+magicorigins:silent	Spectral	Your ghost-like nature prevents you being detected by Sculk Sensors when you move or eat.
+moborigins:alpha_wolf	Alpha Wolf	Wolves you tame are stronger!
+moborigins:better_potions	Better Potions	You consume potions better than most, Potions will last longer when you drink them.
+moborigins:flower_power	Flower Power	When near multiple flowers, you gain regeneration.
+moborigins:queen_bee	Queen Bee	When you collect honey, the bees won't try to attack you.
+moborigins:rideable_creature	Rideable Creature	Other players can ride you!
+monsterorigins:creeper_ally	Creeper Ally	Creepers don't attack you!
+monsterorigins:infinite_arrows	Infinite Arrows	Arrows you shoot are not used up.
