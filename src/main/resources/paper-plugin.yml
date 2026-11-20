@@ -1,0 +1,11 @@
+name: ArdanBorn
+version: '${version}'
+main: dev.grapeofwrath.ardanborn.ArdanBorn
+bootstrapper: dev.grapeofwrath.ardanborn.ArdanBornBootstrap
+api-version: '${apiVersion}'
+description: Ardan Born
+authors: [grapeofwrath]
+
+dependencies:
+  server: {}
+  bootstrap: {}

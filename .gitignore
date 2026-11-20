@@ -1,0 +1,15 @@
+# direnv / nix
+.direnv/
+result
+result-*
+
+# gradle
+.gradle/
+.gradle-home/
+build/
+run/
+
+# IDE
+.idea/
+*.iml
+.vscode/
