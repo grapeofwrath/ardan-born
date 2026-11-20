@@ -13,8 +13,18 @@ dependencies:
       load: BEFORE
       required: true
       join-classpath: true
-    # Provides fantasyorigins:* powers used by naugrim and size_small.
+    # Optional Origins-Reborn addons whose powers some of our origins use (see README).
+    # Without them those powers are simply missing; the origins still load.
     Origins-Fantasy:
+      load: BEFORE
+      required: false
+    Origins-Magic:
+      load: BEFORE
+      required: false
+    Origins-Mobs:
+      load: BEFORE
+      required: false
+    Origins-Monsters:
       load: BEFORE
       required: false
   bootstrap: {}

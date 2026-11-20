@@ -8,7 +8,17 @@ Paper 26.3 plugin for a Tolkien-themed server:
 ## Install
 
 1. Install [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) 2.10.11 or newer.
-2. Put `ArdanBorn-*.jar` in `plugins/` and start the server.
+2. Install the Origins-Reborn addons below. They're optional, but without them some origins are missing powers.
+3. Put `ArdanBorn-*.jar` in `plugins/` and start the server.
+
+| Addon | Tested version | Used by |
+|---|---|---|
+| [Origins-Fantasy](https://modrinth.com/plugin/origins-fantasy) | 1.1.14 | beorning, champion, naugrim, noldor, peredhil, sindar, size_small |
+| [Origins-Magic](https://modrinth.com/plugin/origins-magic) | 1.0.18 | alchemist, beorning, hobbit, sindar, wizard |
+| [Origins-Mobs](https://modrinth.com/plugin/origins-mobs) | 1.0.41 | alchemist, beorning, cleric, druid, eagle |
+| [Origins-Monsters](https://modrinth.com/plugin/origins-monsters) | 1.2.3 | hobbit, ranger |
+
+If an addon is missing, origins that use it still load and can be picked, but its powers do nothing. Nothing is logged about it.
 
 On startup ArdanBorn:
 - copies its origins into `plugins/ArdanBorn/origins/`. Existing files are never overwritten, and missing ones are restored.
@@ -17,8 +27,6 @@ On startup ArdanBorn:
   - `size` defaults to `size_normal`
 
 Optional cleanup: in `plugins/Origins-Reborn/origins/`, delete the stock origins you don't want, or set `"unchoosable": "true"` on them. To hide one of ArdanBorn's origins, set `"unchoosable": "true"` in its file. Don't delete it, because deleted files come back on restart.
-
-`naugrim` (`fortune_increaser`) and `size_small` (`small_body`) use powers from [Origins-Fantasy](https://modrinth.com/plugin/origins-fantasy), so install that too.
 
 Everything uses the `ardanborn` namespace: ability keys (`ardanborn:delvers_instinct`), item data and recipe keys.
 

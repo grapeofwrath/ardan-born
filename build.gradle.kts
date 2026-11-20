@@ -49,6 +49,11 @@ tasks {
         jvmArgs("-Dcom.mojang.eula.agree=true")
         downloadPlugins {
             modrinth("origins-reborn", originsRebornVersion)
+            // Optional addons whose powers our origins use; same versions as the live server.
+            modrinth("origins-fantasy", "1.1.14")
+            modrinth("origins-magic", "1.0.18")
+            modrinth("origins-mobs", "1.0.41")
+            modrinth("origins-monsters", "1.2.3")
         }
     }
 }
