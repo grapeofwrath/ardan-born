@@ -5,6 +5,8 @@ Paper 26.3 plugin for a Tolkien-themed server:
 - **Origins**: an [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) addon with ancestries (`origin` layer), classes (`class` layer) and sizes (`size` layer). Merged from [origins-arda](https://github.com/grapeofwrath/origins-arda).
 - **Custom armor sets**: craft a set template, then combine it with a diamond or netherite armor piece at a smithing table. The first set is the **Arkenstone**.
 
+Browse the origins, powers and armor on the **[wiki](https://github.com/grapeofwrath/ardan-born/wiki)**.
+
 ## Install
 
 1. Install [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) 2.10.11 or newer.
