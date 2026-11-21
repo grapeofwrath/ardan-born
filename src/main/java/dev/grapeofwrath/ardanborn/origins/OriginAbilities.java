@@ -1312,7 +1312,7 @@ public final class OriginAbilities {
                 Enchantment.QUICK_CHARGE, 5, Enchantment.LURE, 5);
 
         /// Moonlit items a player may forge each full moon.
-        private static final int PER_FULL_MOON = 1;
+        private static final int PER_FULL_MOON = 2;
         /// Kept on the player, so relogging or a restart doesn't reset the count: the day of the full moon
         /// they last forged under, and how many moonlit items they've made that night. The count also seeds
         /// the roll, so the preview is the same however often the grid changes.
@@ -1321,7 +1321,7 @@ public final class OriginAbilities {
 
         public SmithsMark() {
             super("smiths_mark", "Smith's Mark",
-                    "Your work is made to last: tools, weapons and armor you craft start with Unbreaking I. Once each full moon, a tool or weapon forged under its open sky also gains an enchantment beyond its usual maximum, by up to 5 levels.");
+                    "Your work is made to last: tools, weapons and armor you craft start with Unbreaking I. Twice each full moon, a tool or weapon forged under its open sky also gains an enchantment beyond its usual maximum, by up to 5 levels.");
         }
 
         private static long today(Player p) {
