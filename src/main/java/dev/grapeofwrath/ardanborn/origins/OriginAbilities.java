@@ -14,6 +14,10 @@ import org.bukkit.Sound;
 import org.bukkit.Tag;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.block.data.Ageable;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.AbstractArrow;
@@ -29,12 +33,14 @@ import org.bukkit.entity.Spider;
 import org.bukkit.entity.Trident;
 import org.bukkit.entity.Villager;
 import org.bukkit.entity.WanderingTrader;
+import org.bukkit.entity.Wolf;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.enchantment.EnchantItemEvent;
 import org.bukkit.event.entity.EntityAirChangeEvent;
+import org.bukkit.event.entity.EntityBreedEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -43,25 +49,35 @@ import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.inventory.CraftItemEvent;
+import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.PlayerExpChangeEvent;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
@@ -91,7 +107,8 @@ public final class OriginAbilities {
                 // Classes
                 new FirstStrike(), new Cleave(), new KeenTracker(), new Wayfarer(),
                 new ShieldWall(), new KingsHands(), new WizardStaff(), new GentleFriend(),
-                new MasterSmith(), new Backstab(), new QuietSteps(), new SongOfValor(), new SilverTongue()
+                new MasterSmith(), new Backstab(), new QuietSteps(), new SongOfValor(), new SilverTongue(),
+                new HealingPresence(), new CallOfHuan(), new GreenThumb(), new SmithsMark()
         );
     }
 
@@ -1068,6 +1085,378 @@ public final class OriginAbilities {
                     }
                 }
             });
+        }
+    }
+
+    /** Cleric / Healer: a presence that mends. */
+    public static final class HealingPresence extends Base implements Tickable {
+        private static final long PULSE_MS = 10_000;
+        private static final double AMOUNT = 2.0; // 1 heart
+        private final Map<UUID, Long> lastPulse = new HashMap<>();
+
+        public HealingPresence() {
+            super("healing_presence", "Healing Presence",
+                    "Your presence mends those around you. Every 10 seconds, you and every player within 6 blocks heal 1 heart.");
+        }
+
+        @Override
+        public void tick(Player player) {
+            runForAbility(player, p -> {
+                long now = System.currentTimeMillis();
+                Long last = lastPulse.get(p.getUniqueId());
+                if (last != null && now - last < PULSE_MS) return;
+                lastPulse.put(p.getUniqueId(), now);
+                mend(p);
+                for (Entity near : p.getNearbyEntities(6, 3, 6)) {
+                    if (near instanceof Player ally) mend(ally);
+                }
+            });
+        }
+
+        /// Heals through the regain event, so other powers (e.g. Healer of Imladris) apply.
+        private static void mend(Player target) {
+            if (target.isDead()) return;
+            var attr = target.getAttribute(Attribute.MAX_HEALTH);
+            double max = attr == null ? 20.0 : attr.getValue();
+            if (target.getHealth() >= max) return;
+            target.heal(AMOUNT, EntityRegainHealthEvent.RegainReason.MAGIC);
+            target.getWorld().spawnParticle(Particle.HEART, target.getLocation().add(0, 1.8, 0), 2, 0.3, 0.2, 0.3, 0);
+        }
+    }
+
+    /** Druid / Beastfriend: Huan, the hound of Valinor, who fought beside Beren and Lúthien. */
+    public static final class CallOfHuan extends Base implements Listener {
+        private static final NamespacedKey HUAN = Keys.key("huan");
+        private static final long STAY_TICKS = 1200; // 60 seconds
+        private static final long COOLDOWN_MS = 180_000;
+        /// Each owner's Huan, so he can be sent away when they leave, die or call him again.
+        private static final Map<UUID, Wolf> SUMMONED = new HashMap<>();
+        private final Cooldown cooldown = new Cooldown();
+
+        public CallOfHuan() {
+            super("call_of_huan", "Call of Huan",
+                    "Right-click with a bone to call Huan, the great hound of Valinor, to your side for 60 seconds. 3 minute cooldown.");
+        }
+
+        @EventHandler
+        public void onCall(PlayerInteractEvent e) {
+            if (e.getHand() != EquipmentSlot.HAND || !isRightClick(e.getAction())) return;
+            if (e.getItem() == null || e.getItem().getType() != Material.BONE) return;
+            runForAbility(e.getPlayer(), p -> {
+                e.setCancelled(true);
+                if (!cooldown.tryUse(p, COOLDOWN_MS)) return;
+                dismiss(p.getUniqueId());
+                Wolf huan = p.getWorld().spawn(p.getLocation(), Wolf.class, w -> {
+                    w.setTamed(true);
+                    w.setOwner(p);
+                    w.customName(Component.text("Huan", NamedTextColor.GOLD));
+                    w.setCustomNameVisible(true);
+                    w.setSoundVariant(Wolf.SoundVariant.BIG);
+                    setBase(w, Attribute.SCALE, 1.5);
+                    setBase(w, Attribute.MAX_HEALTH, 60.0);
+                    setBase(w, Attribute.ATTACK_DAMAGE, 8.0);
+                    setBase(w, Attribute.KNOCKBACK_RESISTANCE, 0.5);
+                    var speed = w.getAttribute(Attribute.MOVEMENT_SPEED);
+                    if (speed != null) speed.setBaseValue(speed.getBaseValue() * 1.2);
+                    w.setHealth(60.0);
+                    // Never saved with the chunk, so a restart or unload can't leave a permanent Huan.
+                    w.setPersistent(false);
+                    w.setRemoveWhenFarAway(false);
+                    w.getPersistentDataContainer().set(HUAN, PersistentDataType.STRING, p.getUniqueId().toString());
+                });
+                SUMMONED.put(p.getUniqueId(), huan);
+                huan.getWorld().spawnParticle(Particle.SOUL, huan.getLocation().add(0, 0.8, 0), 30, 0.6, 0.6, 0.6, 0.02);
+                huan.getWorld().playSound(huan.getLocation(), Sound.ENTITY_WOLF_BIG_GROWL, 1f, 0.8f);
+                huan.getScheduler().runDelayed(JavaPlugin.getPlugin(ArdanBorn.class), _ -> depart(huan), null, STAY_TICKS);
+            });
+        }
+
+        private static void setBase(Wolf wolf, Attribute attribute, double value) {
+            var instance = wolf.getAttribute(attribute);
+            if (instance != null) instance.setBaseValue(value);
+        }
+
+        private static boolean isHuan(Entity entity) {
+            return entity instanceof Wolf && entity.getPersistentDataContainer().has(HUAN);
+        }
+
+        private static void depart(Wolf huan) {
+            if (huan.isValid()) {
+                huan.getWorld().spawnParticle(Particle.SOUL, huan.getLocation().add(0, 0.8, 0), 30, 0.6, 0.6, 0.6, 0.02);
+                huan.remove();
+            }
+            SUMMONED.values().remove(huan);
+        }
+
+        private static void dismiss(UUID owner) {
+            Wolf huan = SUMMONED.remove(owner);
+            if (huan != null && huan.isValid()) huan.remove();
+        }
+
+        /// Called on plugin disable.
+        public static void dismissAll() {
+            for (Wolf huan : SUMMONED.values()) {
+                if (huan.isValid()) huan.remove();
+            }
+            SUMMONED.clear();
+        }
+
+        @EventHandler
+        public void onQuit(PlayerQuitEvent e) {
+            dismiss(e.getPlayer().getUniqueId());
+        }
+
+        @EventHandler
+        public void onOwnerDeath(PlayerDeathEvent e) {
+            dismiss(e.getEntity().getUniqueId());
+        }
+
+        @EventHandler
+        public void onHuanDeath(EntityDeathEvent e) {
+            if (!isHuan(e.getEntity())) return;
+            e.getDrops().clear();
+            e.setDroppedExp(0);
+            SUMMONED.values().remove(e.getEntity());
+        }
+
+        @EventHandler(ignoreCancelled = true)
+        public void onBreed(EntityBreedEvent e) {
+            if (isHuan(e.getMother()) || isHuan(e.getFather())) e.setCancelled(true);
+        }
+
+        /// No feeding, breeding or dyeing him; an empty hand still tells him to sit or stand.
+        @EventHandler(ignoreCancelled = true)
+        public void onInteract(PlayerInteractEntityEvent e) {
+            if (!isHuan(e.getRightClicked())) return;
+            if (!e.getPlayer().getInventory().getItem(e.getHand()).getType().isAir()) e.setCancelled(true);
+        }
+    }
+
+    /** Alchemist / Herbalist: green things flourish in their care. */
+    public static final class GreenThumb extends Base implements Tickable {
+        private static final int RADIUS = 5;
+        private static final int HEIGHT = 2;
+        private static final double CROP_CHANCE = 0.05;
+        private static final double SAPLING_CHANCE = 0.01;
+        /// Plants that grow by age besides Tag.CROPS. The pitcher crop is two blocks tall and left alone.
+        private static final Set<Material> EXTRA_PLANTS = EnumSet.of(
+                Material.SWEET_BERRY_BUSH, Material.COCOA, Material.NETHER_WART);
+
+        public GreenThumb() {
+            super("green_thumb", "Green Thumb",
+                    "Living things flourish around you. Crops, berries and saplings within 5 blocks grow much faster.");
+        }
+
+        @Override
+        public void tick(Player player) {
+            runForAbility(player, p -> {
+                ThreadLocalRandom random = ThreadLocalRandom.current();
+                Block center = p.getLocation().getBlock();
+                for (int x = -RADIUS; x <= RADIUS; x++) {
+                    for (int y = -HEIGHT; y <= HEIGHT; y++) {
+                        for (int z = -RADIUS; z <= RADIUS; z++) {
+                            Block block = center.getRelative(x, y, z);
+                            Material type = block.getType();
+                            if (Tag.SAPLINGS.isTagged(type)) {
+                                if (random.nextDouble() < SAPLING_CHANCE) block.applyBoneMeal(BlockFace.UP);
+                                continue;
+                            }
+                            if (type == Material.PITCHER_CROP) continue;
+                            if (!Tag.CROPS.isTagged(type) && !EXTRA_PLANTS.contains(type)) continue;
+                            if (!(block.getBlockData() instanceof Ageable crop)) continue;
+                            if (crop.getAge() >= crop.getMaximumAge() || random.nextDouble() >= CROP_CHANCE) continue;
+                            crop.setAge(crop.getAge() + 1);
+                            block.setBlockData(crop);
+                            block.getWorld().spawnParticle(Particle.HAPPY_VILLAGER,
+                                    block.getLocation().add(0.5, 0.5, 0.5), 2, 0.2, 0.2, 0.2, 0);
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    /** Inventor / Smith: work made to last, and blessed under the full moon. */
+    public static final class SmithsMark extends Base implements Listener {
+        /// Items that count as tools or weapons for the full-moon enchantment.
+        private static final List<Tag<Material>> TOOLS_AND_WEAPONS = List.of(
+                Tag.ITEMS_ENCHANTABLE_MINING, Tag.ITEMS_ENCHANTABLE_WEAPON, Tag.ITEMS_ENCHANTABLE_MELEE_WEAPON,
+                Tag.ITEMS_ENCHANTABLE_SHARP_WEAPON, Tag.ITEMS_ENCHANTABLE_BOW, Tag.ITEMS_ENCHANTABLE_CROSSBOW,
+                Tag.ITEMS_ENCHANTABLE_MACE, Tag.ITEMS_ENCHANTABLE_TRIDENT, Tag.ITEMS_ENCHANTABLE_LUNGE,
+                Tag.ITEMS_ENCHANTABLE_FISHING);
+
+        /// The full-moon enchantments and how likely each is: 10 common, 5 uncommon, 2 rare, 1 very rare.
+        /// Only enchantments with levels are here (no Silk Touch, Mending, Infinity…), since every one is
+        /// rolled above its vanilla maximum. Only those that fit the crafted item are drawn from.
+        private static final Map<Enchantment, Integer> WEIGHTS = new LinkedHashMap<>();
+        static {
+            for (Enchantment e : List.of(Enchantment.EFFICIENCY, Enchantment.SHARPNESS, Enchantment.POWER,
+                    Enchantment.QUICK_CHARGE, Enchantment.IMPALING, Enchantment.DENSITY, Enchantment.LUNGE,
+                    Enchantment.LURE)) WEIGHTS.put(e, 10);
+            for (Enchantment e : List.of(Enchantment.UNBREAKING, Enchantment.SMITE, Enchantment.BANE_OF_ARTHROPODS,
+                    Enchantment.KNOCKBACK, Enchantment.PUNCH, Enchantment.PIERCING, Enchantment.LOYALTY,
+                    Enchantment.BREACH, Enchantment.LUCK_OF_THE_SEA)) WEIGHTS.put(e, 5);
+            for (Enchantment e : List.of(Enchantment.FIRE_ASPECT, Enchantment.SWEEPING_EDGE, Enchantment.RIPTIDE,
+                    Enchantment.WIND_BURST)) WEIGHTS.put(e, 2);
+            for (Enchantment e : List.of(Enchantment.FORTUNE, Enchantment.LOOTING)) WEIGHTS.put(e, 1);
+        }
+
+        /// How many enchantments a moonlit item gets, by weight: usually one, rarely two, very rarely three.
+        private static final int[] COUNT_WEIGHTS = {0, 89, 10, 1};
+
+        /// Moonlit levels run from one above the vanilla maximum up to this.
+        private static final int TOP_LEVEL = 10;
+        /// Lower tops where higher levels break the item: Quick Charge above V can't load a crossbow, and
+        /// Lure that high stops fish biting.
+        private static final Map<Enchantment, Integer> LEVEL_CAPS = Map.of(
+                Enchantment.QUICK_CHARGE, 5, Enchantment.LURE, 5);
+
+        /// Moonlit items a player may forge each full moon.
+        private static final int PER_FULL_MOON = 1;
+        /// Kept on the player, so relogging or a restart doesn't reset the count: the day of the full moon
+        /// they last forged under, and how many moonlit items they've made that night. The count also seeds
+        /// the roll, so the preview is the same however often the grid changes.
+        private static final NamespacedKey MOON_DAY = Keys.key("moonlit_day");
+        private static final NamespacedKey MOON_COUNT = Keys.key("moonlit_count");
+
+        public SmithsMark() {
+            super("smiths_mark", "Smith's Mark",
+                    "Your work is made to last: tools, weapons and armor you craft start with Unbreaking I. Once each full moon, a tool or weapon forged under its open sky also gains an enchantment beyond its usual maximum, up to level X.");
+        }
+
+        private static long today(Player p) {
+            return p.getWorld().getFullTime() / 24000L;
+        }
+
+        /// Moonlit items this player has forged tonight.
+        private static int forgedTonight(Player p) {
+            var pdc = p.getPersistentDataContainer();
+            Long day = pdc.get(MOON_DAY, PersistentDataType.LONG);
+            if (day == null || day != today(p)) return 0;
+            return pdc.getOrDefault(MOON_COUNT, PersistentDataType.INTEGER, 0);
+        }
+
+        /// Whether an item carries a moonlit enchantment: any level above the vanilla maximum.
+        private static boolean isMoonlit(@Nullable ItemStack item) {
+            if (item == null || item.isEmpty()) return false;
+            for (Map.Entry<Enchantment, Integer> entry : item.getEnchantments().entrySet()) {
+                if (entry.getValue() > entry.getKey().getMaxLevel()) return true;
+            }
+            return false;
+        }
+
+        /// Runs after RecipeGuardListener, which may have cleared the result. Changing the result slot
+        /// also covers shift-click crafting, and shows in the preview.
+        @EventHandler(priority = EventPriority.HIGH)
+        public void onPrepare(PrepareItemCraftEvent e) {
+            ItemStack result = e.getInventory().getResult();
+            if (result == null || result.isEmpty()) return;
+            runForAbility(e.getView().getPlayer(), p -> {
+                ItemStack marked = result.clone();
+                boolean changed = false;
+                if (Enchantment.UNBREAKING.canEnchantItem(marked) && !marked.containsEnchantment(Enchantment.UNBREAKING)) {
+                    marked.addEnchantment(Enchantment.UNBREAKING, 1);
+                    changed = true;
+                }
+                if (p instanceof Player player && underFullMoon(player) && isToolOrWeapon(marked)
+                        && forgedTonight(player) < PER_FULL_MOON) {
+                    changed |= addMoonlitEnchantment(player, marked);
+                }
+                if (changed) e.getInventory().setResult(marked);
+            });
+        }
+
+        /// A moonlit item must be taken one at a time: a shift-click could forge several at once and pass
+        /// the nightly limit. Taking one counts towards it, and the next rolls afresh.
+        @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
+        public void onCraft(CraftItemEvent e) {
+            if (!(e.getWhoClicked() instanceof Player player)) return;
+            if (!isMoonlit(e.getCurrentItem())) return;
+            if (e.isShiftClick()) {
+                e.setCancelled(true);
+                player.sendActionBar(Component.text("Moonlit work is taken one at a time.", NamedTextColor.GRAY));
+                return;
+            }
+            int forged = forgedTonight(player) + 1;
+            var pdc = player.getPersistentDataContainer();
+            pdc.set(MOON_DAY, PersistentDataType.LONG, today(player));
+            pdc.set(MOON_COUNT, PersistentDataType.INTEGER, forged);
+            int left = PER_FULL_MOON - forged;
+            player.sendActionBar(Component.text(left > 0
+                    ? "The moon blesses your work. " + left + " more tonight."
+                    : "The moon has given all it will tonight.", NamedTextColor.AQUA));
+        }
+
+        private static boolean isToolOrWeapon(ItemStack item) {
+            for (Tag<Material> tag : TOOLS_AND_WEAPONS) {
+                if (tag.isTagged(item.getType())) return true;
+            }
+            return false;
+        }
+
+        /// Night of a full moon in the Overworld, with nothing between you and the sky.
+        private static boolean underFullMoon(Player p) {
+            World world = p.getWorld();
+            if (world.getEnvironment() != World.Environment.NORMAL) return false;
+            long time = world.getTime();
+            if (time < 13000 || time > 23000) return false;
+            if ((world.getFullTime() / 24000L) % 8L != 0) return false; // phase 0 = full moon
+            return p.getLocation().getBlock().getLightFromSky() == 15;
+        }
+
+        private boolean addMoonlitEnchantment(Player p, ItemStack item) {
+            Random random = new Random(Objects.hash(p.getUniqueId(), today(p), item.getType(), forgedTonight(p)));
+
+            int wanted = pickWeighted(random, COUNT_WEIGHTS);
+            boolean added = false;
+            for (int i = 0; i < wanted; i++) {
+                Enchantment chosen = drawEnchantment(random, item);
+                if (chosen == null) break; // nothing else fits
+                int min = chosen.getMaxLevel() + 1;
+                int max = LEVEL_CAPS.getOrDefault(chosen, TOP_LEVEL);
+                // Unsafe: these levels are beyond what the game allows normally.
+                item.addUnsafeEnchantment(chosen, min + pickWeighted(random, descendingWeights(max - min + 1)));
+                added = true;
+            }
+            return added;
+        }
+
+        /// One enchantment from the table that fits the item, doesn't clash with what it has, and isn't
+        /// already at a moonlit level (so Unbreaking I from the always-on mark can still be raised).
+        private static @Nullable Enchantment drawEnchantment(Random random, ItemStack item) {
+            List<Enchantment> options = new ArrayList<>();
+            List<Integer> weights = new ArrayList<>();
+            for (Map.Entry<Enchantment, Integer> entry : WEIGHTS.entrySet()) {
+                Enchantment ench = entry.getKey();
+                if (!ench.canEnchantItem(item) || item.getEnchantmentLevel(ench) > ench.getMaxLevel()) continue;
+                boolean conflicts = item.getEnchantments().keySet().stream()
+                        .anyMatch(other -> other != ench && ench.conflictsWith(other));
+                if (conflicts) continue;
+                options.add(ench);
+                weights.add(entry.getValue());
+            }
+            if (options.isEmpty()) return null;
+            return options.get(pickWeighted(random, weights.stream().mapToInt(Integer::intValue).toArray()));
+        }
+
+        /// The index of one entry, each as likely as its weight.
+        private static int pickWeighted(Random random, int[] weights) {
+            int total = 0;
+            for (int w : weights) total += w;
+            int roll = random.nextInt(total);
+            for (int i = 0; i < weights.length; i++) {
+                roll -= weights[i];
+                if (roll < 0) return i;
+            }
+            return weights.length - 1;
+        }
+
+        /// Weights n, n-1 … 1, so the lowest level is likeliest. E.g. Fortune IV–X: IV is 7 times as
+        /// likely as X.
+        private static int[] descendingWeights(int n) {
+            int[] weights = new int[n];
+            for (int i = 0; i < n; i++) weights[i] = n - i;
+            return weights;
         }
     }
 }

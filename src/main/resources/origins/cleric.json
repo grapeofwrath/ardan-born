@@ -1,7 +1,7 @@
 {
     "powers": [
         "ardanborn:kings_hands",
-        "moborigins:flower_power"
+        "ardanborn:healing_presence"
     ],
     "icon": {
         "item": "minecraft:glistering_melon_slice"
@@ -10,5 +10,5 @@
     "impact": 1,
     "layer": "class",
     "name": "Healer",
-    "description": "The hands of the king are the hands of a healer. Cure the poisoned and wounded with a touch, and thrive among flowers."
+    "description": "The hands of the king are the hands of a healer. Cure the poisoned and wounded with a touch, and mend all who stand near you."
 }

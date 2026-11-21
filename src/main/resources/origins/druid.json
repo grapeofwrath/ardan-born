@@ -1,7 +1,7 @@
 {
     "powers": [
         "ardanborn:gentle_friend",
-        "moborigins:alpha_wolf"
+        "ardanborn:call_of_huan"
     ],
     "icon": {
         "item": "minecraft:bone"
@@ -10,5 +10,5 @@
     "impact": 1,
     "layer": "class",
     "name": "Beastfriend",
-    "description": "Like Beren and Luthien, a friend to wild things. Beasts do not trouble you and the wolves you tame grow strong."
+    "description": "Like Beren and Luthien, a friend to wild things. Beasts do not trouble you, and Huan the hound of Valinor answers your call."
 }

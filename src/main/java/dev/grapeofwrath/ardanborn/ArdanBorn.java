@@ -69,6 +69,7 @@ public final class ArdanBorn extends OriginsAddon {
     @Override
     public void onDisable() {
         if (armorEffects != null) armorEffects.shutdown();
+        OriginAbilities.CallOfHuan.dismissAll();
         ArmorSets.unregisterAll();
     }
 }

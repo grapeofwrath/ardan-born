@@ -116,7 +116,7 @@ numbers in step with the code (`OriginAbilities.java`) or, for borrowed powers, 
 - Stacks with [Healer of Imladris](#healer-of-imladris), which makes the regeneration heal 50% more.
 
 ## ardanborn:healer_of_imladris
-- ×1.5 healing from Instant Health and from Regeneration, whatever the source: potions, golden apples, beacons, [Star of Eärendil](#star-of-eärendil), or a Healer's [Hands of the Healer](#hands-of-the-healer).
+- ×1.5 healing from Instant Health and from Regeneration, whatever the source: potions, golden apples, beacons, [Star of Eärendil](#star-of-eärendil), or a Healer's [Hands of the Healer](#hands-of-the-healer) and [Healing Presence](#healing-presence).
 - Natural regeneration from a full hunger bar isn't boosted.
 
 ## ardanborn:swift_messenger
@@ -245,15 +245,6 @@ numbers in step with the code (`OriginAbilities.java`) or, for borrowed powers, 
 ## magicorigins:silent
 - Your walking, landing, eating and drinking don't trigger sculk sensors or shriekers.
 
-## moborigins:alpha_wolf
-- Wolves you tame get more health and bite harder than ordinary wolves.
-
-## moborigins:better_potions
-- Potions you drink last twice as long.
-
-## moborigins:flower_power
-- Regeneration I while at least 3 flowers are within 3 blocks of you.
-
 ## moborigins:queen_bee
 - Bees don't get angry when you take honey or honeycomb from their nest or hive, even without a campfire.
 
@@ -264,3 +255,57 @@ numbers in step with the code (`OriginAbilities.java`) or, for borrowed powers, 
 ## monsterorigins:infinite_arrows
 - Arrows you shoot aren't used up, as with the Infinity enchantment.
 - Works with tipped and spectral arrows.
+
+## ardanborn:healing_presence
+- Every 10 seconds, you and every player within 6 blocks heal 1 heart, with a few heart particles.
+- Players already at full health are skipped, so the pulse is never wasted on them.
+- Counts as magic healing, so a Peredhil's [Healer of Imladris](#healer-of-imladris) makes it heal 1.5 hearts for them.
+- Several Healers stack: each one pulses on their own timer.
+
+## ardanborn:call_of_huan
+- Right-click with a bone (in the air or at a block) to call **Huan**, the hound of Valinor. The bone isn't used up.
+- Huan is a tamed wolf that follows and fights for you, half again the size of a wolf, with 30 hearts, 4 hearts of bite damage (double a wolf's), 20% more speed and half knockback resistance.
+- He stays 60 seconds, then fades away. 3-minute cooldown from when you call him, shown on your action bar.
+- He leaves early if you log out, die or call him again. He's never saved with the world, so a restart can't leave him behind.
+- He can't be fed, bred or dyed; right-click him with an empty hand to make him sit or stand. He drops nothing if killed.
+- Taming ordinary wolves with bones still works as normal.
+
+## ardanborn:green_thumb
+- Every second, each crop within 5 blocks of you (2 blocks up or down) has a 5% chance to grow a stage: wheat, carrots, potatoes, beetroots, nether wart, sweet berries, cocoa, torchflowers, and melon and pumpkin stems. Wheat goes from seed to ripe in about 2–3 minutes.
+- Each sapling or mangrove propagule in range has a 1% chance per second to grow as if bone-mealed.
+- Pitcher plants aren't affected.
+- Crops only grow while you're nearby; they still need light and farmland as usual to grow on their own.
+
+## ardanborn:smiths_mark
+- **Always:** tools, weapons, armor and anything else that can take Unbreaking (shields, bows, fishing rods, shears, flint and steel…) come out of your crafting grid with **Unbreaking I**.
+- **Under a full moon:** a tool or weapon crafted at night during a full moon, in the Overworld, while you stand under open sky (nothing at all overhead), is also **enchanted beyond the usual maximum**, once per full moon.
+  - Tools and weapons are pickaxes, axes, shovels, hoes, swords, spears, maces, bows, crossbows, tridents and fishing rods. Armor only gets the Unbreaking.
+  - Every moonlit enchantment starts one level above its vanilla maximum and goes up to **X**: Sharpness VI–X, Fortune IV–X, Knockback III–X. Lower levels are likelier; for Fortune, IV is 7 times as likely as X.
+  - Quick Charge and Lure stop at V, because higher levels break crossbows and fishing.
+  - Unbreaking can be drawn too, raising the baseline Unbreaking I to IV–X.
+  - The roll shows in the result slot before you take the item, and taking the ingredients out and putting them back gives the same roll. Each item you take rolls a new one.
+  - **Once per full moon.** Your action bar tells you when the moon has blessed your work. It's tracked on your character, so logging out or a restart doesn't reset it, and it comes back at the next full moon. After that, crafting gives only Unbreaking I until then.
+  - Moonlit items must be taken one click at a time; shift-click is refused for them so it can't forge several at once (the preview would show the blessing on each).
+  - Check the moon in the sky, or with `/time query day` (full moon when the day divided by 8 leaves 0).
+- Unbreaking I shows in the result slot and works with shift-click crafting. Crafter blocks don't apply it, since no player is crafting.
+
+**How many enchantments**
+
+| Enchantments | Chance |
+|---|---|
+| 1 | 89% |
+| 2 | 10% |
+| 3 | 1% |
+
+Each extra one is drawn from what's left, skipping any that clash with what the item already has (Sharpness, Smite and Bane of Arthropods exclude each other, as do Riptide and Loyalty, and Density and Breach).
+
+**Which enchantment**
+
+| Rarity | Weight | Enchantments |
+|---|---|---|
+| Common | 10 | Efficiency, Sharpness, Power, Quick Charge, Impaling, Density, Lunge, Lure |
+| Uncommon | 5 | Unbreaking, Smite, Bane of Arthropods, Knockback, Punch, Piercing, Loyalty, Breach, Luck of the Sea |
+| Rare | 2 | Fire Aspect, Sweeping Edge, Riptide, Wind Burst |
+| Very rare | 1 | Fortune, Looting |
+
+Only enchantments with levels are in the draw, so there's no Silk Touch, Mending, Infinity, Flame, Multishot or Channeling. Only those that fit the item count, so the odds depend on the item. For a diamond pickaxe the choices are Efficiency (10), Unbreaking (5) and Fortune (1): 63% Efficiency, 31% Unbreaking, 6% Fortune.

@@ -1,7 +1,7 @@
 {
     "powers": [
         "magicorigins:potion_master",
-        "moborigins:better_potions"
+        "ardanborn:green_thumb"
     ],
     "icon": {
         "item": "minecraft:brewing_stand"
@@ -10,5 +10,5 @@
     "impact": 1,
     "layer": "class",
     "name": "Herbalist",
-    "description": "A gatherer of herbs and brewer of draughts. Your potions are stronger and last longer."
+    "description": "A gatherer of herbs and brewer of draughts. Your potions are stronger, and green things grow quickly in your care."
 }
