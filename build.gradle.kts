@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "dev.grapeofwrath"
-version = "0.3.0-SNAPSHOT"
+version = "0.3.1-SNAPSHOT"
 
 val paperVersion = "26.3.build.256-stable"
 val minecraftVersion = "26.3"
