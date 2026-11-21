@@ -86,9 +86,10 @@ public final class ArkenstoneSet implements ArmorSet {
     public void registerRecipes(Plugin plugin) {
         NamespacedKey key = Keys.key(ID);
         ShapedRecipe recipe = new ShapedRecipe(key, createTemplate());
+        // Like every race's template: a diamond in the center, gold either side, and two ingredients of its own.
         recipe.shape("AEA", "GDG", "AEA");
         recipe.setIngredient('A', Material.AMETHYST_SHARD);
-        recipe.setIngredient('E', Material.ECHO_SHARD);
+        recipe.setIngredient('E', Material.EMERALD);
         recipe.setIngredient('G', Material.GOLD_INGOT);
         recipe.setIngredient('D', Material.DIAMOND);
         Bukkit.addRecipe(recipe);

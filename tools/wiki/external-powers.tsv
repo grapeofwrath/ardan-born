@@ -4,13 +4,13 @@ origins:cat_vision	Nocturnal	You can slightly see in the dark when not in water.
 origins:elytra	Winged	You have wings of your own and can glide without equipping an Elytra.
 origins:extra_reach	Long Reach	You can reach blocks and entities further away than others can.
 origins:fall_immunity	Acrobatics	You never take fall damage, no matter from which height you fall.
+origins:launch_into_air	Gift of the Winds	Every 30 seconds, you are able to launch about 20 blocks up into the air.
 origins:shulker_inventory	Hoarder	You have access to an additional 9 slots of inventory, which keep the items on death.
 origins:sprint_jump	Strong Ankles	You are able to jump higher by jumping while sprinting.
 origins:strong_arms	Strong Arms	You are strong enough to break natural stones without using a pickaxe.
 origins:tailwind	Tailwind	You are a little bit quicker on foot than others.
 fantasyorigins:double_health	Mighty Frame	Your great frame gives you twice the health of others.
 fantasyorigins:fortune_increaser	Careful Miner	Your care and mastery in the art of extracting minerals results in a much higher yield from ores than other creatures.
-fantasyorigins:increased_arrow_speed	Masterful Speed	Arrows you shoot fly twice as fast as other archers'.
 fantasyorigins:small_body	Small Body	You're only one block tall, half the height of most folk.
 fantasyorigins:strong_skin	Thick Skin	Your hide is tough enough that arrows do much less damage to you.
 magicorigins:kill_boost	Spoils of Victory	Whenever you kill something, you take in some of its vitality as extra health, up to 30 extra hearts.

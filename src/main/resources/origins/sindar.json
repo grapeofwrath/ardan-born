@@ -1,9 +1,10 @@
 {
     "powers": [
         "magicorigins:silent",
-        "fantasyorigins:increased_arrow_speed",
+        "ardanborn:bane_of_mirkwood",
         "ardanborn:woodland_stride",
-        "ardanborn:lembas"
+        "ardanborn:lembas",
+        "ardanborn:leaf_walker"
     ],
     "icon": {
         "item": "minecraft:oak_leaves"
@@ -12,5 +13,5 @@
     "impact": 2,
     "layer": "origin",
     "name": "Sindar (Wood Elf)",
-    "description": "Grey and green Elves of the forest realms. Light of foot, silent in the wood, deadly with a bow, and sustained by the waybread of their kin."
+    "description": "Grey and green Elves of the forest realms. Light of foot, silent in the wood and swift along the treetops, deadly with a bow, and sustained by the waybread of their kin."
 }

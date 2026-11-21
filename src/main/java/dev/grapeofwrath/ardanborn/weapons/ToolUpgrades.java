@@ -25,9 +25,11 @@ import java.util.function.Supplier;
 /// Registry of all [ToolUpgrade]s, and the smithing table logic that makes them.
 public final class ToolUpgrades implements Listener {
     private static final List<ToolUpgrade> UPGRADES = List.of(
-            new HavensTrident(), new Aeglos(), new ArkenstonePick());
+            new HavensTrident(), new Aeglos(), new ArkenstonePick(), new HuntingBow());
 
     public static void registerAll(Plugin plugin) {
+        // Templates of races with no armor set yet; the others are registered with their set.
+        HoneyOfBeorn.registerRecipe();
         for (ToolUpgrade upgrade : UPGRADES) {
             // Template + base item + empty addition slot. The real result is built in onPrepare; this recipe
             // only makes the smithing table accept the inputs.
@@ -50,9 +52,11 @@ public final class ToolUpgrades implements Listener {
         return null;
     }
 
-    /// Every finished tool or weapon, keyed by id. Templates are listed by [ArmorSets#giveableItems].
+    /// Every finished tool or weapon, keyed by id, and the templates of races with no armor set. The other
+    /// templates are listed by [ArmorSets#giveableItems].
     public static Map<String, Supplier<ItemStack>> giveableItems() {
         Map<String, Supplier<ItemStack>> items = new LinkedHashMap<>();
+        items.put(HoneyOfBeorn.ID, HoneyOfBeorn::create);
         for (ToolUpgrade upgrade : UPGRADES) {
             List<Material> bases = upgrade.baseMaterials();
             if (bases.size() == 1) {

@@ -3,6 +3,7 @@
         "magicorigins:silent",
         "ardanborn:second_breakfast",
         "ardanborn:fortunate_folk",
+        "ardanborn:tree_roots",
         "origins:shulker_inventory"
     ],
     "icon": {
@@ -12,5 +13,5 @@
     "impact": 1,
     "layer": "origin",
     "name": "Hobbit (Halfling)",
-    "description": "Small, quiet folk who love good food and green country. Lucky, light-footed, never short of pockets for their mathoms, and underestimated at everyone's peril."
+    "description": "Small, quiet folk who love good food and green country. Lucky, light-footed, never short of pockets for their mathoms, tougher than they look, and underestimated at everyone's peril."
 }

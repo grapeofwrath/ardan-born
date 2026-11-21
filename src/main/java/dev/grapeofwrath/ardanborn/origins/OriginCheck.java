@@ -14,6 +14,7 @@ public final class OriginCheck {
     public static final String TELERI = "teleri";
     public static final String NAUGRIM = "naugrim";
     public static final String EAGLE = "eagle";
+    public static final String BEORNING = "beorning";
 
     private OriginCheck() {}
 

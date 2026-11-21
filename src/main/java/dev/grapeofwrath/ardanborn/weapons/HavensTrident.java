@@ -91,9 +91,10 @@ public final class HavensTrident implements ToolUpgrade, Listener {
     public static void registerTemplateRecipe() {
         NamespacedKey key = Keys.key(TEMPLATE_ID);
         ShapedRecipe recipe = new ShapedRecipe(key, createTemplate());
-        recipe.shape("NPN", "PDP", "NPN");
-        recipe.setIngredient('N', Material.NAUTILUS_SHELL);
+        recipe.shape("PNP", "GDG", "PNP");
         recipe.setIngredient('P', Material.PRISMARINE_SHARD);
+        recipe.setIngredient('N', Material.NAUTILUS_SHELL);
+        recipe.setIngredient('G', Material.GOLD_INGOT);
         recipe.setIngredient('D', Material.DIAMOND);
         Bukkit.addRecipe(recipe);
         ArmorSets.trackRecipe(key);

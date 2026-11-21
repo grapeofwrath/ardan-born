@@ -3,7 +3,8 @@
         "origins:cat_vision",
         "ardanborn:eldar_body",
         "ardanborn:eldar_lore",
-        "ardanborn:elven_wrought"
+        "ardanborn:elven_wrought",
+        "ardanborn:wrath_of_the_noldor"
     ],
     "icon": {
         "item": "minecraft:amethyst_shard"
@@ -12,5 +13,5 @@
     "impact": 1,
     "layer": "origin",
     "name": "Noldor (High Elf)",
-    "description": "The Deep Elves who beheld the Light of the Two Trees. Keen of sight, untouched by sickness, masters of lore, and makers of things that endure."
+    "description": "The Deep Elves who beheld the Light of the Two Trees. Keen of sight, untouched by sickness, masters of lore, makers of things that endure, and bane of the Dark Lord's servants."
 }

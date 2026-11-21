@@ -53,9 +53,9 @@ public final class FeatherOfThorondor {
     public static void registerRecipe() {
         NamespacedKey key = Keys.key(ID);
         ShapedRecipe recipe = new ShapedRecipe(key, create());
-        recipe.shape("FPF", "GDG", "FPF");
+        recipe.shape("FBF", "GDG", "FBF");
         recipe.setIngredient('F', Material.FEATHER);
-        recipe.setIngredient('P', Material.PHANTOM_MEMBRANE);
+        recipe.setIngredient('B', Material.BREEZE_ROD);
         recipe.setIngredient('G', Material.GOLD_INGOT);
         recipe.setIngredient('D', Material.DIAMOND);
         Bukkit.addRecipe(recipe);

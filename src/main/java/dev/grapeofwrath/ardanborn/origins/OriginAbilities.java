@@ -8,10 +8,15 @@ import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
+import org.bukkit.Tag;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeInstance;
+import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.entity.AbstractArrow;
 import org.bukkit.entity.AbstractHorse;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
@@ -20,6 +25,7 @@ import org.bukkit.entity.Item;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Spider;
 import org.bukkit.entity.Trident;
 import org.bukkit.entity.Villager;
 import org.bukkit.entity.WanderingTrader;
@@ -28,10 +34,12 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.enchantment.EnchantItemEvent;
+import org.bukkit.event.entity.EntityAirChangeEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityPotionEffectEvent;
+import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
@@ -75,10 +83,11 @@ public final class OriginAbilities {
         return List.of(
                 // Ancestries
                 new GiftOfMen(), new LastStand(), new EldarBody(), new EldarLore(),
-                new WoodlandStride(), new FalmariLungs(), new DelversInstinct(), new ForgeHardened(),
+                new WoodlandStride(), new BaneOfMirkwood(), new FalmariLungs(), new SeasVigor(),new DelversInstinct(), new ForgeHardened(),
                 new SecondBreakfast(), new FortunateFolk(), new Bloodlust(), new IronStomach(),
                 new Moonbound(), new ElvenWrought(), new Lembas(), new StarOfEarendil(), new SwiftMessenger(),
                 new PearlsOfAlqualonde(), new TidesFury(), new AxeOfDurin(),
+                new TreeRoots(), new WrathOfTheNoldor(), new HealerOfImladris(), new LeafWalker(),
                 // Classes
                 new FirstStrike(), new Cleave(), new KeenTracker(), new Wayfarer(),
                 new ShieldWall(), new KingsHands(), new WizardStaff(), new GentleFriend(),
@@ -157,8 +166,27 @@ public final class OriginAbilities {
                 || p.getInventory().getItemInOffHand().getType() == Material.SHIELD;
     }
 
+    /** The undead, servants of the Shadow. */
+    static final Set<EntityType> UNDEAD = EnumSet.of(
+            EntityType.ZOMBIE, EntityType.ZOMBIE_VILLAGER, EntityType.HUSK, EntityType.DROWNED,
+            EntityType.ZOMBIFIED_PIGLIN, EntityType.ZOGLIN, EntityType.ZOMBIE_HORSE,
+            EntityType.SKELETON, EntityType.STRAY, EntityType.BOGGED, EntityType.WITHER_SKELETON,
+            EntityType.SKELETON_HORSE, EntityType.WITHER, EntityType.PHANTOM);
+
+    /** The creatures of the Nether that aren't undead. */
+    static final Set<EntityType> NETHER = EnumSet.of(
+            EntityType.BLAZE, EntityType.GHAST, EntityType.MAGMA_CUBE,
+            EntityType.HOGLIN, EntityType.PIGLIN, EntityType.PIGLIN_BRUTE);
+
     static boolean isMelee(EntityDamageByEntityEvent e) {
         return e.getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK;
+    }
+
+    /** Forests, taigas, jungles and groves: the Sindar's home ground. */
+    static boolean inWoodland(Player p) {
+        String biome = p.getLocation().getBlock().getBiome().getKey().getKey();
+        return biome.contains("forest") || biome.contains("taiga") || biome.contains("jungle")
+                || biome.contains("grove") || biome.contains("woods");
     }
 
     static boolean isRightClick(Action a) {
@@ -253,28 +281,72 @@ public final class OriginAbilities {
         @Override
         public void tick(Player player) {
             runForAbility(player, p -> {
-                String biome = p.getLocation().getBlock().getBiome().getKey().getKey();
-                if (biome.contains("forest") || biome.contains("taiga") || biome.contains("jungle")
-                        || biome.contains("grove") || biome.contains("woods")) {
-                    effect(p, PotionEffectType.SPEED, 60, 0);
-                }
+                if (inWoodland(p)) effect(p, PotionEffectType.SPEED, 60, 0);
+            });
+        }
+    }
+
+    /** Sindar: hunters of the spiders of Mirkwood. */
+    public static final class BaneOfMirkwood extends Base implements Listener {
+        public BaneOfMirkwood() {
+            super("bane_of_mirkwood", "Bane of Mirkwood",
+                    "Elven archers of the forest realms. Your arrows deal 20% more damage while you're in a forest, taiga, jungle or grove, and 50% more to spiders and cave spiders.");
+        }
+
+        @EventHandler(ignoreCancelled = true)
+        public void onArrow(EntityDamageByEntityEvent e) {
+            if (!(e.getDamager() instanceof AbstractArrow arrow)) return;
+            if (!(arrow.getShooter() instanceof Player shooter)) return;
+            runForAbility(shooter, p -> {
+                double multiplier = 1.0;
+                // Cave spiders are spiders too.
+                if (e.getEntity() instanceof Spider) multiplier *= 1.5;
+                if (inWoodland(p)) multiplier *= 1.2;
+                e.setDamage(e.getDamage() * multiplier);
             });
         }
     }
 
     /** Teleri: breath of the sea. */
-    public static final class FalmariLungs extends Base implements Tickable {
+    public static final class FalmariLungs extends Base implements Listener {
         public FalmariLungs() {
             super("falmari_lungs", "Breath of the Sea",
-                    "The Teleri are born of the shore. Your breath lasts about three times as long underwater.");
+                    "The Teleri are born of the shore. You can breathe underwater indefinitely.");
         }
 
+        /// Air never runs down, so the bubbles never even start to drop.
+        @EventHandler(ignoreCancelled = true)
+        public void onAirChange(EntityAirChangeEvent e) {
+            if (!(e.getEntity() instanceof Player player)) return;
+            if (e.getAmount() >= player.getRemainingAir()) return;
+            runForAbility(player, p -> e.setCancelled(true));
+        }
+    }
+
+    /** Teleri: the sea strengthens its children. */
+    public static final class SeasVigor extends Base implements Tickable {
+        private static final NamespacedKey MODIFIER = Keys.key("seas_vigor");
+        private static final double BONUS = 4.0; // 2 hearts
+
+        public SeasVigor() {
+            super("seas_vigor", "Sea's Vigor",
+                    "The sea strengthens its children. While you stand in water or rain you have 2 extra hearts.");
+        }
+
+        /// Runs for every player, so the hearts also go away when someone stops being Teleri. The modifier
+        /// is transient: it is never saved with the player.
         @Override
         public void tick(Player player) {
-            runForAbility(player, p -> {
-                if (p.getEyeLocation().getBlock().getType() != Material.WATER) return;
-                p.setRemainingAir(Math.min(p.getMaximumAir(), p.getRemainingAir() + 13));
-            });
+            AttributeInstance health = player.getAttribute(Attribute.MAX_HEALTH);
+            if (health == null) return;
+            boolean wanted = hasAbility(player) && player.isInWaterOrRain();
+            boolean present = health.getModifier(MODIFIER) != null;
+            if (wanted && !present) {
+                health.addTransientModifier(
+                        new AttributeModifier(MODIFIER, BONUS, AttributeModifier.Operation.ADD_NUMBER));
+            } else if (!wanted && present) {
+                health.removeModifier(MODIFIER);
+            }
         }
     }
 
@@ -569,6 +641,101 @@ public final class OriginAbilities {
         }
     }
 
+    /** Hobbits: there is more to them than meets the eye. */
+    public static final class TreeRoots extends Base implements Listener {
+        public TreeRoots() {
+            super("tree_roots", "Tough as Old Tree-roots",
+                    "Hobbits are hard to break, as Frodo bore the Ring. You take 30% less damage from Wither, Slowness lasts half as long on you, and Darkness cannot touch you.");
+        }
+
+        @EventHandler(ignoreCancelled = true)
+        public void onWither(EntityDamageEvent e) {
+            if (e.getCause() != EntityDamageEvent.DamageCause.WITHER) return;
+            if (!(e.getEntity() instanceof Player player)) return;
+            runForAbility(player, p -> e.setDamage(e.getDamage() * 0.7));
+        }
+
+        @EventHandler(ignoreCancelled = true)
+        public void onEffect(EntityPotionEffectEvent e) {
+            if (!(e.getEntity() instanceof Player player)) return;
+            PotionEffect added = e.getNewEffect();
+            if (added == null) return;
+            if (added.getType() == PotionEffectType.DARKNESS) {
+                runForAbility(player, p -> e.setCancelled(true));
+                return;
+            }
+            // Our own re-added, halved effect comes back with cause PLUGIN, so it isn't halved again.
+            if (added.getType() != PotionEffectType.SLOWNESS || added.isInfinite()
+                    || e.getCause() == EntityPotionEffectEvent.Cause.PLUGIN) return;
+            runForAbility(player, p -> {
+                e.setCancelled(true);
+                PotionEffect halved = added.withDuration(Math.max(1, added.getDuration() / 2));
+                p.getScheduler().run(JavaPlugin.getPlugin(ArdanBorn.class), _ -> p.addPotionEffect(halved), null);
+            });
+        }
+    }
+
+    /** Noldor: the long war against Morgoth. */
+    public static final class WrathOfTheNoldor extends Base implements Listener {
+        public WrathOfTheNoldor() {
+            super("wrath_of_the_noldor", "Wrath of the Noldor",
+                    "The Noldor have warred on Morgoth since the First Age. Your melee hits deal 25% more damage to the undead and the creatures of the Nether.");
+        }
+
+        @EventHandler(ignoreCancelled = true)
+        public void onHit(EntityDamageByEntityEvent e) {
+            if (!(e.getDamager() instanceof Player damager) || !isMelee(e)) return;
+            EntityType type = e.getEntity().getType();
+            if (!UNDEAD.contains(type) && !NETHER.contains(type)) return;
+            runForAbility(damager, p -> e.setDamage(e.getDamage() * 1.25));
+        }
+    }
+
+    /** Peredhil: Elrond, the healer of Imladris. */
+    public static final class HealerOfImladris extends Base implements Listener {
+        public HealerOfImladris() {
+            super("healer_of_imladris", "Healer of Imladris",
+                    "Like Elrond, you have the healer's gift. Healing potions, Regeneration and golden apples heal you 50% more.");
+        }
+
+        @EventHandler(ignoreCancelled = true)
+        public void onHeal(EntityRegainHealthEvent e) {
+            if (!(e.getEntity() instanceof Player player)) return;
+            EntityRegainHealthEvent.RegainReason reason = e.getRegainReason();
+            if (reason != EntityRegainHealthEvent.RegainReason.MAGIC
+                    && reason != EntityRegainHealthEvent.RegainReason.MAGIC_REGEN) return;
+            runForAbility(player, p -> e.setAmount(e.getAmount() * 1.5));
+        }
+    }
+
+    /** Sindar: the Silvan Elves of the treetops. */
+    public static final class LeafWalker extends Base implements Listener, Tickable {
+        public LeafWalker() {
+            super("leaf_walker", "Leaf-walker",
+                    "The Silvan Elves run along the treetops. You take no fall damage landing on leaves, and on leaves you gain Speed and Jump Boost.");
+        }
+
+        @EventHandler(ignoreCancelled = true)
+        public void onFall(EntityDamageEvent e) {
+            if (e.getCause() != EntityDamageEvent.DamageCause.FALL) return;
+            if (!(e.getEntity() instanceof Player player) || !onLeaves(player)) return;
+            runForAbility(player, p -> e.setCancelled(true));
+        }
+
+        @Override
+        public void tick(Player player) {
+            runForAbility(player, p -> {
+                if (!onLeaves(p)) return;
+                effect(p, PotionEffectType.SPEED, 40, 1);
+                effect(p, PotionEffectType.JUMP_BOOST, 40, 1);
+            });
+        }
+
+        private static boolean onLeaves(Player p) {
+            return Tag.LEAVES.isTagged(p.getLocation().subtract(0, 0.1, 0).getBlock().getType());
+        }
+    }
+
     // ================================================================== CLASSES
 
     /** Fighter. */
@@ -731,9 +898,6 @@ public final class OriginAbilities {
 
     /** Wizard / Loremaster: Gandalf's light. */
     public static final class WizardStaff extends Base implements Listener {
-        private static final Set<EntityType> UNDEAD = EnumSet.of(
-                EntityType.ZOMBIE, EntityType.ZOMBIE_VILLAGER, EntityType.HUSK, EntityType.DROWNED,
-                EntityType.SKELETON, EntityType.STRAY, EntityType.WITHER_SKELETON, EntityType.PHANTOM);
         private final Cooldown cooldown = new Cooldown();
 
         public WizardStaff() {
