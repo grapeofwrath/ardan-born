@@ -6,6 +6,7 @@
 #   src/main/resources/origins/*.json  origins (name, description, layer, order, impact, icon, powers)
 #   OriginAbilities.java               ArdanBorn's own powers: super("id", "Title", "Description")
 #   external-powers.tsv                powers from Origins-Reborn and its addons (key, title, description)
+#   power-details.md                   extra detail per power for the Powers page ("## <key>" sections)
 # Stops with an error if an origin uses a power with no description, so pages never have gaps.
 use strict;
 use warnings;
@@ -21,6 +22,8 @@ my $root = File::Spec->catdir($here, '..', '..');
 my $origins_dir = "$root/src/main/resources/origins";
 my $abilities_java = "$root/src/main/java/dev/grapeofwrath/ardanborn/origins/OriginAbilities.java";
 my $powers_tsv = "$here/external-powers.tsv";
+my $details_md = "$here/power-details.md";
+my %details;
 binmode STDOUT, ':utf8';
 
 my %SOURCE = (
@@ -63,6 +66,16 @@ while ($src =~ /super\(\s*$string\s*,\s*$string\s*,\s*$string\s*\)/g) {
     $found++;
 }
 die "No powers found in $abilities_java; has the Base constructor changed?\n" unless $found;
+
+# Extra detail for the Powers page: "## <key>" sections, each copied as Markdown.
+open my $det, '<:utf8', $details_md or die "$details_md: $!";
+my $current;
+while (<$det>) {
+    if (/^## (\S+)\s*$/) { $current = $1; $details{$current} = ''; next; }
+    $details{$current} .= $_ if defined $current;
+}
+close $det;
+s/^\s+|\s+$//g for values %details;
 
 my (%by_layer, %used_by);
 opendir my $dh, $origins_dir or die $!;
@@ -126,6 +139,11 @@ for my $key (@keys) {
         sort { $a->{name} cmp $b->{name} } @{ $used_by{$key} };
     print $md "### $p->{title}\n\n";
     print $md "$p->{desc}\n\n";
+    if ($details{$key}) {
+        print $md "$details{$key}\n\n";
+    } else {
+        warn "No details for power $key in power-details.md\n";
+    }
     printf $md "`%s` · from %s · used by %s\n\n", $key, source_of($key), join(', ', @origins);
 }
 close $md;

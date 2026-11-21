@@ -18,8 +18,9 @@ git commit -am "Update origins and powers" && git push
 | Origins | `src/main/resources/origins/*.json` |
 | ArdanBorn's powers | the `super("id", "Title", "Description")` calls in `OriginAbilities.java` |
 | Powers from Origins-Reborn and its addons | `external-powers.tsv` (key, title, description; tab-separated) |
+| Extra detail on the Powers page (numbers, triggers, how powers combine) | `power-details.md`, one `## <power key>` section per power |
 
-The script stops with an error if an origin uses a power that has no description. When you add a power from Origins-Reborn or an addon, add a line to `external-powers.tsv`. Its title and description are the strings in that plugin's ability class, e.g.:
+The script stops with an error if an origin uses a power that has no description, and warns if it has no section in `power-details.md`. When you add a power from Origins-Reborn or an addon, add a line to `external-powers.tsv`. For every new power, add a section to `power-details.md`. Its title and description are the strings in that plugin's ability class, e.g.:
 
 ```sh
 javap -c -p -cp <unzipped jar> com.starshootercity.originsfantasy.abilities.SmallBody | grep 'String '
