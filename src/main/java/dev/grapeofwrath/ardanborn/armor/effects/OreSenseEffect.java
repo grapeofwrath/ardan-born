@@ -17,25 +17,35 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.BlockDisplay;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockExplodeEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitTask;
 
-import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /// Helmet: sneak and right-click with a pickaxe to sense the ores around you. They glow through the
-/// stone for a few seconds, for you alone. Naugrim sense further.
+/// stone for you alone, for 30 seconds or until you step away. Mined ore stops glowing. Naugrim sense further.
 public final class OreSenseEffect implements SetEffect, Listener {
     private static final int DIAMOND_RADIUS = 8;
     private static final int NETHERITE_RADIUS = 12;
     private static final int NAUGRIM_BONUS = 4;
     private static final int MAX_MARKS = 256;
-    private static final long SHOW_TICKS = 200;
+    private static final long SHOW_TICKS = 600;
     private static final long COOLDOWN_MS = 60_000;
 
     private static final Map<Material, Color> COLORS = Map.ofEntries(
@@ -61,6 +71,9 @@ public final class OreSenseEffect implements SetEffect, Listener {
 
     private final String setId;
     private final OriginAbilities.Cooldown cooldown = new OriginAbilities.Cooldown();
+    private final Map<UUID, Reveal> active = new HashMap<>();
+
+    private record Reveal(Map<Block, BlockDisplay> marks, BukkitTask expiry) {}
 
     public OreSenseEffect(String setId) {
         this.setId = setId;
@@ -76,7 +89,8 @@ public final class OreSenseEffect implements SetEffect, Listener {
         return List.of(
                 Component.text("Sneak and right-click with a pickaxe:"),
                 Component.text("ores within " + radius(tier) + " blocks glow for you"),
-                Component.text("for 10 seconds. Once a minute."),
+                Component.text("for 30 seconds, or until you move."),
+                Component.text("Once a minute."),
                 Component.text("Naugrim: +" + NAUGRIM_BONUS + " blocks"));
     }
 
@@ -106,13 +120,15 @@ public final class OreSenseEffect implements SetEffect, Listener {
     }
 
     /// Marks every ore within `radius` with a glowing copy only `player` can see. Returns how many.
-    private static int reveal(Player player, int radius) {
+    private int reveal(Player player, int radius) {
         Plugin plugin = JavaPlugin.getPlugin(ArdanBorn.class);
+        UUID id = player.getUniqueId();
+        clear(id);
         World world = player.getWorld();
         Block center = player.getLocation().getBlock();
         int minY = Math.max(world.getMinHeight(), center.getY() - radius);
         int maxY = Math.min(world.getMaxHeight() - 1, center.getY() + radius);
-        List<BlockDisplay> marks = new ArrayList<>();
+        Map<Block, BlockDisplay> marks = new HashMap<>();
         scan:
         for (int x = -radius; x <= radius; x++) {
             for (int z = -radius; z <= radius; z++) {
@@ -120,7 +136,7 @@ public final class OreSenseEffect implements SetEffect, Listener {
                     Block block = world.getBlockAt(center.getX() + x, y, center.getZ() + z);
                     Color color = COLORS.get(block.getType());
                     if (color == null) continue;
-                    marks.add(world.spawn(block.getLocation(), BlockDisplay.class, display -> {
+                    marks.put(block, world.spawn(block.getLocation(), BlockDisplay.class, display -> {
                         display.setBlock(block.getBlockData());
                         display.setGlowing(true);
                         display.setGlowColorOverride(color);
@@ -131,8 +147,60 @@ public final class OreSenseEffect implements SetEffect, Listener {
                 }
             }
         }
-        for (BlockDisplay mark : marks) player.showEntity(plugin, mark);
-        plugin.getServer().getScheduler().runTaskLater(plugin, () -> marks.forEach(BlockDisplay::remove), SHOW_TICKS);
+        if (marks.isEmpty()) return 0;
+        for (BlockDisplay mark : marks.values()) player.showEntity(plugin, mark);
+        BukkitTask expiry = plugin.getServer().getScheduler().runTaskLater(plugin, () -> clear(id), SHOW_TICKS);
+        active.put(id, new Reveal(marks, expiry));
         return marks.size();
+    }
+
+    private void clear(UUID id) {
+        Reveal reveal = active.remove(id);
+        if (reveal == null) return;
+        reveal.expiry().cancel();
+        reveal.marks().values().forEach(BlockDisplay::remove);
+    }
+
+    /// Drops the marks on blocks that no longer hold ore.
+    private void unmark(Collection<Block> blocks) {
+        if (active.isEmpty()) return;
+        for (Reveal reveal : active.values()) {
+            for (Block block : blocks) {
+                BlockDisplay mark = reveal.marks().remove(block);
+                if (mark != null) mark.remove();
+            }
+        }
+    }
+
+    // Looking around is fine; stepping away ends the sense.
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onMove(PlayerMoveEvent event) {
+        if (active.isEmpty() || !event.hasChangedPosition()) return;
+        clear(event.getPlayer().getUniqueId());
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onTeleport(PlayerTeleportEvent event) {
+        clear(event.getPlayer().getUniqueId());
+    }
+
+    @EventHandler
+    public void onQuit(PlayerQuitEvent event) {
+        clear(event.getPlayer().getUniqueId());
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onBreak(BlockBreakEvent event) {
+        unmark(List.of(event.getBlock()));
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onBlockExplode(BlockExplodeEvent event) {
+        unmark(event.blockList());
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onEntityExplode(EntityExplodeEvent event) {
+        unmark(event.blockList());
     }
 }
