@@ -1304,8 +1304,8 @@ public final class OriginAbilities {
         /// How many enchantments a moonlit item gets, by weight: usually one, rarely two, very rarely three.
         private static final int[] COUNT_WEIGHTS = {0, 89, 10, 1};
 
-        /// Moonlit levels run from one above the vanilla maximum up to this.
-        private static final int TOP_LEVEL = 10;
+        /// Moonlit levels run from one above the vanilla maximum up to this many above it.
+        private static final int LEVELS_ABOVE_MAX = 5;
         /// Lower tops where higher levels break the item: Quick Charge above V can't load a crossbow, and
         /// Lure that high stops fish biting.
         private static final Map<Enchantment, Integer> LEVEL_CAPS = Map.of(
@@ -1321,7 +1321,7 @@ public final class OriginAbilities {
 
         public SmithsMark() {
             super("smiths_mark", "Smith's Mark",
-                    "Your work is made to last: tools, weapons and armor you craft start with Unbreaking I. Once each full moon, a tool or weapon forged under its open sky also gains an enchantment beyond its usual maximum, up to level X.");
+                    "Your work is made to last: tools, weapons and armor you craft start with Unbreaking I. Once each full moon, a tool or weapon forged under its open sky also gains an enchantment beyond its usual maximum, by up to 5 levels.");
         }
 
         private static long today(Player p) {
@@ -1413,7 +1413,7 @@ public final class OriginAbilities {
                 Enchantment chosen = drawEnchantment(random, item);
                 if (chosen == null) break; // nothing else fits
                 int min = chosen.getMaxLevel() + 1;
-                int max = LEVEL_CAPS.getOrDefault(chosen, TOP_LEVEL);
+                int max = Math.min(chosen.getMaxLevel() + LEVELS_ABOVE_MAX, LEVEL_CAPS.getOrDefault(chosen, Integer.MAX_VALUE));
                 // Unsafe: these levels are beyond what the game allows normally.
                 item.addUnsafeEnchantment(chosen, min + pickWeighted(random, descendingWeights(max - min + 1)));
                 added = true;
@@ -1451,8 +1451,8 @@ public final class OriginAbilities {
             return weights.length - 1;
         }
 
-        /// Weights n, n-1 … 1, so the lowest level is likeliest. E.g. Fortune IV–X: IV is 7 times as
-        /// likely as X.
+        /// Weights n, n-1 … 1, so the lowest level is likeliest. E.g. Fortune IV–VIII: IV is 5 times as
+        /// likely as VIII.
         private static int[] descendingWeights(int n) {
             int[] weights = new int[n];
             for (int i = 0; i < n; i++) weights[i] = n - i;

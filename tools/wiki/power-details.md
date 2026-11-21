@@ -280,9 +280,9 @@ numbers in step with the code (`OriginAbilities.java`) or, for borrowed powers, 
 - **Always:** tools, weapons, armor and anything else that can take Unbreaking (shields, bows, fishing rods, shears, flint and steel…) come out of your crafting grid with **Unbreaking I**.
 - **Under a full moon:** a tool or weapon crafted at night during a full moon, in the Overworld, while you stand under open sky (nothing at all overhead), is also **enchanted beyond the usual maximum**, once per full moon.
   - Tools and weapons are pickaxes, axes, shovels, hoes, swords, spears, maces, bows, crossbows, tridents and fishing rods. Armor only gets the Unbreaking.
-  - Every moonlit enchantment starts one level above its vanilla maximum and goes up to **X**: Sharpness VI–X, Fortune IV–X, Knockback III–X. Lower levels are likelier; for Fortune, IV is 7 times as likely as X.
+  - Every moonlit enchantment starts one level above its vanilla maximum and goes up to **5 levels above it**: Sharpness VI–X, Fortune IV–VIII, Knockback III–VII, Fire Aspect III–VII. Lower levels are likelier; for Fortune, IV is 5 times as likely as VIII.
   - Quick Charge and Lure stop at V, because higher levels break crossbows and fishing.
-  - Unbreaking can be drawn too, raising the baseline Unbreaking I to IV–X.
+  - Unbreaking can be drawn too, raising the baseline Unbreaking I to IV–VIII.
   - The roll shows in the result slot before you take the item, and taking the ingredients out and putting them back gives the same roll. Each item you take rolls a new one.
   - **Once per full moon.** Your action bar tells you when the moon has blessed your work. It's tracked on your character, so logging out or a restart doesn't reset it, and it comes back at the next full moon. After that, crafting gives only Unbreaking I until then.
   - Moonlit items must be taken one click at a time; shift-click is refused for them so it can't forge several at once (the preview would show the blessing on each).
