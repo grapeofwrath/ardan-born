@@ -7,7 +7,7 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import dev.grapeofwrath.ardanborn.armor.ArmorSets;
-import dev.grapeofwrath.ardanborn.weapons.HavensTrident;
+import dev.grapeofwrath.ardanborn.weapons.ToolUpgrades;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import io.papermc.paper.command.brigadier.Commands;
 import io.papermc.paper.command.brigadier.argument.ArgumentTypes;
@@ -67,10 +67,10 @@ public final class ArdanBornBootstrap implements PluginBootstrap {
                                         .executes(ctx -> give(ctx, IntegerArgumentType.getInteger(ctx, "amount"))))));
     }
 
-    /// Every plugin item obtainable by command: armor set templates and pieces, and weapon items.
+    /// Every plugin item obtainable by command: race templates, armor pieces, and tools and weapons.
     private static Map<String, Supplier<ItemStack>> giveableItems() {
         Map<String, Supplier<ItemStack>> items = new LinkedHashMap<>(ArmorSets.giveableItems());
-        items.putAll(HavensTrident.giveableItems());
+        items.putAll(ToolUpgrades.giveableItems());
         return items;
     }
 

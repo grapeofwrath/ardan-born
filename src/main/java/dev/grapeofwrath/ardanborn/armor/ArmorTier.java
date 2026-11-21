@@ -1,7 +1,10 @@
 package dev.grapeofwrath.ardanborn.armor;
 
+import io.papermc.paper.datacomponent.DataComponentTypes;
+import io.papermc.paper.datacomponent.item.Equippable;
 import org.bukkit.Material;
 import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -57,6 +60,20 @@ public enum ArmorTier {
         if (name.endsWith("_LEGGINGS")) return EquipmentSlot.LEGS;
         if (name.endsWith("_BOOTS")) return EquipmentSlot.FEET;
         return null;
+    }
+
+    /// The slot an armor piece is worn in: from its material name, or for pieces on a base that isn't
+    /// named like armor (a spyglass-based helmet), from its equippable component.
+    public static @Nullable EquipmentSlot slotOf(@Nullable ItemStack item) {
+        if (item == null || item.isEmpty()) return null;
+        EquipmentSlot slot = slotOf(item.getType());
+        if (slot != null) return slot;
+        Equippable equippable = item.getData(DataComponentTypes.EQUIPPABLE);
+        if (equippable == null) return null;
+        return switch (equippable.slot()) {
+            case HEAD, CHEST, LEGS, FEET -> equippable.slot();
+            default -> null;
+        };
     }
 
     /// Every armor material that can become a set piece.

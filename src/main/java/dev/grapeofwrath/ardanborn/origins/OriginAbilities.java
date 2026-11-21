@@ -71,9 +71,6 @@ public final class OriginAbilities {
         void tick(Player player);
     }
 
-    /// Shared so items can grant Teleri wielders their extra bonus (see weapons.HavensTrident).
-    public static final TidesFury TIDES_FURY = new TidesFury();
-
     public static List<Ability> all() {
         return List.of(
                 // Ancestries
@@ -81,7 +78,7 @@ public final class OriginAbilities {
                 new WoodlandStride(), new FalmariLungs(), new DelversInstinct(), new ForgeHardened(),
                 new SecondBreakfast(), new FortunateFolk(), new Bloodlust(), new IronStomach(),
                 new Moonbound(), new ElvenWrought(), new Lembas(), new StarOfEarendil(), new SwiftMessenger(),
-                new PearlsOfAlqualonde(), TIDES_FURY, new AxeOfDurin(),
+                new PearlsOfAlqualonde(), new TidesFury(), new AxeOfDurin(),
                 // Classes
                 new FirstStrike(), new Cleave(), new KeenTracker(), new Wayfarer(),
                 new ShieldWall(), new KingsHands(), new WizardStaff(), new GentleFriend(),
@@ -126,10 +123,10 @@ public final class OriginAbilities {
     }
 
     /** Simple per-player cooldown in milliseconds. */
-    static final class Cooldown {
+    public static final class Cooldown {
         private final Map<UUID, Long> until = new HashMap<>();
 
-        boolean tryUse(Player p, long ms) {
+        public boolean tryUse(Player p, long ms) {
             long now = System.currentTimeMillis();
             Long end = until.get(p.getUniqueId());
             if (end != null && end > now) {
@@ -142,7 +139,7 @@ public final class OriginAbilities {
         }
 
         /** Same as tryUse but silent (for passive triggers). */
-        boolean tryUseQuiet(Player p, long ms) {
+        public boolean tryUseQuiet(Player p, long ms) {
             long now = System.currentTimeMillis();
             Long end = until.get(p.getUniqueId());
             if (end != null && end > now) return false;

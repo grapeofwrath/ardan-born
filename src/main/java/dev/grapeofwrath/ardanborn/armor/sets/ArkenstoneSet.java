@@ -6,6 +6,7 @@ import dev.grapeofwrath.ardanborn.armor.ArmorTier;
 import dev.grapeofwrath.ardanborn.armor.CustomItems;
 import dev.grapeofwrath.ardanborn.Keys;
 import dev.grapeofwrath.ardanborn.armor.SetEffect;
+import dev.grapeofwrath.ardanborn.armor.effects.OreSenseEffect;
 import dev.grapeofwrath.ardanborn.armor.effects.SnowtreadEffect;
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import io.papermc.paper.datacomponent.item.CustomModelData;
@@ -36,6 +37,7 @@ public final class ArkenstoneSet implements ArmorSet {
     private static final Color NETHERITE_BOOTS_DYE = Color.fromRGB(0xFFD83D);
 
     private final SnowtreadEffect snowtread = new SnowtreadEffect();
+    private final OreSenseEffect oreSense = new OreSenseEffect(ID);
 
     @Override
     public String id() {
@@ -54,6 +56,11 @@ public final class ArkenstoneSet implements ArmorSet {
 
     @Override
     public ItemStack createTemplate() {
+        return template();
+    }
+
+    /// The Arkenstone. It makes the armor set, and the Arkenstone pickaxe (see weapons.ArkenstonePick).
+    public static ItemStack template() {
         // Looks like raw gold, but is built on prismarine crystals: raw gold itself could be smelted
         // or used in vanilla recipes. RecipeGuardListener keeps it out of prismarine recipes.
         ItemStack item = ItemStack.of(Material.PRISMARINE_CRYSTALS);
@@ -68,7 +75,7 @@ public final class ArkenstoneSet implements ArmorSet {
                 .addLine(Component.empty())
                 .addLine(Component.text("Combine with diamond or netherite", NamedTextColor.BLUE)
                         .decoration(TextDecoration.ITALIC, false))
-                .addLine(Component.text("armor at a Smithing Table.", NamedTextColor.BLUE)
+                .addLine(Component.text("armor or a pickaxe at a Smithing Table.", NamedTextColor.BLUE)
                         .decoration(TextDecoration.ITALIC, false))
                 .build());
         CustomItems.tag(item, ID);
@@ -103,8 +110,9 @@ public final class ArkenstoneSet implements ArmorSet {
     @Override
     public Optional<SetEffect> pieceEffect(EquipmentSlot slot) {
         return switch (slot) {
+            case HEAD -> Optional.of(oreSense);
             case FEET -> Optional.of(snowtread);
-            // Helmet, chestplate, leggings and the full-set bonus are still to be designed.
+            // Chestplate, leggings and the full-set bonus are still to be designed.
             default -> Optional.empty();
         };
     }

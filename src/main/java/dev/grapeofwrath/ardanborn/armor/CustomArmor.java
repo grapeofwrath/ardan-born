@@ -5,12 +5,14 @@ import io.papermc.paper.datacomponent.DataComponentType;
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import io.papermc.paper.datacomponent.item.CustomModelData;
 import io.papermc.paper.datacomponent.item.DyedItemColor;
+import io.papermc.paper.datacomponent.item.Equippable;
 import io.papermc.paper.datacomponent.item.ItemLore;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Color;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemRarity;
 import org.bukkit.inventory.ItemStack;
@@ -38,6 +40,15 @@ public final class CustomArmor {
 
     public static boolean isSetPiece(@Nullable ItemStack item) {
         return setOf(item) != null;
+    }
+
+    /// The tier of the piece of set `setId` the player wears in `slot`, or null if they don't wear one.
+    /// For effects that react to events rather than ticking.
+    public static @Nullable ArmorTier wornTier(Player player, EquipmentSlot slot, String setId) {
+        ItemStack item = player.getInventory().getItem(slot);
+        ArmorSet set = setOf(item);
+        if (set == null || !set.id().equals(setId) || ArmorTier.slotOf(item) != slot) return null;
+        return tierOf(item);
     }
 
     /// A set piece on a different base material (e.g. leather-based boots), which vanilla smithing
@@ -91,6 +102,13 @@ public final class CustomArmor {
         copyDefault(item, vanilla, DataComponentTypes.ENCHANTABLE);
         copyDefault(item, vanilla, DataComponentTypes.REPAIRABLE);
         copyDefault(item, vanilla, DataComponentTypes.DAMAGE_RESISTANT);
+        // A base that isn't worn in this slot (a spyglass helmet) is worn and shown like the vanilla piece.
+        // Its icon is the vanilla piece too; in hand it still works as its base (the spyglass still zooms).
+        Equippable own = item.getType().getDefaultData(DataComponentTypes.EQUIPPABLE);
+        if (own == null || own.slot() != slot) {
+            copyDefault(item, vanilla, DataComponentTypes.EQUIPPABLE);
+            item.setData(DataComponentTypes.ITEM_MODEL, vanilla.getKey());
+        }
     }
 
     /// Moves a piece from one tier's default dye to another's, e.g. brown to gold on a netherite upgrade.
@@ -117,7 +135,7 @@ public final class CustomArmor {
     public static ItemStack refresh(ItemStack item) {
         ArmorSet set = setOf(item);
         ArmorTier tier = tierOf(item);
-        EquipmentSlot slot = ArmorTier.slotOf(item.getType());
+        EquipmentSlot slot = ArmorTier.slotOf(item);
         if (set == null || tier == null || slot == null) return item;
 
         item.setData(DataComponentTypes.ITEM_NAME, Component.text(

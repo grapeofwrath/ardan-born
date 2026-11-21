@@ -3,6 +3,7 @@ package dev.grapeofwrath.ardanborn.weapons;
 import dev.grapeofwrath.ardanborn.Keys;
 import dev.grapeofwrath.ardanborn.armor.ArmorSets;
 import dev.grapeofwrath.ardanborn.armor.CustomItems;
+import dev.grapeofwrath.ardanborn.origins.OriginCheck;
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import io.papermc.paper.datacomponent.item.CustomModelData;
 import io.papermc.paper.datacomponent.item.ItemLore;
@@ -13,31 +14,54 @@ import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.LightningStrike;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Trident;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.inventory.ItemRarity;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.SmithingTransformRecipe;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.function.Supplier;
+import java.util.List;
 
-/// The Teleri's item, as the Arkenstone is the Naugrim's: the Pearl of Ossë, combined with a trident at a
-/// smithing table, makes the Spear of the Havens. Its effects are in [HavensTridentListener].
-///
-/// Like every ArdanBorn weapon or tool, anyone gets the base effects and the origin it is made for
-/// (here the Teleri) gets extra.
-public final class HavensTrident {
+/// The Spear of the Havens: the Pearl of Ossë (the Teleri's template, which also makes the Alqualondë
+/// armor) combined with a trident. It always returns when thrown, and with Channeling calls lightning on
+/// foes in water or rain. Teleri deal extra damage with it.
+public final class HavensTrident implements ToolUpgrade, Listener {
     public static final String TEMPLATE_ID = "pearl_of_osse";
     public static final String SPEAR_ID = "spear_of_the_havens";
     /// Extra damage for Teleri wielders.
-    public static final double TELERI_BONUS = 1.15;
+    private static final double TELERI_BONUS = 1.15;
     private static final TextColor COLOR = TextColor.color(0x7FD8E6);
 
-    private HavensTrident() {}
+    @Override
+    public String id() {
+        return SPEAR_ID;
+    }
 
+    @Override
+    public ItemStack template() {
+        return createTemplate();
+    }
+
+    @Override
+    public boolean isTemplate(@Nullable ItemStack item) {
+        return HavensTrident.isPearl(item);
+    }
+
+    @Override
+    public List<Material> baseMaterials() {
+        return List.of(Material.TRIDENT);
+    }
+
+    /// The Pearl of Ossë.
     public static ItemStack createTemplate() {
         // Looks like a heart of the sea, but is built on prismarine crystals so it can't be used in a
         // conduit recipe. RecipeGuardListener keeps it out of prismarine recipes.
@@ -53,68 +77,80 @@ public final class HavensTrident {
                 .addLine(Component.text("gift of Ossë.", NamedTextColor.GRAY)
                         .decoration(TextDecoration.ITALIC, true))
                 .addLine(Component.empty())
-                .addLine(plain("Combine with a trident", NamedTextColor.BLUE))
-                .addLine(plain("at a Smithing Table.", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("Combine with diamond or netherite", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("armor or a trident at a Smithing Table.", NamedTextColor.BLUE))
                 .build());
         CustomItems.tag(item, TEMPLATE_ID);
         return item;
     }
 
-    public static boolean isTemplate(@Nullable ItemStack item) {
+    public static boolean isPearl(@Nullable ItemStack item) {
         return TEMPLATE_ID.equals(CustomItems.idOf(item));
     }
 
-    public static boolean isSpear(@Nullable ItemStack item) {
-        return SPEAR_ID.equals(CustomItems.idOf(item));
-    }
-
-    /// A copy of the trident made into the Spear of the Havens. Enchantments, damage and any custom name
-    /// are kept. Being tagged also keeps it out of the crafting grid's repair recipe, which would strip it.
-    public static ItemStack upgrade(ItemStack trident) {
-        ItemStack spear = trident.clone();
-        spear.setData(DataComponentTypes.ITEM_NAME, Component.text("Spear of the Havens", COLOR));
-        spear.setData(DataComponentTypes.RARITY, ItemRarity.EPIC);
-        spear.setData(DataComponentTypes.CUSTOM_MODEL_DATA, CustomModelData.customModelData().addString(SPEAR_ID).build());
-        spear.setData(DataComponentTypes.LORE, ItemLore.lore()
-                .addLine(plain("Always returns when thrown", NamedTextColor.BLUE))
-                .addLine(plain("Channeling calls lightning on", NamedTextColor.BLUE))
-                .addLine(plain("foes in water or rain", NamedTextColor.BLUE))
-                .addLine(Component.empty())
-                .addLine(plain("Teleri: +15% damage", NamedTextColor.DARK_AQUA))
-                .build());
-        CustomItems.tag(spear, SPEAR_ID);
-        return spear;
-    }
-
-    public static void registerRecipes() {
-        NamespacedKey craft = Keys.key(TEMPLATE_ID);
-        ShapedRecipe recipe = new ShapedRecipe(craft, createTemplate());
+    public static void registerTemplateRecipe() {
+        NamespacedKey key = Keys.key(TEMPLATE_ID);
+        ShapedRecipe recipe = new ShapedRecipe(key, createTemplate());
         recipe.shape("NPN", "PDP", "NPN");
         recipe.setIngredient('N', Material.NAUTILUS_SHELL);
         recipe.setIngredient('P', Material.PRISMARINE_SHARD);
         recipe.setIngredient('D', Material.DIAMOND);
         Bukkit.addRecipe(recipe);
-        ArmorSets.trackRecipe(craft);
-
-        // Template + trident + empty addition slot. The real result is built in HavensTridentListener;
-        // this recipe only makes the smithing table accept the inputs.
-        NamespacedKey smithing = Keys.key(SPEAR_ID + "_smithing");
-        Bukkit.addRecipe(new SmithingTransformRecipe(smithing, new ItemStack(Material.TRIDENT),
-                RecipeChoice.predicateChoice(HavensTrident::isTemplate, createTemplate()),
-                new RecipeChoice.MaterialChoice(Material.TRIDENT),
-                RecipeChoice.empty(),
-                false));
-        ArmorSets.trackRecipe(smithing);
+        ArmorSets.trackRecipe(key);
     }
 
-    public static Map<String, Supplier<ItemStack>> giveableItems() {
-        Map<String, Supplier<ItemStack>> items = new LinkedHashMap<>();
-        items.put(TEMPLATE_ID, HavensTrident::createTemplate);
-        items.put(SPEAR_ID, () -> upgrade(ItemStack.of(Material.TRIDENT)));
-        return items;
+    @Override
+    public ItemStack upgrade(ItemStack trident) {
+        ItemStack spear = trident.clone();
+        spear.setData(DataComponentTypes.ITEM_NAME, Component.text("Spear of the Havens", COLOR));
+        spear.setData(DataComponentTypes.RARITY, ItemRarity.EPIC);
+        spear.setData(DataComponentTypes.CUSTOM_MODEL_DATA, CustomModelData.customModelData().addString(SPEAR_ID).build());
+        spear.setData(DataComponentTypes.LORE, ItemLore.lore()
+                .addLine(ToolUpgrade.lore("Always returns when thrown", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("Channeling calls lightning on", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("foes in water or rain", NamedTextColor.BLUE))
+                .addLine(Component.empty())
+                .addLine(ToolUpgrade.lore("Teleri: +15% damage", NamedTextColor.DARK_AQUA))
+                .build());
+        // Being tagged also keeps it out of the crafting grid's repair recipe, which would strip it.
+        CustomItems.tag(spear, SPEAR_ID);
+        return spear;
     }
 
-    private static Component plain(String text, NamedTextColor color) {
-        return Component.text(text, color).decoration(TextDecoration.ITALIC, false);
+    /// Always returns: a thrown spear without Loyalty flies back as if it had Loyalty I.
+    @EventHandler(ignoreCancelled = true)
+    public void onThrow(ProjectileLaunchEvent event) {
+        if (!(event.getEntity() instanceof Trident trident)) return;
+        if (!is(trident.getItemStack())) return;
+        if (trident.getLoyaltyLevel() == 0) trident.setLoyaltyLevel(1);
+    }
+
+    @EventHandler(ignoreCancelled = true)
+    public void onHit(EntityDamageByEntityEvent event) {
+        Player wielder;
+        ItemStack spear;
+        if (event.getDamager() instanceof Trident trident && trident.getShooter() instanceof Player thrower) {
+            wielder = thrower;
+            spear = trident.getItemStack();
+            if (is(spear)) callLightning(trident, thrower, event);
+        } else if (event.getDamager() instanceof Player player
+                && event.getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK) {
+            wielder = player;
+            spear = player.getInventory().getItemInMainHand();
+        } else {
+            return;
+        }
+        if (is(spear) && OriginCheck.is(wielder, OriginCheck.TELERI)) {
+            event.setDamage(event.getDamage() * TELERI_BONUS);
+        }
+    }
+
+    /// Channeling outside a thunderstorm, for foes in water or rain. In a storm vanilla Channeling applies.
+    private static void callLightning(Trident trident, Player thrower, EntityDamageByEntityEvent event) {
+        if (!(event.getEntity() instanceof LivingEntity victim)) return;
+        if (!trident.getItemStack().containsEnchantment(Enchantment.CHANNELING)) return;
+        if (victim.getWorld().isThundering() || !victim.isInWaterOrRain()) return;
+        LightningStrike strike = victim.getWorld().strikeLightning(victim.getLocation());
+        strike.setCausingPlayer(thrower);
     }
 }

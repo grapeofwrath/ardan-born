@@ -1,7 +1,9 @@
 package dev.grapeofwrath.ardanborn.armor;
 
 import dev.grapeofwrath.ardanborn.Keys;
+import dev.grapeofwrath.ardanborn.armor.sets.AlqualondeSet;
 import dev.grapeofwrath.ardanborn.armor.sets.ArkenstoneSet;
+import dev.grapeofwrath.ardanborn.armor.sets.ThorondorSet;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -15,6 +17,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
@@ -26,24 +29,36 @@ import java.util.function.Supplier;
 public final class ArmorSets {
     private static final Map<String, ArmorSet> SETS = new LinkedHashMap<>();
     private static final List<NamespacedKey> RECIPES = new ArrayList<>();
+    private static final List<EquipmentSlot> ARMOR_SLOTS =
+            List.of(EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET);
 
     private ArmorSets() {}
 
     public static void registerAll(Plugin plugin) {
         register(plugin, new ArkenstoneSet());
-        registerNetheriteUpgrade();
+        register(plugin, new AlqualondeSet());
+        register(plugin, new ThorondorSet());
+        registerNetheriteUpgrades();
     }
 
     /// Vanilla's netherite upgrade needs a real diamond piece as its base, so pieces on another base
-    /// material (leather-based boots) get their own recipe. The result is built in [ArmorSmithingListener].
-    private static void registerNetheriteUpgrade() {
-        NamespacedKey key = Keys.key("netherite_upgrade");
-        Bukkit.addRecipe(new SmithingTransformRecipe(key, new ItemStack(Material.NETHERITE_BOOTS),
-                new RecipeChoice.MaterialChoice(Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
-                RecipeChoice.predicateChoice(ArmorSets::isUpgradeable, new ItemStack(Material.LEATHER_BOOTS)),
-                new RecipeChoice.MaterialChoice(Material.NETHERITE_INGOT),
-                false));
-        RECIPES.add(key);
+    /// material (leather boots, turtle shell, spyglass) get their own recipe, one per base material: the
+    /// example item is what makes the smithing table accept that material. The result is built in
+    /// [ArmorSmithingListener].
+    private static void registerNetheriteUpgrades() {
+        Set<Material> bases = new LinkedHashSet<>();
+        for (ArmorSet set : SETS.values()) {
+            for (EquipmentSlot slot : ARMOR_SLOTS) set.baseMaterial(slot).ifPresent(bases::add);
+        }
+        for (Material base : bases) {
+            NamespacedKey key = Keys.key("netherite_upgrade_" + base.name().toLowerCase(Locale.ROOT));
+            Bukkit.addRecipe(new SmithingTransformRecipe(key, new ItemStack(Material.NETHERITE_HELMET),
+                    new RecipeChoice.MaterialChoice(Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
+                    RecipeChoice.predicateChoice(ArmorSets::isUpgradeable, new ItemStack(base)),
+                    new RecipeChoice.MaterialChoice(Material.NETHERITE_INGOT),
+                    false));
+            RECIPES.add(key);
+        }
     }
 
     /// A diamond-tier set piece on another base material, which only our upgrade recipe can upgrade.
@@ -68,7 +83,7 @@ public final class ArmorSets {
 
         // Register listener-based effects once each.
         Set<SetEffect> effects = new HashSet<>();
-        for (EquipmentSlot slot : List.of(EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET)) {
+        for (EquipmentSlot slot : ARMOR_SLOTS) {
             set.pieceEffect(slot).ifPresent(effects::add);
         }
         set.fullSetBonus().ifPresent(effects::add);
@@ -96,21 +111,26 @@ public final class ArmorSets {
         return SETS.get(id);
     }
 
+    /// The set a template makes. Races share one template between their items, so a set's template
+    /// needn't carry the set's own id (the Alqualondë set is made with the Pearl of Ossë).
     public static @Nullable ArmorSet byTemplate(@Nullable ItemStack item) {
-        String id = CustomItems.idOf(item);
-        return id == null ? null : SETS.get(id);
+        if (!CustomItems.isCustom(item)) return null;
+        for (ArmorSet set : SETS.values()) {
+            if (set.isTemplate(item)) return set;
+        }
+        return null;
     }
 
     public static Iterable<ArmorSet> all() {
         return SETS.values();
     }
 
-    /// Every plugin item obtainable by command, keyed by id: each set's template (`arkenstone`) and
-    /// each of its pieces (`arkenstone_diamond_boots`).
+    /// Every armor item obtainable by command: each set's template, keyed by its item id (`arkenstone`,
+    /// `pearl_of_osse`), and each of its pieces (`arkenstone_diamond_boots`).
     public static Map<String, Supplier<ItemStack>> giveableItems() {
         Map<String, Supplier<ItemStack>> items = new LinkedHashMap<>();
         for (ArmorSet set : SETS.values()) {
-            items.put(set.id(), set::createTemplate);
+            items.putIfAbsent(CustomItems.idOf(set.createTemplate()), set::createTemplate);
             for (Material material : ArmorTier.armorMaterials()) {
                 items.put(set.id() + "_" + material.name().toLowerCase(Locale.ROOT),
                         () -> CustomArmor.apply(ItemStack.of(material), set));

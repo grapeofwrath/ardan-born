@@ -11,8 +11,7 @@ import dev.grapeofwrath.ardanborn.origins.OriginAbilities;
 import dev.grapeofwrath.ardanborn.origins.OriginFiles;
 import dev.grapeofwrath.ardanborn.origins.OriginsDefaults;
 import dev.grapeofwrath.ardanborn.origins.PowerText;
-import dev.grapeofwrath.ardanborn.weapons.HavensTrident;
-import dev.grapeofwrath.ardanborn.weapons.HavensTridentListener;
+import dev.grapeofwrath.ardanborn.weapons.ToolUpgrades;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -58,13 +57,12 @@ public final class ArdanBorn extends OriginsAddon {
         }, 20L, 20L);
 
         ArmorSets.registerAll(this);
-        HavensTrident.registerRecipes();
         armorEffects = new ArmorEffectManager(this);
         var pm = getServer().getPluginManager();
         pm.registerEvents(armorEffects, this);
         pm.registerEvents(new ArmorSmithingListener(), this);
         pm.registerEvents(new RecipeGuardListener(), this);
-        pm.registerEvents(new HavensTridentListener(), this);
+        ToolUpgrades.registerAll(this);
         armorEffects.start();
     }
 

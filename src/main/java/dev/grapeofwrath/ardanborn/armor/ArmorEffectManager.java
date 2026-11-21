@@ -68,7 +68,7 @@ public final class ArmorEffectManager implements Listener {
             ItemStack item = player.getInventory().getItem(slot);
             ArmorSet set = CustomArmor.setOf(item);
             ArmorTier tier = CustomArmor.tierOf(item);
-            if (set == null || tier == null || ArmorTier.slotOf(item.getType()) != slot) continue;
+            if (set == null || tier == null || ArmorTier.slotOf(item) != slot) continue;
 
             set.pieceEffect(slot).ifPresent(effect -> next.merge(effect, tier, ArmorEffectManager::higher));
             pieces.merge(set, 1, Integer::sum);

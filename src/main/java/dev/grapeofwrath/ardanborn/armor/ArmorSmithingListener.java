@@ -19,7 +19,9 @@ public final class ArmorSmithingListener implements Listener {
         ItemStack base = inventory.getInputEquipment();
 
         ArmorSet set = ArmorSets.byTemplate(template);
-        if (set != null) {
+        // Race templates also upgrade tools and weapons (Arkenstone + pickaxe); those are built in
+        // weapons.ToolUpgrades, so only armor bases (or an empty slot) are handled here.
+        if (set != null && (base == null || base.isEmpty() || ArmorTier.slotOf(base) != null)) {
             ItemStack addition = inventory.getInputMineral();
             boolean valid = base != null && ArmorTier.of(base.getType()) != null
                     && !CustomArmor.isSetPiece(base)
@@ -28,11 +30,11 @@ public final class ArmorSmithingListener implements Listener {
             return;
         }
 
-        // Netherite upgrade of a piece on another base material (leather-based boots).
+        // Netherite upgrade of a piece on another base material (leather boots, turtle shell, spyglass).
         if (template != null && template.getType() == Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE
                 && ArmorSets.isUpgradeable(base)) {
             ItemStack addition = inventory.getInputMineral();
-            EquipmentSlot slot = ArmorTier.slotOf(base.getType());
+            EquipmentSlot slot = ArmorTier.slotOf(base);
             if (addition == null || addition.getType() != Material.NETHERITE_INGOT || slot == null) {
                 event.setResult(null);
                 return;
