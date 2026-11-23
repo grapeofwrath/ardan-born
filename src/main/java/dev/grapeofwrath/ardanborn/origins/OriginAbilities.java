@@ -179,6 +179,11 @@ public final class OriginAbilities {
             until.put(p.getUniqueId(), now + ms);
             return true;
         }
+
+        /** Makes it ready again for this player. */
+        public void reset(Player p) {
+            until.remove(p.getUniqueId());
+        }
     }
 
     static void effect(LivingEntity target, PotionEffectType type, int ticks, int amplifier) {
@@ -237,11 +242,16 @@ public final class OriginAbilities {
 
     /** Edain / Peredhil: hope in the darkest hour. */
     public static final class LastStand extends Base implements Listener {
-        private final Cooldown cooldown = new Cooldown();
+        private static final Cooldown cooldown = new Cooldown();
 
         public LastStand() {
             super("last_stand", "Hope Unquenched",
                     "When a blow would leave you below 30% health, you gain Resistance and Regeneration for 8 seconds. Once every 90 seconds.");
+        }
+
+        /** Makes Hope Unquenched ready again (the Horn of Gondor, blown by one of the Edain). */
+        public static void renew(Player player) {
+            cooldown.reset(player);
         }
 
         @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

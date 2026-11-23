@@ -1,0 +1,93 @@
+package dev.grapeofwrath.ardanborn.weapons;
+
+import dev.grapeofwrath.ardanborn.Keys;
+import dev.grapeofwrath.ardanborn.armor.ArmorSets;
+import dev.grapeofwrath.ardanborn.armor.CustomItems;
+import io.papermc.paper.datacomponent.DataComponentTypes;
+import io.papermc.paper.datacomponent.item.CustomModelData;
+import io.papermc.paper.datacomponent.item.ItemLore;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextColor;
+import net.kyori.adventure.text.format.TextDecoration;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+import org.bukkit.Tag;
+import org.bukkit.inventory.ItemRarity;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.RecipeChoice;
+import org.bukkit.inventory.ShapedRecipe;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+
+/// A race's smithing template, for the races added after the Arkenstone, Pearl, Feather and Honey (which
+/// predate this helper and keep their own classes). Built on prismarine crystals with another item's look,
+/// so vanilla recipes can't use it; RecipeGuardListener keeps it out of prismarine recipes.
+///
+/// Every template uses the shared recipe shape `UVU / GDG / UVU`: a diamond in the center, gold ingots
+/// either side, and two race ingredients.
+public record RaceTemplate(String id, String name, TextColor color, Material look, String flavor,
+                           List<String> usage, RecipeChoice u, RecipeChoice v) {
+
+    public static final RaceTemplate LIGHT_OF_THE_TREES = new RaceTemplate("light_of_the_trees",
+            "Light of the Trees", TextColor.color(0xFFF1B0), Material.GLOWSTONE_DUST,
+            "A glimmer of Laurelin and Telperion.",
+            List.of("Combine with a glass bottle", "at a Smithing Table."),
+            new RecipeChoice.MaterialChoice(Material.GLOWSTONE_DUST),
+            new RecipeChoice.MaterialChoice(Material.GLOW_BERRIES));
+
+    public static final RaceTemplate MALLORN_LEAF = new RaceTemplate("mallorn_leaf",
+            "Mallorn Leaf", TextColor.color(0xE3C35A), Material.LILY_PAD,
+            "Gold from the trees of Lothlórien.",
+            List.of("Combine with diamond or netherite", "armor at a Smithing Table."),
+            new RecipeChoice.MaterialChoice(Tag.LEAVES),
+            new RecipeChoice.MaterialChoice(Material.STRING));
+
+    public static final RaceTemplate STAR_OF_ELENDIL = new RaceTemplate("star_of_elendil",
+            "Star of Elendil", TextColor.color(0xDCE6F5), Material.NETHER_STAR,
+            "The Elendilmir, worn by the kings of Arnor.",
+            List.of("Combine with a goat horn", "at a Smithing Table."),
+            new RecipeChoice.MaterialChoice(Material.QUARTZ),
+            new RecipeChoice.MaterialChoice(Material.IRON_INGOT));
+
+    public static final RaceTemplate EVENSTAR = new RaceTemplate("evenstar",
+            "Evenstar", TextColor.color(0xC9D8FF), Material.HEART_OF_THE_SEA,
+            "Undómiel's jewel, white as starlight.",
+            List.of("Combine with a honey bottle", "at a Smithing Table."),
+            new RecipeChoice.MaterialChoice(Material.ENDER_PEARL),
+            new RecipeChoice.MaterialChoice(Material.GLOW_INK_SAC));
+
+    public ItemStack create() {
+        ItemStack item = ItemStack.of(Material.PRISMARINE_CRYSTALS);
+        item.setData(DataComponentTypes.ITEM_MODEL, look.getKey());
+        item.setData(DataComponentTypes.ITEM_NAME, Component.text(name, color));
+        item.setData(DataComponentTypes.RARITY, ItemRarity.EPIC);
+        item.setData(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true);
+        item.setData(DataComponentTypes.CUSTOM_MODEL_DATA, CustomModelData.customModelData().addString(id).build());
+        ItemLore.Builder lore = ItemLore.lore()
+                .addLine(Component.text(flavor, NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, true))
+                .addLine(Component.empty());
+        for (String line : usage) lore.addLine(ToolUpgrade.lore(line, NamedTextColor.BLUE));
+        item.setData(DataComponentTypes.LORE, lore.build());
+        CustomItems.tag(item, id);
+        return item;
+    }
+
+    public boolean is(@Nullable ItemStack item) {
+        return id.equals(CustomItems.idOf(item));
+    }
+
+    public void registerRecipe() {
+        NamespacedKey key = Keys.key(id);
+        ShapedRecipe recipe = new ShapedRecipe(key, create());
+        recipe.shape("UVU", "GDG", "UVU");
+        recipe.setIngredient('U', u);
+        recipe.setIngredient('V', v);
+        recipe.setIngredient('G', Material.GOLD_INGOT);
+        recipe.setIngredient('D', Material.DIAMOND);
+        Bukkit.addRecipe(recipe);
+        ArmorSets.trackRecipe(key);
+    }
+}

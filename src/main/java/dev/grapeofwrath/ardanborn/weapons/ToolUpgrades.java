@@ -26,11 +26,15 @@ import java.util.function.Supplier;
 /// Registry of all [ToolUpgrade]s, and the smithing table logic that makes them.
 public final class ToolUpgrades implements Listener {
     private static final List<ToolUpgrade> UPGRADES = List.of(
-            new HavensTrident(), new Aeglos(), new ArkenstonePick(), new HuntingBow());
+            new HavensTrident(), new Aeglos(), new ArkenstonePick(), new HuntingBow(),
+            new PhialOfGaladriel(), new HornOfGondor(), new Miruvor());
 
     public static void registerAll(Plugin plugin) {
         // Templates of races with no armor set yet; the others are registered with their set.
         HoneyOfBeorn.registerRecipe();
+        RaceTemplate.LIGHT_OF_THE_TREES.registerRecipe();
+        RaceTemplate.STAR_OF_ELENDIL.registerRecipe();
+        RaceTemplate.EVENSTAR.registerRecipe();
         for (ToolUpgrade upgrade : UPGRADES) {
             // Template + base item + empty addition slot. The real result is built in onPrepare; this recipe
             // only makes the smithing table accept the inputs.
@@ -42,6 +46,8 @@ public final class ToolUpgrades implements Listener {
                     false));
             ArmorSets.trackRecipe(key);
             if (upgrade instanceof Listener listener) Bukkit.getPluginManager().registerEvents(listener, plugin);
+            if (upgrade instanceof PhialOfGaladriel phial) phial.start(plugin);
+            if (upgrade instanceof HornOfGondor horn) horn.start(plugin);
         }
         Bukkit.getPluginManager().registerEvents(new ToolUpgrades(), plugin);
     }
@@ -58,6 +64,10 @@ public final class ToolUpgrades implements Listener {
     public static Map<String, Supplier<ItemStack>> giveableItems() {
         Map<String, Supplier<ItemStack>> items = new LinkedHashMap<>();
         items.put(HoneyOfBeorn.ID, HoneyOfBeorn::create);
+        for (RaceTemplate template : List.of(RaceTemplate.LIGHT_OF_THE_TREES, RaceTemplate.STAR_OF_ELENDIL,
+                RaceTemplate.EVENSTAR)) {
+            items.put(template.id(), template::create);
+        }
         for (ToolUpgrade upgrade : UPGRADES) {
             List<Material> bases = upgrade.baseMaterials();
             if (bases.size() == 1) {
