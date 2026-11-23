@@ -105,6 +105,7 @@ main > * { max-width: 45rem; margin-inline: auto; }
     top: 0;
     max-height: 100dvh;
     overflow-y: auto;
+    scrollbar-color: var(--muted) var(--panel);
     background: var(--panel);
     border-inline-end: 1px solid var(--rule);
     align-self: stretch;
@@ -167,6 +168,7 @@ main > * { max-width: 45rem; margin-inline: auto; }
     border-inline-start: 1px solid var(--bronze);
     font-size: .9rem;
 }
+.nav-headings ul { padding-inline-start: .8rem !important; }
 .nav-headings a { color: var(--muted); padding: .12rem 0; }
 
 /* ---------- Article type ---------- */
@@ -220,6 +222,18 @@ article h3 {
     color: var(--muted);
     margin-block: 1.8rem .5rem;
 }
+/* Pages that are lists of entries (Powers): each ### is an entry title, not a small label. */
+.entries h3 {
+    font-size: 1.35rem;
+    text-transform: none;
+    letter-spacing: normal;
+    color: var(--fg);
+    margin-block: 2.2rem .5rem;
+    padding-block-start: .8rem;
+    border-block-start: 1px solid var(--rule);
+}
+.entries h2 { font-size: 2rem; font-style: italic; }
+.entries h2 + h3 { border-block-start: 0; margin-block-start: .5rem; }
 h1, h2, h3 { scroll-margin-top: 1rem; }
 
 /* Links: ink-colored with a bronze underline (Montrose's decoration-accent). */
@@ -372,3 +386,7 @@ table.grid td { text-align: center; }
 
 /* Square everything. */
 *, *::before, *::after { border-radius: 0 !important; }
+
+/* Pagefind dims its placeholder to 20% opacity; make it readable. */
+#search .pagefind-ui__search-input::placeholder { color: var(--muted); opacity: 1; font-weight: normal; }
+#search .pagefind-ui__search-input { font-family: var(--serif); }

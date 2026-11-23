@@ -1,35 +1,12 @@
 ---
 title: "Powers"
+entries: true
 ---
-Every power an ArdanBorn origin can have, A–Z. ArdanBorn's own powers are listed alongside the ones it borrows from Origins-Reborn and its addons. See [Installation](installation.md) for which addons to install.
+Every power an ArdanBorn origin can have, in two lists, each A–Z: [ArdanBorn's own](#ardanborn-powers), and [the ones it borrows](#origins-reborn-and-addon-powers) from Origins-Reborn and its addons. See [Installation](installation.md) for which addons to install.
 
-## Acrobatics
+## ArdanBorn powers
 
-You never take fall damage, no matter from which height you fall.
-
-- No fall damage from any height, including after [Gift of the Winds](#gift-of-the-winds) or a long glide that ends on the ground.
-- Landing on a magma block still burns.
-
-`origins:fall_immunity` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Great Eagle](ancestries.md#great-eagle)
-
-## Aerial Combatant
-
-You deal substantially more damage while in Elytra flight.
-
-- ×2 damage while you are gliding.
-- Stacks with [Aeglos](feather-of-thorondor.md#aeglos)' bonus against glowing foes.
-
-`origins:aerial_combatant` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Great Eagle](ancestries.md#great-eagle)
-
-## Aqua Affinity
-
-You may break blocks underwater as others do on land.
-
-- Mine underwater at normal speed, as with the Aqua Affinity helmet enchantment, without needing the helmet.
-
-`origins:aqua_affinity` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Teleri (Sea Elf)](ancestries.md#teleri-sea-elf)
-
-## Axe of Durin
+### Axe of Durin
 
 Dwarves fight best with the axe. Your axe blows deal 20% more damage and briefly slow your foe.
 
@@ -38,7 +15,7 @@ Dwarves fight best with the axe. Your axe blows deal 20% more damage and briefly
 
 `ardanborn:axe_of_durin` · from ArdanBorn · used by [Naugrim (Dwarf)](ancestries.md#naugrim-dwarf)
 
-## Backstab
+### Backstab
 
 Melee hits from behind your target deal 35% more damage, or 50% more if it hasn't noticed you.
 
@@ -49,7 +26,7 @@ Melee hits from behind your target deal 35% more damage, or 50% more if it hasn'
 
 `ardanborn:backstab` · from ArdanBorn · used by [Burglar](classes.md#burglar)
 
-## Bane of Mirkwood
+### Bane of Mirkwood
 
 Elven archers of the forest realms. Your arrows deal 20% more damage while you're in a forest, taiga, jungle or grove, and 50% more to spiders and cave spiders.
 
@@ -60,7 +37,7 @@ Elven archers of the forest realms. Your arrows deal 20% more damage while you'r
 
 `ardanborn:bane_of_mirkwood` · from ArdanBorn · used by [Sindar (Wood Elf)](ancestries.md#sindar-wood-elf)
 
-## Battle-fury
+### Battle-fury
 
 Each kill fills you with fury: Speed for 8 seconds and Strength for 5 seconds.
 
@@ -69,24 +46,7 @@ Each kill fills you with fury: Speed for 8 seconds and Strength for 5 seconds.
 
 `ardanborn:bloodlust` · from ArdanBorn · used by [Uruk-hai (Orc)](ancestries.md#uruk-hai-orc)
 
-## Bearer
-
-Other players can ride on your back.
-
-- Other players can right-click you to ride on your back.
-- Carry a friend while gliding as an Eagle.
-
-`moborigins:rideable_creature` · from [Origins-Mobs](https://modrinth.com/plugin/origins-mobs) · used by [Great Eagle](ancestries.md#great-eagle)
-
-## Bee-friend
-
-Bees won't turn on you when you collect honey.
-
-- Bees don't get angry when you take honey or honeycomb from their nest or hive, even without a campfire.
-
-`moborigins:queen_bee` · from [Origins-Mobs](https://modrinth.com/plugin/origins-mobs) · used by [Beorning (Skin-changer)](ancestries.md#beorning-skin-changer)
-
-## Breath of the Sea
+### Breath of the Sea
 
 The Teleri are born of the shore. You can breathe underwater indefinitely.
 
@@ -94,7 +54,7 @@ The Teleri are born of the shore. You can breathe underwater indefinitely.
 
 `ardanborn:falmari_lungs` · from ArdanBorn · used by [Teleri (Sea Elf)](ancestries.md#teleri-sea-elf)
 
-## Call of Huan
+### Call of Huan
 
 Right-click with a bone to call Huan, the great hound of Valinor, to your side for 60 seconds. 3 minute cooldown.
 
@@ -107,15 +67,7 @@ Right-click with a bone to call Huan, the great hound of Valinor, to your side f
 
 `ardanborn:call_of_huan` · from ArdanBorn · used by [Beastfriend](classes.md#beastfriend)
 
-## Careful Miner
-
-Your care and mastery in the art of extracting minerals results in a much higher yield from ores than other creatures.
-
-- Ores you mine drop as if your tool had 2 more levels of Fortune.
-
-`fantasyorigins:fortune_increaser` · from [Origins-Fantasy](https://modrinth.com/plugin/origins-fantasy) · used by [Naugrim (Dwarf)](ancestries.md#naugrim-dwarf)
-
-## Cleave
+### Cleave
 
 Sword and axe blows carry through: a hostile mob next to your target takes half the damage.
 
@@ -124,7 +76,7 @@ Sword and axe blows carry through: a hostile mob next to your target takes half 
 
 `ardanborn:cleave` · from ArdanBorn · used by [Warrior](classes.md#warrior)
 
-## Deep Lore
+### Deep Lore
 
 The Noldor are masters of craft and lore. Enchanting costs you one fewer experience level.
 
@@ -133,7 +85,7 @@ The Noldor are masters of craft and lore. Enchanting costs you one fewer experie
 
 `ardanborn:eldar_lore` · from ArdanBorn · used by [Noldor (High Elf)](ancestries.md#noldor-high-elf)
 
-## Delver's Instinct
+### Delver's Instinct
 
 In deep, unlit tunnels (below sea level, out of the sky's light) you gain Haste and can see by the touch of stone.
 
@@ -142,7 +94,7 @@ In deep, unlit tunnels (below sea level, out of the sky's light) you gain Haste 
 
 `ardanborn:delvers_instinct` · from ArdanBorn · used by [Naugrim (Dwarf)](ancestries.md#naugrim-dwarf)
 
-## Elven-wrought
+### Elven-wrought
 
 Elven craft endures. Your tools, weapons and armor have a 40% chance to take no wear when used.
 
@@ -152,16 +104,7 @@ Elven craft endures. Your tools, weapons and armor have a 40% chance to take no 
 
 `ardanborn:elven_wrought` · from ArdanBorn · used by [Noldor (High Elf)](ancestries.md#noldor-high-elf)
 
-## Endless Quiver
-
-Arrows you shoot are never used up.
-
-- Arrows you shoot aren't used up, as with the Infinity enchantment.
-- Works with tipped and spectral arrows.
-
-`monsterorigins:infinite_arrows` · from [Origins-Monsters](https://modrinth.com/plugin/origins-monsters) · used by [Ranger](classes.md#ranger)
-
-## First Strike
+### First Strike
 
 Your opening blow after 3 seconds without attacking deals 50% more damage.
 
@@ -170,7 +113,7 @@ Your opening blow after 3 seconds without attacking deals 50% more damage.
 
 `ardanborn:first_strike` · from ArdanBorn · used by [Warrior](classes.md#warrior)
 
-## Forge-hardened
+### Forge-hardened
 
 Long years at the forge have toughened you. You take 40% less damage from fire, lava and hot floors.
 
@@ -179,7 +122,7 @@ Long years at the forge have toughened you. You take 40% less damage from fire, 
 
 `ardanborn:forge_hardened` · from ArdanBorn · used by [Naugrim (Dwarf)](ancestries.md#naugrim-dwarf)
 
-## Fortunate Folk
+### Fortunate Folk
 
 Luck follows Hobbits about. You have a permanent Luck effect, improving fishing and loot.
 
@@ -188,7 +131,7 @@ Luck follows Hobbits about. You have a permanent Luck effect, improving fishing 
 
 `ardanborn:fortunate_folk` · from ArdanBorn · used by [Hobbit (Halfling)](ancestries.md#hobbit-halfling)
 
-## Friend of Beasts
+### Friend of Beasts
 
 Wild beasts such as wolves, bees and bears won't pick you as a target unless you strike first. Your tamed animals take half damage and heal 1 heart every 10 seconds while near you.
 
@@ -200,7 +143,7 @@ Wild beasts such as wolves, bees and bears won't pick you as a target unless you
 
 `ardanborn:gentle_friend` · from ArdanBorn · used by [Beastfriend](classes.md#beastfriend)
 
-## Gift of Men
+### Gift of Men
 
 Men are quick to learn and adapt. You gain 25% more experience from all sources.
 
@@ -209,17 +152,7 @@ Men are quick to learn and adapt. You gain 25% more experience from all sources.
 
 `ardanborn:gift_of_men` · from ArdanBorn · used by [Edain (Man)](ancestries.md#edain-man)
 
-## Gift of the Winds
-
-Every 30 seconds, you are able to launch about 20 blocks up into the air.
-
-- **Sneak while gliding** to launch straight up, about 20 blocks.
-- 30-second cooldown.
-- Use it to gain height without rockets. It won't fire while you're standing on the ground.
-
-`origins:launch_into_air` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Great Eagle](ancestries.md#great-eagle)
-
-## Green Thumb
+### Green Thumb
 
 Living things flourish around you. Crops, berries and saplings within 5 blocks grow much faster.
 
@@ -230,7 +163,7 @@ Living things flourish around you. Crops, berries and saplings within 5 blocks g
 
 `ardanborn:green_thumb` · from ArdanBorn · used by [Herbalist](classes.md#herbalist)
 
-## Hands of the Healer
+### Hands of the Healer
 
 Sneak and right-click an ally with an empty hand to grant Regeneration II and cure Poison and Wither, and hold back a Morgul wound (15s cooldown; a wound can be held back once every 10 minutes). Do the same in the air to channel healing light: you and players within 8 blocks heal 3 hearts, and the undead nearby are seared (60s).
 
@@ -242,7 +175,7 @@ Sneak and right-click an ally with an empty hand to grant Regeneration II and cu
 
 `ardanborn:kings_hands` · from ArdanBorn · used by [Healer](classes.md#healer)
 
-## Hardened Veteran
+### Hardened Veteran
 
 Long years of war have toughened you. You have 2 extra hearts and are harder to knock back.
 
@@ -251,7 +184,7 @@ Long years of war have toughened you. You have 2 extra hearts and are harder to 
 
 `ardanborn:hardened_veteran` · from ArdanBorn · used by [Warrior](classes.md#warrior)
 
-## Healer of Imladris
+### Healer of Imladris
 
 Like Elrond, you have the healer's gift. Healing potions, Regeneration and golden apples heal you 50% more.
 
@@ -260,15 +193,7 @@ Like Elrond, you have the healer's gift. Healing potions, Regeneration and golde
 
 `ardanborn:healer_of_imladris` · from ArdanBorn · used by [Peredhil (Half-elf)](ancestries.md#peredhil-half-elf)
 
-## Healing Focus
-
-When standing still you focus your energy to regenerate health.
-
-- Stand still for a moment to gain Regeneration I. Moving even slightly ends it.
-
-`magicorigins:regeneration_when_still` · from [Origins-Magic](https://modrinth.com/plugin/origins-magic) · used by [Loremaster](classes.md#loremaster)
-
-## Healing Presence
+### Healing Presence
 
 Your presence mends those around you. Every 10 seconds, you and every player within 6 blocks heal 1 heart.
 
@@ -279,16 +204,7 @@ Your presence mends those around you. Every 10 seconds, you and every player wit
 
 `ardanborn:healing_presence` · from ArdanBorn · used by [Healer](classes.md#healer)
 
-## Hoarder
-
-You have access to an additional 9 slots of inventory, which keep the items on death.
-
-- 9 extra inventory slots. By default you open them by right-clicking your chestplate slot.
-- Items in them are kept when you die.
-
-`origins:shulker_inventory` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Hobbit (Halfling)](ancestries.md#hobbit-halfling)
-
-## Hope Unquenched
+### Hope Unquenched
 
 When a blow would leave you below 30% health, you gain Resistance and Regeneration for 8 seconds. Once every 90 seconds.
 
@@ -298,7 +214,7 @@ When a blow would leave you below 30% health, you gain Resistance and Regenerati
 
 `ardanborn:last_stand` · from ArdanBorn · used by [Edain (Man)](ancestries.md#edain-man)
 
-## Hunt Prey
+### Hunt Prey
 
 The last creature your arrow struck becomes your prey for 60 seconds: it glows, and you deal 20% more damage to it from any source.
 
@@ -309,7 +225,7 @@ The last creature your arrow struck becomes your prey for 60 seconds: it glows, 
 
 `ardanborn:keen_tracker` · from ArdanBorn · used by [Ranger](classes.md#ranger)
 
-## Iron Stomach
+### Iron Stomach
 
 Spoiled and foul food cannot harm you. Rotten flesh, spider eyes, poisonous potatoes and the like give no bad effects.
 
@@ -318,7 +234,7 @@ Spoiled and foul food cannot harm you. Rotten flesh, spider eyes, poisonous pota
 
 `ardanborn:iron_stomach` · from ArdanBorn · used by [Uruk-hai (Orc)](ancestries.md#uruk-hai-orc)
 
-## Leaf-walker
+### Leaf-walker
 
 The Silvan Elves run along the treetops. You take no fall damage landing on leaves, and on leaves you gain Speed and Jump Boost.
 
@@ -328,7 +244,7 @@ The Silvan Elves run along the treetops. You take no fall damage landing on leav
 
 `ardanborn:leaf_walker` · from ArdanBorn · used by [Sindar (Wood Elf)](ancestries.md#sindar-wood-elf)
 
-## Lembas
+### Lembas
 
 The waybread of the Elves: bread fills you completely and briefly heals you. Once a minute.
 
@@ -337,7 +253,7 @@ The waybread of the Elves: bread fills you completely and briefly heals you. Onc
 
 `ardanborn:lembas` · from ArdanBorn · used by [Sindar (Wood Elf)](ancestries.md#sindar-wood-elf)
 
-## Light of the Staff
+### Light of the Staff
 
 Right-click with a Blaze Rod as your staff to drive back the shadow: hostile creatures within 6 blocks take 3 hearts of damage and are thrown back and revealed, and the undead take double and are set alight. 15 second cooldown.
 
@@ -348,15 +264,7 @@ Right-click with a Blaze Rod as your staff to drive back the shadow: hostile cre
 
 `ardanborn:wizard_staff` · from ArdanBorn · used by [Loremaster](classes.md#loremaster)
 
-## Long Reach
-
-You can reach blocks and entities further away than others can.
-
-- +1.5 blocks of reach for both blocks and entities.
-
-`origins:extra_reach` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Edain (Man)](ancestries.md#edain-man)
-
-## Mending Craft
+### Mending Craft
 
 Your own good work endures. Your held item and worn armor slowly repair themselves (1 durability every 10 seconds).
 
@@ -365,15 +273,7 @@ Your own good work endures. Your held item and worn armor slowly repair themselv
 
 `ardanborn:master_smith` · from ArdanBorn · used by [Smith](classes.md#smith)
 
-## Mighty Frame
-
-Your great frame gives you twice the health of others.
-
-- +10 max hearts (20 health), for 20 hearts in all.
-
-`fantasyorigins:double_health` · from [Origins-Fantasy](https://modrinth.com/plugin/origins-fantasy) · used by [Beorning (Skin-changer)](ancestries.md#beorning-skin-changer)
-
-## Moonbound
+### Moonbound
 
 By night the skin-changer's strength rises: Strength I. Under a gibbous moon you also gain Speed, and under a full moon you gain Strength II, Speed and Resistance.
 
@@ -385,16 +285,7 @@ By night the skin-changer's strength rises: Strength I. Under a gibbous moon you
 
 `ardanborn:moonbound` · from ArdanBorn · used by [Beorning (Skin-changer)](ancestries.md#beorning-skin-changer)
 
-## Nocturnal
-
-You can slightly see in the dark when not in water.
-
-- Night Vision whenever you're not in water.
-- Drinking milk doesn't remove it for long; the power re-applies it.
-
-`origins:cat_vision` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Noldor (High Elf)](ancestries.md#noldor-high-elf), [Uruk-hai (Orc)](ancestries.md#uruk-hai-orc)
-
-## Pearls of Alqualondë
+### Pearls of Alqualondë
 
 The sea gives up its treasures to the Teleri. While you hold a fishing rod you have Luck, and each catch has a 25% chance to bring up a second.
 
@@ -404,15 +295,7 @@ The sea gives up its treasures to the Teleri. While you hold a fishing rod you h
 
 `ardanborn:pearls_of_alqualonde` · from ArdanBorn · used by [Teleri (Sea Elf)](ancestries.md#teleri-sea-elf)
 
-## Potion Master
-
-Potions you drink and throw are much stronger.
-
-- Potions you drink or throw are one level stronger and last twice as long.
-
-`magicorigins:potion_master` · from [Origins-Magic](https://modrinth.com/plugin/origins-magic) · used by [Herbalist](classes.md#herbalist)
-
-## Quiet Steps
+### Quiet Steps
 
 You move a little faster while sneaking.
 
@@ -420,7 +303,7 @@ You move a little faster while sneaking.
 
 `ardanborn:quiet_steps` · from ArdanBorn · used by [Burglar](classes.md#burglar)
 
-## Sea's Vigor
+### Sea's Vigor
 
 The sea strengthens its children. While you stand in water or rain you have 2 extra hearts.
 
@@ -430,7 +313,7 @@ The sea strengthens its children. While you stand in water or rain you have 2 ex
 
 `ardanborn:seas_vigor` · from ArdanBorn · used by [Teleri (Sea Elf)](ancestries.md#teleri-sea-elf)
 
-## Second Breakfast
+### Second Breakfast
 
 Hobbits know how to enjoy a meal. Eating food restores 1 extra hunger point and a little extra saturation.
 
@@ -438,7 +321,7 @@ Hobbits know how to enjoy a meal. Eating food restores 1 extra hunger point and 
 
 `ardanborn:second_breakfast` · from ArdanBorn · used by [Hobbit (Halfling)](ancestries.md#hobbit-halfling)
 
-## Shield Wall
+### Shield Wall
 
 While you hold a shield you take 15% less damage, and allies within 5 blocks take 10% less.
 
@@ -448,7 +331,7 @@ While you hold a shield you take 15% less damage, and allies within 5 blocks tak
 
 `ardanborn:shield_wall` · from ArdanBorn · used by [Defender](classes.md#defender)
 
-## Silver Tongue
+### Silver Tongue
 
 Villagers and wandering traders warm to you. Near them you gain Hero of the Village for cheaper trades.
 
@@ -457,16 +340,7 @@ Villagers and wandering traders warm to you. Near them you gain Hero of the Vill
 
 `ardanborn:silver_tongue` · from ArdanBorn · used by [Minstrel](classes.md#minstrel)
 
-## Small Body
-
-You're only one block tall, half the height of most folk.
-
-- Your hitbox and model are half size, about 1 block tall.
-- You fit through 1-block gaps.
-
-`fantasyorigins:small_body` · from [Origins-Fantasy](https://modrinth.com/plugin/origins-fantasy) · used by [Small Size](sizes.md#small-size)
-
-## Smith's Mark
+### Smith's Mark
 
 Only you can inscribe Cirth runes onto weapons and tools. Twice each full moon, a tool or weapon you forge under its open sky gains an enchantment beyond its usual maximum, by up to 5 levels.
 
@@ -504,15 +378,7 @@ Only enchantments with levels are in the draw, so there's no Silk Touch, Mending
 
 `ardanborn:smiths_mark` · from ArdanBorn · used by [Smith](classes.md#smith)
 
-## Soft-footed
-
-You move so softly that Sculk Sensors never notice you walking or eating.
-
-- Your walking, landing, eating and drinking don't trigger sculk sensors or shriekers.
-
-`magicorigins:silent` · from [Origins-Magic](https://modrinth.com/plugin/origins-magic) · used by [Hobbit (Halfling)](ancestries.md#hobbit-halfling), [Sindar (Wood Elf)](ancestries.md#sindar-wood-elf)
-
-## Songs of Power
+### Songs of Power
 
 Sound a Goat Horn to play the song its tune carries: rest, valor, seeking or the walking song from common horns, and courage, gathering, hope or Lúthien's lullaby from a screaming goat's. Songs reach players within 24 blocks. 90 second cooldown shared by all songs.
 
@@ -540,16 +406,7 @@ Sound a Goat Horn to play the song its tune carries: rest, valor, seeking or the
 
 `ardanborn:songs_of_power` · from ArdanBorn · used by [Minstrel](classes.md#minstrel)
 
-## Spoils of Victory
-
-Whenever you kill something, you take in some of its vitality as extra health, up to 30 extra hearts.
-
-- Each kill adds extra max health, more for stronger creatures.
-- Up to 30 extra hearts (60 health).
-
-`magicorigins:kill_boost` · from [Origins-Magic](https://modrinth.com/plugin/origins-magic) · used by [Beorning (Skin-changer)](ancestries.md#beorning-skin-changer)
-
-## Star of Eärendil
+### Star of Eärendil
 
 Your father sails the night sky as the evening star. Beneath it you slowly heal and see clearly.
 
@@ -559,23 +416,7 @@ Your father sails the night sky as the evening star. Beneath it you slowly heal 
 
 `ardanborn:star_of_earendil` · from ArdanBorn · used by [Peredhil (Half-elf)](ancestries.md#peredhil-half-elf)
 
-## Strong Ankles
-
-You are able to jump higher by jumping while sprinting.
-
-- Jump Boost II while sprinting.
-
-`origins:sprint_jump` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Edain (Man)](ancestries.md#edain-man)
-
-## Strong Arms
-
-You are strong enough to break natural stones without using a pickaxe.
-
-- Break natural stone without a pickaxe and still get its drop: stone, deepslate, tuff, granite, diorite, andesite, sandstones, blackstone and netherrack.
-
-`origins:strong_arms` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Uruk-hai (Orc)](ancestries.md#uruk-hai-orc)
-
-## Swift Messenger
+### Swift Messenger
 
 Like Glorfindel riding for the Ford: horses, donkeys and mules you ride run faster and take no fall damage.
 
@@ -584,23 +425,7 @@ Like Glorfindel riding for the Ford: horses, donkeys and mules you ride run fast
 
 `ardanborn:swift_messenger` · from ArdanBorn · used by [Peredhil (Half-elf)](ancestries.md#peredhil-half-elf)
 
-## Tailwind
-
-You are a little bit quicker on foot than others.
-
-- +20% walking speed, always.
-
-`origins:tailwind` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Peredhil (Half-elf)](ancestries.md#peredhil-half-elf)
-
-## Thick Skin
-
-Your hide is tough enough that arrows do much less damage to you.
-
-- Damage from arrows and other projectiles is divided by 4.
-
-`fantasyorigins:strong_skin` · from [Origins-Fantasy](https://modrinth.com/plugin/origins-fantasy) · used by [Defender](classes.md#defender)
-
-## Tide's Fury
+### Tide's Fury
 
 The strength of the sea is in you. While you stand in water or rain, your melee and trident hits deal 25% more damage.
 
@@ -609,7 +434,7 @@ The strength of the sea is in you. While you stand in water or rain, your melee 
 
 `ardanborn:tides_fury` · from ArdanBorn · used by [Teleri (Sea Elf)](ancestries.md#teleri-sea-elf)
 
-## Tough as Old Tree-roots
+### Tough as Old Tree-roots
 
 Hobbits are hard to break, as Frodo bore the Ring. You take 30% less damage from Wither, Slowness lasts half as long on you, and Darkness cannot touch you.
 
@@ -619,7 +444,7 @@ Hobbits are hard to break, as Frodo bore the Ring. You take 30% less damage from
 
 `ardanborn:tree_roots` · from ArdanBorn · used by [Hobbit (Halfling)](ancestries.md#hobbit-halfling)
 
-## Undying Body
+### Undying Body
 
 The Eldar do not sicken as Men do. You are immune to Poison and Hunger effects.
 
@@ -628,7 +453,7 @@ The Eldar do not sicken as Men do. You are immune to Poison and Hunger effects.
 
 `ardanborn:eldar_body` · from ArdanBorn · used by [Noldor (High Elf)](ancestries.md#noldor-high-elf), [Peredhil (Half-elf)](ancestries.md#peredhil-half-elf)
 
-## Unseen
+### Unseen
 
 While you sneak, hostile creatures more than 6 blocks away don't notice you.
 
@@ -638,7 +463,7 @@ While you sneak, hostile creatures more than 6 blocks away don't notice you.
 
 `ardanborn:unseen` · from ArdanBorn · used by [Burglar](classes.md#burglar)
 
-## Wayfarer
+### Wayfarer
 
 Long roads are your home. A quarter of the time, you lose no hunger when you would have.
 
@@ -647,17 +472,7 @@ Long roads are your home. A quarter of the time, you lose no hunger when you wou
 
 `ardanborn:wayfarer` · from ArdanBorn · used by [Ranger](classes.md#ranger)
 
-## Winged
-
-You have wings of your own and can glide without equipping an Elytra.
-
-- Glide without wearing an elytra: jump, then press jump again in mid-air.
-- Firework rockets boost you as with a real elytra.
-- You can still wear a chestplate.
-
-`origins:elytra` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Great Eagle](ancestries.md#great-eagle)
-
-## Woodland Stride
+### Woodland Stride
 
 You move with the speed of the wood. Gain Speed while in forests, taigas, jungles and groves.
 
@@ -667,7 +482,7 @@ You move with the speed of the wood. Gain Speed while in forests, taigas, jungle
 
 `ardanborn:woodland_stride` · from ArdanBorn · used by [Sindar (Wood Elf)](ancestries.md#sindar-wood-elf)
 
-## Wrath of the Noldor
+### Wrath of the Noldor
 
 The Noldor have warred on Morgoth since the First Age. Your melee hits deal 25% more damage to the undead and the creatures of the Nether.
 
@@ -676,4 +491,194 @@ The Noldor have warred on Morgoth since the First Age. Your melee hits deal 25% 
 - Arrows and other projectiles don't get the bonus.
 
 `ardanborn:wrath_of_the_noldor` · from ArdanBorn · used by [Noldor (High Elf)](ancestries.md#noldor-high-elf)
+
+## Origins-Reborn and addon powers
+
+### Acrobatics
+
+You never take fall damage, no matter from which height you fall.
+
+- No fall damage from any height, including after [Gift of the Winds](#gift-of-the-winds) or a long glide that ends on the ground.
+- Landing on a magma block still burns.
+
+`origins:fall_immunity` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Great Eagle](ancestries.md#great-eagle)
+
+### Aerial Combatant
+
+You deal substantially more damage while in Elytra flight.
+
+- ×2 damage while you are gliding.
+- Stacks with [Aeglos](feather-of-thorondor.md#aeglos)' bonus against glowing foes.
+
+`origins:aerial_combatant` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Great Eagle](ancestries.md#great-eagle)
+
+### Aqua Affinity
+
+You may break blocks underwater as others do on land.
+
+- Mine underwater at normal speed, as with the Aqua Affinity helmet enchantment, without needing the helmet.
+
+`origins:aqua_affinity` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Teleri (Sea Elf)](ancestries.md#teleri-sea-elf)
+
+### Bearer
+
+Other players can ride on your back.
+
+- Other players can right-click you to ride on your back.
+- Carry a friend while gliding as an Eagle.
+
+`moborigins:rideable_creature` · from [Origins-Mobs](https://modrinth.com/plugin/origins-mobs) · used by [Great Eagle](ancestries.md#great-eagle)
+
+### Bee-friend
+
+Bees won't turn on you when you collect honey.
+
+- Bees don't get angry when you take honey or honeycomb from their nest or hive, even without a campfire.
+
+`moborigins:queen_bee` · from [Origins-Mobs](https://modrinth.com/plugin/origins-mobs) · used by [Beorning (Skin-changer)](ancestries.md#beorning-skin-changer)
+
+### Careful Miner
+
+Your care and mastery in the art of extracting minerals results in a much higher yield from ores than other creatures.
+
+- Ores you mine drop as if your tool had 2 more levels of Fortune.
+
+`fantasyorigins:fortune_increaser` · from [Origins-Fantasy](https://modrinth.com/plugin/origins-fantasy) · used by [Naugrim (Dwarf)](ancestries.md#naugrim-dwarf)
+
+### Endless Quiver
+
+Arrows you shoot are never used up.
+
+- Arrows you shoot aren't used up, as with the Infinity enchantment.
+- Works with tipped and spectral arrows.
+
+`monsterorigins:infinite_arrows` · from [Origins-Monsters](https://modrinth.com/plugin/origins-monsters) · used by [Ranger](classes.md#ranger)
+
+### Gift of the Winds
+
+Every 30 seconds, you are able to launch about 20 blocks up into the air.
+
+- **Sneak while gliding** to launch straight up, about 20 blocks.
+- 30-second cooldown.
+- Use it to gain height without rockets. It won't fire while you're standing on the ground.
+
+`origins:launch_into_air` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Great Eagle](ancestries.md#great-eagle)
+
+### Healing Focus
+
+When standing still you focus your energy to regenerate health.
+
+- Stand still for a moment to gain Regeneration I. Moving even slightly ends it.
+
+`magicorigins:regeneration_when_still` · from [Origins-Magic](https://modrinth.com/plugin/origins-magic) · used by [Loremaster](classes.md#loremaster)
+
+### Hoarder
+
+You have access to an additional 9 slots of inventory, which keep the items on death.
+
+- 9 extra inventory slots. By default you open them by right-clicking your chestplate slot.
+- Items in them are kept when you die.
+
+`origins:shulker_inventory` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Hobbit (Halfling)](ancestries.md#hobbit-halfling)
+
+### Long Reach
+
+You can reach blocks and entities further away than others can.
+
+- +1.5 blocks of reach for both blocks and entities.
+
+`origins:extra_reach` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Edain (Man)](ancestries.md#edain-man)
+
+### Mighty Frame
+
+Your great frame gives you twice the health of others.
+
+- +10 max hearts (20 health), for 20 hearts in all.
+
+`fantasyorigins:double_health` · from [Origins-Fantasy](https://modrinth.com/plugin/origins-fantasy) · used by [Beorning (Skin-changer)](ancestries.md#beorning-skin-changer)
+
+### Nocturnal
+
+You can slightly see in the dark when not in water.
+
+- Night Vision whenever you're not in water.
+- Drinking milk doesn't remove it for long; the power re-applies it.
+
+`origins:cat_vision` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Noldor (High Elf)](ancestries.md#noldor-high-elf), [Uruk-hai (Orc)](ancestries.md#uruk-hai-orc)
+
+### Potion Master
+
+Potions you drink and throw are much stronger.
+
+- Potions you drink or throw are one level stronger and last twice as long.
+
+`magicorigins:potion_master` · from [Origins-Magic](https://modrinth.com/plugin/origins-magic) · used by [Herbalist](classes.md#herbalist)
+
+### Small Body
+
+You're only one block tall, half the height of most folk.
+
+- Your hitbox and model are half size, about 1 block tall.
+- You fit through 1-block gaps.
+
+`fantasyorigins:small_body` · from [Origins-Fantasy](https://modrinth.com/plugin/origins-fantasy) · used by [Small Size](sizes.md#small-size)
+
+### Soft-footed
+
+You move so softly that Sculk Sensors never notice you walking or eating.
+
+- Your walking, landing, eating and drinking don't trigger sculk sensors or shriekers.
+
+`magicorigins:silent` · from [Origins-Magic](https://modrinth.com/plugin/origins-magic) · used by [Hobbit (Halfling)](ancestries.md#hobbit-halfling), [Sindar (Wood Elf)](ancestries.md#sindar-wood-elf)
+
+### Spoils of Victory
+
+Whenever you kill something, you take in some of its vitality as extra health, up to 30 extra hearts.
+
+- Each kill adds extra max health, more for stronger creatures.
+- Up to 30 extra hearts (60 health).
+
+`magicorigins:kill_boost` · from [Origins-Magic](https://modrinth.com/plugin/origins-magic) · used by [Beorning (Skin-changer)](ancestries.md#beorning-skin-changer)
+
+### Strong Ankles
+
+You are able to jump higher by jumping while sprinting.
+
+- Jump Boost II while sprinting.
+
+`origins:sprint_jump` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Edain (Man)](ancestries.md#edain-man)
+
+### Strong Arms
+
+You are strong enough to break natural stones without using a pickaxe.
+
+- Break natural stone without a pickaxe and still get its drop: stone, deepslate, tuff, granite, diorite, andesite, sandstones, blackstone and netherrack.
+
+`origins:strong_arms` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Uruk-hai (Orc)](ancestries.md#uruk-hai-orc)
+
+### Tailwind
+
+You are a little bit quicker on foot than others.
+
+- +20% walking speed, always.
+
+`origins:tailwind` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Peredhil (Half-elf)](ancestries.md#peredhil-half-elf)
+
+### Thick Skin
+
+Your hide is tough enough that arrows do much less damage to you.
+
+- Damage from arrows and other projectiles is divided by 4.
+
+`fantasyorigins:strong_skin` · from [Origins-Fantasy](https://modrinth.com/plugin/origins-fantasy) · used by [Defender](classes.md#defender)
+
+### Winged
+
+You have wings of your own and can glide without equipping an Elytra.
+
+- Glide without wearing an elytra: jump, then press jump again in mid-air.
+- Firework rockets boost you as with a real elytra.
+- You can still wear a chestplate.
+
+`origins:elytra` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Great Eagle](ancestries.md#great-eagle)
 

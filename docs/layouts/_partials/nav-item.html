@@ -1,4 +1,4 @@
-{{- /* One sidebar link. The current page also lists its ## headings. */ -}}
+{{- /* One sidebar link. The current page also lists its ## headings, and its ### headings too if it sets "entries". */ -}}
 {{- $p := site.GetPage .path -}}
 {{- if not $p }}{{ errorf "data/nav.toml: no page %q" .path }}{{ end -}}
 {{- $here := $p.Eq .current -}}
@@ -12,7 +12,15 @@
   {{- with $h2 }}
   <ul class="nav-headings">
     {{- range . }}
-    <li><a href="#{{ .ID }}">{{ .Title | plainify }}</a></li>
+    <li><a href="#{{ .ID }}">{{ .Title | plainify | htmlUnescape }}</a>
+      {{- if and $p.Params.entries .Headings }}
+      <ul>
+        {{- range .Headings }}
+        <li><a href="#{{ .ID }}">{{ .Title | plainify | htmlUnescape }}</a></li>
+        {{- end }}
+      </ul>
+      {{- end }}
+    </li>
     {{- end }}
   </ul>
   {{- end }}

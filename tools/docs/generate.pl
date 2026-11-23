@@ -154,19 +154,25 @@ for my $layer (sort keys %LAYER_PAGE) {
 
 open my $md, '>:utf8', "$out/" . page_file('Powers') or die $!;
 my @keys = sort { lc $power{$a}{title} cmp lc $power{$b}{title} } grep { $used_by{$_} } keys %power;
-print $md "---\ntitle: \"Powers\"\n---\nEvery power an ArdanBorn origin can have, A–Z. ArdanBorn's own powers are listed alongside the ones it borrows from Origins-Reborn and its addons. See [Installation](installation.md) for which addons to install.\n\n";
-for my $key (@keys) {
-    my $p = $power{$key};
-    my @origins = map { "[$_->{name}](" . page_file($LAYER_PAGE{$_->{layer}}) . "#" . anchor($_->{name}) . ")" }
-        sort { $a->{name} cmp $b->{name} } @{ $used_by{$key} };
-    print $md "## $p->{title}\n\n";
-    print $md "$p->{desc}\n\n";
-    if ($details{$key}) {
-        print $md "$details{$key}\n\n";
-    } else {
-        warn "No details for power $key in power-details.md\n";
+print $md "---\ntitle: \"Powers\"\nentries: true\n---\nEvery power an ArdanBorn origin can have, in two lists, each A–Z: [ArdanBorn's own](#ardanborn-powers), and [the ones it borrows](#origins-reborn-and-addon-powers) from Origins-Reborn and its addons. See [Installation](installation.md) for which addons to install.\n\n";
+my @own = grep { /^ardanborn:/ } @keys;
+my @borrowed = grep { !/^ardanborn:/ } @keys;
+for my $group (['ArdanBorn powers', @own], ['Origins-Reborn and addon powers', @borrowed]) {
+    my ($heading, @group_keys) = @$group;
+    print $md "## $heading\n\n";
+    for my $key (@group_keys) {
+        my $p = $power{$key};
+        my @origins = map { "[$_->{name}](" . page_file($LAYER_PAGE{$_->{layer}}) . "#" . anchor($_->{name}) . ")" }
+            sort { $a->{name} cmp $b->{name} } @{ $used_by{$key} };
+        print $md "### $p->{title}\n\n";
+        print $md "$p->{desc}\n\n";
+        if ($details{$key}) {
+            print $md "$details{$key}\n\n";
+        } else {
+            warn "No details for power $key in power-details.md\n";
+        }
+        printf $md "`%s` · from %s · used by %s\n\n", $key, source_of($key), join(', ', @origins);
     }
-    printf $md "`%s` · from %s · used by %s\n\n", $key, source_of($key), join(', ', @origins);
 }
 close $md;
 printf "%d origins, %d powers\n", scalar(map { @$_ } values %by_layer), scalar @keys;
