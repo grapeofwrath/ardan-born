@@ -1,7 +1,7 @@
 ---
 title: "Evenstar"
 ---
-*Undómiel's jewel, white as starlight.* The Peredhil's template, made to suit the [Peredhil](ancestries.md#peredhil-half-elf). It makes **Miruvor**, the **Imladris armor** and **Hadhafang**.
+*Undómiel's jewel, white as starlight.* The Peredhil's template, made to suit the [Peredhil](ancestries.md#peredhil-half-elf). It makes the **Imladris armor**, **Hadhafang** and **Miruvor**.
 
 Like every race item, anyone can use these; the Peredhil get extra.
 
@@ -17,25 +17,9 @@ Shaped recipe in a crafting table. It also shows in the recipe book.
 
 The Evenstar looks like a heart of the sea. It can't be used in any other recipe.
 
-## Miruvor
-
-*The cordial of Imladris.* At a **smithing table**, put the Evenstar with a **honey bottle** (and nothing in the third slot). Each Evenstar makes **one** draught.
-
-| Who | Effect when drunk |
-|---|---|
-| Anyone | Fills your hunger completely, gives Regeneration II for 8 seconds, and lifts Slowness, Weakness and Mining Fatigue. |
-| Peredhil | Regeneration II lasts 16 seconds. |
-
-Miruvor also:
-
-- lowers your [Shadow](rings-of-power.md#shadow) by 15
-- eases a [Morgul wound](morgul-wound.md) by one stage (a first-stage wound is cured)
-
-It's still a honey bottle underneath, so it also cures Poison and gives back the glass bottle.
-
 ## Imladris armor
 
-At a **smithing table**, put the Evenstar with a **diamond or netherite** armor piece (and nothing in the third slot). Pieces work like the [Arkenstone armor](arkenstone.md#armor): they keep enchantments, trim, damage and name, and can be upgraded to netherite.
+At a **smithing table**, put the Evenstar with a **diamond or netherite** armor piece (and nothing in the third slot). Pieces work like the [Arkenstone armor](arkenstone.md#arkenstone-armor): they keep enchantments, trim, damage and name, and can be upgraded to netherite.
 
 | Piece | Effect |
 |---|---|
@@ -53,5 +37,21 @@ At a **smithing table**, put the Evenstar with a **diamond or netherite sword** 
 |---|---|
 | Anyone | Kills heal you **1 heart**. |
 | Peredhil | +15% damage while riding. |
+
+## Miruvor
+
+*The cordial of Imladris.* At a **smithing table**, put the Evenstar with a **honey bottle** (and nothing in the third slot). Each Evenstar makes **one** draught.
+
+| Who | Effect when drunk |
+|---|---|
+| Anyone | Fills your hunger completely, gives Regeneration II for 8 seconds, and lifts Slowness, Weakness and Mining Fatigue. |
+| Peredhil | Regeneration II lasts 16 seconds. |
+
+Miruvor also:
+
+- lowers your [Shadow](rings-of-power.md#shadow) by 15
+- eases a [Morgul wound](morgul-wound.md) by one stage (a first-stage wound is cured)
+
+It's still a honey bottle underneath, so it also cures Poison and gives back the glass bottle.
 
 A resource pack can give these items their own look via `custom_model_data` strings `evenstar`, `miruvor`, `imladris` and `hadhafang`.

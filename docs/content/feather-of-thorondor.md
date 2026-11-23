@@ -19,7 +19,7 @@ The Feather of Thorondor looks like a feather. It can't be used in any other rec
 
 ## Thorondor armor
 
-At a **smithing table**, put the Feather with a **diamond or netherite** armor piece (and nothing in the third slot). Pieces work like the [Arkenstone armor](arkenstone.md#armor): they keep enchantments, trim, damage and name, and can be upgraded to netherite.
+At a **smithing table**, put the Feather with a **diamond or netherite** armor piece (and nothing in the third slot). Pieces work like the [Arkenstone armor](arkenstone.md#arkenstone-armor): they keep enchantments, trim, damage and name, and can be upgraded to netherite.
 
 | Piece | Effect |
 |---|---|

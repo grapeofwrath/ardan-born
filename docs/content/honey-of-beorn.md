@@ -1,7 +1,7 @@
 ---
 title: "Honey of Beorn"
 ---
-*From the hives of Beorn's hall.* The Beornings' template, made to suit the [Beorning](ancestries.md#beorning-skin-changer). It makes the **Hunting Bow**, the **Carrock armor** and the **Skin-changer's Claw**.
+*From the hives of Beorn's hall.* The Beornings' template, made to suit the [Beorning](ancestries.md#beorning-skin-changer). It makes the **Carrock armor**, the **Hunting Bow** and the **Skin-changer's Claw**.
 
 Like every race item, anyone can use these; Beornings get extra.
 
@@ -16,6 +16,18 @@ Shaped recipe in a crafting table. It also shows in the recipe book.
 | Honeycomb | Honey Block | Honeycomb |
 
 The Honey of Beorn looks like glinting honeycomb. It can't be used in any other recipe.
+
+## Carrock armor
+
+At a **smithing table**, put the Honey of Beorn with a **diamond or netherite** armor piece (and nothing in the third slot). Pieces work like the [Arkenstone armor](arkenstone.md#arkenstone-armor): they keep enchantments, trim, damage and name, and can be upgraded to netherite.
+
+| Piece | Effect |
+|---|---|
+| Helmet | **Honey-fed:** drinking a honey bottle heals 2 hearts, at most every 10 seconds. **Beornings:** 3 hearts. |
+| Chestplate | **Beeswax:** 10% chance that a mob that strikes you is poisoned for 4 seconds. **Beornings:** 15%. |
+| Leggings | **Great Bounds:** jump 20% higher. **Beornings:** 35% at night. |
+| Boots | **Wild Ways:** no harm from berry bushes, and 5% faster on grass. **Beornings:** 10% at night. |
+| Full set | **Maul:** every 4th melee hit also strikes monsters within 3 blocks for half the damage. **Beornings:** every 3rd at night. |
 
 ## Hunting Bow
 
@@ -33,18 +45,6 @@ At a **smithing table**, put the Honey of Beorn with a **bow** (and nothing in t
 
 - Straight flight works with every arrow type, including tipped and spectral arrows, and with Power, Punch, Flame and Infinity.
 - An arrow stays marked as a Hunting Bow arrow after it's fired, so the Beorning bonus applies even if you switch weapons before it lands.
-
-## Carrock armor
-
-At a **smithing table**, put the Honey of Beorn with a **diamond or netherite** armor piece (and nothing in the third slot). Pieces work like the [Arkenstone armor](arkenstone.md#armor): they keep enchantments, trim, damage and name, and can be upgraded to netherite.
-
-| Piece | Effect |
-|---|---|
-| Helmet | **Honey-fed:** drinking a honey bottle heals 2 hearts, at most every 10 seconds. **Beornings:** 3 hearts. |
-| Chestplate | **Beeswax:** 10% chance that a mob that strikes you is poisoned for 4 seconds. **Beornings:** 15%. |
-| Leggings | **Great Bounds:** jump 20% higher. **Beornings:** 35% at night. |
-| Boots | **Wild Ways:** no harm from berry bushes, and 5% faster on grass. **Beornings:** 10% at night. |
-| Full set | **Maul:** every 4th melee hit also strikes monsters within 3 blocks for half the damage. **Beornings:** every 3rd at night. |
 
 ## Skin-changer's Claw
 

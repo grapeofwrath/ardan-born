@@ -19,7 +19,7 @@ The Mathom looks like a bundle. It can't be used in any other recipe.
 
 ## Mithril armor
 
-At a **smithing table**, put the Mathom with a **diamond or netherite** armor piece (and nothing in the third slot). Pieces work like the [Arkenstone armor](arkenstone.md#armor): they keep enchantments, trim, damage and name, and can be upgraded to netherite.
+At a **smithing table**, put the Mathom with a **diamond or netherite** armor piece (and nothing in the third slot). Pieces work like the [Arkenstone armor](arkenstone.md#arkenstone-armor): they keep enchantments, trim, damage and name, and can be upgraded to netherite.
 
 | Piece | Effect |
 |---|---|

@@ -1,7 +1,7 @@
 ---
 title: "Light of the Trees"
 ---
-*A glimmer of Laurelin and Telperion.* The Noldor's template, made to suit the [Noldor](ancestries.md#noldor-high-elf). It makes the **Phial of Galadriel**, the **Gondolin armor** and **Orcrist**.
+*A glimmer of Laurelin and Telperion.* The Noldor's template, made to suit the [Noldor](ancestries.md#noldor-high-elf). It makes the **Gondolin armor**, **Orcrist** and the **Phial of Galadriel**.
 
 Like every race item, anyone can use these; the Noldor get extra.
 
@@ -16,6 +16,27 @@ Shaped recipe in a crafting table. It also shows in the recipe book.
 | Glowstone Dust | Glow Berries | Glowstone Dust |
 
 The Light of the Trees looks like glinting glowstone dust. It can't be used in any other recipe.
+
+## Gondolin armor
+
+At a **smithing table**, put the Light of the Trees with a **diamond or netherite** armor piece (and nothing in the third slot). Pieces work like the [Arkenstone armor](arkenstone.md#arkenstone-armor): they keep enchantments, trim, damage and name, and can be upgraded to netherite.
+
+| Piece | Effect |
+|---|---|
+| Helmet | **Unclouded:** immune to Blindness and Darkness. **Noldor:** Night Vision in the Nether. |
+| Chestplate | **Spell-ward:** 20% less magic, Wither and dragon's-breath damage. **Noldor:** 30%. |
+| Leggings | **Lore-wise:** race item and armor cooldowns are 10% shorter. Origin and class powers aren't affected. **Noldor:** 20%. |
+| Boots | **Helcaraxë:** immune to freezing, and 10% faster on snow and ice. **Noldor:** 20%. |
+| Full set | **Wrath of Fingolfin:** after 5 kills of undead or creatures of the Nether, your next melee hit bursts for 4 hearts to monsters within 5 blocks. **Noldor:** 3 kills. |
+
+## Orcrist
+
+At a **smithing table**, put the Light of the Trees with a **diamond or netherite sword** (and nothing in the third slot). It keeps its enchantments, damage and name, and can still be upgraded to netherite as usual.
+
+| Who | Effect |
+|---|---|
+| Anyone | **+20% damage** to illagers and piglins (zombified ones too). |
+| Noldor | They also get Weakness I for 3 seconds. |
 
 ## Phial of Galadriel
 
@@ -34,26 +55,5 @@ The Light of the Trees looks like glinting glowstone dust. It can't be used in a
 - It's only shown to players' game clients. The world itself never changes, so no light blocks are ever left behind, even after a crash or restart.
 - It shines from your head's block, or your feet if your head is in something (such as water). If both are blocked, there's no light until you move.
 - Right-clicking with something else in your main hand never raises an off-hand Phial; only a Phial in the main hand can be raised.
-
-## Gondolin armor
-
-At a **smithing table**, put the Light of the Trees with a **diamond or netherite** armor piece (and nothing in the third slot). Pieces work like the [Arkenstone armor](arkenstone.md#armor): they keep enchantments, trim, damage and name, and can be upgraded to netherite.
-
-| Piece | Effect |
-|---|---|
-| Helmet | **Unclouded:** immune to Blindness and Darkness. **Noldor:** Night Vision in the Nether. |
-| Chestplate | **Spell-ward:** 20% less magic, Wither and dragon's-breath damage. **Noldor:** 30%. |
-| Leggings | **Lore-wise:** race item and armor cooldowns are 10% shorter. Origin and class powers aren't affected. **Noldor:** 20%. |
-| Boots | **Helcaraxë:** immune to freezing, and 10% faster on snow and ice. **Noldor:** 20%. |
-| Full set | **Wrath of Fingolfin:** after 5 kills of undead or creatures of the Nether, your next melee hit bursts for 4 hearts to monsters within 5 blocks. **Noldor:** 3 kills. |
-
-## Orcrist
-
-At a **smithing table**, put the Light of the Trees with a **diamond or netherite sword** (and nothing in the third slot). It keeps its enchantments, damage and name, and can still be upgraded to netherite as usual.
-
-| Who | Effect |
-|---|---|
-| Anyone | **+20% damage** to illagers and piglins (zombified ones too). |
-| Noldor | They also get Weakness I for 3 seconds. |
 
 A resource pack can give these items their own look via `custom_model_data` strings `light_of_the_trees`, `phial_of_galadriel`, `gondolin` and `orcrist`.
