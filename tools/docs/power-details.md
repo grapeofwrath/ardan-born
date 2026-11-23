@@ -1,7 +1,7 @@
 # Power details
 
-Extra detail for the wiki's Powers page: exact numbers, how a power is triggered, and how it combines with
-other powers and items. `tools/wiki/generate.pl` prints each section under the power's description.
+Extra detail for the docs site's Powers page: exact numbers, how a power is triggered, and how it combines with
+other powers and items. `tools/docs/generate.pl` prints each section under the power's description.
 
 Each section starts with `## <power key>`; everything until the next `## ` is copied as Markdown. Keep the
 numbers in step with the code (`OriginAbilities.java`) or, for borrowed powers, with Origins-Reborn's
@@ -59,7 +59,7 @@ numbers in step with the code (`OriginAbilities.java`) or, for borrowed powers, 
 
 ## ardanborn:tides_fury
 - ×1.25 damage on melee hits and on tridents you throw, while you are in water or rain.
-- Stacks with the [Spear of the Havens](Pearl-of-Osse#spear-of-the-havens)' Teleri bonus.
+- Stacks with the [Spear of the Havens](pearl-of-osse.md#spear-of-the-havens)' Teleri bonus.
 
 ## ardanborn:delvers_instinct
 - Active below Y 50 when the sky's light where you stand is below 4: inside caves and tunnels, not in open ravines.
@@ -152,7 +152,7 @@ numbers in step with the code (`OriginAbilities.java`) or, for borrowed powers, 
 
 ## ardanborn:kings_hands
 - **Heal an ally:** sneak and right-click a player with an empty main hand. They get Regeneration II for 8 seconds and are cured of Poison and Wither. 15-second cooldown.
-- **Holding back a wound:** if they carry a [Morgul wound](Morgul-Wound), your touch restarts its timer, so it takes a full stage longer to worsen. It doesn't cure the wound; athelas or miruvor are still needed. Each wounded player can be held back once every 10 minutes, by any Healer.
+- **Holding back a wound:** if they carry a [Morgul wound](morgul-wound.md), your touch restarts its timer, so it takes a full stage longer to worsen. It doesn't cure the wound; athelas or miruvor are still needed. Each wounded player can be held back once every 10 minutes, by any Healer.
 - **Channel:** sneak and right-click the air with an empty hand. You and every player within 8 blocks instantly heal 3 hearts, and undead within 8 blocks take 3 hearts of magic damage. 60-second cooldown.
 - Channel's healing counts as magic, so a Peredhil's [Healer of Imladris](#healer-of-imladris) makes it heal 4.5 hearts for them. It doesn't cure Poison or Wither; the ally touch does.
 - The two cooldowns are separate, and your action bar shows the time left.
@@ -217,7 +217,7 @@ numbers in step with the code (`OriginAbilities.java`) or, for borrowed powers, 
 
 ## origins:aerial_combatant
 - ×2 damage while you are gliding.
-- Stacks with [Aeglos](Feather-of-Thorondor#aeglos)' bonus against glowing foes.
+- Stacks with [Aeglos](feather-of-thorondor.md#aeglos)' bonus against glowing foes.
 
 ## origins:aqua_affinity
 - Mine underwater at normal speed, as with the Aqua Affinity helmet enchantment, without needing the helmet.
@@ -314,7 +314,7 @@ numbers in step with the code (`OriginAbilities.java`) or, for borrowed powers, 
 - Crops only grow while you're nearby; they still need light and farmland as usual to grow on their own.
 
 ## ardanborn:smiths_mark
-- **Cirth runes:** only a Smith can inscribe runes onto weapons and tools at a smithing table. Anyone can craft the rune-stones and bring them to you. See the [Cirth Runes](Cirth-Runes) page.
+- **Cirth runes:** only a Smith can inscribe runes onto weapons and tools at a smithing table. Anyone can craft the rune-stones and bring them to you. See the [Cirth Runes](cirth-runes.md) page.
 - **Under a full moon:** a tool or weapon crafted at night during a full moon, in the Overworld, while you stand under open sky (nothing at all overhead), is **enchanted beyond the usual maximum**, twice per full moon.
   - Tools and weapons are pickaxes, axes, shovels, hoes, swords, spears, maces, bows, crossbows, tridents and fishing rods. Armor isn't blessed.
   - Every moonlit enchantment starts one level above its vanilla maximum and goes up to **5 levels above it**: Sharpness VI–X, Fortune IV–VIII, Unbreaking IV–VIII, Knockback III–VII, Fire Aspect III–VII. Lower levels are likelier; for Fortune, IV is 5 times as likely as VIII.

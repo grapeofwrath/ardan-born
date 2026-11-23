@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="{{ site.Language.Locale }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}Origins, race items and lore for ArdanBorn, a Tolkien-themed Paper plugin.{{ end }}">
+  <script>try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t } catch (e) {}</script>
+  {{ with resources.Get "css/ardan.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
+  {{ end }}
+  <link rel="stylesheet" href="{{ "pagefind/pagefind-ui.css" | relURL }}">
+</head>
+<body>
+  <header class="bar">
+    <a class="wordmark" href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a>
+    <div class="bar-buttons">
+      <a class="btn btn-dark" href="{{ site.Params.repo }}">GitHub</a>
+      <button type="button" id="theme-toggle" class="btn">☀ Anor</button>
+    </div>
+  </header>
+
+  <div class="shell">
+    <details class="contents" id="contents" open>
+      <summary>Contents</summary>
+      {{ partial "sidebar.html" . }}
+    </details>
+
+    <main>
+      {{ block "main" . }}{{ end }}
+    </main>
+  </div>
+
+  <footer class="foot">
+    <a href="{{ site.Params.repo }}">Source on GitHub</a>
+  </footer>
+
+  <script>
+    (function () {
+      var root = document.documentElement, btn = document.getElementById("theme-toggle");
+      // The button names the theme it switches to: Anor, the Sun (light) or Ithil, the Moon (dark).
+      function label() {
+        var light = root.dataset.theme === "light";
+        btn.textContent = light ? "☾ Ithil" : "☀ Anor";
+        btn.title = light ? "Ithil, the Moon: switch to the dark theme" : "Anor, the Sun: switch to the light theme";
+        btn.setAttribute("aria-label", light ? "Switch to the dark theme" : "Switch to the light theme");
+      }
+      label();
+      btn.addEventListener("click", function () {
+        root.dataset.theme = root.dataset.theme === "light" ? "dark" : "light";
+        try { localStorage.setItem("theme", root.dataset.theme) } catch (e) {}
+        label();
+      });
+
+      // The contents start open (so they work without JS); fold them away on narrow screens.
+      if (!matchMedia("(min-width: 60rem)").matches) document.getElementById("contents").open = false;
+
+      // Left/right arrow keys follow the pager, except while typing.
+      document.addEventListener("keydown", function (e) {
+        if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+        if (/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) return;
+        var a = document.querySelector(e.key === "ArrowLeft" ? ".pager-prev" : e.key === "ArrowRight" ? ".pager-next" : null);
+        if (a) location.href = a.href;
+      });
+    })();
+  </script>
+  <script src="{{ "pagefind/pagefind-ui.js" | relURL }}" onload="new PagefindUI({ element: '#search', showSubResults: true, showImages: false, resetStyles: false })"></script>
+</body>
+</html>

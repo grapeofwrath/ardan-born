@@ -1,0 +1,12 @@
+{{- /* Build-time check that data/nav.toml and content/ list the same pages. Runs once, from the home page. */ -}}
+{{- $listed := slice -}}
+{{- range hugo.Data.nav.top }}{{ $listed = $listed | append . }}{{ end -}}
+{{- range hugo.Data.nav.group }}{{ range .pages }}{{ $listed = $listed | append . }}{{ end }}{{ end -}}
+{{- $seen := dict -}}
+{{- range $listed }}
+  {{- with site.GetPage . }}{{ $seen = merge $seen (dict .RelPermalink true) }}{{ else }}{{ errorf "data/nav.toml lists %q, but there is no such page" . }}{{ end }}
+{{- end -}}
+{{- if ne (len $listed) (len $seen) }}{{ errorf "data/nav.toml lists a page twice" }}{{ end -}}
+{{- range site.Pages }}
+  {{- if and (in (slice "home" "page") .Kind) (not (index $seen .RelPermalink)) }}{{ errorf "%s is not in data/nav.toml, so it has no place in the sidebar" .File.Path }}{{ end }}
+{{- end -}}

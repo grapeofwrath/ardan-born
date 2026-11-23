@@ -1,0 +1,374 @@
+/* ArdanBorn docs. Palette and details follow montrosemillwork.com:
+   zinc-900 ground, vellum ink, bronze accent, serif type, hairlines, square corners. */
+
+:root {
+    --serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+    --vellum: #e8e0cc;
+    --zinc-900: #18181b;
+    --bronze: #ca9c68;
+
+    /* Ash (dark), the default. */
+    --bg: #18181b;
+    --fg: #e8e0cc;
+    --muted: #a1a1aa;
+    --rule: #3f3f46;
+    --panel: #27272a;
+    --accent-text: #ca9c68;
+    --code: #e4d6b8;
+    color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+    --bg: #e8e0cc;
+    --fg: #18181b;
+    --muted: #57534e;
+    --rule: #c4b89c;
+    --panel: #ded4bc;
+    --accent-text: #8a5f30;
+    --code: #4a3520;
+    color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { background: var(--bg); color: var(--fg); }
+body {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+}
+
+/* ---------- Header bar ---------- */
+
+.bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: .6rem 1.25rem;
+    border-block-end: 1px solid var(--rule);
+}
+.wordmark {
+    color: var(--fg);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: .3em;
+    font-size: .95rem;
+}
+.wordmark:hover { color: var(--accent-text); }
+.bar-buttons { display: flex; padding: .25rem; border: 1px solid #52525b; }
+
+/* Montrose button: small bold tracked capitals. */
+.btn {
+    display: block;
+    padding: .55rem 1rem;
+    border: 0;
+    border-radius: 0;
+    font: bold .75rem var(--serif);
+    text-transform: uppercase;
+    letter-spacing: .25em;
+    background: var(--vellum);
+    color: var(--zinc-900);
+    cursor: pointer;
+    transition: background-color .3s;
+}
+.btn:hover { background: #fff; }
+.btn-dark { background: var(--zinc-900); color: var(--vellum); text-decoration: none; }
+.btn-dark:hover { background: #3f3f46; }
+:root[data-theme="light"] .btn { background: var(--zinc-900); color: var(--vellum); }
+:root[data-theme="light"] .btn:hover { background: #3f3f46; }
+:root[data-theme="light"] .btn-dark { background: var(--panel); color: var(--zinc-900); }
+:root[data-theme="light"] .btn-dark:hover { background: #fff; }
+
+/* ---------- Page shell ---------- */
+
+.shell {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 17rem minmax(0, 1fr);
+    align-items: start;
+}
+main {
+    min-width: 0;
+    padding: 1rem 1.5rem 3rem;
+}
+main > * { max-width: 45rem; margin-inline: auto; }
+
+.contents > summary { display: none; }
+.contents {
+    position: sticky;
+    top: 0;
+    max-height: 100dvh;
+    overflow-y: auto;
+    background: var(--panel);
+    border-inline-end: 1px solid var(--rule);
+    align-self: stretch;
+}
+
+@media (max-width: 59.99rem) {
+    .shell { grid-template-columns: minmax(0, 1fr); }
+    .contents { position: static; max-height: none; border-inline-end: 0; border-block-end: 1px solid var(--rule); }
+    .contents > summary {
+        display: block;
+        padding: .7rem 1.25rem;
+        cursor: pointer;
+        list-style: none;
+        font-size: .75rem;
+        text-transform: uppercase;
+        letter-spacing: .25em;
+        color: var(--accent-text);
+    }
+    .contents > summary::-webkit-details-marker { display: none; }
+    .contents > summary::after { content: " ▸"; }
+    .contents[open] > summary::after { content: " ▾"; }
+    main { padding-inline: 1rem; }
+}
+
+/* ---------- Sidebar ---------- */
+
+.sidebar { padding: 1rem 1.25rem 2rem; font-size: 1rem; line-height: 1.4; }
+.sidebar ul { list-style: none; margin: 0; padding: 0; }
+.sidebar li { margin: 0; }
+.sidebar a {
+    display: block;
+    padding: .22rem 0;
+    color: var(--fg);
+    text-decoration: none;
+}
+.sidebar a:hover { color: var(--accent-text); }
+.sidebar li.here > a { color: var(--accent-text); }
+
+.nav-top { margin-block: .5rem 1rem !important; }
+
+.nav-group { margin-block: .9rem; }
+.nav-group > summary {
+    cursor: pointer;
+    list-style: none;
+    padding-block: .3rem;
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: .25em;
+    color: var(--accent-text);
+}
+.nav-group > summary::-webkit-details-marker { display: none; }
+.nav-group > summary::before { content: "▸"; display: inline-block; width: 1.2em; letter-spacing: 0; }
+.nav-group[open] > summary::before { content: "▾"; }
+.nav-group > summary:hover { color: var(--fg); }
+.nav-group > ul { padding-inline-start: 1.2em; }
+
+.nav-headings {
+    margin: .2rem 0 .4rem !important;
+    padding-inline-start: .8rem !important;
+    border-inline-start: 1px solid var(--bronze);
+    font-size: .9rem;
+}
+.nav-headings a { color: var(--muted); padding: .12rem 0; }
+
+/* ---------- Article type ---------- */
+
+article p, article ul, article ol { margin-block: 0 1.1em; }
+article li + li { margin-block-start: .25em; }
+article li > ul, article li > ol { margin-block: .25em 0; }
+
+h1, h2, h3, h4 { font-weight: normal; line-height: 1.25; }
+
+/* h1: italic, with the hairline–◆–hairline ornament beneath. */
+article h1 {
+    font-style: italic;
+    font-size: 2.6rem;
+    text-align: center;
+    margin-block: 1.6rem 0;
+}
+article h1::after, .ornament {
+    content: "◆";
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+    margin-block-start: 1rem;
+    font-size: .6rem;
+    font-style: normal;
+    color: var(--bronze);
+}
+article h1::after {
+    background:
+        linear-gradient(currentColor, currentColor) left center / calc(50% - 1.1rem) 1px no-repeat,
+        linear-gradient(currentColor, currentColor) right center / calc(50% - 1.1rem) 1px no-repeat;
+    justify-content: center;
+    opacity: .6;
+}
+article h1 + * { margin-block-start: 2rem; }
+
+/* h2: a short bronze rule on the left, then a longer, fainter one. */
+article h2 {
+    font-size: 1.65rem;
+    margin-block: 2.4rem .6rem;
+    padding-block-start: .8rem;
+    background:
+        linear-gradient(var(--bronze), var(--bronze)) left top / 2rem 1px no-repeat,
+        linear-gradient(color-mix(in srgb, var(--bronze) 35%, transparent),
+                        color-mix(in srgb, var(--bronze) 35%, transparent)) 2.6rem top / calc(100% - 2.6rem) 1px no-repeat;
+}
+article h3 {
+    font-size: .95rem;
+    text-transform: uppercase;
+    letter-spacing: .18em;
+    color: var(--muted);
+    margin-block: 1.8rem .5rem;
+}
+h1, h2, h3 { scroll-margin-top: 1rem; }
+
+/* Links: ink-colored with a bronze underline (Montrose's decoration-accent). */
+a { color: inherit; }
+article a {
+    color: var(--fg);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--bronze) 55%, transparent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: .18em;
+}
+article a:hover { text-decoration-color: var(--bronze); text-decoration-thickness: 2px; }
+
+strong { font-weight: bold; }
+em { font-style: italic; }
+
+code {
+    font-family: var(--mono);
+    font-size: .84em;
+    color: var(--code);
+    background: var(--panel);
+    padding: .08em .3em;
+}
+pre { background: var(--panel); border: 1px solid var(--rule); padding: .8rem 1rem; overflow-x: auto; }
+pre code { background: none; padding: 0; }
+
+blockquote {
+    margin: 1.2em 0;
+    padding: .1em 1.2em;
+    border-inline-start: 2px solid var(--bronze);
+    color: var(--muted);
+    font-style: italic;
+}
+hr { border: 0; border-block-start: 1px solid var(--rule); margin-block: 2rem; }
+
+/* ---------- Tables: hairlines, tracked header, no stripes ---------- */
+
+.table-wrap { overflow-x: auto; margin-block: 1.2em; }
+table { border-collapse: collapse; font-size: .93em; line-height: 1.45; }
+th, td {
+    padding: .45em .8em;
+    border-block-end: 1px solid var(--rule);
+    text-align: start;
+    vertical-align: top;
+}
+th {
+    font-weight: normal;
+    font-size: .74rem;
+    text-transform: uppercase;
+    letter-spacing: .18em;
+    color: var(--muted);
+    border-block-end-color: var(--bronze);
+    white-space: nowrap;
+}
+table.grid { border-block-start: 1px solid var(--rule); }
+table.grid td { text-align: center; }
+
+/* ---------- Pager: Montrose gallery arrows ---------- */
+
+.ornament {
+    margin-block: 3.5rem 1.5rem;
+    justify-content: center;
+}
+.ornament span { flex: 1; height: 1px; background: currentColor; opacity: .3; }
+
+.pager {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+.pager a {
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+    color: var(--fg);
+    text-decoration: none;
+}
+.pager-next { grid-column: 2; justify-content: flex-end; text-align: end; }
+
+.arrow {
+    flex: none;
+    display: grid;
+    padding: .5rem;
+    background: color-mix(in srgb, var(--vellum) 60%, transparent);
+    color: var(--zinc-900);
+    transition: background-color .3s, color .3s;
+}
+.arrow svg { display: block; fill: currentColor; }
+.pager a:hover .arrow { background: color-mix(in srgb, var(--zinc-900) 70%, transparent); color: var(--bronze); }
+:root[data-theme="light"] .arrow { background: color-mix(in srgb, var(--zinc-900) 12%, transparent); }
+:root[data-theme="light"] .pager a:hover .arrow { background: color-mix(in srgb, var(--zinc-900) 80%, transparent); }
+
+.pager-text { display: flex; flex-direction: column; min-width: 0; }
+.pager-label {
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: .3em;
+    color: var(--muted);
+}
+.pager-title {
+    font-size: 1.2rem;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 2px;
+    text-underline-offset: .2em;
+    transition: text-decoration-color .3s;
+}
+.pager a:hover .pager-title { text-decoration-color: var(--bronze); }
+
+@media (max-width: 34rem) {
+    .pager { grid-template-columns: 1fr; }
+    .pager-next { grid-column: 1; }
+}
+
+/* ---------- Footer ---------- */
+
+.foot {
+    padding: 1rem 1.25rem 1.5rem;
+    border-block-start: 1px solid var(--rule);
+    text-align: center;
+    font-size: .85rem;
+    color: var(--muted);
+}
+.foot a { text-decoration: underline; text-decoration-color: var(--bronze); text-underline-offset: .2em; }
+.foot a:hover { color: var(--fg); }
+
+/* ---------- Search (Pagefind UI) ---------- */
+
+.search { margin-block-end: .5rem; }
+.search {
+    --pagefind-ui-scale: .8;
+    --pagefind-ui-primary: var(--bronze);
+    --pagefind-ui-text: var(--fg);
+    --pagefind-ui-background: var(--bg);
+    --pagefind-ui-border: var(--rule);
+    --pagefind-ui-tag: var(--panel);
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: 0;
+    --pagefind-ui-font: var(--serif);
+}
+.search mark { background: color-mix(in srgb, var(--bronze) 45%, transparent); color: inherit; }
+
+/* ---------- Print ---------- */
+
+@media print {
+    .bar, .contents, .pager, .ornament, .foot { display: none !important; }
+    .shell { display: block; }
+    :root, :root[data-theme] { --bg: #fff; --fg: #000; --muted: #444; --rule: #bbb; --panel: #f4f4f4; --code: #000; }
+}
+
+/* Square everything. */
+*, *::before, *::after { border-radius: 0 !important; }

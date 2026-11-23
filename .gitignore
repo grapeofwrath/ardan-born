@@ -13,3 +13,8 @@ run/
 .idea/
 *.iml
 .vscode/
+
+# docs site build output
+docs/public/
+docs/resources/
+docs/.hugo_build.lock
