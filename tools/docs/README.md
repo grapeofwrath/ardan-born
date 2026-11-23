@@ -27,12 +27,13 @@ Pushing to `main` publishes the site (`.github/workflows/docs.yml`). The workflo
 | Content | Source |
 |---|---|
 | Origins | `src/main/resources/origins/*.json` |
-| ArdanBorn's powers | the `super("id", "Title", "Description")` calls in `OriginAbilities.java` |
-| Powers from Origins-Reborn and its addons | `external-powers.tsv` (key, title, description; tab-separated) |
+| Titles of ArdanBorn's powers | the `super("id", "Title", "Description")` calls in `OriginAbilities.java` |
+| Titles of powers from Origins-Reborn and its addons | `external-powers.tsv` (key, title; tab-separated) |
+| What each power does, in plain words | `power-effects.tsv` (key, effect; tab-separated). The in-game descriptions aren't used |
 | Extra detail on the Powers page (numbers, triggers, how powers combine) | `power-details.md`, one `## <power key>` section per power |
 | Each ancestry's race item | `race-items.tsv` (origin id, page, item name; tab-separated) |
 
-The script stops with an error if an origin uses a power that has no description, or an ancestry has no race item, and warns if a power has no section in `power-details.md`. When you add a power from Origins-Reborn or an addon, add a line to `external-powers.tsv`. For every new power, add a section to `power-details.md`. Its title and description are the strings in that plugin's ability class, e.g.:
+The script stops with an error if an origin uses a power that has no effect in `power-effects.tsv`, or an ancestry has no race item. When you add a power from Origins-Reborn or an addon, add a line to `external-powers.tsv`. For every new power, add a line to `power-effects.tsv`, and a section to `power-details.md` if the effect doesn't cover every rule. An addon power's title is among the strings in that plugin's ability class, e.g.:
 
 ```sh
 javap -c -p -cp <unzipped jar> com.starshootercity.originsfantasy.abilities.SmallBody | grep 'String '
