@@ -1,7 +1,11 @@
 ---
 title: "Rings of Power"
 ---
-*Three Rings for the Elven-kings under the sky, Seven for the Dwarf-lords in their halls of stone, Nine for Mortal Men doomed to die, One for the Dark Lord on his dark throne.*
+*Three Rings for the Elven-kings under the sky,\
+Seven for the Dwarf-lords in their halls of stone,\
+Nine for Mortal Men doomed to die,\
+One for the Dark Lord on his dark throne.*
+{.verse}
 
 The Rings of Power give great strength, and every one of them is **cursed**: while you wear one, the Shadow grows in you. Anyone can wear them.
 

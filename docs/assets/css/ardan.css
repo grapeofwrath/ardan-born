@@ -390,3 +390,14 @@ table.grid td { text-align: center; }
 /* Pagefind dims its placeholder to 20% opacity; make it readable. */
 #search .pagefind-ui__search-input::placeholder { color: var(--muted); opacity: 1; font-weight: normal; }
 #search .pagefind-ui__search-input { font-family: var(--serif); }
+
+/* Verse: a centered poem in the accent color, one line per line. */
+article .verse { font-size: min(1em, 4.5vw); text-align: center; color: var(--accent-text); text-wrap: balance; margin-block: 2rem; }
+
+/* Keep the top bar on one line on phones. */
+.btn, .wordmark { white-space: nowrap; }
+@media (max-width: 30rem) {
+    .bar { padding-inline: 1rem; gap: .5rem; }
+    .btn { padding-inline: .5rem; font-size: .68rem; letter-spacing: .12em; }
+    .wordmark { letter-spacing: .2em; font-size: .85rem; }
+}

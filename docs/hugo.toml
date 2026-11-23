@@ -10,6 +10,10 @@ repo = "https://github.com/grapeofwrath/ardan-born"
 [markup.goldmark.parser]
 autoHeadingIDType = "github"
 
+# Lets a page put a class on a block, e.g. {.verse} on the line after a poem.
+[markup.goldmark.parser.attribute]
+block = true
+
 [markup.goldmark.renderer]
 unsafe = false
 
