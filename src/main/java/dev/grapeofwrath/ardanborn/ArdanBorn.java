@@ -7,6 +7,7 @@ import dev.grapeofwrath.ardanborn.armor.ArmorSets;
 import dev.grapeofwrath.ardanborn.armor.ArmorSmithingListener;
 import dev.grapeofwrath.ardanborn.Keys;
 import dev.grapeofwrath.ardanborn.armor.RecipeGuardListener;
+import dev.grapeofwrath.ardanborn.items.rings.Rings;
 import dev.grapeofwrath.ardanborn.origins.OriginAbilities;
 import dev.grapeofwrath.ardanborn.origins.OriginFiles;
 import dev.grapeofwrath.ardanborn.origins.OriginsDefaults;
@@ -65,6 +66,7 @@ public final class ArdanBorn extends OriginsAddon {
         pm.registerEvents(new RecipeGuardListener(), this);
         ToolUpgrades.registerAll(this);
         Runes.registerAll(this);
+        Rings.registerAll(this);
         armorEffects.start();
     }
 

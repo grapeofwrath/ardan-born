@@ -7,6 +7,7 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import dev.grapeofwrath.ardanborn.armor.ArmorSets;
+import dev.grapeofwrath.ardanborn.items.rings.Rings;
 import dev.grapeofwrath.ardanborn.weapons.ToolUpgrades;
 import dev.grapeofwrath.ardanborn.weapons.runes.Runes;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
@@ -73,6 +74,7 @@ public final class ArdanBornBootstrap implements PluginBootstrap {
         Map<String, Supplier<ItemStack>> items = new LinkedHashMap<>(ArmorSets.giveableItems());
         items.putAll(ToolUpgrades.giveableItems());
         items.putAll(Runes.giveableItems());
+        items.putAll(Rings.giveableItems());
         return items;
     }
 
