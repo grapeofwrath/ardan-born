@@ -311,17 +311,16 @@ numbers in step with the code (`OriginAbilities.java`) or, for borrowed powers, 
 - Crops only grow while you're nearby; they still need light and farmland as usual to grow on their own.
 
 ## ardanborn:smiths_mark
-- **Always:** tools, weapons, armor and anything else that can take Unbreaking (shields, bows, fishing rods, shears, flint and steel…) come out of your crafting grid with **Unbreaking I**.
-- **Under a full moon:** a tool or weapon crafted at night during a full moon, in the Overworld, while you stand under open sky (nothing at all overhead), is also **enchanted beyond the usual maximum**, twice per full moon.
-  - Tools and weapons are pickaxes, axes, shovels, hoes, swords, spears, maces, bows, crossbows, tridents and fishing rods. Armor only gets the Unbreaking.
-  - Every moonlit enchantment starts one level above its vanilla maximum and goes up to **5 levels above it**: Sharpness VI–X, Fortune IV–VIII, Knockback III–VII, Fire Aspect III–VII. Lower levels are likelier; for Fortune, IV is 5 times as likely as VIII.
+- **Cirth runes:** only a Smith can inscribe runes onto weapons and tools at a smithing table. Anyone can craft the rune-stones and bring them to you. See the [Cirth Runes](Cirth-Runes) page.
+- **Under a full moon:** a tool or weapon crafted at night during a full moon, in the Overworld, while you stand under open sky (nothing at all overhead), is **enchanted beyond the usual maximum**, twice per full moon.
+  - Tools and weapons are pickaxes, axes, shovels, hoes, swords, spears, maces, bows, crossbows, tridents and fishing rods. Armor isn't blessed.
+  - Every moonlit enchantment starts one level above its vanilla maximum and goes up to **5 levels above it**: Sharpness VI–X, Fortune IV–VIII, Unbreaking IV–VIII, Knockback III–VII, Fire Aspect III–VII. Lower levels are likelier; for Fortune, IV is 5 times as likely as VIII.
   - Quick Charge and Lure stop at V, because higher levels break crossbows and fishing.
-  - Unbreaking can be drawn too, raising the baseline Unbreaking I to IV–VIII.
   - The roll shows in the result slot before you take the item, and taking the ingredients out and putting them back gives the same roll. Each item you take rolls a new one.
-  - **Twice per full moon.** Each moonlit item you take counts, and your action bar shows how many are left. The count is tracked on your character, so logging out or a restart doesn't reset it, and it starts over at the next full moon. After the second, crafting gives only Unbreaking I until then.
+  - **Twice per full moon.** Each moonlit item you take counts, and your action bar shows how many are left. The count is tracked on your character, so logging out or a restart doesn't reset it, and it starts over at the next full moon. After the second, crafting is ordinary until then.
   - Moonlit items must be taken one click at a time; shift-click is refused for them so it can't forge several at once (the preview would show the blessing on each).
   - Check the moon in the sky, or with `/time query day` (full moon when the day divided by 8 leaves 0).
-- Unbreaking I shows in the result slot and works with shift-click crafting. Crafter blocks don't apply it, since no player is crafting.
+  - Crafter blocks never bless an item, since no player is crafting.
 
 **How many enchantments**
 

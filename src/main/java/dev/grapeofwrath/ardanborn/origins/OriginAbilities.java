@@ -191,7 +191,7 @@ public final class OriginAbilities {
     }
 
     /** The undead, servants of the Shadow. */
-    static final Set<EntityType> UNDEAD = EnumSet.of(
+    public static final Set<EntityType> UNDEAD = EnumSet.of(
             EntityType.ZOMBIE, EntityType.ZOMBIE_VILLAGER, EntityType.HUSK, EntityType.DROWNED,
             EntityType.ZOMBIFIED_PIGLIN, EntityType.ZOGLIN, EntityType.ZOMBIE_HORSE,
             EntityType.SKELETON, EntityType.STRAY, EntityType.BOGGED, EntityType.WITHER_SKELETON,
@@ -207,7 +207,7 @@ public final class OriginAbilities {
     }
 
     /** Forests, taigas, jungles and groves: the Sindar's home ground. */
-    static boolean inWoodland(Player p) {
+    public static boolean inWoodland(Player p) {
         String biome = p.getLocation().getBlock().getBiome().getKey().getKey();
         return biome.contains("forest") || biome.contains("taiga") || biome.contains("jungle")
                 || biome.contains("grove") || biome.contains("woods");
@@ -1539,9 +1539,18 @@ public final class OriginAbilities {
         private static final NamespacedKey MOON_DAY = Keys.key("moonlit_day");
         private static final NamespacedKey MOON_COUNT = Keys.key("moonlit_count");
 
+        /// The registered instance, so other features (Cirth runes) can ask whether someone is a Smith.
+        private static @Nullable SmithsMark instance;
+
         public SmithsMark() {
             super("smiths_mark", "Smith's Mark",
-                    "Your work is made to last: tools, weapons and armor you craft start with Unbreaking I. Twice each full moon, a tool or weapon forged under its open sky also gains an enchantment beyond its usual maximum, by up to 5 levels.");
+                    "Only you can inscribe Cirth runes onto weapons and tools. Twice each full moon, a tool or weapon you forge under its open sky gains an enchantment beyond its usual maximum, by up to 5 levels.");
+            instance = this;
+        }
+
+        /** Whether a player has Smith's Mark (the Smith class). */
+        public static boolean isSmith(Player player) {
+            return instance != null && instance.hasAbility(player);
         }
 
         private static long today(Player p) {
@@ -1572,17 +1581,9 @@ public final class OriginAbilities {
             ItemStack result = e.getInventory().getResult();
             if (result == null || result.isEmpty()) return;
             runForAbility(e.getView().getPlayer(), p -> {
+                if (!underFullMoon(p) || !isToolOrWeapon(result) || forgedTonight(p) >= PER_FULL_MOON) return;
                 ItemStack marked = result.clone();
-                boolean changed = false;
-                if (Enchantment.UNBREAKING.canEnchantItem(marked) && !marked.containsEnchantment(Enchantment.UNBREAKING)) {
-                    marked.addEnchantment(Enchantment.UNBREAKING, 1);
-                    changed = true;
-                }
-                if (p instanceof Player player && underFullMoon(player) && isToolOrWeapon(marked)
-                        && forgedTonight(player) < PER_FULL_MOON) {
-                    changed |= addMoonlitEnchantment(player, marked);
-                }
-                if (changed) e.getInventory().setResult(marked);
+                if (addMoonlitEnchantment(p, marked)) e.getInventory().setResult(marked);
             });
         }
 
@@ -1642,7 +1643,7 @@ public final class OriginAbilities {
         }
 
         /// One enchantment from the table that fits the item, doesn't clash with what it has, and isn't
-        /// already at a moonlit level (so Unbreaking I from the always-on mark can still be raised).
+        /// already at a moonlit level (so an enchantment the recipe already gave can still be raised).
         private static @Nullable Enchantment drawEnchantment(Random random, ItemStack item) {
             List<Enchantment> options = new ArrayList<>();
             List<Integer> weights = new ArrayList<>();

@@ -2,6 +2,7 @@ package dev.grapeofwrath.ardanborn.weapons;
 
 import dev.grapeofwrath.ardanborn.Keys;
 import dev.grapeofwrath.ardanborn.armor.ArmorSets;
+import dev.grapeofwrath.ardanborn.weapons.runes.Runes;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -83,7 +84,10 @@ public final class ToolUpgrades implements Listener {
             if (!upgrade.isTemplate(template) || !upgrade.baseMaterials().contains(base.getType())) continue;
             ItemStack addition = inventory.getInputMineral();
             boolean valid = of(base) == null && (addition == null || addition.isEmpty());
-            event.setResult(valid ? upgrade.upgrade(base.asOne()) : null);
+            ItemStack result = valid ? upgrade.upgrade(base.asOne()) : null;
+            // The upgrade writes its own lore; put back the lines for any runes the item carries.
+            if (result != null) Runes.refreshLore(result);
+            event.setResult(result);
             return;
         }
     }

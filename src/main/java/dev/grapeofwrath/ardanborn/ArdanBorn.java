@@ -12,6 +12,7 @@ import dev.grapeofwrath.ardanborn.origins.OriginFiles;
 import dev.grapeofwrath.ardanborn.origins.OriginsDefaults;
 import dev.grapeofwrath.ardanborn.origins.PowerText;
 import dev.grapeofwrath.ardanborn.weapons.ToolUpgrades;
+import dev.grapeofwrath.ardanborn.weapons.runes.Runes;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -63,6 +64,7 @@ public final class ArdanBorn extends OriginsAddon {
         pm.registerEvents(new ArmorSmithingListener(), this);
         pm.registerEvents(new RecipeGuardListener(), this);
         ToolUpgrades.registerAll(this);
+        Runes.registerAll(this);
         armorEffects.start();
     }
 
