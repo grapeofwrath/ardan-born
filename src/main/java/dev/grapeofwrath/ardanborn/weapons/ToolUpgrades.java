@@ -27,7 +27,7 @@ import java.util.function.Supplier;
 public final class ToolUpgrades implements Listener {
     private static final List<ToolUpgrade> UPGRADES = List.of(
             new HavensTrident(), new Aeglos(), new ArkenstonePick(), new HuntingBow(),
-            new PhialOfGaladriel(), new HornOfGondor(), new Miruvor());
+            new PhialOfGaladriel(), new HornOfGondor(), new Miruvor(), new ScimitarOfIsengard());
 
     public static void registerAll(Plugin plugin) {
         // Templates of races with no armor set yet; the others are registered with their set.
@@ -35,6 +35,7 @@ public final class ToolUpgrades implements Listener {
         RaceTemplate.LIGHT_OF_THE_TREES.registerRecipe();
         RaceTemplate.STAR_OF_ELENDIL.registerRecipe();
         RaceTemplate.EVENSTAR.registerRecipe();
+        RaceTemplate.WHITE_HAND.registerRecipe();
         for (ToolUpgrade upgrade : UPGRADES) {
             // Template + base item + empty addition slot. The real result is built in onPrepare; this recipe
             // only makes the smithing table accept the inputs.
@@ -65,7 +66,7 @@ public final class ToolUpgrades implements Listener {
         Map<String, Supplier<ItemStack>> items = new LinkedHashMap<>();
         items.put(HoneyOfBeorn.ID, HoneyOfBeorn::create);
         for (RaceTemplate template : List.of(RaceTemplate.LIGHT_OF_THE_TREES, RaceTemplate.STAR_OF_ELENDIL,
-                RaceTemplate.EVENSTAR)) {
+                RaceTemplate.EVENSTAR, RaceTemplate.WHITE_HAND)) {
             items.put(template.id(), template::create);
         }
         for (ToolUpgrade upgrade : UPGRADES) {

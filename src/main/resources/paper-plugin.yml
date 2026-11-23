@@ -27,6 +27,10 @@ dependencies:
     Origins-Monsters:
       load: BEFORE
       required: false
+    # Optional: Morgul wounds read mob levels from it (see config.yml). No code dependency.
+    LevelledMobs:
+      load: BEFORE
+      required: false
   bootstrap: {}
 
 permissions:

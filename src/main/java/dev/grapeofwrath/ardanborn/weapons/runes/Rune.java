@@ -23,7 +23,13 @@ public enum Rune {
             Material.BLUE_ICE, Material.SNOWBALL, Fits.FROST),
     DELVING("Delving", TextColor.color(0xD9A066),
             "Iron, copper and gold ore drop ingots",
-            Material.COAL, Material.RAW_IRON, Fits.PICKAXE);
+            Material.COAL, Material.RAW_IRON, Fits.PICKAXE),
+    HARVEST("Harvest", TextColor.color(0xD8C15A),
+            "Right-click a ripe crop to reap and replant 3×3",
+            Material.WHEAT, Material.BONE_MEAL, Fits.HOE),
+    VEIN("Vein", TextColor.color(0xC75B4A),
+            "Sneak to mine a whole ore vein (up to 16)",
+            Material.REDSTONE, Material.IRON_INGOT, Fits.PICKAXE);
 
     private final String displayName;
     private final TextColor color;
@@ -92,5 +98,6 @@ public enum Rune {
                 Tag.ITEMS_ENCHANTABLE_MACE, Tag.ITEMS_ENCHANTABLE_TRIDENT, Tag.ITEMS_ENCHANTABLE_BOW,
                 Tag.ITEMS_ENCHANTABLE_CROSSBOW);
         static final List<Tag<Material>> PICKAXE = List.of(Tag.ITEMS_PICKAXES);
+        static final List<Tag<Material>> HOE = List.of(Tag.ITEMS_HOES);
     }
 }

@@ -2,6 +2,8 @@ package dev.grapeofwrath.ardanborn;
 
 import com.starshootercity.OriginsAddon;
 import com.starshootercity.abilities.types.Ability;
+import dev.grapeofwrath.ardanborn.afflictions.Athelas;
+import dev.grapeofwrath.ardanborn.afflictions.MorgulWound;
 import dev.grapeofwrath.ardanborn.armor.ArmorEffectManager;
 import dev.grapeofwrath.ardanborn.armor.ArmorSets;
 import dev.grapeofwrath.ardanborn.armor.ArmorSmithingListener;
@@ -67,6 +69,9 @@ public final class ArdanBorn extends OriginsAddon {
         ToolUpgrades.registerAll(this);
         Runes.registerAll(this);
         Rings.registerAll(this);
+        saveDefaultConfig();
+        MorgulWound.register(this);
+        Athelas.register(this);
         armorEffects.start();
     }
 

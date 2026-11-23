@@ -1,0 +1,13 @@
+# ArdanBorn settings. Delete a setting (or the whole file) to get its default back.
+
+morgul-wound:
+  # Melee hits from undead can leave a Morgul wound that worsens in stages until treated.
+  enabled: true
+  # Chance per melee hit from an eligible mob (0.10 = 10%).
+  chance: 0.10
+  # With LevelledMobs installed: the lowest mob level that can wound. Keep it in step with your
+  # LevelledMobs rules. Without LevelledMobs, only wither skeletons and the servants of a betraying
+  # Ring of Power can wound.
+  min-level: 30
+  # Minutes (while the wounded player is online) before the wound worsens to the next stage.
+  stage-minutes: 3

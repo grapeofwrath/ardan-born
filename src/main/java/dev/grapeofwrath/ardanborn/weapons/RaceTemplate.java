@@ -59,6 +59,20 @@ public record RaceTemplate(String id, String name, TextColor color, Material loo
             new RecipeChoice.MaterialChoice(Material.ENDER_PEARL),
             new RecipeChoice.MaterialChoice(Material.GLOW_INK_SAC));
 
+    public static final RaceTemplate MATHOM = new RaceTemplate("mathom",
+            "Mathom", TextColor.color(0x8DB255), Material.BUNDLE,
+            "Too good to throw away, too odd to use; until now.",
+            List.of("Combine with diamond or netherite", "armor at a Smithing Table."),
+            new RecipeChoice.MaterialChoice(Material.PUMPKIN_PIE),
+            new RecipeChoice.MaterialChoice(Material.IRON_INGOT));
+
+    public static final RaceTemplate WHITE_HAND = new RaceTemplate("white_hand",
+            "White Hand", TextColor.color(0xF2F2F2), Material.WHITE_DYE,
+            "The sign of Saruman, daubed on Uruk shields.",
+            List.of("Combine with a diamond or netherite", "sword at a Smithing Table."),
+            new RecipeChoice.MaterialChoice(Material.COAL_BLOCK),
+            new RecipeChoice.MaterialChoice(Material.WHITE_DYE));
+
     public ItemStack create() {
         ItemStack item = ItemStack.of(Material.PRISMARINE_CRYSTALS);
         item.setData(DataComponentTypes.ITEM_MODEL, look.getKey());

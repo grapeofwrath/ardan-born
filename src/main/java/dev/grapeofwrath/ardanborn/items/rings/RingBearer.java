@@ -1,6 +1,7 @@
 package dev.grapeofwrath.ardanborn.items.rings;
 
 import dev.grapeofwrath.ardanborn.Keys;
+import dev.grapeofwrath.ardanborn.Ores;
 import dev.grapeofwrath.ardanborn.origins.OriginCheck;
 import dev.grapeofwrath.ardanborn.weapons.Miruvor;
 import net.kyori.adventure.text.Component;
@@ -13,7 +14,6 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
-import org.bukkit.Tag;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Block;
@@ -438,7 +438,7 @@ public final class RingBearer implements Listener {
         Player player = event.getPlayer();
         if (worn(player) != RingType.SEVEN) return;
         Material ore = event.getBlockState().getType();
-        if (!isOre(ore)) return;
+        if (!Ores.isOre(ore)) return;
         ThreadLocalRandom random = ThreadLocalRandom.current();
         // Like two more levels of Fortune: ×1 half the time, else ×2 or ×3.
         int roll = random.nextInt(4);
@@ -454,13 +454,5 @@ public final class RingBearer implements Listener {
                     ItemStack.of(Material.GOLD_NUGGET, random.nextInt(1, 4)));
         }
         if (!OriginCheck.is(player, OriginCheck.NAUGRIM)) addShadow(player, gain(player, GREED_PER_ORE));
-    }
-
-    private static boolean isOre(Material material) {
-        return Tag.COAL_ORES.isTagged(material) || Tag.IRON_ORES.isTagged(material)
-                || Tag.COPPER_ORES.isTagged(material) || Tag.GOLD_ORES.isTagged(material)
-                || Tag.REDSTONE_ORES.isTagged(material) || Tag.LAPIS_ORES.isTagged(material)
-                || Tag.DIAMOND_ORES.isTagged(material) || Tag.EMERALD_ORES.isTagged(material)
-                || material == Material.NETHER_QUARTZ_ORE;
     }
 }

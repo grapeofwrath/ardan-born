@@ -136,8 +136,10 @@ numbers in step with the code (`OriginAbilities.java`) or, for borrowed powers, 
 - Only hostile mobs are hit, never players, pets or villagers.
 
 ## ardanborn:keen_tracker
-- Mobs hit by your arrows glow for 5 seconds, visible through walls.
-- Players aren't marked.
+- The last mob your arrow hit is your **prey** for 60 seconds: it glows (visible through walls), and you deal ×1.2 damage to it from any source, arrows and melee alike.
+- A new arrow hit on another mob moves the mark there; the old prey stops glowing.
+- The arrow that marks a mob gets the bonus only if that mob was already your prey.
+- Players are never marked.
 
 ## ardanborn:wayfarer
 - Each time your hunger bar would drop, 25% chance it doesn't.
@@ -149,7 +151,7 @@ numbers in step with the code (`OriginAbilities.java`) or, for borrowed powers, 
 - Void and `/kill` damage are never reduced.
 
 ## ardanborn:kings_hands
-- **Heal an ally:** sneak and right-click a player with an empty main hand. They get Regeneration II for 8 seconds and are cured of Poison and Wither. 15-second cooldown.
+- **Heal an ally:** sneak and right-click a player with an empty main hand. They get Regeneration II for 8 seconds and are cured of Poison, Wither and a [Morgul wound](Morgul-Wound). 15-second cooldown.
 - **Channel:** sneak and right-click the air with an empty hand. You and every player within 8 blocks instantly heal 3 hearts, and undead within 8 blocks take 3 hearts of magic damage. 60-second cooldown.
 - Channel's healing counts as magic, so a Peredhil's [Healer of Imladris](#healer-of-imladris) makes it heal 4.5 hearts for them. It doesn't cure Poison or Wither; the ally touch does.
 - The two cooldowns are separate, and your action bar shows the time left.

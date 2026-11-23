@@ -2,6 +2,7 @@ package dev.grapeofwrath.ardanborn.origins;
 
 import dev.grapeofwrath.ardanborn.ArdanBorn;
 import dev.grapeofwrath.ardanborn.Keys;
+import dev.grapeofwrath.ardanborn.afflictions.MorgulWound;
 import dev.grapeofwrath.ardanborn.armor.CustomItems;
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import com.starshootercity.abilities.types.Ability;
@@ -9,6 +10,7 @@ import com.starshootercity.abilities.types.VisibleAbility;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.MusicInstrument;
 import org.bukkit.NamespacedKey;
@@ -35,6 +37,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Mob;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
 import org.bukkit.entity.Spider;
 import org.bukkit.entity.Tameable;
 import org.bukkit.entity.Trident;
@@ -455,9 +458,19 @@ public final class OriginAbilities {
 
     /** Uruk-hai: fury of battle. */
     public static final class Bloodlust extends Base implements Listener {
+        private static final long FURY_MS = 8_000;
+        /// When each player's fury last began, so items (the Scimitar of Isengard) can tell it's active.
+        private static final Map<UUID, Long> furyFrom = new HashMap<>();
+
         public Bloodlust() {
             super("bloodlust", "Battle-fury",
                     "Each kill fills you with fury: Speed for 8 seconds and Strength for 5 seconds.");
+        }
+
+        /** Whether the player killed something with Battle-fury in the last 8 seconds. */
+        public static boolean active(Player player) {
+            Long from = furyFrom.get(player.getUniqueId());
+            return from != null && System.currentTimeMillis() - from < FURY_MS;
         }
 
         @EventHandler
@@ -467,6 +480,7 @@ public final class OriginAbilities {
             runForAbility(killer, p -> {
                 effect(p, PotionEffectType.SPEED, 160, 0);
                 effect(p, PotionEffectType.STRENGTH, 100, 0);
+                furyFrom.put(p.getUniqueId(), System.currentTimeMillis());
             });
         }
     }
@@ -861,17 +875,40 @@ public final class OriginAbilities {
 
     /** Ranger. */
     public static final class KeenTracker extends Base implements Listener {
+        private static final long PREY_MS = 60_000;
+        private static final int PREY_TICKS = 1200;
+        private static final double PREY_BONUS = 1.2;
+
+        private record Prey(UUID target, long until) {}
+
+        private final Map<UUID, Prey> prey = new HashMap<>();
+
         public KeenTracker() {
-            super("keen_tracker", "Keen Tracker",
-                    "Creatures struck by your arrows are revealed with Glowing for 5 seconds.");
+            super("keen_tracker", "Hunt Prey",
+                    "The last creature your arrow struck becomes your prey for 60 seconds: it glows, and you deal 20% more damage to it from any source.");
         }
 
-        @EventHandler
-        public void onArrow(EntityDamageByEntityEvent e) {
-            if (!(e.getDamager() instanceof Arrow arrow)) return;
-            if (!(arrow.getShooter() instanceof Player shooter)) return;
+        @EventHandler(ignoreCancelled = true)
+        public void onHit(EntityDamageByEntityEvent e) {
             if (!(e.getEntity() instanceof LivingEntity victim) || victim instanceof Player) return;
-            runForAbility(shooter, p -> effect(victim, PotionEffectType.GLOWING, 100, 0));
+            Player hunter = e.getDamager() instanceof Player p ? p
+                    : e.getDamager() instanceof Projectile proj && proj.getShooter() instanceof Player p ? p : null;
+            if (hunter == null) return;
+            runForAbility(hunter, p -> {
+                Prey current = prey.get(p.getUniqueId());
+                long now = System.currentTimeMillis();
+                if (current != null && current.target().equals(victim.getUniqueId()) && now < current.until()) {
+                    e.setDamage(e.getDamage() * PREY_BONUS);
+                }
+                if (!(e.getDamager() instanceof Arrow)) return;
+                // An arrow marks (or re-marks) the prey.
+                if (current != null && !current.target().equals(victim.getUniqueId())
+                        && Bukkit.getEntity(current.target()) instanceof LivingEntity old) {
+                    old.removePotionEffect(PotionEffectType.GLOWING);
+                }
+                prey.put(p.getUniqueId(), new Prey(victim.getUniqueId(), now + PREY_MS));
+                effect(victim, PotionEffectType.GLOWING, PREY_TICKS, 0);
+            });
         }
     }
 
@@ -931,12 +968,13 @@ public final class OriginAbilities {
 
         public KingsHands() {
             super("kings_hands", "Hands of the Healer",
-                    "Sneak and right-click an ally with an empty hand to grant Regeneration II and cure Poison and Wither (15s cooldown). Do the same in the air to channel healing light: you and players within 8 blocks heal 3 hearts, and the undead nearby are seared (60s).");
+                    "Sneak and right-click an ally with an empty hand to grant Regeneration II and cure Poison, Wither and a Morgul wound (15s cooldown). Do the same in the air to channel healing light: you and players within 8 blocks heal 3 hearts, and the undead nearby are seared (60s).");
         }
 
         private void heal(Player target) {
             target.removePotionEffect(PotionEffectType.POISON);
             target.removePotionEffect(PotionEffectType.WITHER);
+            MorgulWound.cure(target);
             effect(target, PotionEffectType.REGENERATION, 160, 1);
             target.getWorld().spawnParticle(Particle.HEART, target.getLocation().add(0, 1.8, 0), 6, 0.3, 0.3, 0.3, 0);
         }

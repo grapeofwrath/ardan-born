@@ -4,6 +4,7 @@ import dev.grapeofwrath.ardanborn.Keys;
 import dev.grapeofwrath.ardanborn.armor.sets.AlqualondeSet;
 import dev.grapeofwrath.ardanborn.armor.sets.ArkenstoneSet;
 import dev.grapeofwrath.ardanborn.armor.sets.LorienSet;
+import dev.grapeofwrath.ardanborn.armor.sets.MithrilSet;
 import dev.grapeofwrath.ardanborn.armor.sets.ThorondorSet;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -40,6 +41,7 @@ public final class ArmorSets {
         register(plugin, new AlqualondeSet());
         register(plugin, new ThorondorSet());
         register(plugin, new LorienSet());
+        register(plugin, new MithrilSet());
         registerNetheriteUpgrades();
     }
 
