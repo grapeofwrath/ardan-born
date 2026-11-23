@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Save a screenshot of the client: shot /path/out.png
+. "$(dirname "$0")/common.sh"
+import -window root "${1:?output path}"

@@ -8,6 +8,7 @@ result-*
 .gradle-home/
 build/
 run/
+run-test/
 
 # IDE
 .idea/

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Run server commands, one per argument: rcon 'list' 'time set day'
+. "$(dirname "$0")/common.sh"
+MCRCON_PASS=$(cat "$STATE/rcon") exec mcrcon -c -H 127.0.0.1 -P $RCON_PORT "$@"

@@ -27,5 +27,14 @@
             echo "gradle: $(gradle --version 2>/dev/null | grep '^Gradle')"
           '';
         };
+
+        # Tools for tools/playtest: a hidden display, input, screenshots and RCON.
+        devShells.playtest = pkgs.mkShell {
+          packages = [ jdk gradle pkgs.xvfb pkgs.xdotool pkgs.imagemagick pkgs.mcrcon ];
+
+          JAVA_HOME = "${jdk}/lib/openjdk";
+
+          shellHook = ''export GRADLE_USER_HOME="$PWD/.gradle-home"'';
+        };
       });
 }

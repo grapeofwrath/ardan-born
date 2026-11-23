@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Send xdotool actions to the client: input key e; input mousemove 427 240 click 1
+. "$(dirname "$0")/common.sh"
+exec xdotool "$@"

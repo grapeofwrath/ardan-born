@@ -1,3 +1,5 @@
+import xyz.jpenilla.runpaper.task.RunServer
+
 plugins {
     java
     id("xyz.jpenilla.run-paper") version "3.1.0"
@@ -28,6 +30,15 @@ java {
     toolchain.languageVersion = JavaLanguageVersion.of(25)
 }
 
+fun RunServer.addTestPlugins() = downloadPlugins {
+    modrinth("origins-reborn", originsRebornVersion)
+    // Optional addons whose powers our origins use; same versions as the live server.
+    modrinth("origins-fantasy", "1.1.14")
+    modrinth("origins-magic", "1.0.18")
+    modrinth("origins-mobs", "1.0.41")
+    modrinth("origins-monsters", "1.2.3")
+}
+
 tasks {
     withType<JavaCompile>().configureEach {
         options.encoding = "UTF-8"
@@ -47,13 +58,17 @@ tasks {
         // Downloads Paper and starts a local test server in ./run with the plugin loaded.
         minecraftVersion(minecraftVersion)
         jvmArgs("-Dcom.mojang.eula.agree=true")
-        downloadPlugins {
-            modrinth("origins-reborn", originsRebornVersion)
-            // Optional addons whose powers our origins use; same versions as the live server.
-            modrinth("origins-fantasy", "1.1.14")
-            modrinth("origins-magic", "1.0.18")
-            modrinth("origins-mobs", "1.0.41")
-            modrinth("origins-monsters", "1.2.3")
-        }
+        addTestPlugins()
+    }
+
+    // Server for Claude's own playtests, in ./run-test. Start it with tools/playtest/server.
+    register<RunServer>("runTestServer") {
+        group = "run paper"
+        description = "Runs the loopback-only playtest server in ./run-test."
+        minecraftVersion(minecraftVersion)
+        runDirectory = layout.projectDirectory.dir("run-test")
+        pluginJars(jar.flatMap { it.archiveFile })
+        jvmArgs("-Dcom.mojang.eula.agree=true", "-Xmx1536m")
+        addTestPlugins()
     }
 }

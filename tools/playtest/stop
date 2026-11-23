@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Stop the client, hidden display and server.
+. "$(dirname "$0")/common.sh"
+for what in client xvfb; do
+  f=$STATE/$what.pid
+  if [ -f "$f" ]; then
+    kill -- "-$(cat "$f")" 2>/dev/null || true
+    rm -f "$f"
+  fi
+done
+"$(dirname "$0")/rcon" stop 2>/dev/null || true

@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# Start the loopback-only playtest server and wait until it is ready.
+. "$(dirname "$0")/common.sh"
+up() { timeout 1 bash -c "</dev/tcp/127.0.0.1/$RCON_PORT" 2>/dev/null; }
+if up; then echo "already running"; exit 0; fi
+if [ ! -f "$STATE/rcon" ]; then (umask 077; od -An -N16 -tx1 /dev/urandom | tr -d ' \n' > "$STATE/rcon"); fi
+(umask 077; cat > "$RUN/server.properties" <<P
+server-ip=127.0.0.1
+server-port=$PORT
+online-mode=false
+enforce-secure-profile=false
+white-list=false
+enable-rcon=true
+rcon.port=$RCON_PORT
+rcon.password=$(cat "$STATE/rcon")
+broadcast-rcon-to-ops=false
+level-type=minecraft\:flat
+view-distance=4
+simulation-distance=4
+spawn-protection=0
+difficulty=easy
+motd=ArdanBorn playtest
+P
+)
+cd "$ROOT"
+setsid ./gradlew runTestServer > "$STATE/server.out" 2>&1 < /dev/null &
+pid=$!
+for _ in $(seq 240); do
+  if up; then
+    "$ROOT/tools/playtest/rcon" "gamerule spawn_mobs false" > /dev/null
+    echo "ready on 127.0.0.1:$PORT"; exit 0
+  fi
+  kill -0 $pid 2>/dev/null || { tail -30 "$STATE/server.out"; exit 1; }
+  sleep 1
+done
+tail -30 "$STATE/server.out"; echo "server did not become ready"; exit 1

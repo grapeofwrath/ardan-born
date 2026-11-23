@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+# Join the playtest server with a real client on a hidden display.
+. "$(dirname "$0")/common.sh"
+BASE=${PRISM_BASE:-26.3}
+PRISM=${XDG_DATA_HOME:-$HOME/.local/share}/PrismLauncher/instances
+if [ ! -d "$PRISM/$INSTANCE" ]; then
+  mkdir -p "$PRISM/$INSTANCE/minecraft"
+  cp "$PRISM/$BASE/mmc-pack.json" "$PRISM/$INSTANCE/"
+  cat > "$PRISM/$INSTANCE/instance.cfg" <<P
+[General]
+ConfigVersion=1.3
+InstanceType=OneSix
+name=$INSTANCE
+OverrideMemory=true
+MinMemAlloc=512
+MaxMemAlloc=1536
+OverrideWindow=true
+LaunchMaximized=false
+MinecraftWinWidth=854
+MinecraftWinHeight=480
+P
+  cat > "$PRISM/$INSTANCE/minecraft/options.txt" <<P
+renderDistance:3
+simulationDistance:5
+maxFps:20
+guiScale:2
+soundCategory_master:0.0
+onboardAccessibility:false
+skipMultiplayerWarning:true
+joinedFirstServer:true
+tutorialStep:none
+pauseOnLostFocus:false
+narrator:0
+fullscreen:false
+P
+fi
+if ! { [ -f "$STATE/xvfb.pid" ] && kill -0 "$(cat "$STATE/xvfb.pid")" 2>/dev/null; }; then
+  setsid Xvfb $DISPLAY -screen 0 854x480x24 -nolisten tcp > "$STATE/xvfb.out" 2>&1 < /dev/null &
+  echo $! > "$STATE/xvfb.pid"
+  sleep 2
+fi
+# Software rendering: Vulkan (lavapipe) and OpenGL (llvmpipe).
+env -u WAYLAND_DISPLAY XDG_SESSION_TYPE=x11 QT_QPA_PLATFORM=xcb SDL_VIDEODRIVER=x11 SDL_VIDEO_DRIVER=x11 \
+  SDL_AUDIODRIVER=dummy LIBGL_ALWAYS_SOFTWARE=1 \
+  setsid prismlauncher --launch $INSTANCE --offline $NAME --server 127.0.0.1:$PORT \
+  > "$STATE/client.out" 2>&1 < /dev/null &
+echo $! > "$STATE/client.pid"
+for _ in $(seq 120); do
+  if "$(dirname "$0")/rcon" list 2>/dev/null | grep -q $NAME; then echo "$NAME joined"; exit 0; fi
+  sleep 1
+done
+echo "client did not join; see $PRISM/$INSTANCE/minecraft/logs/latest.log"; exit 1
