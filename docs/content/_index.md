@@ -7,10 +7,10 @@ linkTitle: "Home"
 **ArdanBorn** is a Paper plugin for a Tolkien-themed Minecraft server. Server owners should start with [Installation](installation.md); [Commands](commands.md) covers players and admins. It adds:
 
 - **Origins** for [Origins-Reborn](https://modrinth.com/plugin/origins-reborn): every player picks three, one from each layer, and gets all of their [powers](powers.md).
-  1. [Ancestries](ancestries.md): the people you were born to (Edain, Noldor, Naugrim, Hobbit, …)
-  2. [Classes](classes.md): your calling (Warrior, Ranger, Burglar, Loremaster, …)
-  3. [Sizes](sizes.md): Normal or Small
-- **Race items** made at a smithing table from each race's template. Anyone can use them; the race they're made for gets extra.
+  1. [Ancestries](ancestries.md)
+  2. [Classes](classes.md)
+  3. [Sizes](sizes.md)
+- **Race items** made at a smithing table from each race's template.
   - Edain: [Star of Elendil](star-of-elendil.md)
   - Noldor: [Light of the Trees](light-of-the-trees.md)
   - Sindar: [Mallorn Leaf](mallorn-leaf.md)
