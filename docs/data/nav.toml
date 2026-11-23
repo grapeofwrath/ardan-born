@@ -1,0 +1,17 @@
+# Sidebar order, and the order the prev/next arrows walk. Every page in content/ must be listed once.
+top = ["/", "/installation", "/commands"]
+
+[[group]]
+name = "Origins"
+pages = ["/ancestries", "/classes", "/sizes", "/powers"]
+
+[[group]]
+name = "Race items"
+pages = [
+  "/arkenstone", "/pearl-of-osse", "/feather-of-thorondor", "/honey-of-beorn", "/light-of-the-trees",
+  "/mallorn-leaf", "/star-of-elendil", "/evenstar", "/mathom", "/white-hand",
+]
+
+[[group]]
+name = "Lore and items"
+pages = ["/cirth-runes", "/rings-of-power", "/morgul-wound"]

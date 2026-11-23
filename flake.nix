@@ -16,7 +16,7 @@
       in
       {
         devShells.default = pkgs.mkShell {
-          packages = [ jdk gradle pkgs.git ];
+          packages = [ jdk gradle pkgs.git pkgs.hugo pkgs.pagefind ];
 
           JAVA_HOME = "${jdk}/lib/openjdk";
 

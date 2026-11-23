@@ -1,0 +1,20 @@
+{{- /* One sidebar link. The current page also lists its ## headings. */ -}}
+{{- $p := site.GetPage .path -}}
+{{- if not $p }}{{ errorf "data/nav.toml: no page %q" .path }}{{ end -}}
+{{- $here := $p.Eq .current -}}
+<li{{ if $here }} class="here"{{ end }}>
+  <a href="{{ $p.RelPermalink }}"{{ if $here }} aria-current="page"{{ end }}>{{ $p.LinkTitle }}</a>
+  {{- if $here }}
+  {{- $h2 := slice }}
+  {{- range $p.Fragments.Headings }}
+    {{- if eq .Level 2 }}{{ $h2 = $h2 | append . }}{{ else }}{{ range .Headings }}{{ if eq .Level 2 }}{{ $h2 = $h2 | append . }}{{ end }}{{ end }}{{ end }}
+  {{- end }}
+  {{- with $h2 }}
+  <ul class="nav-headings">
+    {{- range . }}
+    <li><a href="#{{ .ID }}">{{ .Title | plainify }}</a></li>
+    {{- end }}
+  </ul>
+  {{- end }}
+  {{- end }}
+</li>

@@ -1,13 +1,15 @@
 #!/usr/bin/env perl
-# Regenerates the wiki's Ancestries, Classes, Sizes and Powers pages. See README.md next to this file.
-# Usage: perl tools/wiki/generate.pl <wiki checkout dir>
+# Regenerates the docs site's Ancestries, Classes, Sizes and Powers pages. See README.md next to this file.
+# Usage: perl tools/docs/generate.pl [output dir, default docs/content]
 #
 # Sources:
 #   src/main/resources/origins/*.json  origins (name, description, layer, order, impact, icon, powers)
 #   OriginAbilities.java               ArdanBorn's own powers: super("id", "Title", "Description")
 #   external-powers.tsv                powers from Origins-Reborn and its addons (key, title, description)
 #   power-details.md                   extra detail per power for the Powers page ("## <key>" sections)
-# Stops with an error if an origin uses a power with no description, so pages never have gaps.
+#   race-items.tsv                     each ancestry's race-item page (origin id, page, item name)
+# Stops with an error if an origin uses a power with no description, or an ancestry has no race item,
+# so pages never have gaps.
 use strict;
 use warnings;
 use utf8;
@@ -15,14 +17,15 @@ use JSON::PP;
 use File::Basename qw(dirname);
 use File::Spec;
 
-my $out = shift or die "Usage: perl tools/wiki/generate.pl <wiki checkout dir>\n";
--d $out or die "Not a directory: $out\n";
 my $here = dirname(File::Spec->rel2abs(__FILE__));
 my $root = File::Spec->catdir($here, '..', '..');
+my $out = shift // "$root/docs/content";
+-d $out or die "Not a directory: $out\n";
 my $origins_dir = "$root/src/main/resources/origins";
 my $abilities_java = "$root/src/main/java/dev/grapeofwrath/ardanborn/origins/OriginAbilities.java";
 my $powers_tsv = "$here/external-powers.tsv";
 my $details_md = "$here/power-details.md";
+my $race_items_tsv = "$here/race-items.tsv";
 my %details;
 binmode STDOUT, ':utf8';
 
@@ -36,6 +39,21 @@ my %SOURCE = (
 );
 my %LAYER_PAGE = (origin => 'Ancestries', class => 'Classes', size => 'Sizes');
 my @IMPACT = ('None', 'Low', 'Medium', 'High');
+
+# Page file for a page title: "Ancestries" -> "ancestries.md".
+sub page_file { lc(shift) . '.md' }
+
+# Each ancestry's race item: origin id -> { page, name }.
+my %race_item;
+open my $ri, '<:utf8', $race_items_tsv or die "$race_items_tsv: $!";
+while (<$ri>) {
+    chomp;
+    next unless length;
+    my ($id, $page, $name) = split /\t/;
+    -f "$out/$page.md" or die "race-items.tsv: no page $page.md for $id\n";
+    $race_item{$id} = { page => $page, name => $name };
+}
+close $ri;
 
 # GitHub heading anchor: lowercase, drop punctuation except hyphens and spaces, spaces -> hyphens.
 sub anchor {
@@ -93,7 +111,7 @@ for my $file (sort grep { /\.json$/ } readdir $dh) {
 sub power_link {
     my $key = shift;
     my $title = $power{$key}{title};
-    return "[$title](Powers#" . anchor($title) . ")";
+    return "[$title](powers.md#" . anchor($title) . ")";
 }
 
 sub source_of { my ($ns) = split /:/, shift; $SOURCE{$ns} // $ns }
@@ -107,8 +125,8 @@ my %INTRO = (
 for my $layer (sort keys %LAYER_PAGE) {
     my @list = sort { $a->{order} <=> $b->{order} } @{ $by_layer{$layer} || [] };
     my $page = $LAYER_PAGE{$layer};
-    open my $md, '>:utf8', "$out/$page.md" or die $!;
-    print $md "$INTRO{$layer}\n\n";
+    open my $md, '>:utf8', "$out/" . page_file($page) or die $!;
+    print $md "---\ntitle: \"$page\"\n---\n$INTRO{$layer}\n\n";
     print $md "| | Impact | Powers |\n|---|---|---|\n";
     for my $o (@list) {
         printf $md "| [%s](#%s) | %s | %d |\n", $o->{name}, anchor($o->{name}), $IMPACT[$o->{impact}], scalar @{ $o->{powers} };
@@ -118,6 +136,10 @@ for my $layer (sort keys %LAYER_PAGE) {
         print $md "$o->{description}\n\n";
         printf $md "**Impact:** %s · **Icon:** `%s` · **File:** `%s.json`\n\n",
             $IMPACT[$o->{impact}], $o->{icon}{item} =~ s/^minecraft://r, $o->{id};
+        if ($layer eq 'origin') {
+            my $item = $race_item{ $o->{id} } or die "No race item for ancestry $o->{id} in race-items.tsv\n";
+            print $md "**Race item:** [$item->{name}]($item->{page}.md)\n\n";
+        }
         if (@{ $o->{powers} }) {
             print $md "| Power | What it does | From |\n|---|---|---|\n";
             for my $key (@{ $o->{powers} }) {
@@ -130,14 +152,14 @@ for my $layer (sort keys %LAYER_PAGE) {
     close $md;
 }
 
-open my $md, '>:utf8', "$out/Powers.md" or die $!;
+open my $md, '>:utf8', "$out/" . page_file('Powers') or die $!;
 my @keys = sort { lc $power{$a}{title} cmp lc $power{$b}{title} } grep { $used_by{$_} } keys %power;
-print $md "Every power an ArdanBorn origin can have, A–Z. ArdanBorn's own powers are listed alongside the ones it borrows from Origins-Reborn and its addons. See [[Installation]] for which addons to install.\n\n";
+print $md "---\ntitle: \"Powers\"\n---\nEvery power an ArdanBorn origin can have, A–Z. ArdanBorn's own powers are listed alongside the ones it borrows from Origins-Reborn and its addons. See [Installation](installation.md) for which addons to install.\n\n";
 for my $key (@keys) {
     my $p = $power{$key};
-    my @origins = map { "[$_->{name}]($LAYER_PAGE{$_->{layer}}#" . anchor($_->{name}) . ")" }
+    my @origins = map { "[$_->{name}](" . page_file($LAYER_PAGE{$_->{layer}}) . "#" . anchor($_->{name}) . ")" }
         sort { $a->{name} cmp $b->{name} } @{ $used_by{$key} };
-    print $md "### $p->{title}\n\n";
+    print $md "## $p->{title}\n\n";
     print $md "$p->{desc}\n\n";
     if ($details{$key}) {
         print $md "$details{$key}\n\n";

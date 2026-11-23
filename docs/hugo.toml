@@ -1,0 +1,18 @@
+baseURL = "https://grapeofwrath.github.io/ardan-born/"
+title = "ArdanBorn"
+locale = "en"
+disableKinds = ["taxonomy", "term", "section", "rss", "sitemap"]
+enableRobotsTXT = false
+
+[params]
+repo = "https://github.com/grapeofwrath/ardan-born"
+
+[markup.goldmark.parser]
+autoHeadingIDType = "github"
+
+[markup.goldmark.renderer]
+unsafe = false
+
+[markup.highlight]
+noClasses = false
+codeFences = false

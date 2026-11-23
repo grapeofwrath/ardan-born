@@ -1,0 +1,17 @@
+{{- /* Links between pages are written as "page.md#anchor" so they also work on GitHub. Resolve them here
+       and fail the build on a missing page; warn on a missing #anchor. */ -}}
+{{- $u := urls.Parse .Destination -}}
+{{- $href := .Destination -}}
+{{- if and (not $u.IsAbs) (strings.HasSuffix $u.Path ".md") -}}
+  {{- $target := site.GetPage (strings.TrimSuffix ".md" $u.Path) -}}
+  {{- if not $target }}{{ errorf "%s: link to missing page %q" .Page.File.Path .Destination }}{{ end -}}
+  {{- $href = $target.RelPermalink -}}
+  {{- with $u.Fragment -}}
+    {{- if not ($target.Eq $.Page) }}{{ if not ($target.Fragments.Identifiers.Contains .) }}{{ warnf "%s: no heading #%s on %s" $.Page.File.Path . $target.File.Path }}{{ end }}{{ end -}}
+    {{- $href = printf "%s#%s" $href . -}}
+  {{- end -}}
+{{- else if and (not $u.IsAbs) (not $u.Path) $u.Fragment -}}
+  {{- if not (.Page.Fragments.Identifiers.Contains $u.Fragment) }}{{ warnf "%s: no heading #%s on this page" .Page.File.Path $u.Fragment }}{{ end -}}
+{{- end -}}
+<a href="{{ $href | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}>{{ .Text }}</a>
+{{- /**/ -}}
