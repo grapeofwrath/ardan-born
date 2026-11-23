@@ -243,7 +243,7 @@ public final class OriginAbilities {
     public static final class GiftOfMen extends Base implements Listener {
         public GiftOfMen() {
             super("gift_of_men", "Gift of Men",
-                    "Men are quick to learn and adapt. You gain 25% more experience from all sources.");
+                    "Swift are Men to learn, having little time for it: from every deed and labor you draw 25% more experience.");
         }
 
         @EventHandler
@@ -261,7 +261,7 @@ public final class OriginAbilities {
 
         public HopeUnquenched() {
             super("hope_unquenched", "Hope Unquenched",
-                    "When a blow would leave you below 30% health, you gain Resistance and Regeneration for 8 seconds. Once every 90 seconds.");
+                    "When a blow has left you below 30% of your health, a strength unlooked-for awakes, and you are granted Resistance and Regeneration for 8 seconds; but not again until 90 seconds are gone.");
         }
 
         /** Makes Hope Unquenched ready again (the Horn of Gondor, blown by one of the Edain). */
@@ -281,7 +281,7 @@ public final class OriginAbilities {
                 effect(p, PotionEffectType.RESISTANCE, 160, 0);
                 effect(p, PotionEffectType.REGENERATION, 160, 0);
                 p.getWorld().spawnParticle(Particle.END_ROD, p.getLocation().add(0, 1, 0), 20, 0.4, 0.6, 0.4, 0.02);
-                p.sendActionBar(Component.text("Hope unquenched!", NamedTextColor.GOLD));
+                p.sendActionBar(Component.text("This too shall pass!", NamedTextColor.GOLD));
             });
         }
     }
@@ -290,7 +290,7 @@ public final class OriginAbilities {
     public static final class UndyingBody extends Base implements Listener {
         public UndyingBody() {
             super("undying_body", "Undying Body",
-                    "The Eldar do not sicken as Men do. You are immune to Poison and Hunger effects.");
+                    "The Eldar do not sicken as Men do, and neither Poison nor Hunger has any power upon you.");
         }
 
         @EventHandler
@@ -308,7 +308,7 @@ public final class OriginAbilities {
     public static final class DeepLore extends Base implements Listener {
         public DeepLore() {
             super("deep_lore", "Deep Lore",
-                    "The Noldor are masters of craft and lore. Enchanting costs you one fewer experience level.");
+                    "Long did the Noldor study, and great is their lore: to enchant costs you one experience level fewer.");
         }
 
         @EventHandler
@@ -324,7 +324,7 @@ public final class OriginAbilities {
     public static final class WoodlandStride extends Base implements Tickable {
         public WoodlandStride() {
             super("woodland_stride", "Woodland Stride",
-                    "You move with the speed of the wood. Gain Speed while in forests, taigas, jungles and groves.");
+                    "In forests, taigas, jungles and groves the wood itself hastens your feet, and you are given Speed.");
         }
 
         @Override
@@ -339,7 +339,7 @@ public final class OriginAbilities {
     public static final class BaneOfMirkwood extends Base implements Listener {
         public BaneOfMirkwood() {
             super("bane_of_mirkwood", "Bane of Mirkwood",
-                    "Elven archers of the forest realms. Your arrows deal 20% more damage while you're in a forest, taiga, jungle or grove, and 50% more to spiders and cave spiders.");
+                    "Seldom do the archers of the wood fail of their mark. In a forest, taiga, jungle or grove your arrows deal 20% more damage; and to spiders and cave spiders they deal 50% more.");
         }
 
         @EventHandler(ignoreCancelled = true)
@@ -360,7 +360,7 @@ public final class OriginAbilities {
     public static final class BreathOfTheSea extends Base implements Listener {
         public BreathOfTheSea() {
             super("breath_of_the_sea", "Breath of the Sea",
-                    "The Teleri are born of the shore. You can breathe underwater indefinitely.");
+                    "The Teleri were born beside the shore, and water is to you as air: you may breathe beneath it without end.");
         }
 
         /// Air never runs down, so the bubbles never even start to drop.
@@ -379,7 +379,7 @@ public final class OriginAbilities {
 
         public SeasVigor() {
             super("seas_vigor", "Sea's Vigor",
-                    "The sea strengthens its children. While you stand in water or rain you have 2 extra hearts.");
+                    "The sea gives strength to its children. While you stand in water or rain you have 2 hearts more.");
         }
 
         /// Runs for every player, so the hearts also go away when someone stops being Teleri. The modifier
@@ -403,7 +403,7 @@ public final class OriginAbilities {
     public static final class DelversInstinct extends Base implements Tickable {
         public DelversInstinct() {
             super("delvers_instinct", "Delver's Instinct",
-                    "In deep, unlit tunnels (below sea level, out of the sky's light) you gain Haste and can see by the touch of stone.");
+                    "In deep and unlit tunnels, below the level of the sea and out of the sky's light, your hands are given Haste, and you see by the touch of stone.");
         }
 
         @Override
@@ -426,7 +426,7 @@ public final class OriginAbilities {
 
         public ForgeHardened() {
             super("forge_hardened", "Forge-hardened",
-                    "Long years at the forge have toughened you. You take 40% less damage from fire, lava and hot floors.");
+                    "Long years beside the forge have made you hard, and fire, lava and hot floors deal you 40% less damage.");
         }
 
         @EventHandler
@@ -441,7 +441,7 @@ public final class OriginAbilities {
     public static final class SecondBreakfast extends Base implements Listener {
         public SecondBreakfast() {
             super("second_breakfast", "Second Breakfast",
-                    "Hobbits know how to enjoy a meal. Eating food restores 1 extra hunger point and a little extra saturation.");
+                    "None know better than Hobbits how to honor a meal. Food restores to you 1 hunger point more, and a little more saturation.");
         }
 
         @EventHandler
@@ -458,7 +458,7 @@ public final class OriginAbilities {
     public static final class FortunateFolk extends Base implements Tickable {
         public FortunateFolk() {
             super("fortunate_folk", "Fortunate Folk",
-                    "Luck follows Hobbits about. You have a permanent Luck effect, improving fishing and loot.");
+                    "Fortune goes ever beside the Hobbits. You have Luck without end, and your fishing and your findings are the better for it.");
         }
 
         @Override
@@ -475,7 +475,7 @@ public final class OriginAbilities {
 
         public BattleFury() {
             super("battle_fury", "Battle-fury",
-                    "Each kill fills you with fury: Speed for 8 seconds and Strength for 5 seconds.");
+                    "With each slaying a fury comes upon you, and you have Speed for 8 seconds and Strength for 5 seconds.");
         }
 
         /** Whether the player killed something with Battle-fury in the last 8 seconds. */
@@ -500,7 +500,7 @@ public final class OriginAbilities {
     public static final class IronStomach extends Base implements Listener {
         public IronStomach() {
             super("iron_stomach", "Iron Stomach",
-                    "Spoiled and foul food cannot harm you. Rotten flesh, spider eyes, poisonous potatoes and the like give no bad effects.");
+                    "No foul meat can harm you. Rotten flesh, spider eyes, poisonous potatoes and the like bring upon you no ill effects.");
         }
 
         @EventHandler
@@ -520,7 +520,7 @@ public final class OriginAbilities {
     public static final class Moonbound extends Base implements Tickable {
         public Moonbound() {
             super("moonbound", "Moonbound",
-                    "By night the skin-changer's strength rises: Strength I. Under a gibbous moon you also gain Speed, and under a full moon you gain Strength II, Speed and Resistance.");
+                    "By night the strength of the skin-changer awakes, and you have Strength I. When the moon is gibbous you have Speed also; and when it is full, Strength II, Speed and Resistance.");
         }
 
         @Override
@@ -550,7 +550,7 @@ public final class OriginAbilities {
     public static final class ElvenWrought extends Base implements Listener {
         public ElvenWrought() {
             super("elven_wrought", "Elven-wrought",
-                    "Elven craft endures. Your tools, weapons and armor have a 40% chance to take no wear when used.");
+                    "What the Elves have made endures. Your tools, weapons and armor have a 40% chance to take no wear when they are used.");
         }
 
         @EventHandler(ignoreCancelled = true)
@@ -567,7 +567,7 @@ public final class OriginAbilities {
 
         public Lembas() {
             super("lembas", "Lembas",
-                    "The waybread of the Elves: bread fills you completely and briefly heals you. Once a minute.");
+                    "In your hands bread becomes the waybread of the Elves: it fills you wholly, and for a little while it heals you. Once in a minute only has it this virtue.");
         }
 
         @EventHandler(ignoreCancelled = true)
@@ -590,7 +590,7 @@ public final class OriginAbilities {
     public static final class StarOfEarendil extends Base implements Tickable {
         public StarOfEarendil() {
             super("star_of_earendil", "Star of Eärendil",
-                    "Your father sails the night sky as the evening star. Beneath it you slowly heal and see clearly.");
+                    "Your father sails the night sky, and his star is the hope of many. Beneath it you are slowly healed, and the dark is clear to you.");
         }
 
         @Override
@@ -611,7 +611,7 @@ public final class OriginAbilities {
     public static final class SwiftMessenger extends Base implements Listener, Tickable {
         public SwiftMessenger() {
             super("swift_messenger", "Swift Messenger",
-                    "Like Glorfindel riding for the Ford: horses, donkeys and mules you ride run faster and take no fall damage.");
+                    "So rode Glorfindel to the Ford: the horses, donkeys and mules that bear you run the faster, and falls do them no hurt.");
         }
 
         @Override
@@ -638,7 +638,7 @@ public final class OriginAbilities {
     public static final class PearlsOfAlqualonde extends Base implements Listener, Tickable {
         public PearlsOfAlqualonde() {
             super("pearls_of_alqualonde", "Pearls of Alqualondë",
-                    "The sea gives up its treasures to the Teleri. While you hold a fishing rod you have Luck, and each catch has a 25% chance to bring up a second.");
+                    "To the Teleri the sea yields up its treasures. While you hold a fishing rod you have Luck, and with each catch there is a 25% chance that a second comes with it.");
         }
 
         @EventHandler(ignoreCancelled = true)
@@ -667,7 +667,7 @@ public final class OriginAbilities {
     public static final class TidesFury extends Base implements Listener {
         public TidesFury() {
             super("tides_fury", "Tide's Fury",
-                    "The strength of the sea is in you. While you stand in water or rain, your melee and trident hits deal 25% more damage.");
+                    "The wrath of the sea is in your arm. While you stand in water or rain, your melee and trident hits deal 25% more damage.");
         }
 
         @EventHandler
@@ -684,7 +684,7 @@ public final class OriginAbilities {
     public static final class AxeOfDurin extends Base implements Listener {
         public AxeOfDurin() {
             super("axe_of_durin", "Axe of Durin",
-                    "Dwarves fight best with the axe. Your axe blows deal 20% more damage and briefly slow your foe.");
+                    "The axe was ever dear to Durin's folk. In your hand it strikes 20% the harder, and those it bites go slowly for a while.");
         }
 
         @EventHandler
@@ -702,7 +702,7 @@ public final class OriginAbilities {
     public static final class ToughAsOldTreeRoots extends Base implements Listener {
         public ToughAsOldTreeRoots() {
             super("tough_as_old_tree_roots", "Tough as Old Tree-roots",
-                    "Hobbits are hard to break, as Frodo bore the Ring. You take 30% less damage from Wither, Slowness lasts half as long on you, and Darkness cannot touch you.");
+                    "As Frodo bore the Ring, so do you endure. The Wither deals you 30% less damage, Slowness holds you but half as long, and Darkness cannot touch you.");
         }
 
         @EventHandler(ignoreCancelled = true)
@@ -736,7 +736,7 @@ public final class OriginAbilities {
     public static final class WrathOfTheNoldor extends Base implements Listener {
         public WrathOfTheNoldor() {
             super("wrath_of_the_noldor", "Wrath of the Noldor",
-                    "The Noldor have warred on Morgoth since the First Age. Your melee hits deal 25% more damage to the undead and the creatures of the Nether.");
+                    "Since the First Age the Noldor have made war upon Morgoth. To the undead and the creatures of the Nether your melee hits deal 25% more damage.");
         }
 
         @EventHandler(ignoreCancelled = true)
@@ -752,7 +752,7 @@ public final class OriginAbilities {
     public static final class HealerOfImladris extends Base implements Listener {
         public HealerOfImladris() {
             super("healer_of_imladris", "Healer of Imladris",
-                    "Like Elrond, you have the healer's gift. Healing potions, Regeneration and golden apples heal you 50% more.");
+                    "The gift of Elrond is yours also. By healing potions, Regeneration and golden apples you are healed 50% more.");
         }
 
         @EventHandler(ignoreCancelled = true)
@@ -769,7 +769,7 @@ public final class OriginAbilities {
     public static final class LeafWalker extends Base implements Listener, Tickable {
         public LeafWalker() {
             super("leaf_walker", "Leaf-walker",
-                    "The Silvan Elves run along the treetops. You take no fall damage landing on leaves, and on leaves you gain Speed and Jump Boost.");
+                    "Upon the treetops the Silvan Elves run as upon a road. To land upon leaves does you no hurt, however far the fall, and while you stand on them you have Speed and Jump Boost.");
         }
 
         @EventHandler(ignoreCancelled = true)
@@ -801,7 +801,7 @@ public final class OriginAbilities {
 
         public FirstStrike() {
             super("first_strike", "First Strike",
-                    "Your opening blow after 3 seconds without attacking deals 50% more damage.");
+                    "When for 3 seconds you have struck no blow, the next deals 50% more damage.");
         }
 
         @EventHandler
@@ -826,7 +826,7 @@ public final class OriginAbilities {
 
         public HardenedVeteran() {
             super("hardened_veteran", "Hardened Veteran",
-                    "Long years of war have toughened you. You have 2 extra hearts and are harder to knock back.");
+                    "Many wars have you seen, and they have made you hard. You have 2 hearts more, and are not lightly knocked back.");
         }
 
         /// Runs for every player, so the bonus goes away when someone stops being a Warrior. The modifiers
@@ -855,7 +855,7 @@ public final class OriginAbilities {
 
         public Cleave() {
             super("cleave", "Cleave",
-                    "Sword and axe blows carry through: a hostile mob next to your target takes half the damage.");
+                    "The stroke of your sword or axe does not end with one foe: a hostile mob beside your target takes half the damage.");
         }
 
         @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
@@ -894,7 +894,7 @@ public final class OriginAbilities {
 
         public HuntPrey() {
             super("hunt_prey", "Hunt Prey",
-                    "The last creature your arrow struck becomes your prey for 60 seconds: it glows, and you deal 20% more damage to it from any source.");
+                    "The creature that your arrow last struck becomes your prey for 60 seconds. It glows, and whatever hurt you deal it is 20% greater.");
         }
 
         @EventHandler(ignoreCancelled = true)
@@ -925,7 +925,7 @@ public final class OriginAbilities {
     public static final class Wayfarer extends Base implements Listener {
         public Wayfarer() {
             super("wayfarer", "Wayfarer",
-                    "Long roads are your home. A quarter of the time, you lose no hunger when you would have.");
+                    "The long road is home to you. A quarter of the time, when hunger should grow in you, it does not.");
         }
 
         @EventHandler
@@ -948,7 +948,7 @@ public final class OriginAbilities {
 
         public ShieldWall() {
             super("shield_wall", "Shield Wall",
-                    "While you hold a shield you take 15% less damage, and allies within 5 blocks take 10% less.");
+                    "While you hold a shield you take 15% less damage, and allies within 5 blocks of you take 10% less.");
         }
 
         @EventHandler
@@ -977,14 +977,14 @@ public final class OriginAbilities {
 
         public HandsOfTheHealer() {
             super("hands_of_the_healer", "Hands of the Healer",
-                    "Sneak and right-click an ally with an empty hand to grant Regeneration II and cure Poison and Wither, and hold back a Morgul wound (15s cooldown; a wound can be held back once every 10 minutes). Do the same in the air to channel healing light: you and players within 8 blocks heal 3 hearts, and the undead nearby are seared (60s).");
+                    "Sneak and right-click an ally with an empty hand, and you grant Regeneration II, cure Poison and Wither, and hold back a Morgul wound (15 seconds must pass ere you do so again, and 10 minutes for the same wound). Do likewise to the air, and you and players within 8 blocks are healed 3 hearts, and the undead nearby are seared (60 seconds).");
         }
 
         private void heal(Player healer, Player target) {
             target.removePotionEffect(PotionEffectType.POISON);
             target.removePotionEffect(PotionEffectType.WITHER);
             if (MorgulWound.isWounded(target) && !MorgulWound.holdBack(target)) {
-                healer.sendActionBar(Component.text("The wound resists your hands for now.", NamedTextColor.GRAY));
+                healer.sendActionBar(Component.text("The wound will not yet heed your hands.", NamedTextColor.GRAY));
             }
             effect(target, PotionEffectType.REGENERATION, 160, 1);
             target.getWorld().spawnParticle(Particle.HEART, target.getLocation().add(0, 1.8, 0), 6, 0.3, 0.3, 0.3, 0);
@@ -1043,7 +1043,7 @@ public final class OriginAbilities {
 
         public LightOfTheStaff() {
             super("light_of_the_staff", "Light of the Staff",
-                    "Right-click with a Blaze Rod as your staff to drive back the shadow: hostile creatures within 6 blocks take 3 hearts of damage and are thrown back and revealed, and the undead take double and are set alight. 15 second cooldown.");
+                    "A Blaze Rod is your staff: right-click, and the shadow is driven back. Hostile creatures within 6 blocks take 3 hearts of damage and are thrown back and revealed; the undead take twice as much and are set alight. It may be done once in 15 seconds.");
         }
 
         @EventHandler
@@ -1084,7 +1084,7 @@ public final class OriginAbilities {
 
         public FriendOfBeasts() {
             super("friend_of_beasts", "Friend of Beasts",
-                    "Wild beasts such as wolves, bees and bears won't pick you as a target unless you strike first. Your tamed animals take half damage and heal 1 heart every 10 seconds while near you.");
+                    "Wolves, bees, bears and their like do not set upon you unless you strike first. The animals you have tamed take half damage, and while they are near you they heal 1 heart every 10 seconds.");
         }
 
         @EventHandler(ignoreCancelled = true)
@@ -1134,7 +1134,7 @@ public final class OriginAbilities {
 
         public MendingCraft() {
             super("mending_craft", "Mending Craft",
-                    "Your own good work endures. Your held item and worn armor slowly repair themselves (1 durability every 10 seconds).");
+                    "The good work of your hands endures. The item you hold and the armor you wear mend themselves, by 1 durability every 10 seconds.");
         }
 
         @Override
@@ -1161,7 +1161,7 @@ public final class OriginAbilities {
     public static final class Backstab extends Base implements Listener {
         public Backstab() {
             super("backstab", "Backstab",
-                    "Melee hits from behind your target deal 35% more damage, or 50% more if it hasn't noticed you.");
+                    "From behind, your melee hits deal 35% more damage; and if your foe has not perceived you, 50% more.");
         }
 
         @EventHandler
@@ -1185,7 +1185,7 @@ public final class OriginAbilities {
     public static final class QuietSteps extends Base implements Listener, Tickable {
         public QuietSteps() {
             super("quiet_steps", "Quiet Steps",
-                    "You move a little faster while sneaking.");
+                    "Even when you sneak there is some haste in your feet, and you go a little faster.");
         }
 
         @EventHandler
@@ -1208,7 +1208,7 @@ public final class OriginAbilities {
 
         public Unseen() {
             super("unseen", "Unseen",
-                    "While you sneak, hostile creatures more than 6 blocks away don't notice you.");
+                    "While you sneak, no hostile creature further off than 6 blocks shall mark your passing.");
         }
 
         @EventHandler(ignoreCancelled = true)
@@ -1237,7 +1237,7 @@ public final class OriginAbilities {
 
         public SongsOfPower() {
             super("songs_of_power", "Songs of Power",
-                    "Sound a Goat Horn to play the song its tune carries: rest, valor, seeking or the walking song from common horns, and courage, gathering, hope or Lúthien's lullaby from a screaming goat's. Songs reach players within 24 blocks. 90 second cooldown shared by all songs.");
+                    "Sound a Goat Horn, and the song that lies in its tune is heard by players within 24 blocks: from common horns rest, valor, seeking or the walking song; and from those of a screaming goat courage, gathering, hope or Lúthien's lullaby. After any song 90 seconds must pass before another.");
         }
 
         @EventHandler
@@ -1351,7 +1351,7 @@ public final class OriginAbilities {
     public static final class SilverTongue extends Base implements Tickable {
         public SilverTongue() {
             super("silver_tongue", "Silver Tongue",
-                    "Villagers and wandering traders warm to you. Near them you gain Hero of the Village for cheaper trades.");
+                    "Villagers and wandering traders warm to your speech. Near them you are as the Hero of the Village, and their trades are cheaper.");
         }
 
         @Override
@@ -1375,7 +1375,7 @@ public final class OriginAbilities {
 
         public HealingPresence() {
             super("healing_presence", "Healing Presence",
-                    "Your presence mends those around you. Every 10 seconds, you and every player within 6 blocks heal 1 heart.");
+                    "Those who are near you are made whole. Every 10 seconds, you and all players within 6 blocks heal 1 heart.");
         }
 
         @Override
@@ -1414,7 +1414,7 @@ public final class OriginAbilities {
 
         public CallOfHuan() {
             super("call_of_huan", "Call of Huan",
-                    "Right-click with a bone to call Huan, the great hound of Valinor, to your side for 60 seconds. 3 minute cooldown.");
+                    "Hold a bone and right-click, and Huan the hound of Valinor shall hear you. For 60 seconds he fights at your side, and after his summoning 3 minutes must pass ere he will come again.");
         }
 
         @EventHandler
@@ -1523,7 +1523,7 @@ public final class OriginAbilities {
 
         public GreenThumb() {
             super("green_thumb", "Green Thumb",
-                    "Living things flourish around you. Crops, berries and saplings within 5 blocks grow much faster.");
+                    "All that grows is glad of you. Crops, berries and saplings within 5 blocks grow much the faster.");
         }
 
         @Override
@@ -1603,7 +1603,7 @@ public final class OriginAbilities {
 
         public SmithsMark() {
             super("smiths_mark", "Smith's Mark",
-                    "Only you can inscribe Cirth runes onto weapons and tools. Twice each full moon, a tool or weapon you forge under its open sky gains an enchantment beyond its usual maximum, by up to 5 levels.");
+                    "You alone may inscribe the Cirth upon weapons and tools. And twice in each full moon, a tool or weapon that you forge beneath its open sky gains an enchantment beyond its usual maximum, by up to 5 levels.");
             instance = this;
         }
 
@@ -1654,7 +1654,7 @@ public final class OriginAbilities {
             if (!isMoonlit(e.getCurrentItem())) return;
             if (e.isShiftClick()) {
                 e.setCancelled(true);
-                player.sendActionBar(Component.text("Moonlit work is taken one at a time.", NamedTextColor.GRAY));
+                player.sendActionBar(Component.text("The work of moonlight is taken singly.", NamedTextColor.GRAY));
                 return;
             }
             int forged = forgedTonight(player) + 1;
@@ -1663,8 +1663,8 @@ public final class OriginAbilities {
             pdc.set(MOON_COUNT, PersistentDataType.INTEGER, forged);
             int left = PER_FULL_MOON - forged;
             player.sendActionBar(Component.text(left > 0
-                    ? "The moon blesses your work. " + left + " more tonight."
-                    : "The moon has given all it will tonight.", NamedTextColor.AQUA));
+                    ? "The moon is upon your work. " + left + " more tonight."
+                    : "The moon has no more to give this night.", NamedTextColor.AQUA));
         }
 
         private static boolean isToolOrWeapon(ItemStack item) {

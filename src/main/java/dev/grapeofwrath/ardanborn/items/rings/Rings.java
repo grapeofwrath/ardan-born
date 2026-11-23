@@ -108,9 +108,9 @@ public final class Rings implements Listener {
                 .addLine(Component.empty());
         for (String line : type.powers()) lore.addLine(ToolUpgrade.lore(line, NamedTextColor.BLUE));
         lore.addLine(Component.empty())
-                .addLine(ToolUpgrade.lore("Hold in your off-hand and", NamedTextColor.DARK_PURPLE))
+                .addLine(ToolUpgrade.lore("Hold it in your off-hand and", NamedTextColor.DARK_PURPLE))
                 .addLine(ToolUpgrade.lore("right-click to put it on.", NamedTextColor.DARK_PURPLE))
-                .addLine(ToolUpgrade.lore("It builds Shadow while worn.", NamedTextColor.DARK_PURPLE));
+                .addLine(ToolUpgrade.lore("While it is worn the Shadow grows.", NamedTextColor.DARK_PURPLE));
         item.setData(DataComponentTypes.LORE, lore.build());
         item.editPersistentDataContainer(pdc -> {
             pdc.set(RING, PersistentDataType.STRING, type.id());
@@ -236,7 +236,7 @@ public final class Rings implements Listener {
         // Released first, so the removal below isn't counted as losing the ring.
         release(RingType.ONE);
         item.remove();
-        Bukkit.broadcast(Component.text("The One Ring is unmade in the fire. The Shadow passes.",
+        Bukkit.broadcast(Component.text("The One Ring is unmade in the fire, and the Shadow is passed away.",
                 RingType.ONE.color()));
         for (Player player : Bukkit.getOnlinePlayers()) RingBearer.setShadow(player, 0);
         if (item.getThrower() != null) {
@@ -318,7 +318,7 @@ public final class Rings implements Listener {
     }
 
     static void crumbleMessage(Player player) {
-        player.sendMessage(Component.text("The ring slips away into shadow…", NamedTextColor.DARK_GRAY)
+        player.sendMessage(Component.text("The ring is gone, as a shadow in the dusk…", NamedTextColor.DARK_GRAY)
                 .decoration(TextDecoration.ITALIC, true));
     }
 

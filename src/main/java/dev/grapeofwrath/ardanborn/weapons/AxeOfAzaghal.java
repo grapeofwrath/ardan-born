@@ -23,12 +23,12 @@ public final class AxeOfAzaghal extends RaceItem implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Extra damage to mighty foes");
+        return List.of("Bitterest to the mighty");
     }
 
     @Override
     protected List<String> ownLines() {
-        return List.of("Naugrim: even more");
+        return List.of("Naugrim: more bitter yet");
     }
 
     @EventHandler(ignoreCancelled = true)

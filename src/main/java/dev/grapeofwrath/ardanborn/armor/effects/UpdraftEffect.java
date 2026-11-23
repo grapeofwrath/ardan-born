@@ -24,7 +24,7 @@ public final class UpdraftEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Sneak in mid-air to leap again", "Eagles: surge forward while gliding");
+        return List.of("Sneak in mid-air and you leap again", "Eagles: or gliding, surge forward");
     }
 
     @EventHandler(ignoreCancelled = true)

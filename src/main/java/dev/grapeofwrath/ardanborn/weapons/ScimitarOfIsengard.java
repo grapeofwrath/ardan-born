@@ -59,9 +59,8 @@ public final class ScimitarOfIsengard implements ToolUpgrade, Listener {
         blade.setData(DataComponentTypes.RARITY, ItemRarity.EPIC);
         blade.setData(DataComponentTypes.CUSTOM_MODEL_DATA, CustomModelData.customModelData().addString(ID).build());
         blade.setData(DataComponentTypes.LORE, ItemLore.lore()
-                .addLine(ToolUpgrade.lore("Extra damage to wounded foes", NamedTextColor.BLUE))
-                .addLine(Component.empty())
-                .addLine(ToolUpgrade.lore("Uruk-hai: hits heal in Battle-fury", NamedTextColor.GOLD))
+                .addLine(ToolUpgrade.lore("Cruelest to the wounded", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("Uruk-hai: in Battle-fury its hits heal you", NamedTextColor.GOLD))
                 .build());
         CustomItems.tag(blade, ID);
         return blade;

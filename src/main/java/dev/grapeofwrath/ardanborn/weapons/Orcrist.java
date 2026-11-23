@@ -23,12 +23,12 @@ public final class Orcrist extends RaceItem implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Extra damage to illagers and piglins");
+        return List.of("Bane of illagers and piglins");
     }
 
     @Override
     protected List<String> ownLines() {
-        return List.of("Noldor: also weakens them");
+        return List.of("Noldor: and weakens them");
     }
 
     @EventHandler(ignoreCancelled = true)

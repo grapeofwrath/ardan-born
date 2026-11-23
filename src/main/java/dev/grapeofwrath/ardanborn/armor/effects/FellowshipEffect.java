@@ -19,7 +19,7 @@ public final class FellowshipEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("You and nearby players", "take less damage", "Hobbits: even less");
+        return List.of("You and players near you take less hurt", "Hobbits: and less again");
     }
 
     @EventHandler(ignoreCancelled = true)

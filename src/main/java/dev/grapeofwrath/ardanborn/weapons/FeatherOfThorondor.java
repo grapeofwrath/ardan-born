@@ -36,11 +36,11 @@ public final class FeatherOfThorondor {
         item.setData(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true);
         item.setData(DataComponentTypes.CUSTOM_MODEL_DATA, CustomModelData.customModelData().addString(ID).build());
         item.setData(DataComponentTypes.LORE, ItemLore.lore()
-                .addLine(Component.text("Shed by the King of Eagles.", NamedTextColor.GRAY)
+                .addLine(Component.text("It fell from a height no arrow reaches.", NamedTextColor.GRAY)
                         .decoration(TextDecoration.ITALIC, true))
                 .addLine(Component.empty())
-                .addLine(plain("Combine with diamond or netherite"))
-                .addLine(plain("armor, a spear or a breeze rod at a Smithing Table."))
+                .addLine(plain("Wed it at a Smithing Table to diamond or"))
+                .addLine(plain("netherite armor, to a spear or a breeze rod."))
                 .build());
         CustomItems.tag(item, ID);
         return item;

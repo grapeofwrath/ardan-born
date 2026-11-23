@@ -64,9 +64,8 @@ public final class HuntingBow implements ToolUpgrade, Listener {
         bow.setData(DataComponentTypes.RARITY, ItemRarity.EPIC);
         bow.setData(DataComponentTypes.CUSTOM_MODEL_DATA, CustomModelData.customModelData().addString(ID).build());
         bow.setData(DataComponentTypes.LORE, ItemLore.lore()
-                .addLine(ToolUpgrade.lore("Arrows fly true", NamedTextColor.BLUE))
-                .addLine(Component.empty())
-                .addLine(ToolUpgrade.lore("Beornings: extra damage at night", NamedTextColor.GOLD))
+                .addLine(ToolUpgrade.lore("Its arrows do not fall", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("Beornings: sorer by night", NamedTextColor.GOLD))
                 .build());
         // Being tagged also keeps it out of the crafting grid's repair recipe, which would strip it.
         CustomItems.tag(bow, ID);

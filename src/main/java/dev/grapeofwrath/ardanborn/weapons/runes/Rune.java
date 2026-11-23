@@ -13,22 +13,22 @@ import java.util.Locale;
 /// The [#id()] is stored on items, so never rename an enum constant once released.
 public enum Rune {
     WESTERNESSE("Westernesse", TextColor.color(0xE8D9A8),
-            "+30% damage to the undead",
+            "The undead take 30% more damage",
             Material.BONE, Material.GOLD_NUGGET, Fits.MELEE),
     WARNING("Warning", TextColor.color(0x6FB8FF),
-            "Glows blue when monsters are near",
+            "It glows blue when monsters are near",
             Material.GLOW_INK_SAC, Material.LAPIS_LAZULI, Fits.MELEE),
     FROST("Frost", TextColor.color(0xBFEFFF),
-            "Hits slow the target",
+            "Those it hits are slowed",
             Material.BLUE_ICE, Material.SNOWBALL, Fits.FROST),
     DELVING("Delving", TextColor.color(0xD9A066),
-            "Iron, copper and gold ore drop ingots",
+            "Iron, copper and gold ore yield ingots",
             Material.COAL, Material.RAW_IRON, Fits.PICKAXE),
     HARVEST("Harvest", TextColor.color(0xD8C15A),
-            "Right-click a ripe crop to reap and replant 3×3",
+            "Right-click a ripe crop: 3×3 is reaped and replanted",
             Material.WHEAT, Material.BONE_MEAL, Fits.HOE),
     VEIN("Vein", TextColor.color(0xC75B4A),
-            "Sneak to mine a whole ore vein (up to 16)",
+            "Sneak, and a whole ore vein is mined (up to 16)",
             Material.REDSTONE, Material.IRON_INGOT, Fits.PICKAXE);
 
     private final String displayName;

@@ -23,7 +23,7 @@ public final class SpikedPlateEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Hurts mobs that strike you", "Uruk-hai: hurts more");
+        return List.of("Mobs that strike you are hurt", "Uruk-hai: and hurt more");
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

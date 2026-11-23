@@ -34,13 +34,18 @@ public final class SkinChangersClaw extends Artifact {
     private final Map<UUID, Long> until = new HashMap<>();
 
     @Override
+    protected List<String> flavor() {
+        return List.of("The bear is never far from the skin.");
+    }
+
+    @Override
     protected List<String> lines() {
-        return List.of("Right-click: hit harder, run faster");
+        return List.of("Right-click: strike harder, run swifter");
     }
 
     @Override
     protected List<String> ownLines() {
-        return List.of("Beornings: for longer at night");
+        return List.of("Beornings: and longer by night");
     }
 
     @Override

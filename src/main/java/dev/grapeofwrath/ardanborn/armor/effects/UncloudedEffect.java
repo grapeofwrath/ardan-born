@@ -23,7 +23,7 @@ public final class UncloudedEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Immune to Blindness and Darkness", "Noldor: see in the dark in the Nether");
+        return List.of("Blindness and Darkness touch you not", "Noldor: in the Nether the dark is clear");
     }
 
     @Override

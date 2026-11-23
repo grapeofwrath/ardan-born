@@ -27,7 +27,7 @@ public final class TalonGripEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Melee hits sometimes lift the foe", "Eagles: more often");
+        return List.of("At times your melee hits lift the foe", "Eagles: more often");
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

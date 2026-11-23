@@ -59,9 +59,9 @@ public final class FriendOfOsseEffect implements SetEffect, Listener {
     @Override
     public List<Component> describe(ArmorTier tier) {
         return List.of(
-                Component.text("Sea creatures leave you be"),
+                Component.text("The creatures of the sea let you be"),
                 Component.text("unless you strike first"),
-                Component.text("Teleri: swift swimming"));
+                Component.text("Teleri: you swim swiftly"));
     }
 
     @Override

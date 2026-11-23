@@ -43,7 +43,7 @@ public final class WaveWalkerEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Sprint across water for a short while", "Teleri: for longer");
+        return List.of("For a while you may sprint across water", "Teleri: for longer");
     }
 
     @Override

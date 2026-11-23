@@ -24,7 +24,7 @@ public final class UndertowEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Sometimes sweeps attackers back", "Teleri: more often");
+        return List.of("At times attackers are swept back", "Teleri: more often");
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

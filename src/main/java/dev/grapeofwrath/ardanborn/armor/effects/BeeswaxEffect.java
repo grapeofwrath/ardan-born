@@ -24,7 +24,7 @@ public final class BeeswaxEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Sometimes poisons attackers", "Beornings: more often");
+        return List.of("At times attackers are poisoned", "Beornings: more often");
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

@@ -21,12 +21,12 @@ public final class Sting extends RaceItem implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Extra damage to spiders");
+        return List.of("Bitter to spiders");
     }
 
     @Override
     protected List<String> ownLines() {
-        return List.of("Hobbits: extra damage to unwary foes");
+        return List.of("Hobbits: and to the unwary");
     }
 
     @EventHandler(ignoreCancelled = true)

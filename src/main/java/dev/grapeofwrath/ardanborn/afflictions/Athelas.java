@@ -54,13 +54,13 @@ public final class Athelas implements Listener {
         item.setData(DataComponentTypes.RARITY, ItemRarity.UNCOMMON);
         item.setData(DataComponentTypes.CUSTOM_MODEL_DATA, CustomModelData.customModelData().addString(ID).build());
         item.setData(DataComponentTypes.LORE, ItemLore.lore()
-                .addLine(Component.text("Kingsfoil. In the hands of the king", NamedTextColor.GRAY)
+                .addLine(Component.text("A weed, to those who do not know it", NamedTextColor.GRAY)
                         .decoration(TextDecoration.ITALIC, true))
-                .addLine(Component.text("it has a healing virtue.", NamedTextColor.GRAY)
+                .addLine(Component.text("and they are many.", NamedTextColor.GRAY)
                         .decoration(TextDecoration.ITALIC, true))
                 .addLine(Component.empty())
-                .addLine(ToolUpgrade.lore("Right-click: cure a Morgul wound", NamedTextColor.BLUE))
-                .addLine(ToolUpgrade.lore("Sneak + right-click a player: cure theirs", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("Right-click: a Morgul wound is cured", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("Sneak + right-click a player: theirs is cured", NamedTextColor.BLUE))
                 .build());
         CustomItems.tag(item, ID);
         return item;

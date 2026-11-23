@@ -23,7 +23,7 @@ public final class NumenoreanEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Safe boats, quicker fishing", "Edain: quicker still");
+        return List.of("Your boats are safe, and fish bite sooner", "Edain: sooner still");
     }
 
     private boolean guarded(Entity vehicle) {

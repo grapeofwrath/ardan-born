@@ -21,7 +21,7 @@ public final class MerryHeartEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Eating gives Regeneration", "Hobbits: longer, and shared");
+        return List.of("Every meal brings Regeneration", "Hobbits: longer, and to all near");
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

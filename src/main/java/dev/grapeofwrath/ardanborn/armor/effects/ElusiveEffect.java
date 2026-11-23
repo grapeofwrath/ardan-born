@@ -51,9 +51,9 @@ public final class ElusiveEffect implements SetEffect, Listener {
     @Override
     public List<Component> describe(ArmorTier tier) {
         return List.of(
-                Component.text("Mobs sometimes miss you,"),
+                Component.text("At times the blows of mobs miss you,"),
                 Component.text("more often in woodland"),
-                Component.text("Sindar: tangles the attacker"));
+                Component.text("Sindar: and the attacker is tangled"));
     }
 
     /// Runs early, so cancelling stops the damage before other plugins and powers react to it.

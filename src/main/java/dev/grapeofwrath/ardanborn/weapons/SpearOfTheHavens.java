@@ -73,13 +73,13 @@ public final class SpearOfTheHavens implements ToolUpgrade, Listener {
         item.setData(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true);
         item.setData(DataComponentTypes.CUSTOM_MODEL_DATA, CustomModelData.customModelData().addString(TEMPLATE_ID).build());
         item.setData(DataComponentTypes.LORE, ItemLore.lore()
-                .addLine(Component.text("A pearl of the shores of Alqualondë,", NamedTextColor.GRAY)
+                .addLine(Component.text("The wave that bore it to the shore", NamedTextColor.GRAY)
                         .decoration(TextDecoration.ITALIC, true))
-                .addLine(Component.text("gift of Ossë.", NamedTextColor.GRAY)
+                .addLine(Component.text("was sent in friendship.", NamedTextColor.GRAY)
                         .decoration(TextDecoration.ITALIC, true))
                 .addLine(Component.empty())
-                .addLine(ToolUpgrade.lore("Combine with diamond or netherite", NamedTextColor.BLUE))
-                .addLine(ToolUpgrade.lore("armor, a trident or a lead at a Smithing Table.", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("Wed it at a Smithing Table to diamond or", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("netherite armor, to a trident or a lead.", NamedTextColor.BLUE))
                 .build());
         CustomItems.tag(item, TEMPLATE_ID);
         return item;
@@ -108,11 +108,10 @@ public final class SpearOfTheHavens implements ToolUpgrade, Listener {
         spear.setData(DataComponentTypes.RARITY, ItemRarity.EPIC);
         spear.setData(DataComponentTypes.CUSTOM_MODEL_DATA, CustomModelData.customModelData().addString(SPEAR_ID).build());
         spear.setData(DataComponentTypes.LORE, ItemLore.lore()
-                .addLine(ToolUpgrade.lore("Always returns when thrown", NamedTextColor.BLUE))
-                .addLine(ToolUpgrade.lore("Channeling calls lightning on", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("Thrown, it comes ever back to the hand", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("With Channeling, lightning falls on", NamedTextColor.BLUE))
                 .addLine(ToolUpgrade.lore("foes in water or rain", NamedTextColor.BLUE))
-                .addLine(Component.empty())
-                .addLine(ToolUpgrade.lore("Teleri: extra damage", NamedTextColor.DARK_AQUA))
+                .addLine(ToolUpgrade.lore("Teleri: and it strikes the harder", NamedTextColor.DARK_AQUA))
                 .build());
         // Being tagged also keeps it out of the crafting grid's repair recipe, which would strip it.
         CustomItems.tag(spear, SPEAR_ID);

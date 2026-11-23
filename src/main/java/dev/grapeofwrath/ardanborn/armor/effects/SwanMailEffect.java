@@ -21,7 +21,7 @@ public final class SwanMailEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Tougher in water and rain", "Teleri: slowly heal there");
+        return List.of("Hardier in water and rain", "Teleri: and there you slowly heal");
     }
 
     @Override

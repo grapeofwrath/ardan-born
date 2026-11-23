@@ -18,7 +18,7 @@ public final class ThereAndBackEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Sprinting uses less hunger", "Hobbits: even less");
+        return List.of("You hunger less for sprinting", "Hobbits: and less again");
     }
 
     @EventHandler(ignoreCancelled = true)

@@ -83,8 +83,8 @@ public final class RingBearer implements Listener {
             EntityDamageEvent.DamageCause.VOID, EntityDamageEvent.DamageCause.KILL,
             EntityDamageEvent.DamageCause.SUICIDE);
     private static final List<String> WHISPERS = List.of(
-            "…put it on…", "…it is yours, your own…", "…the Eye is searching…",
-            "…why not wear it always?…", "…they would take it from you…");
+            "…put it on…", "…to no other was it given…", "…the Eye does not sleep…",
+            "…wherefore take it off?…", "…they covet it, all of them…");
 
     private Plugin plugin;
     /// Seconds since each Vilya bearer's last healing pulse.
@@ -141,7 +141,7 @@ public final class RingBearer implements Listener {
         Player player = event.getPlayer();
         event.setCancelled(true);
         if (event.getHand() != EquipmentSlot.OFF_HAND) {
-            player.sendActionBar(Component.text("Hold the ring in your off-hand to wear it.", NamedTextColor.GRAY));
+            player.sendActionBar(Component.text("The ring is worn from the off-hand.", NamedTextColor.GRAY));
             return;
         }
         if (Rings.isStale(event.getItem())) {
@@ -153,7 +153,7 @@ public final class RingBearer implements Listener {
         setWorn(player, on);
         player.playSound(player.getLocation(), on ? Sound.BLOCK_SCULK_SHRIEKER_SHRIEK : Sound.BLOCK_CHAIN_PLACE,
                 0.4f, on ? 1.6f : 1.2f);
-        player.sendActionBar(Component.text(on ? "You slip the ring on." : "You take the ring off.", type.color()));
+        player.sendActionBar(Component.text(on ? "The ring is on your hand." : "You put the ring from you.", type.color()));
     }
 
     // ------------------------------------------------------------------ every second
@@ -213,7 +213,7 @@ public final class RingBearer implements Listener {
         }
         Integer seconds = eyeSeconds.get(id);
         if (seconds == null) {
-            player.sendActionBar(Component.text("The Eye turns toward you.", NamedTextColor.DARK_RED)
+            player.sendActionBar(Component.text("The Eye is turned upon you.", NamedTextColor.DARK_RED)
                     .decoration(TextDecoration.ITALIC, true));
             player.playSound(player.getLocation(), Sound.ENTITY_WARDEN_HEARTBEAT, 1f, 0.5f);
             seconds = 0;
@@ -226,7 +226,7 @@ public final class RingBearer implements Listener {
 
         if (seconds % 5 == 0) stirMordor(player);
         if (seconds % NAZGUL_EVERY_SECONDS == 0 && ThreadLocalRandom.current().nextDouble() < NAZGUL_CHANCE) {
-            player.sendActionBar(Component.text("The Nazgûl are sent forth…", NamedTextColor.DARK_GRAY)
+            player.sendActionBar(Component.text("The Nazgûl are gone forth…", NamedTextColor.DARK_GRAY)
                     .decoration(TextDecoration.ITALIC, true));
             RingwraithHunts.hunt(player, 2, 24, 32, RingBearer::underTheEye, RingBearer::underTheEye);
         }
@@ -325,7 +325,7 @@ public final class RingBearer implements Listener {
         setWorn(player, false);
         setShadow(player, 50);
         player.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 200, 1, false, true, true));
-        player.sendMessage(Component.text("The ring betrays you, and slips from your hand!", NamedTextColor.DARK_RED));
+        player.sendMessage(Component.text("The ring has forsaken you, and is gone from your hand!", NamedTextColor.DARK_RED));
         player.playSound(player.getLocation(), Sound.ENTITY_WITHER_SPAWN, 0.6f, 1.4f);
 
         Location drop = landingSpot(player);
@@ -414,7 +414,7 @@ public final class RingBearer implements Listener {
         if (Rings.typeOf(player.getInventory().getItemInOffHand()) == null) return;
         if (ThreadLocalRandom.current().nextDouble() >= 0.2) return;
         setWorn(player, true);
-        player.sendActionBar(Component.text("The ring slips onto your finger…", NamedTextColor.DARK_RED));
+        player.sendActionBar(Component.text("Unbidden, the ring is on your hand…", NamedTextColor.DARK_RED));
     }
 
     /// Deathless (the Nine and the One): a killing blow leaves you at 1 heart, for a price.
@@ -429,7 +429,7 @@ public final class RingBearer implements Listener {
         player.setHealth(2.0); // 1 heart
         addShadow(player, DEATHLESS_COST);
         player.getWorld().spawnParticle(Particle.SMOKE, player.getLocation().add(0, 1, 0), 30, 0.4, 0.6, 0.4, 0.02);
-        player.sendActionBar(Component.text("You do not die. The ring will not let you.", NamedTextColor.DARK_RED));
+        player.sendActionBar(Component.text("Death came, and the ring denied it.", NamedTextColor.DARK_RED));
     }
 
     /// The wraith-world (the Nine and the One): monsters far off don't notice you.

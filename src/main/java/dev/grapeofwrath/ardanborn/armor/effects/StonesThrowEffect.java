@@ -24,7 +24,7 @@ public final class StonesThrowEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Thrown snowballs and eggs hurt", "and draw monsters", "Hobbits: hurt more");
+        return List.of("Your snowballs and eggs hurt monsters,", "and draw them to you", "Hobbits: and hurt them more");
     }
 
     @EventHandler(ignoreCancelled = true)

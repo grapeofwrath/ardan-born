@@ -26,7 +26,7 @@ public final class SongOfTheSeaEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Hits in water or rain sometimes heal", "you and nearby players", "Teleri: more often");
+        return List.of("In water or rain your hits at times heal", "you and the players near you", "Teleri: more often");
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

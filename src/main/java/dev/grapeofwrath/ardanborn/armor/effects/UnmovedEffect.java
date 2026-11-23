@@ -28,7 +28,7 @@ public final class UnmovedEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Hard to knock back, and blasts hurt less", "Naugrim: tougher in the deep");
+        return List.of("Not lightly moved, nor hurt by blasts so sorely", "Naugrim: hardier in the deep");
     }
 
     @Override

@@ -96,8 +96,8 @@ public final class OreSenseEffect implements SetEffect, Listener {
     public List<Component> describe(ArmorTier tier) {
         return List.of(
                 Component.text("Sneak and right-click with a pickaxe"),
-                Component.text("to sense nearby ores"),
-                Component.text("Naugrim: senses further"));
+                Component.text("and the ores near you are made known"),
+                Component.text("Naugrim: those further off also"));
     }
 
     private static int radius(ArmorTier tier) {
@@ -121,7 +121,7 @@ public final class OreSenseEffect implements SetEffect, Listener {
         int radius = radius(tier) + (OriginCheck.is(player, OriginCheck.NAUGRIM) ? NAUGRIM_BONUS : 0);
         int found = reveal(player, radius);
         player.playSound(player.getLocation(), Sound.BLOCK_AMETHYST_BLOCK_RESONATE, 1f, 0.7f);
-        player.sendActionBar(Component.text(found == 0 ? "You sense no ore nearby" : "You sense " + found + " ore",
+        player.sendActionBar(Component.text(found == 0 ? "The stone here is silent" : "You sense " + found + " ore",
                 NamedTextColor.GOLD));
     }
 

@@ -155,7 +155,6 @@ public final class CustomArmor {
 
     private static void addEffect(List<Component> lines, Optional<SetEffect> effect, ArmorTier tier, @Nullable String prefix) {
         effect.ifPresent(e -> {
-            lines.add(Component.empty());
             lines.add(line((prefix == null ? "" : prefix) + e.name(), NamedTextColor.GOLD));
             for (Component description : e.describe(tier)) {
                 lines.add(description.colorIfAbsent(NamedTextColor.GRAY).decorationIfAbsent(TextDecoration.ITALIC, TextDecoration.State.FALSE));

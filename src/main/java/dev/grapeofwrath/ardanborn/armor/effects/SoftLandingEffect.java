@@ -20,7 +20,7 @@ public final class SoftLandingEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Softer falls, for your mount too", "Peredhil: even softer");
+        return List.of("You and your mount fall the softer", "Peredhil: softer still");
     }
 
     private @Nullable Player wearer(Entity entity) {

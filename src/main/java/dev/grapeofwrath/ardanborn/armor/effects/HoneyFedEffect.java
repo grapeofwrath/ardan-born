@@ -25,7 +25,7 @@ public final class HoneyFedEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Honey bottles heal you", "Beornings: heal more");
+        return List.of("Honey bottles heal you", "Beornings: and heal you more");
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

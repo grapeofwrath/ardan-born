@@ -107,13 +107,13 @@ public final class PhialOfGaladriel implements ToolUpgrade, Listener {
         phial.setData(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true);
         phial.setData(DataComponentTypes.CUSTOM_MODEL_DATA, CustomModelData.customModelData().addString(ID).build());
         phial.setData(DataComponentTypes.LORE, ItemLore.lore()
-                .addLine(Component.text("A light to you in dark places.", NamedTextColor.GRAY))
+                .addLine(Component.text("The light of a star is caught in it.", NamedTextColor.GRAY))
                 .addLine(Component.empty())
-                .addLine(ToolUpgrade.lore("Right-click: reveal monsters,", NamedTextColor.BLUE))
-                .addLine(ToolUpgrade.lore("drive back spiders, lift darkness", NamedTextColor.BLUE))
-                .addLine(ToolUpgrade.lore("Off-hand: lights the way", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("Right-click: monsters are revealed, spiders", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("driven back, and darkness lifted", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("Off-hand: it lights the way", NamedTextColor.BLUE))
                 .addLine(Component.empty())
-                .addLine(ToolUpgrade.lore("Noldor: stronger, and frees allies", NamedTextColor.GOLD))
+                .addLine(ToolUpgrade.lore("Noldor: stronger, and frees allies also", NamedTextColor.GOLD))
                 .build());
         CustomItems.tag(phial, ID);
         return phial;

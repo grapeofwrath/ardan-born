@@ -27,7 +27,7 @@ public final class ForesightEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Now and then, softens a hit", "Peredhil: more often");
+        return List.of("Now and then a hit is softened", "Peredhil: more often");
     }
 
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)

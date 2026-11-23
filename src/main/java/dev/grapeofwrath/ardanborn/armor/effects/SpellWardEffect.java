@@ -24,7 +24,7 @@ public final class SpellWardEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Magic and Wither hurt less", "Noldor: even less");
+        return List.of("Magic and Wither do less hurt", "Noldor: and less again");
     }
 
     @EventHandler(ignoreCancelled = true)

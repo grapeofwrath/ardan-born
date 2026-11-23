@@ -140,7 +140,7 @@ public final class RuneEffects implements Listener {
                 }
             }
             if (!near) continue;
-            player.sendActionBar(Component.text("Your blade glows blue", Rune.WARNING.color()));
+            player.sendActionBar(Component.text("Your blade is kindled blue", Rune.WARNING.color()));
             Location hand = player.getLocation().add(player.getLocation().getDirection().multiply(0.5)).add(0, 1.0, 0);
             player.getWorld().spawnParticle(Particle.DUST, hand, 6, 0.15, 0.25, 0.15, 0, WARNING_GLOW);
         }

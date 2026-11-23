@@ -24,7 +24,7 @@ public final class StridersGaitEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Keep sprinting to gain Speed", "Edain: sooner");
+        return List.of("Sprint on, and you have Speed", "Edain: sooner");
     }
 
     @Override

@@ -21,12 +21,12 @@ public final class Hadhafang extends RaceItem implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Kills heal you");
+        return List.of("Each slaying heals you");
     }
 
     @Override
     protected List<String> ownLines() {
-        return List.of("Peredhil: extra damage while riding");
+        return List.of("Peredhil: from the saddle it strikes harder");
     }
 
     @EventHandler

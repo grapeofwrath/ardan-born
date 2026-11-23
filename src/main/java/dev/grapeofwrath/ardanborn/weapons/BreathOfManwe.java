@@ -19,13 +19,18 @@ public final class BreathOfManwe extends Artifact {
     }
 
     @Override
+    protected List<String> flavor() {
+        return List.of("The winds are his, and they remember.");
+    }
+
+    @Override
     protected List<String> lines() {
-        return List.of("Right-click: throw monsters back,", "and friends fall slowly");
+        return List.of("Right-click: monsters are thrown back,", "and friends fall slowly");
     }
 
     @Override
     protected List<String> ownLines() {
-        return List.of("Eagles: reaches further");
+        return List.of("Eagles: it reaches further");
     }
 
     @Override

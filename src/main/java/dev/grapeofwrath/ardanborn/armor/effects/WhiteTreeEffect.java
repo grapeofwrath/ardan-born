@@ -28,7 +28,7 @@ public final class WhiteTreeEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Heal when out of harm's way", "Edain: heal faster");
+        return List.of("When harm is past, you heal", "Edain: and heal faster");
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

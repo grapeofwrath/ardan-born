@@ -27,7 +27,7 @@ public final class WildWaysEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("No berry-bush harm, faster on grass", "Beornings: faster still at night");
+        return List.of("Unharmed by berry bushes, swift on grass", "Beornings: swifter still by night");
     }
 
     @Override

@@ -21,7 +21,7 @@ public final class StarWovenEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Tougher beneath the night sky", "Peredhil: anywhere at night");
+        return List.of("Hardier beneath the night sky", "Peredhil: by night anywhere");
     }
 
     @EventHandler(ignoreCancelled = true)

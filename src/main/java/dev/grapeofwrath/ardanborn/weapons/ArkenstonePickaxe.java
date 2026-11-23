@@ -80,10 +80,9 @@ public final class ArkenstonePickaxe implements ToolUpgrade, Listener {
         pick.setData(DataComponentTypes.CUSTOM_MODEL_DATA, CustomModelData.customModelData().addString(ID).build());
         pick.setData(DataComponentTypes.LORE, ItemLore.lore()
                 .addLine(ToolUpgrade.lore("Tunnel-bore", NamedTextColor.GOLD))
-                .addLine(ToolUpgrade.lore("Mines 3×3; sneak to mine one block", NamedTextColor.GRAY))
-                .addLine(Component.empty())
-                .addLine(ToolUpgrade.lore("Naugrim: the extra blocks", NamedTextColor.DARK_AQUA))
-                .addLine(ToolUpgrade.lore("cost no durability", NamedTextColor.DARK_AQUA))
+                .addLine(ToolUpgrade.lore("Delves 3×3; sneak to delve one block", NamedTextColor.GRAY))
+                .addLine(ToolUpgrade.lore("Naugrim: for the extra blocks", NamedTextColor.DARK_AQUA))
+                .addLine(ToolUpgrade.lore("it takes no wear", NamedTextColor.DARK_AQUA))
                 .build());
         CustomItems.tag(pick, ID);
         return pick;

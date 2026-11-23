@@ -48,7 +48,7 @@ When an item can hold no more, a new rune takes the place of the oldest. Diamond
 | Rune | Inscribed upon | Effect |
 |---|---|---|
 | **Westernesse** | Swords, axes, spears, maces, tridents | ×1.3 melee damage to the [undead](lore-and-items.md#undead) |
-| **Warning** | Swords, axes, spears, maces, tridents | While you hold it and a monster is within 16 blocks, your action bar reads *Your blade glows blue*, and blue sparks are seen at the blade. |
+| **Warning** | Swords, axes, spears, maces, tridents | While you hold it and a monster is within 16 blocks, your action bar reads *Your blade is kindled blue*, and blue sparks are seen at the blade. |
 | **Frost** | Swords, axes, spears, maces, tridents, bows, crossbows | Melee hits, arrows and thrown tridents give Slowness I for 2 seconds. |
 | **Delving** | Pickaxes | Iron, copper and gold ore, and their deepslate forms, yield ingots. Fortune multiplies them still. |
 | **Harvest** | Hoes | Right-click a ripe crop, and every ripe crop in the 3×3 about it is reaped, and replanted from its own drops, at the cost of 1 durability. |

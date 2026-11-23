@@ -33,13 +33,18 @@ public final class Hithlain extends Artifact {
     private final Map<UUID, Long> safeUntil = new HashMap<>();
 
     @Override
+    protected List<String> flavor() {
+        return List.of("Grey it is, and it does not fail.");
+    }
+
+    @Override
     protected List<String> lines() {
-        return List.of("Right-click a block: pulls you to it");
+        return List.of("Right-click a block: you are drawn to it");
     }
 
     @Override
     protected List<String> ownLines() {
-        return List.of("Sindar: further, and more often");
+        return List.of("Sindar: from further, and more often");
     }
 
     @Override
@@ -56,7 +61,7 @@ public final class Hithlain extends Artifact {
     protected boolean ready(Player player) {
         if (player.isInsideVehicle()) return false;
         if (anchor(player) != null) return true;
-        player.sendActionBar(Component.text("Nothing in reach", NamedTextColor.GRAY));
+        player.sendActionBar(Component.text("The rope finds no hold", NamedTextColor.GRAY));
         return false;
     }
 

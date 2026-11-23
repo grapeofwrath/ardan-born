@@ -20,7 +20,7 @@ public final class SteadfastEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Immune to Weakness", "Edain: harmful effects wear off sooner");
+        return List.of("Weakness touches you not", "Edain: other ill effects pass sooner");
     }
 
     @EventHandler(ignoreCancelled = true)

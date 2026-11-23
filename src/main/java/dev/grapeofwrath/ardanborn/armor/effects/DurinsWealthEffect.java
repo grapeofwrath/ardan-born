@@ -23,7 +23,7 @@ public final class DurinsWealthEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Ores sometimes drop double", "Naugrim: more often");
+        return List.of("At times ores drop double", "Naugrim: more often");
     }
 
     @EventHandler(ignoreCancelled = true)

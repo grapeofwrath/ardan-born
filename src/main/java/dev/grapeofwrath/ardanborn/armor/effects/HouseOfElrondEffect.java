@@ -17,7 +17,7 @@ public final class HouseOfElrondEffect extends PieceEffect {
 
     @Override
     protected List<String> lines() {
-        return List.of("You and nearby players slowly heal", "Peredhil: faster");
+        return List.of("You and players near you slowly heal", "Peredhil: faster");
     }
 
     @Override

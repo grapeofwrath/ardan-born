@@ -10,6 +10,7 @@ import io.papermc.paper.datacomponent.item.ItemLore;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemRarity;
@@ -52,6 +53,11 @@ public abstract class RaceItem implements ToolUpgrade {
         this.template = template;
         this.people = people;
         this.bases = bases;
+    }
+
+    /// A short line of lore, shown first. Items that can be enchanted have none, to keep their tooltips brief.
+    protected List<String> flavor() {
+        return List.of();
     }
 
     /// Lore for anyone.
@@ -97,8 +103,13 @@ public abstract class RaceItem implements ToolUpgrade {
         item.setData(DataComponentTypes.RARITY, ItemRarity.EPIC);
         item.setData(DataComponentTypes.CUSTOM_MODEL_DATA, CustomModelData.customModelData().addString(id).build());
         ItemLore.Builder lore = ItemLore.lore();
+        boolean brief = flavor().isEmpty();
+        for (String line : flavor()) {
+            lore.addLine(Component.text(line, NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, true));
+        }
+        if (!brief) lore.addLine(Component.empty());
         for (String line : lines()) lore.addLine(ToolUpgrade.lore(line, NamedTextColor.BLUE));
-        lore.addLine(Component.empty());
+        if (!brief) lore.addLine(Component.empty());
         for (String line : ownLines()) lore.addLine(ToolUpgrade.lore(line, NamedTextColor.GOLD));
         item.setData(DataComponentTypes.LORE, lore.build());
         // Being tagged also keeps it out of crafting recipes, which would strip or use it up.

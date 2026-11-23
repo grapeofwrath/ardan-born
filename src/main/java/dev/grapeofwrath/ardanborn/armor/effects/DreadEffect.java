@@ -23,7 +23,7 @@ public final class DreadEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Melee hits sometimes weaken", "Uruk-hai: more often");
+        return List.of("At times your melee hits weaken the foe", "Uruk-hai: more often");
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

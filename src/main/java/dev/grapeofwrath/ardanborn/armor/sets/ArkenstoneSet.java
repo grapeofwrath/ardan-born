@@ -76,12 +76,12 @@ public final class ArkenstoneSet implements ArmorSet {
         item.setData(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true);
         item.setData(DataComponentTypes.CUSTOM_MODEL_DATA, CustomModelData.customModelData().addString(ID).build());
         item.setData(DataComponentTypes.LORE, ItemLore.lore()
-                .addLine(Component.text("The Heart of the Mountain.", NamedTextColor.GRAY)
+                .addLine(Component.text("It lay long in the roots of the Mountain.", NamedTextColor.GRAY)
                         .decoration(TextDecoration.ITALIC, true))
                 .addLine(Component.empty())
-                .addLine(Component.text("Combine with diamond or netherite", NamedTextColor.BLUE)
+                .addLine(Component.text("Wed it at a Smithing Table to diamond or", NamedTextColor.BLUE)
                         .decoration(TextDecoration.ITALIC, false))
-                .addLine(Component.text("armor, a pickaxe or an axe at a Smithing Table.", NamedTextColor.BLUE)
+                .addLine(Component.text("netherite armor, to a pickaxe or an axe.", NamedTextColor.BLUE)
                         .decoration(TextDecoration.ITALIC, false))
                 .build());
         CustomItems.tag(item, ID);

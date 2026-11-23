@@ -23,7 +23,7 @@ public final class LeafLightEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Arrow hits give Speed", "Sindar: faster in woodland");
+        return List.of("When your arrow hits you have Speed", "Sindar: swifter in woodland");
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

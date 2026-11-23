@@ -24,7 +24,7 @@ public final class LastAllianceEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Near death, you and nearby players", "gain Strength and Speed", "Edain: ready again sooner");
+        return List.of("Near death, you and players near you", "have Strength and Speed", "Edain: ready again sooner");
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

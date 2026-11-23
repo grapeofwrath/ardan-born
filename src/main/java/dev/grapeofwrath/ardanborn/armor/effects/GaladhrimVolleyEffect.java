@@ -23,7 +23,7 @@ public final class GaladhrimVolleyEffect extends PieceEffect implements Listener
 
     @Override
     protected List<String> lines() {
-        return List.of("Arrow hits sometimes strike", "a second foe", "Sindar: more often");
+        return List.of("At times an arrow strikes a second foe", "Sindar: more often");
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

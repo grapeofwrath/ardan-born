@@ -31,7 +31,7 @@ public final class WindlordEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Strike harder just after landing", "Eagles: for longer");
+        return List.of("New come to earth, you strike harder", "Eagles: for longer");
     }
 
     @Override

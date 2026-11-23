@@ -31,11 +31,10 @@ import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.function.Supplier;
 
 /// Cirth runes: rune-stones anyone can craft, which only a Smith can inscribe onto a weapon or tool at a
@@ -103,7 +102,7 @@ public final class Runes implements Listener {
         item.setData(DataComponentTypes.LORE, ItemLore.lore()
                 .addLine(ToolUpgrade.lore(rune.effect(), NamedTextColor.GRAY))
                 .addLine(Component.empty())
-                .addLine(ToolUpgrade.lore("A Smith can inscribe it at a", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("A Smith may inscribe it at a", NamedTextColor.BLUE))
                 .addLine(ToolUpgrade.lore("Smithing Table, with lapis.", NamedTextColor.BLUE))
                 .build());
         item.editPersistentDataContainer(pdc -> pdc.set(STONE, PersistentDataType.STRING, rune.id()));
@@ -169,12 +168,15 @@ public final class Runes implements Listener {
     /// Rewrites the rune lines at the end of an item's lore to match its runes, keeping every other line.
     /// Call after anything that rebuilds an item's lore (e.g. a race-item upgrade of a runed weapon).
     public static void refreshLore(ItemStack item) {
-        Set<String> runeLines = new HashSet<>();
-        for (Rune rune : Rune.values()) runeLines.add(PLAIN.serialize(nameLine(rune)));
+        // By prefix, so that lines written before an effect was reworded are replaced too.
+        List<String> prefixes = Arrays.stream(Rune.values()).map(Runes::linePrefix).toList();
 
         ItemLore current = item.getData(DataComponentTypes.LORE);
         List<Component> lines = new ArrayList<>(current == null ? List.of() : current.lines());
-        lines.removeIf(line -> runeLines.contains(PLAIN.serialize(line)));
+        lines.removeIf(line -> {
+            String text = PLAIN.serialize(line);
+            return prefixes.stream().anyMatch(text::startsWith);
+        });
         while (!lines.isEmpty() && PLAIN.serialize(lines.getLast()).isEmpty()) lines.removeLast();
 
         List<Rune> runes = on(item);
@@ -188,8 +190,12 @@ public final class Runes implements Listener {
         }
     }
 
+    private static String linePrefix(Rune rune) {
+        return "◈ Rune of " + rune.displayName() + ": ";
+    }
+
     private static Component nameLine(Rune rune) {
-        return Component.text("◈ Rune of " + rune.displayName() + ": " + rune.effect(), rune.color())
+        return Component.text(linePrefix(rune) + rune.effect(), rune.color())
                 .decoration(TextDecoration.ITALIC, false);
     }
 

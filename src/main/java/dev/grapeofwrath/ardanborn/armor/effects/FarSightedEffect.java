@@ -20,7 +20,7 @@ public final class FarSightedEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Long shots deal more damage", "Sindar: even more");
+        return List.of("Arrows from afar strike the harder", "Sindar: harder still");
     }
 
     @EventHandler(ignoreCancelled = true)

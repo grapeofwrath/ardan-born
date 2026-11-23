@@ -52,8 +52,8 @@ public final class MithrilGuardEffect implements SetEffect, Listener {
     @Override
     public List<Component> describe(ArmorTier tier) {
         return List.of(
-                Component.text("Softens heavy blows"),
-                Component.text("Hobbits: even more, and no knockback"));
+                Component.text("Heavy blows are softened"),
+                Component.text("Hobbits: the more, and do not throw you back"));
     }
 
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)

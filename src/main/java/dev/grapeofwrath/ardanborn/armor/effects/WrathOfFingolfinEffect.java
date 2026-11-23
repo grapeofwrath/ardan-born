@@ -33,7 +33,7 @@ public final class WrathOfFingolfinEffect extends PieceEffect implements Listene
 
     @Override
     protected List<String> lines() {
-        return List.of("Slay undead and Nether creatures", "to charge a bursting blow", "Noldor: charges sooner");
+        return List.of("Slay undead and creatures of the Nether,", "and a blow gathers that will burst", "Noldor: it gathers sooner");
     }
 
     @Override
@@ -53,7 +53,7 @@ public final class WrathOfFingolfinEffect extends PieceEffect implements Listene
         if (!OriginAbilities.UNDEAD.contains(type) && !OriginAbilities.NETHER.contains(type)) return;
         int count = kills.merge(player.getUniqueId(), 1, Integer::sum);
         if (count == needed(player)) {
-            player.sendActionBar(Component.text("The wrath of Fingolfin is upon you", NamedTextColor.GOLD));
+            player.sendActionBar(Component.text("The wrath of Fingolfin is come upon you", NamedTextColor.GOLD));
         }
     }
 

@@ -25,7 +25,7 @@ public final class BoughRunnerEffect extends PieceEffect {
 
     @Override
     protected List<String> lines() {
-        return List.of("Step up full blocks", "Sindar: jump higher in woodland");
+        return List.of("You step up full blocks", "Sindar: in woodland you leap higher");
     }
 
     @Override

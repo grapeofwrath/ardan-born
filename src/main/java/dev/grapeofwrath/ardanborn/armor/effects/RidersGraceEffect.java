@@ -22,7 +22,7 @@ public final class RidersGraceEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("You and your mount are tougher", "while riding", "Peredhil: your mount slowly heals");
+        return List.of("Riding, you and your mount are hardier", "Peredhil: and your mount slowly heals");
     }
 
     @Override

@@ -36,11 +36,11 @@ public final class HoneyOfBeorn {
         item.setData(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true);
         item.setData(DataComponentTypes.CUSTOM_MODEL_DATA, CustomModelData.customModelData().addString(ID).build());
         item.setData(DataComponentTypes.LORE, ItemLore.lore()
-                .addLine(Component.text("From the hives of Beorn's hall.", NamedTextColor.GRAY)
+                .addLine(Component.text("The bees gave it, and were not robbed.", NamedTextColor.GRAY)
                         .decoration(TextDecoration.ITALIC, true))
                 .addLine(Component.empty())
-                .addLine(ToolUpgrade.lore("Combine with diamond or netherite armor,", NamedTextColor.BLUE))
-                .addLine(ToolUpgrade.lore("a bow or a flint at a Smithing Table.", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("Wed it at a Smithing Table to diamond or", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("netherite armor, to a bow or a flint.", NamedTextColor.BLUE))
                 .build());
         CustomItems.tag(item, ID);
         return item;

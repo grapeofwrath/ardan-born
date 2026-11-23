@@ -30,12 +30,12 @@ public final class BowOfTheGaladhrim extends RaceItem implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Full-draw arrows deal more", "damage to unhurt foes");
+        return List.of("At full draw, sorest to the unhurt");
     }
 
     @Override
     protected List<String> ownLines() {
-        return List.of("Sindar: also slows them");
+        return List.of("Sindar: and slows them");
     }
 
     @EventHandler(ignoreCancelled = true)

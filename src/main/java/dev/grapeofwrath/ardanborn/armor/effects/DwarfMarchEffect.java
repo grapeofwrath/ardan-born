@@ -24,7 +24,7 @@ public final class DwarfMarchEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Sprint tirelessly in the deep", "Naugrim: mining ore gives Haste");
+        return List.of("In the deep you sprint and do not tire", "Naugrim: mining ore brings Haste");
     }
 
     @EventHandler(ignoreCancelled = true)

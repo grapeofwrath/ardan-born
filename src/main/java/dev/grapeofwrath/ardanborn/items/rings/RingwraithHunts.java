@@ -80,7 +80,7 @@ public final class RingwraithHunts {
             if (random.nextDouble() >= chance) continue;
             pdc.set(NEW_MOON_HUNTED, PersistentDataType.LONG, night);
             int count = carries(player, RingType.ONE) ? 5 : 3;
-            player.sendActionBar(Component.text("Black riders are abroad…", NamedTextColor.DARK_GRAY)
+            player.sendActionBar(Component.text("The Black Riders are abroad…", NamedTextColor.DARK_GRAY)
                     .decoration(TextDecoration.ITALIC, true));
             hunt(player, count, 32, 48, RingwraithHunts::carriesUnique,
                     p -> newMoonNight(p.getWorld()));

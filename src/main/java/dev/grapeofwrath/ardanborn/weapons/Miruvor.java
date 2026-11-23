@@ -69,12 +69,12 @@ public final class Miruvor implements ToolUpgrade, Listener {
         draught.setData(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true);
         draught.setData(DataComponentTypes.CUSTOM_MODEL_DATA, CustomModelData.customModelData().addString(ID).build());
         draught.setData(DataComponentTypes.LORE, ItemLore.lore()
-                .addLine(Component.text("The cordial of Imladris.", NamedTextColor.GRAY))
+                .addLine(Component.text("Of its making the Elves do not speak.", NamedTextColor.GRAY))
                 .addLine(Component.empty())
-                .addLine(ToolUpgrade.lore("Fills your hunger, heals you", NamedTextColor.BLUE))
-                .addLine(ToolUpgrade.lore("and lifts weariness", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("Hunger is filled, hurts are healed,", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("and weariness is lifted", NamedTextColor.BLUE))
                 .addLine(Component.empty())
-                .addLine(ToolUpgrade.lore("Peredhil: heals for longer", NamedTextColor.GOLD))
+                .addLine(ToolUpgrade.lore("Peredhil: healed for longer", NamedTextColor.GOLD))
                 .build());
         CustomItems.tag(draught, ID);
         return draught;

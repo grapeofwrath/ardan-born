@@ -27,7 +27,7 @@ public final class HelcaraxeEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("No freezing, faster on snow and ice", "Noldor: faster still");
+        return List.of("You never freeze, and go swift on snow and ice", "Noldor: swifter still");
     }
 
     @Override

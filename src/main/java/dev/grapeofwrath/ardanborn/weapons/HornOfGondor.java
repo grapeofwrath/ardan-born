@@ -73,12 +73,12 @@ public final class HornOfGondor implements ToolUpgrade, Listener {
         horn.setData(DataComponentTypes.RARITY, ItemRarity.EPIC);
         horn.setData(DataComponentTypes.CUSTOM_MODEL_DATA, CustomModelData.customModelData().addString(ID).build());
         horn.setData(DataComponentTypes.LORE, ItemLore.lore()
-                .addLine(Component.text("Blown in need, it is heard far off.", NamedTextColor.GRAY))
+                .addLine(Component.text("It has not been blown in vain.", NamedTextColor.GRAY))
                 .addLine(Component.empty())
-                .addLine(ToolUpgrade.lore("Strengthens nearby players", NamedTextColor.BLUE))
-                .addLine(ToolUpgrade.lore("and rallies iron golems", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("Players near you are strengthened,", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("and iron golems rally to you", NamedTextColor.BLUE))
                 .addLine(Component.empty())
-                .addLine(ToolUpgrade.lore("Edain: renews Hope Unquenched", NamedTextColor.GOLD))
+                .addLine(ToolUpgrade.lore("Edain: Hope Unquenched is renewed", NamedTextColor.GOLD))
                 .build());
         CustomItems.tag(horn, ID);
         return horn;
@@ -106,7 +106,7 @@ public final class HornOfGondor implements ToolUpgrade, Listener {
         for (Player ally : allies) {
             ally.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, BUFF_TICKS, 0, true, true, true));
             ally.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, BUFF_TICKS, 0, true, true, true));
-            ally.sendActionBar(Component.text("The Horn of Gondor sounds!", RaceTemplate.STAR_OF_ELENDIL.color()));
+            ally.sendActionBar(Component.text("The Horn of Gondor is blown!", RaceTemplate.STAR_OF_ELENDIL.color()));
         }
         player.getWorld().spawnParticle(Particle.NOTE, player.getEyeLocation(), 12, 1, 0.5, 1, 1);
         if (OriginCheck.is(player, OriginCheck.EDAIN)) OriginAbilities.HopeUnquenched.renew(player);

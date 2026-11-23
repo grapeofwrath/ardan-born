@@ -42,9 +42,9 @@ public final class HawkSightEffect implements SetEffect {
     @Override
     public List<Component> describe(ArmorTier tier) {
         return List.of(
-                Component.text("Monsters you look at glow"),
-                Component.text("Use in hand to zoom"),
-                Component.text("Eagles: see in the dark up high"));
+                Component.text("Monsters glow beneath your gaze"),
+                Component.text("In the hand, it sees afar"),
+                Component.text("Eagles: on high, the dark is clear"));
     }
 
     @Override

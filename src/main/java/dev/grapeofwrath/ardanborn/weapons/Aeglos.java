@@ -58,9 +58,8 @@ public final class Aeglos implements ToolUpgrade, Listener {
         aeglos.setData(DataComponentTypes.RARITY, ItemRarity.EPIC);
         aeglos.setData(DataComponentTypes.CUSTOM_MODEL_DATA, CustomModelData.customModelData().addString(ID).build());
         aeglos.setData(DataComponentTypes.LORE, ItemLore.lore()
-                .addLine(ToolUpgrade.lore("Extra damage to glowing foes", NamedTextColor.BLUE))
-                .addLine(Component.empty())
-                .addLine(ToolUpgrade.lore("Eagles: hits while gliding mark foes", NamedTextColor.GOLD))
+                .addLine(ToolUpgrade.lore("Sorest to foes that glow", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("Eagles: gliding, its hits make them glow", NamedTextColor.GOLD))
                 .build());
         CustomItems.tag(aeglos, ID);
         return aeglos;

@@ -21,7 +21,7 @@ public final class BerserkerEffect extends PieceEffect {
 
     @Override
     protected List<String> lines() {
-        return List.of("Attack faster when badly hurt", "Uruk-hai: move faster too");
+        return List.of("Sorely hurt, you strike the faster", "Uruk-hai: and go the faster");
     }
 
     @Override

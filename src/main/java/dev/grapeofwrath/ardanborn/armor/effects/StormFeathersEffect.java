@@ -23,7 +23,7 @@ public final class StormFeathersEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Sometimes pushes attackers back", "Eagles: more often");
+        return List.of("At times attackers are pushed back", "Eagles: more often");
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

@@ -44,8 +44,8 @@ public final class SnowtreadEffect implements SetEffect {
     @Override
     public List<Component> describe(ArmorTier tier) {
         return List.of(
-                Component.text("Walk on powder snow, never freeze"),
-                Component.text("Naugrim: step up full blocks"));
+                Component.text("You walk upon powder snow, nor ever freeze"),
+                Component.text("Naugrim: and step up full blocks"));
     }
 
     @Override

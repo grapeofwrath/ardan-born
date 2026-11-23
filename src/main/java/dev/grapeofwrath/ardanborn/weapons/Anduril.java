@@ -24,12 +24,12 @@ public final class Anduril extends RaceItem implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Sets the undead alight", "Stronger beside other players");
+        return List.of("The undead burn at its stroke", "Mightier in company");
     }
 
     @Override
     protected List<String> ownLines() {
-        return List.of("Edain: stronger still");
+        return List.of("Edain: mightier still");
     }
 
     @EventHandler(ignoreCancelled = true)

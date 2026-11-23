@@ -26,7 +26,7 @@ public final class GreatBoundsEffect extends PieceEffect {
 
     @Override
     protected List<String> lines() {
-        return List.of("Jump higher", "Beornings: higher still at night");
+        return List.of("You leap the higher", "Beornings: higher still by night");
     }
 
     @Override

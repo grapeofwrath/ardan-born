@@ -19,13 +19,18 @@ public final class LongbottomPipe extends Artifact {
     }
 
     @Override
+    protected List<String> flavor() {
+        return List.of("Small comfort, yet the dark has no answer.");
+    }
+
+    @Override
     protected List<String> lines() {
-        return List.of("Right-click: heals you and nearby", "players, and eases Shadow");
+        return List.of("Right-click: you and players near you", "are healed, and the Shadow is eased");
     }
 
     @Override
     protected List<String> ownLines() {
-        return List.of("Hobbits: eases more Shadow");
+        return List.of("Hobbits: and eased the more");
     }
 
     @Override

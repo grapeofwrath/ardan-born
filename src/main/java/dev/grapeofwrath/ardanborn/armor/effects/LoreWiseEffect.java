@@ -18,7 +18,7 @@ public final class LoreWiseEffect extends PieceEffect {
 
     @Override
     protected List<String> lines() {
-        return List.of("Race items are ready sooner", "Noldor: sooner still");
+        return List.of("Race items and armor are ready sooner", "Noldor: sooner still");
     }
 
     /// A race item's cooldown for this player.

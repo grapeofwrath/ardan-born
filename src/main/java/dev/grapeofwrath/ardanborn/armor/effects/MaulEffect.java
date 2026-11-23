@@ -28,7 +28,7 @@ public final class MaulEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Every few hits also strike nearby foes", "Beornings: more often at night");
+        return List.of("Every few hits strike also foes nearby", "Beornings: more often by night");
     }
 
     @Override

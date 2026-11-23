@@ -66,7 +66,7 @@ On nights of the new moon the Black Riders are abroad in the Overworld, and they
 | Chance over a whole night | About 1 in 4 | About 2 in 3 |
 
 - They come no more than once in each new moon: 3 Ringwraiths, or 5 for the One Ring.
-- They appear 32-48 blocks away and out of sight, and ride toward you; and when they are within 16 blocks they attack. Your action bar gives warning: *Black riders are abroad…*
+- They appear 32-48 blocks away and out of sight, and ride toward you; and when they are within 16 blocks they attack. Your action bar gives warning: *The Black Riders are abroad…*
 - They depart at dawn, or after 5 minutes. If you carry the ring no longer, they lose your trail after 30 seconds.
 - From them the wraith-world does not hide you. They leave nothing behind when slain, and half of their melee hits leave a [Morgul wound](morgul-wound.md).
 
@@ -74,7 +74,7 @@ The new moon returns every 8 days, four days after the full.
 
 ### The One Ring in the Nether
 
-When the One Ring is carried into the Nether, whether it is worn or not, the Eye is drawn to it, and your action bar reads *The Eye turns toward you.*
+When the One Ring is carried into the Nether, whether it is worn or not, the Eye is drawn to it, and your action bar reads *The Eye is turned upon you.*
 
 | Peril | Effect |
 |---|---|
@@ -89,7 +89,7 @@ Only at [Mount Doom](#mount-doom) may this be ended.
 
 Of Narya, Nenya, Vilya and the One Ring there is but one each in the world. When one is dropped it does not despawn, and nothing can destroy it save Mount Doom; and if `/kill` or a plugin should remove it, it is set again where it lay.
 
-A unique ring is lost when its item falls into the void, or when no player has carried it for 7 days; and then it may be found anew. Once that has happened, any older copy crumbles when someone picks it up, opens the chest where it lies, or logs in carrying it: *The ring slips away into shadow…*
+A unique ring is lost when its item falls into the void, or when no player has carried it for 7 days; and then it may be found anew. Once that has happened, any older copy crumbles when someone picks it up, opens the chest where it lies, or logs in carrying it: *The ring is gone, as a shadow in the dusk…*
 
 ### Mount Doom
 

@@ -48,10 +48,10 @@ public final class MorgulWound implements Listener {
     private static final NamespacedKey LEVELLEDMOBS_LEVEL = new NamespacedKey("levelledmobs", "level");
     private static final int MAX_STAGE = 4;
     private static final List<String> STAGE_NAMES = List.of("",
-            "A cold wound: the blade's chill is in you.",
-            "The chill spreads.",
-            "The shadow takes hold.",
-            "You are fading into the shadow!");
+            "A cold wound: the chill of the blade is in you.",
+            "The chill spreads, and draws inward.",
+            "The shadow takes hold, and the light grows dim.",
+            "You are fading, and the shadow is all about you!");
 
     private static boolean enabled = true;
     private static double chance = 0.10;
@@ -103,7 +103,7 @@ public final class MorgulWound implements Listener {
         setStage(player, 0);
         player.removePotionEffect(PotionEffectType.WITHER);
         player.removePotionEffect(PotionEffectType.DARKNESS);
-        player.sendActionBar(Component.text("The cold leaves you.", NamedTextColor.AQUA));
+        player.sendActionBar(Component.text("The cold is gone out of you.", NamedTextColor.AQUA));
         return true;
     }
 
@@ -117,7 +117,7 @@ public final class MorgulWound implements Listener {
         if (pdc.getOrDefault(HELD_UNTIL, PersistentDataType.LONG, 0L) > now) return false;
         pdc.set(HELD_UNTIL, PersistentDataType.LONG, now + HOLD_COOLDOWN_MS);
         pdc.set(LEFT, PersistentDataType.LONG, stageMs);
-        player.sendActionBar(Component.text("Healing hands hold the cold at bay.", NamedTextColor.AQUA));
+        player.sendActionBar(Component.text("The cold is stayed beneath healing hands.", NamedTextColor.AQUA));
         return true;
     }
 
@@ -211,7 +211,7 @@ public final class MorgulWound implements Listener {
     @EventHandler
     public void onRespawn(PlayerRespawnEvent event) {
         if (!isWounded(event.getPlayer())) return;
-        event.getPlayer().sendActionBar(Component.text("The cold blade's wound is still with you.",
+        event.getPlayer().sendActionBar(Component.text("Not even death has healed the wound.",
                 NamedTextColor.DARK_AQUA).decoration(TextDecoration.ITALIC, true));
     }
 }

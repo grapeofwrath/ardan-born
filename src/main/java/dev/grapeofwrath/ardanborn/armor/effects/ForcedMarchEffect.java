@@ -18,7 +18,7 @@ public final class ForcedMarchEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Sprinting uses less hunger", "Uruk-hai: even less");
+        return List.of("You hunger less for sprinting", "Uruk-hai: and less again");
     }
 
     @EventHandler(ignoreCancelled = true)

@@ -22,7 +22,7 @@ public final class FurysTreadEffect extends PieceEffect implements Listener {
 
     @Override
     protected List<String> lines() {
-        return List.of("Kills give Speed", "Uruk-hai: no knockback in Battle-fury");
+        return List.of("Each slaying brings Speed", "Uruk-hai: unmoved in Battle-fury");
     }
 
     @EventHandler

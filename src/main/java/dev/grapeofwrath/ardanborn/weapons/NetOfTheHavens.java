@@ -26,13 +26,18 @@ public final class NetOfTheHavens extends Artifact {
     private static final int RANGE = 16;
 
     @Override
+    protected List<String> flavor() {
+        return List.of("It was knotted in the Havens, and holds.");
+    }
+
+    @Override
     protected List<String> lines() {
-        return List.of("Right-click: snare monsters");
+        return List.of("Right-click: monsters are caught and held");
     }
 
     @Override
     protected List<String> ownLines() {
-        return List.of("Teleri: the net also hurts them");
+        return List.of("Teleri: and the net does them hurt");
     }
 
     @Override

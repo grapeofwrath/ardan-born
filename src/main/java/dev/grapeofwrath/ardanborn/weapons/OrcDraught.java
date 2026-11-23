@@ -27,13 +27,18 @@ public final class OrcDraught extends Artifact {
     private static final int TICKS = 200;
 
     @Override
+    protected List<String> flavor() {
+        return List.of("It burns, and it is meant to.");
+    }
+
+    @Override
     protected List<String> lines() {
-        return List.of("Right-click: trade health for Speed", "and faster attacks");
+        return List.of("Right-click: for a price in blood,", "Speed and swifter blows");
     }
 
     @Override
     protected List<String> ownLines() {
-        return List.of("Uruk-hai: costs no health");
+        return List.of("Uruk-hai: there is no price");
     }
 
     @Override
@@ -44,7 +49,7 @@ public final class OrcDraught extends Artifact {
     @Override
     protected boolean ready(Player player) {
         if (own(player) || player.getHealth() > COST) return true;
-        player.sendActionBar(Component.text("You are too weak for it", NamedTextColor.GRAY));
+        player.sendActionBar(Component.text("You have not the strength to bear it", NamedTextColor.GRAY));
         return false;
     }
 
