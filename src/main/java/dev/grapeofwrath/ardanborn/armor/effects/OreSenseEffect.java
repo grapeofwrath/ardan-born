@@ -4,6 +4,7 @@ import dev.grapeofwrath.ardanborn.ArdanBorn;
 import dev.grapeofwrath.ardanborn.armor.ArmorTier;
 import dev.grapeofwrath.ardanborn.armor.CustomArmor;
 import dev.grapeofwrath.ardanborn.armor.SetEffect;
+import dev.grapeofwrath.ardanborn.items.ItemPower;
 import dev.grapeofwrath.ardanborn.origins.OriginAbilities;
 import dev.grapeofwrath.ardanborn.origins.OriginCheck;
 import net.kyori.adventure.text.Component;
@@ -79,6 +80,13 @@ public final class OreSenseEffect implements SetEffect, Listener {
         this.setId = setId;
     }
 
+    private static final String EFFECT_ID = "ore_sense";
+
+    @Override
+    public String id() {
+        return EFFECT_ID;
+    }
+
     @Override
     public String name() {
         return "Ore-sense";
@@ -87,11 +95,9 @@ public final class OreSenseEffect implements SetEffect, Listener {
     @Override
     public List<Component> describe(ArmorTier tier) {
         return List.of(
-                Component.text("Sneak and right-click with a pickaxe:"),
-                Component.text("ores within " + radius(tier) + " blocks glow for you"),
-                Component.text("for 30 seconds, or until you move."),
-                Component.text("Once a minute."),
-                Component.text("Naugrim: +" + NAUGRIM_BONUS + " blocks"));
+                Component.text("Sneak and right-click with a pickaxe"),
+                Component.text("to sense nearby ores"),
+                Component.text("Naugrim: senses further"));
     }
 
     private static int radius(ArmorTier tier) {
@@ -106,11 +112,11 @@ public final class OreSenseEffect implements SetEffect, Listener {
         if (!player.isSneaking()) return;
         if (!Tag.ITEMS_PICKAXES.isTagged(player.getInventory().getItemInMainHand().getType())) return;
         ArmorTier tier = CustomArmor.wornTier(player, EquipmentSlot.HEAD, setId);
-        if (tier == null) return;
+        if (tier == null || !ItemPower.enabled(EFFECT_ID)) return;
 
         // Don't open a chest or press a button as well.
         event.setCancelled(true);
-        if (!cooldown.tryUse(player, COOLDOWN_MS)) return;
+        if (!cooldown.tryUse(player, LoreWiseEffect.shorten(player, COOLDOWN_MS))) return;
 
         int radius = radius(tier) + (OriginCheck.is(player, OriginCheck.NAUGRIM) ? NAUGRIM_BONUS : 0);
         int found = reveal(player, radius);

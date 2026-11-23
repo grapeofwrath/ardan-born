@@ -39,8 +39,8 @@ public final class HoneyOfBeorn {
                 .addLine(Component.text("From the hives of Beorn's hall.", NamedTextColor.GRAY)
                         .decoration(TextDecoration.ITALIC, true))
                 .addLine(Component.empty())
-                .addLine(ToolUpgrade.lore("Combine with a bow", NamedTextColor.BLUE))
-                .addLine(ToolUpgrade.lore("at a Smithing Table.", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("Combine with diamond or netherite armor,", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("a bow or a flint at a Smithing Table.", NamedTextColor.BLUE))
                 .build());
         CustomItems.tag(item, ID);
         return item;

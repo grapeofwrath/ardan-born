@@ -3,17 +3,16 @@ package dev.grapeofwrath.ardanborn.armor.effects;
 import dev.grapeofwrath.ardanborn.Keys;
 import dev.grapeofwrath.ardanborn.armor.ArmorTier;
 import dev.grapeofwrath.ardanborn.armor.SetEffect;
+import dev.grapeofwrath.ardanborn.items.Effects;
 import dev.grapeofwrath.ardanborn.origins.OriginCheck;
 import net.kyori.adventure.text.Component;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Tag;
 import org.bukkit.attribute.Attribute;
-import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /// Boots: walk on powder snow without sinking, and never freeze. Naugrim also get Mountain Stride: they
@@ -30,6 +29,13 @@ public final class SnowtreadEffect implements SetEffect {
     private static final double STEP_BONUS = 0.5;
     private static final double STONE_SPEED_BONUS = 0.10;
 
+    private static final String EFFECT_ID = "snowtread";
+
+    @Override
+    public String id() {
+        return EFFECT_ID;
+    }
+
     @Override
     public String name() {
         return "Snowtread";
@@ -37,46 +43,26 @@ public final class SnowtreadEffect implements SetEffect {
 
     @Override
     public List<Component> describe(ArmorTier tier) {
-        List<Component> lines = new ArrayList<>(List.of(
-                Component.text("Walk on powder snow without sinking"),
-                Component.text("Immune to freezing"),
-                Component.text("Naugrim: step up full blocks")));
-        if (tier == ArmorTier.NETHERITE) lines.add(Component.text("and move 10% faster on stone"));
-        return lines;
+        return List.of(
+                Component.text("Walk on powder snow, never freeze"),
+                Component.text("Naugrim: step up full blocks"));
     }
 
     @Override
     public void tick(Player player, ArmorTier tier) {
         boolean naugrim = OriginCheck.is(player, OriginCheck.NAUGRIM);
-        set(player, Attribute.STEP_HEIGHT, STEP_KEY, naugrim ? STEP_BONUS : 0,
+        Effects.modifier(player, Attribute.STEP_HEIGHT, STEP_KEY, naugrim ? STEP_BONUS : 0,
                 AttributeModifier.Operation.ADD_NUMBER);
         boolean onStone = Tag.BASE_STONE_OVERWORLD.isTagged(
                 player.getLocation().getBlock().getRelative(BlockFace.DOWN).getType());
-        set(player, Attribute.MOVEMENT_SPEED, SPEED_KEY,
+        Effects.modifier(player, Attribute.MOVEMENT_SPEED, SPEED_KEY,
                 naugrim && tier == ArmorTier.NETHERITE && onStone ? STONE_SPEED_BONUS : 0,
                 AttributeModifier.Operation.ADD_SCALAR);
     }
 
     @Override
     public void onUnequip(Player player) {
-        remove(player, Attribute.STEP_HEIGHT, STEP_KEY);
-        remove(player, Attribute.MOVEMENT_SPEED, SPEED_KEY);
-    }
-
-    /// Adds, changes or (for 0) removes a modifier. Transient, so it is never saved with the player and
-    /// can't linger if the server stops while the boots are worn.
-    private static void set(Player player, Attribute attribute, NamespacedKey key, double amount,
-                            AttributeModifier.Operation operation) {
-        AttributeInstance instance = player.getAttribute(attribute);
-        if (instance == null) return;
-        AttributeModifier current = instance.getModifier(key);
-        if (current != null && current.getAmount() == amount) return;
-        if (current != null) instance.removeModifier(key);
-        if (amount != 0) instance.addTransientModifier(new AttributeModifier(key, amount, operation));
-    }
-
-    private static void remove(Player player, Attribute attribute, NamespacedKey key) {
-        AttributeInstance instance = player.getAttribute(attribute);
-        if (instance != null) instance.removeModifier(key);
+        Effects.modifier(player, Attribute.STEP_HEIGHT, STEP_KEY, 0, AttributeModifier.Operation.ADD_NUMBER);
+        Effects.scale(player, Attribute.MOVEMENT_SPEED, SPEED_KEY, 0);
     }
 }

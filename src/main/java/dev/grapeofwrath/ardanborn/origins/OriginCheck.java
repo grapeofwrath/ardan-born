@@ -25,7 +25,8 @@ public final class OriginCheck {
     private OriginCheck() {}
 
     public static boolean is(Player player, String originFile) {
-        Origin origin = AddonLoader.getOriginByFilename(originFile);
+        // Origins-Reborn keeps file names with spaces for underscores.
+        Origin origin = AddonLoader.getOriginByFilename(originFile.replace('_', ' '));
         return origin != null && OriginSwapper.getOrigins(player).contains(origin);
     }
 }

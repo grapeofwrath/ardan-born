@@ -1,6 +1,7 @@
 package dev.grapeofwrath.ardanborn.weapons;
 
 import dev.grapeofwrath.ardanborn.armor.CustomItems;
+import dev.grapeofwrath.ardanborn.items.ItemPower;
 import dev.grapeofwrath.ardanborn.origins.OriginCheck;
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import io.papermc.paper.datacomponent.item.CustomModelData;
@@ -26,7 +27,7 @@ import java.util.List;
 /// the air mark their foe so it glows.
 public final class Aeglos implements ToolUpgrade, Listener {
     public static final String ID = "aeglos";
-    private static final double GLOWING_BONUS = 1.25;
+    private static final double GLOWING_BONUS = 0.25;
     private static final int MARK_TICKS = 100;
 
     @Override
@@ -57,10 +58,9 @@ public final class Aeglos implements ToolUpgrade, Listener {
         aeglos.setData(DataComponentTypes.RARITY, ItemRarity.EPIC);
         aeglos.setData(DataComponentTypes.CUSTOM_MODEL_DATA, CustomModelData.customModelData().addString(ID).build());
         aeglos.setData(DataComponentTypes.LORE, ItemLore.lore()
-                .addLine(ToolUpgrade.lore("+25% damage to glowing foes", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("Extra damage to glowing foes", NamedTextColor.BLUE))
                 .addLine(Component.empty())
-                .addLine(ToolUpgrade.lore("Eagles: hits while gliding", NamedTextColor.GOLD))
-                .addLine(ToolUpgrade.lore("make the foe glow", NamedTextColor.GOLD))
+                .addLine(ToolUpgrade.lore("Eagles: hits while gliding mark foes", NamedTextColor.GOLD))
                 .build());
         CustomItems.tag(aeglos, ID);
         return aeglos;
@@ -71,10 +71,10 @@ public final class Aeglos implements ToolUpgrade, Listener {
     public void onHit(EntityDamageByEntityEvent event) {
         if (!(event.getDamager() instanceof Player player)) return;
         if (!(event.getEntity() instanceof LivingEntity victim)) return;
-        if (!is(player.getInventory().getItemInMainHand())) return;
+        if (!ItemPower.enabled(ID) || !is(player.getInventory().getItemInMainHand())) return;
 
         if (victim.isGlowing() || victim.hasPotionEffect(PotionEffectType.GLOWING)) {
-            event.setDamage(event.getDamage() * GLOWING_BONUS);
+            event.setDamage(event.getDamage() * ItemPower.bonus(ID, GLOWING_BONUS));
         }
         if (player.isGliding() && OriginCheck.is(player, OriginCheck.GREAT_EAGLE)) {
             victim.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, MARK_TICKS, 0, true, false, false));

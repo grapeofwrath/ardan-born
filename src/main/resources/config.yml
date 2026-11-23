@@ -14,3 +14,14 @@ morgul-wound:
   min-level: 30
   # Minutes (while the wounded player is online) before the wound worsens to the next stage.
   stage-minutes: 3
+
+race-items:
+  # How strong race items are: bonus damage, damage reduction, damage dealt, healing and chances. 1.0 is
+  # normal; try 1.5 if mobs are tough (high LevelledMobs levels). From 0.5 to 3.0.
+  # Cooldowns, ranges, speed and durations don't change.
+  power: 1.0
+  # A power level for single items or armor effects, instead of the one above, e.g.
+  #   sting: 1.5
+  overrides: {}
+  # Items and armor effects that do nothing, e.g. [sting, fellowship]
+  disabled: []

@@ -1,6 +1,7 @@
 package dev.grapeofwrath.ardanborn.armor;
 
 import com.destroystokyo.paper.event.player.PlayerArmorChangeEvent;
+import dev.grapeofwrath.ardanborn.items.ItemPower;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -70,13 +71,15 @@ public final class ArmorEffectManager implements Listener {
             ArmorTier tier = CustomArmor.tierOf(item);
             if (set == null || tier == null || ArmorTier.slotOf(item) != slot) continue;
 
-            set.pieceEffect(slot).ifPresent(effect -> next.merge(effect, tier, ArmorEffectManager::higher));
+            set.pieceEffect(slot).filter(effect -> ItemPower.enabled(effect.id()))
+                    .ifPresent(effect -> next.merge(effect, tier, ArmorEffectManager::higher));
             pieces.merge(set, 1, Integer::sum);
             lowestTier.merge(set, tier, (a, b) -> a.compareTo(b) <= 0 ? a : b);
         }
         pieces.forEach((set, count) -> {
             if (count == ARMOR_SLOTS.size()) {
-                set.fullSetBonus().ifPresent(bonus -> next.merge(bonus, lowestTier.get(set), ArmorEffectManager::higher));
+                set.fullSetBonus().filter(bonus -> ItemPower.enabled(bonus.id()))
+                        .ifPresent(bonus -> next.merge(bonus, lowestTier.get(set), ArmorEffectManager::higher));
             }
         });
 

@@ -1,13 +1,16 @@
 package dev.grapeofwrath.ardanborn.armor.sets;
 
+import dev.grapeofwrath.ardanborn.Keys;
 import dev.grapeofwrath.ardanborn.armor.ArmorSet;
 import dev.grapeofwrath.ardanborn.armor.ArmorSets;
 import dev.grapeofwrath.ardanborn.armor.ArmorTier;
 import dev.grapeofwrath.ardanborn.armor.CustomItems;
-import dev.grapeofwrath.ardanborn.Keys;
 import dev.grapeofwrath.ardanborn.armor.SetEffect;
+import dev.grapeofwrath.ardanborn.armor.effects.DurinsWealthEffect;
+import dev.grapeofwrath.ardanborn.armor.effects.DwarfMarchEffect;
 import dev.grapeofwrath.ardanborn.armor.effects.OreSenseEffect;
 import dev.grapeofwrath.ardanborn.armor.effects.SnowtreadEffect;
+import dev.grapeofwrath.ardanborn.armor.effects.UnmovedEffect;
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import io.papermc.paper.datacomponent.item.CustomModelData;
 import io.papermc.paper.datacomponent.item.ItemLore;
@@ -38,6 +41,9 @@ public final class ArkenstoneSet implements ArmorSet {
 
     private final SnowtreadEffect snowtread = new SnowtreadEffect();
     private final OreSenseEffect oreSense = new OreSenseEffect(ID);
+    private final UnmovedEffect unmoved = new UnmovedEffect(ID);
+    private final DwarfMarchEffect dwarfMarch = new DwarfMarchEffect(ID);
+    private final DurinsWealthEffect durinsWealth = new DurinsWealthEffect(ID);
 
     @Override
     public String id() {
@@ -75,7 +81,7 @@ public final class ArkenstoneSet implements ArmorSet {
                 .addLine(Component.empty())
                 .addLine(Component.text("Combine with diamond or netherite", NamedTextColor.BLUE)
                         .decoration(TextDecoration.ITALIC, false))
-                .addLine(Component.text("armor or a pickaxe at a Smithing Table.", NamedTextColor.BLUE)
+                .addLine(Component.text("armor, a pickaxe or an axe at a Smithing Table.", NamedTextColor.BLUE)
                         .decoration(TextDecoration.ITALIC, false))
                 .build());
         CustomItems.tag(item, ID);
@@ -112,9 +118,15 @@ public final class ArkenstoneSet implements ArmorSet {
     public Optional<SetEffect> pieceEffect(EquipmentSlot slot) {
         return switch (slot) {
             case HEAD -> Optional.of(oreSense);
+            case CHEST -> Optional.of(unmoved);
+            case LEGS -> Optional.of(dwarfMarch);
             case FEET -> Optional.of(snowtread);
-            // Chestplate, leggings and the full-set bonus are still to be designed.
             default -> Optional.empty();
         };
+    }
+
+    @Override
+    public Optional<SetEffect> fullSetBonus() {
+        return Optional.of(durinsWealth);
     }
 }

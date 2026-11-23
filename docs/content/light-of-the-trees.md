@@ -1,9 +1,9 @@
 ---
 title: "Light of the Trees"
 ---
-*A glimmer of Laurelin and Telperion.* The Noldor's template, made to suit the [Noldor](ancestries.md#noldor-high-elf). It makes the **Phial of Galadriel**.
+*A glimmer of Laurelin and Telperion.* The Noldor's template, made to suit the [Noldor](ancestries.md#noldor-high-elf). It makes the **Phial of Galadriel**, the **Gondolin armor** and **Orcrist**.
 
-Like every race item, anyone can use it; the Noldor get extra.
+Like every race item, anyone can use these; the Noldor get extra.
 
 ## Crafting the Light of the Trees
 
@@ -35,4 +35,25 @@ The Light of the Trees looks like glinting glowstone dust. It can't be used in a
 - It shines from your head's block, or your feet if your head is in something (such as water). If both are blocked, there's no light until you move.
 - Right-clicking with something else in your main hand never raises an off-hand Phial; only a Phial in the main hand can be raised.
 
-A resource pack can give these items their own look via `custom_model_data` strings `light_of_the_trees` and `phial_of_galadriel`.
+## Gondolin armor
+
+At a **smithing table**, put the Light of the Trees with a **diamond or netherite** armor piece (and nothing in the third slot). Pieces work like the [Arkenstone armor](arkenstone.md#armor): they keep enchantments, trim, damage and name, and can be upgraded to netherite.
+
+| Piece | Effect |
+|---|---|
+| Helmet | **Unclouded:** immune to Blindness and Darkness. **Noldor:** Night Vision in the Nether. |
+| Chestplate | **Spell-ward:** 20% less magic, Wither and dragon's-breath damage. **Noldor:** 30%. |
+| Leggings | **Lore-wise:** race item and armor cooldowns are 10% shorter. Origin and class powers aren't affected. **Noldor:** 20%. |
+| Boots | **Helcaraxë:** immune to freezing, and 10% faster on snow and ice. **Noldor:** 20%. |
+| Full set | **Wrath of Fingolfin:** after 5 kills of undead or creatures of the Nether, your next melee hit bursts for 4 hearts to monsters within 5 blocks. **Noldor:** 3 kills. |
+
+## Orcrist
+
+At a **smithing table**, put the Light of the Trees with a **diamond or netherite sword** (and nothing in the third slot). It keeps its enchantments, damage and name, and can still be upgraded to netherite as usual.
+
+| Who | Effect |
+|---|---|
+| Anyone | **+20% damage** to illagers and piglins (zombified ones too). |
+| Noldor | They also get Weakness I for 3 seconds. |
+
+A resource pack can give these items their own look via `custom_model_data` strings `light_of_the_trees`, `phial_of_galadriel`, `gondolin` and `orcrist`.

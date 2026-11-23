@@ -1,7 +1,7 @@
 ---
 title: "Arkenstone"
 ---
-*The Heart of the Mountain.* The dwarves' template, made to suit the [Naugrim](ancestries.md#naugrim-dwarf). It makes the **Arkenstone armor** and the **Arkenstone Pickaxe**.
+*The Heart of the Mountain.* The dwarves' template, made to suit the [Naugrim](ancestries.md#naugrim-dwarf). It makes the **Arkenstone armor**, the **Arkenstone Pickaxe** and the **Axe of Azaghâl**.
 
 Like every race item, anyone can use these; Naugrim get extra.
 
@@ -37,9 +37,9 @@ The armor becomes an Arkenstone piece. Each piece therefore comes in two tiers, 
 |---|---|
 | Helmet | **Ore-sense:** sneak and right-click while holding any pickaxe. Ores within 8 blocks (12 on netherite) glow through the stone for 10 seconds, for you alone. Once a minute. **Naugrim:** 4 blocks further. |
 | Boots | **Snowtread:** walk on powder snow without sinking (sneak to sink in), and immune to freezing. **Naugrim, Mountain Stride:** step up full blocks without jumping; on netherite, also move 10% faster on natural stone and deepslate. |
-| Chestplate | Not designed yet |
-| Leggings | Not designed yet |
-| Full set | Not designed yet |
+| Chestplate | **Unmoved:** 40% knockback resistance and 25% less damage from explosions. **Naugrim:** 15% less damage in deep, unlit places (below Y 50, out of the sky's light). |
+| Leggings | **Dwarf-march:** sprinting in deep, unlit places costs no hunger. **Naugrim:** Haste II for 5 seconds after mining an ore. |
+| Full set | **Durin's Wealth:** 10% chance for a mined ore to drop double (not with Silk Touch). **Naugrim:** 15%. |
 
 ### The boots
 
@@ -61,4 +61,13 @@ At a **smithing table**, put the Arkenstone with a **diamond or netherite pickax
 - Protection plugins see each block as broken by you.
 - **Naugrim:** the extra blocks cost no durability.
 
-A resource pack can give these items their own look via `custom_model_data` strings `arkenstone` and `arkenstone_pickaxe`.
+## Axe of Azaghâl
+
+At a **smithing table**, put the Arkenstone with a **diamond or netherite axe** (and nothing in the third slot). It keeps its enchantments, damage and name, and can still be upgraded to netherite as usual.
+
+| Who | Effect |
+|---|---|
+| Anyone | **+15% damage** to foes with 20 or more hearts. |
+| Naugrim | +25% instead. This stacks with [Axe of Durin](powers.md#axe-of-durin). |
+
+A resource pack can give these items their own look via `custom_model_data` strings `arkenstone`, `arkenstone_pickaxe` and `axe_of_azaghal`.

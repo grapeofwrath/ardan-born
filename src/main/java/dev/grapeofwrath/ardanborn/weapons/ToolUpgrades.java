@@ -21,21 +21,21 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 /// Registry of all [ToolUpgrade]s, and the smithing table logic that makes them.
 public final class ToolUpgrades implements Listener {
     private static final List<ToolUpgrade> UPGRADES = List.of(
             new SpearOfTheHavens(), new Aeglos(), new ArkenstonePickaxe(), new HuntingBow(),
-            new PhialOfGaladriel(), new HornOfGondor(), new Miruvor(), new ScimitarOfIsengard());
+            new PhialOfGaladriel(), new HornOfGondor(), new Miruvor(), new ScimitarOfIsengard(),
+            new AxeOfAzaghal(), new NetOfTheHavens(), new BreathOfManwe(), new BowOfTheGaladhrim(), new Hithlain(),
+            new Sting(), new LongbottomPipe(), new Orcrist(), new Anduril(), new Hadhafang(), new OrcDraught(),
+            new SkinChangersClaw());
 
     public static void registerAll(Plugin plugin) {
-        // Templates of races with no armor set yet; the others are registered with their set.
-        HoneyOfBeorn.registerRecipe();
-        RaceTemplate.LIGHT_OF_THE_TREES.registerRecipe();
-        RaceTemplate.STAR_OF_ELENDIL.registerRecipe();
-        RaceTemplate.EVENSTAR.registerRecipe();
-        RaceTemplate.WHITE_HAND.registerRecipe();
+        // The templates themselves are registered with their armor sets.
         for (ToolUpgrade upgrade : UPGRADES) {
             // Template + base item + empty addition slot. The real result is built in onPrepare; this recipe
             // only makes the smithing table accept the inputs.
@@ -53,6 +53,11 @@ public final class ToolUpgrades implements Listener {
         Bukkit.getPluginManager().registerEvents(new ToolUpgrades(), plugin);
     }
 
+    /// The ids of every tool, weapon and artifact, for the config.
+    public static Set<String> ids() {
+        return UPGRADES.stream().map(ToolUpgrade::id).collect(Collectors.toSet());
+    }
+
     public static @Nullable ToolUpgrade of(@Nullable ItemStack item) {
         for (ToolUpgrade upgrade : UPGRADES) {
             if (upgrade.is(item)) return upgrade;
@@ -60,15 +65,9 @@ public final class ToolUpgrades implements Listener {
         return null;
     }
 
-    /// Every finished tool or weapon, keyed by id, and the templates of races with no armor set. The other
-    /// templates are listed by [ArmorSets#giveableItems].
+    /// Every finished tool, weapon or artifact, keyed by id. Templates are listed by [ArmorSets#giveableItems].
     public static Map<String, Supplier<ItemStack>> giveableItems() {
         Map<String, Supplier<ItemStack>> items = new LinkedHashMap<>();
-        items.put(HoneyOfBeorn.ID, HoneyOfBeorn::create);
-        for (RaceTemplate template : List.of(RaceTemplate.LIGHT_OF_THE_TREES, RaceTemplate.STAR_OF_ELENDIL,
-                RaceTemplate.EVENSTAR, RaceTemplate.WHITE_HAND)) {
-            items.put(template.id(), template::create);
-        }
         for (ToolUpgrade upgrade : UPGRADES) {
             List<Material> bases = upgrade.baseMaterials();
             if (bases.size() == 1) {

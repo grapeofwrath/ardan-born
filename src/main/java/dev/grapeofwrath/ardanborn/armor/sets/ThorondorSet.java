@@ -3,6 +3,10 @@ package dev.grapeofwrath.ardanborn.armor.sets;
 import dev.grapeofwrath.ardanborn.armor.ArmorSet;
 import dev.grapeofwrath.ardanborn.armor.SetEffect;
 import dev.grapeofwrath.ardanborn.armor.effects.HawkSightEffect;
+import dev.grapeofwrath.ardanborn.armor.effects.StormFeathersEffect;
+import dev.grapeofwrath.ardanborn.armor.effects.TalonGripEffect;
+import dev.grapeofwrath.ardanborn.armor.effects.UpdraftEffect;
+import dev.grapeofwrath.ardanborn.armor.effects.WindlordEffect;
 import dev.grapeofwrath.ardanborn.weapons.FeatherOfThorondor;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Material;
@@ -18,6 +22,10 @@ public final class ThorondorSet implements ArmorSet {
     public static final String ID = "thorondor";
 
     private final HawkSightEffect hawkSight = new HawkSightEffect();
+    private final StormFeathersEffect stormFeathers = new StormFeathersEffect(ID);
+    private final TalonGripEffect talonGrip = new TalonGripEffect(ID);
+    private final UpdraftEffect updraft = new UpdraftEffect(ID);
+    private final WindlordEffect windlord = new WindlordEffect(ID);
 
     @Override
     public String id() {
@@ -61,8 +69,15 @@ public final class ThorondorSet implements ArmorSet {
     public Optional<SetEffect> pieceEffect(EquipmentSlot slot) {
         return switch (slot) {
             case HEAD -> Optional.of(hawkSight);
-            // Chestplate, leggings, boots and the full-set bonus are still to be designed.
+            case CHEST -> Optional.of(stormFeathers);
+            case LEGS -> Optional.of(talonGrip);
+            case FEET -> Optional.of(updraft);
             default -> Optional.empty();
         };
+    }
+
+    @Override
+    public Optional<SetEffect> fullSetBonus() {
+        return Optional.of(windlord);
     }
 }

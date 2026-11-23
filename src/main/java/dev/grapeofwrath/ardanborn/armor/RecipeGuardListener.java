@@ -7,6 +7,8 @@ import org.bukkit.block.Crafter;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.CrafterCraftEvent;
+import org.bukkit.event.inventory.BrewEvent;
+import org.bukkit.event.inventory.FurnaceBurnEvent;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.inventory.ItemStack;
@@ -46,6 +48,17 @@ public final class RecipeGuardListener implements Listener {
                 || !Objects.equals(CustomArmor.tierOf(right), CustomArmor.tierOf(left))) {
             event.setResult(null);
         }
+    }
+
+    /// Artifacts are ordinary fuels and brewing ingredients underneath (a stick, a breeze rod).
+    @EventHandler(ignoreCancelled = true)
+    public void onBurn(FurnaceBurnEvent event) {
+        if (CustomItems.isCustom(event.getFuel())) event.setCancelled(true);
+    }
+
+    @EventHandler(ignoreCancelled = true)
+    public void onBrew(BrewEvent event) {
+        if (CustomItems.isCustom(event.getContents().getIngredient())) event.setCancelled(true);
     }
 
     private static boolean isAllowed(Recipe recipe) {

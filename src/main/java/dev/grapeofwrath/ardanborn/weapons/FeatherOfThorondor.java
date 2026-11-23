@@ -40,7 +40,7 @@ public final class FeatherOfThorondor {
                         .decoration(TextDecoration.ITALIC, true))
                 .addLine(Component.empty())
                 .addLine(plain("Combine with diamond or netherite"))
-                .addLine(plain("armor or a spear at a Smithing Table."))
+                .addLine(plain("armor, a spear or a breeze rod at a Smithing Table."))
                 .build());
         CustomItems.tag(item, ID);
         return item;

@@ -1,12 +1,12 @@
 package dev.grapeofwrath.ardanborn.origins;
 
+import com.starshootercity.abilities.types.Ability;
+import com.starshootercity.abilities.types.VisibleAbility;
 import dev.grapeofwrath.ardanborn.ArdanBorn;
 import dev.grapeofwrath.ardanborn.Keys;
 import dev.grapeofwrath.ardanborn.afflictions.MorgulWound;
 import dev.grapeofwrath.ardanborn.armor.CustomItems;
 import io.papermc.paper.datacomponent.DataComponentTypes;
-import com.starshootercity.abilities.types.Ability;
-import com.starshootercity.abilities.types.VisibleAbility;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -19,14 +19,14 @@ import org.bukkit.Sound;
 import org.bukkit.Tag;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeInstance;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.damage.DamageSource;
 import org.bukkit.damage.DamageType;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.attribute.AttributeInstance;
-import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.AbstractArrow;
 import org.bukkit.entity.AbstractHorse;
 import org.bukkit.entity.Arrow;
@@ -66,8 +66,8 @@ import org.bukkit.event.player.PlayerExpChangeEvent;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
+import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.inventory.EquipmentSlot;
@@ -206,11 +206,11 @@ public final class OriginAbilities {
             EntityType.SKELETON_HORSE, EntityType.WITHER, EntityType.PHANTOM);
 
     /** The creatures of the Nether that aren't undead. */
-    static final Set<EntityType> NETHER = EnumSet.of(
+    public static final Set<EntityType> NETHER = EnumSet.of(
             EntityType.BLAZE, EntityType.GHAST, EntityType.MAGMA_CUBE,
             EntityType.HOGLIN, EntityType.PIGLIN, EntityType.PIGLIN_BRUTE);
 
-    static boolean isMelee(EntityDamageByEntityEvent e) {
+    public static boolean isMelee(EntityDamageByEntityEvent e) {
         return e.getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK;
     }
 
@@ -219,6 +219,18 @@ public final class OriginAbilities {
         String biome = p.getLocation().getBlock().getBiome().getKey().getKey();
         return biome.contains("forest") || biome.contains("taiga") || biome.contains("jungle")
                 || biome.contains("grove") || biome.contains("woods");
+    }
+
+    /** Deep, unlit places: below sea level and out of the sky's light. */
+    public static boolean inTheDeep(Player p) {
+        return p.getLocation().getBlockY() < 50 && p.getLocation().getBlock().getLightFromSky() < 4;
+    }
+
+    /** The Overworld's night, as the Beornings' Moonbound counts it. */
+    public static boolean isNight(World world) {
+        if (world.getEnvironment() != World.Environment.NORMAL) return false;
+        long time = world.getTime();
+        return time >= 13000 && time <= 23000;
     }
 
     static boolean isRightClick(Action a) {
@@ -397,8 +409,7 @@ public final class OriginAbilities {
         @Override
         public void tick(Player player) {
             runForAbility(player, p -> {
-                if (p.getLocation().getBlockY() >= 50) return;
-                if (p.getLocation().getBlock().getLightFromSky() >= 4) return;
+                if (!inTheDeep(p)) return;
                 effect(p, PotionEffectType.HASTE, 60, 0);
                 effect(p, PotionEffectType.NIGHT_VISION, 320, 0);
             });
@@ -516,9 +527,7 @@ public final class OriginAbilities {
         public void tick(Player player) {
             runForAbility(player, p -> {
                 World world = p.getWorld();
-                if (world.getEnvironment() != World.Environment.NORMAL) return;
-                long time = world.getTime();
-                if (time < 13000 || time > 23000) return; // night only
+                if (!isNight(world)) return;
                 // 0 = full moon, 1 and 7 = gibbous, 4 = new moon
                 int phase = (int) ((world.getFullTime() / 24000L) % 8L);
                 switch (phase) {

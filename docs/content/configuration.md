@@ -14,6 +14,10 @@ morgul-wound:
   servant-chance: 0.50
   min-level: 30
   stage-minutes: 3
+race-items:
+  power: 1.0
+  overrides: {}
+  disabled: []
 ```
 
 ### Morgul wound
@@ -29,6 +33,21 @@ These control the [Morgul wound](morgul-wound.md).
 | `stage-minutes` | `3` | Online minutes before the wound worsens |
 
 **[LevelledMobs](https://modrinth.com/plugin/levelledmobs)** is optional, and ArdanBorn has no code dependency on it: it reads the level LevelledMobs stores on each mob. Set `min-level` to suit your LevelledMobs rules. If its levels rarely reach 30 on your server (with weighted-random levels most mobs are low), lower it.
+
+### Race items
+
+These set how strong every race item and armor effect is. The pages here give the numbers at power 1.0; item tooltips give none.
+
+| Setting | Default | What it does |
+|---|---|---|
+| `power` | `1.0` | From 0.5 to 3.0. Scales bonus damage, damage reduction, damage dealt, healing and chances. At 2.0, +25% damage becomes +50%. Try 1.5 if mobs are tough, such as with high LevelledMobs levels |
+| `overrides` | none | A power for single items or armor effects, instead of the one above, e.g. `{sting: 1.5}` |
+| `disabled` | none | Items and armor effects that do nothing, e.g. `[sting, fellowship]` |
+
+- One reduction never goes above 50%, and one chance never above 60%.
+- Cooldowns, ranges, speed, durations, potion effects and Soft Landing don't change.
+- Ids are the item's or effect's name in lower case with underscores and no accents or apostrophes, e.g. `axe_of_azaghal`, `durins_wealth`. The Mithril Coat is `mithril`. A typo is reported in the console at startup.
+- What a piece does just by being its base item (walking on powder snow, the spyglass, the turtle shell) can't be disabled.
 
 ## Rings of Power
 

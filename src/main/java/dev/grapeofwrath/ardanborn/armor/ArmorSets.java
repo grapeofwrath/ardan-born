@@ -3,6 +3,11 @@ package dev.grapeofwrath.ardanborn.armor;
 import dev.grapeofwrath.ardanborn.Keys;
 import dev.grapeofwrath.ardanborn.armor.sets.AlqualondeSet;
 import dev.grapeofwrath.ardanborn.armor.sets.ArkenstoneSet;
+import dev.grapeofwrath.ardanborn.armor.sets.CarrockSet;
+import dev.grapeofwrath.ardanborn.armor.sets.CitadelSet;
+import dev.grapeofwrath.ardanborn.armor.sets.GondolinSet;
+import dev.grapeofwrath.ardanborn.armor.sets.ImladrisSet;
+import dev.grapeofwrath.ardanborn.armor.sets.IsengardSet;
 import dev.grapeofwrath.ardanborn.armor.sets.LorienSet;
 import dev.grapeofwrath.ardanborn.armor.sets.MithrilSet;
 import dev.grapeofwrath.ardanborn.armor.sets.ThorondorSet;
@@ -19,8 +24,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -42,6 +47,11 @@ public final class ArmorSets {
         register(plugin, new ThorondorSet());
         register(plugin, new LorienSet());
         register(plugin, new MithrilSet());
+        register(plugin, new GondolinSet());
+        register(plugin, new CitadelSet());
+        register(plugin, new ImladrisSet());
+        register(plugin, new IsengardSet());
+        register(plugin, new CarrockSet());
         registerNetheriteUpgrades();
     }
 
@@ -123,6 +133,16 @@ public final class ArmorSets {
             if (set.isTemplate(item)) return set;
         }
         return null;
+    }
+
+    /// The ids of every armor effect, for the config.
+    public static Set<String> effectIds() {
+        Set<String> ids = new HashSet<>();
+        for (ArmorSet set : SETS.values()) {
+            for (EquipmentSlot slot : ARMOR_SLOTS) set.pieceEffect(slot).ifPresent(effect -> ids.add(effect.id()));
+            set.fullSetBonus().ifPresent(effect -> ids.add(effect.id()));
+        }
+        return ids;
     }
 
     public static Iterable<ArmorSet> all() {

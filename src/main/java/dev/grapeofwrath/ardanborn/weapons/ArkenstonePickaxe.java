@@ -2,6 +2,7 @@ package dev.grapeofwrath.ardanborn.weapons;
 
 import dev.grapeofwrath.ardanborn.armor.CustomItems;
 import dev.grapeofwrath.ardanborn.armor.sets.ArkenstoneSet;
+import dev.grapeofwrath.ardanborn.items.ItemPower;
 import dev.grapeofwrath.ardanborn.origins.OriginCheck;
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import io.papermc.paper.datacomponent.item.CustomModelData;
@@ -99,7 +100,7 @@ public final class ArkenstonePickaxe implements ToolUpgrade, Listener {
     public void onBreak(BlockBreakEvent event) {
         Player player = event.getPlayer();
         UUID id = player.getUniqueId();
-        if (boring.contains(id) || player.isSneaking()) return;
+        if (boring.contains(id) || player.isSneaking() || !ItemPower.enabled(ID)) return;
         if (!is(player.getInventory().getItemInMainHand())) return;
         BlockFace face = digFace.get(id);
         if (face == null) return;

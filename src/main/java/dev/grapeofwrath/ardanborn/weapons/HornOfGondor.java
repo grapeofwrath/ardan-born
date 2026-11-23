@@ -1,6 +1,8 @@
 package dev.grapeofwrath.ardanborn.weapons;
 
 import dev.grapeofwrath.ardanborn.armor.CustomItems;
+import dev.grapeofwrath.ardanborn.armor.effects.LoreWiseEffect;
+import dev.grapeofwrath.ardanborn.items.ItemPower;
 import dev.grapeofwrath.ardanborn.origins.OriginAbilities;
 import dev.grapeofwrath.ardanborn.origins.OriginCheck;
 import io.papermc.paper.datacomponent.DataComponentTypes;
@@ -8,7 +10,6 @@ import io.papermc.paper.datacomponent.item.CustomModelData;
 import io.papermc.paper.datacomponent.item.ItemLore;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.entity.Entity;
@@ -74,10 +75,8 @@ public final class HornOfGondor implements ToolUpgrade, Listener {
         horn.setData(DataComponentTypes.LORE, ItemLore.lore()
                 .addLine(Component.text("Blown in need, it is heard far off.", NamedTextColor.GRAY))
                 .addLine(Component.empty())
-                .addLine(ToolUpgrade.lore("Players within 48 blocks: Strength I", NamedTextColor.BLUE))
-                .addLine(ToolUpgrade.lore("and Resistance I for 15s", NamedTextColor.BLUE))
-                .addLine(ToolUpgrade.lore("Iron golems rally to you for 30s", NamedTextColor.BLUE))
-                .addLine(ToolUpgrade.lore("5 minute cooldown", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("Strengthens nearby players", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("and rallies iron golems", NamedTextColor.BLUE))
                 .addLine(Component.empty())
                 .addLine(ToolUpgrade.lore("Edain: renews Hope Unquenched", NamedTextColor.GOLD))
                 .build());
@@ -92,10 +91,10 @@ public final class HornOfGondor implements ToolUpgrade, Listener {
     @EventHandler
     public void onBlow(PlayerInteractEvent event) {
         if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
-        if (!is(event.getItem())) return;
+        if (!is(event.getItem()) || !ItemPower.enabled(ID)) return;
         Player player = event.getPlayer();
         // Vanilla plays the horn's sound; while on cooldown, it's just a horn.
-        if (!cooldown.tryUse(player, COOLDOWN_MS)) return;
+        if (!cooldown.tryUse(player, LoreWiseEffect.shorten(player, COOLDOWN_MS))) return;
 
         List<Player> allies = new ArrayList<>();
         allies.add(player);

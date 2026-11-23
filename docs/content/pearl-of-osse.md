@@ -1,7 +1,7 @@
 ---
 title: "Pearl of Ossë"
 ---
-*A pearl of the shores of Alqualondë, gift of Ossë.* The Teleri's template, made to suit the [Teleri](ancestries.md#teleri-sea-elf). It makes the **Spear of the Havens** and the **Alqualondë armor**.
+*A pearl of the shores of Alqualondë, gift of Ossë.* The Teleri's template, made to suit the [Teleri](ancestries.md#teleri-sea-elf). It makes the **Spear of the Havens**, the **Net of the Havens** and the **Alqualondë armor**.
 
 Like every race item, anyone can use these; Teleri get extra.
 
@@ -39,10 +39,10 @@ At a **smithing table**, put the Pearl of Ossë with a **diamond or netherite** 
 | Piece | Effect |
 |---|---|
 | Helmet | **Friend of Ossë:** drowned, guardians, elder guardians and pufferfish leave you alone. Strike one and the sea is hostile to you for 30 seconds. That includes the elder guardian's Mining Fatigue and pufferfish stings. **Teleri:** Dolphin's Grace (swift swimming) while in water. |
-| Chestplate | Not designed yet |
-| Leggings | Not designed yet |
-| Boots | Not designed yet |
-| Full set | Not designed yet |
+| Chestplate | **Swan-mail:** 12% less damage while in water or rain. **Teleri:** heal half a heart every 5 seconds there. |
+| Leggings | **Undertow:** 15% chance that a mob that strikes you is swept back and slowed for 3 seconds. **Teleri:** 25%. |
+| Boots | **Wave-walker:** sprint across water for up to 5 seconds at a time, renewed on land. Stop sprinting and you sink. **Teleri:** 10 seconds. |
+| Full set | **Song of the Sea:** melee and trident hits in water or rain have a 15% chance to heal you and players within 6 blocks by 1 heart (at most every 3 seconds). **Teleri:** 25%. |
 
 ### The helmet
 
@@ -51,4 +51,13 @@ The Alqualondë helmet is a **turtle shell with the full diamond or netherite st
 - Repair it with diamonds or netherite ingots, or another Alqualondë helmet of the same tier. Plain turtle shells don't work.
 - Upgrade diamond to netherite at a smithing table with a netherite upgrade template and a netherite ingot, as usual.
 
-A resource pack can give these items their own look via `custom_model_data` strings `pearl_of_osse`, `spear_of_the_havens` and `alqualonde`.
+## Net of the Havens
+
+At a **smithing table**, put the Pearl of Ossë with a **lead** (and nothing in the third slot). Right-click with it in your main hand to use it. It doesn't stack and isn't used up.
+
+| Who | Effect |
+|---|---|
+| Anyone | Monsters within 4 blocks of where you look (up to 16 away) get Slowness IV for 4 seconds. 45-second cooldown. |
+| Teleri | Netted monsters also take half a heart each second. |
+
+A resource pack can give these items their own look via `custom_model_data` strings `pearl_of_osse`, `spear_of_the_havens`, `alqualonde` and `net_of_the_havens`.

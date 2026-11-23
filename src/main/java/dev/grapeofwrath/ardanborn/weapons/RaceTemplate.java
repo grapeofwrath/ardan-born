@@ -34,42 +34,42 @@ public record RaceTemplate(String id, String name, TextColor color, Material loo
     public static final RaceTemplate LIGHT_OF_THE_TREES = new RaceTemplate("light_of_the_trees",
             "Light of the Trees", TextColor.color(0xFFF1B0), Material.GLOWSTONE_DUST,
             "A glimmer of Laurelin and Telperion.",
-            List.of("Combine with a glass bottle", "at a Smithing Table."),
+            List.of("Combine with diamond or netherite armor,", "a sword or a glass bottle at a Smithing Table."),
             new RecipeChoice.MaterialChoice(Material.GLOWSTONE_DUST),
             new RecipeChoice.MaterialChoice(Material.GLOW_BERRIES));
 
     public static final RaceTemplate MALLORN_LEAF = new RaceTemplate("mallorn_leaf",
             "Mallorn Leaf", TextColor.color(0xE3C35A), Material.LILY_PAD,
             "Gold from the trees of Lothlórien.",
-            List.of("Combine with diamond or netherite", "armor at a Smithing Table."),
+            List.of("Combine with diamond or netherite armor,", "a bow or a lead at a Smithing Table."),
             new RecipeChoice.MaterialChoice(Tag.LEAVES),
             new RecipeChoice.MaterialChoice(Material.STRING));
 
     public static final RaceTemplate STAR_OF_ELENDIL = new RaceTemplate("star_of_elendil",
             "Star of Elendil", TextColor.color(0xDCE6F5), Material.NETHER_STAR,
             "The Elendilmir, worn by the kings of Arnor.",
-            List.of("Combine with a goat horn", "at a Smithing Table."),
+            List.of("Combine with diamond or netherite armor,", "a sword or a goat horn at a Smithing Table."),
             new RecipeChoice.MaterialChoice(Material.QUARTZ),
             new RecipeChoice.MaterialChoice(Material.IRON_INGOT));
 
     public static final RaceTemplate EVENSTAR = new RaceTemplate("evenstar",
             "Evenstar", TextColor.color(0xC9D8FF), Material.HEART_OF_THE_SEA,
             "Undómiel's jewel, white as starlight.",
-            List.of("Combine with a honey bottle", "at a Smithing Table."),
+            List.of("Combine with diamond or netherite armor,", "a sword or a honey bottle at a Smithing Table."),
             new RecipeChoice.MaterialChoice(Material.ENDER_PEARL),
             new RecipeChoice.MaterialChoice(Material.GLOW_INK_SAC));
 
     public static final RaceTemplate MATHOM = new RaceTemplate("mathom",
             "Mathom", TextColor.color(0x8DB255), Material.BUNDLE,
             "Too good to throw away, too odd to use; until now.",
-            List.of("Combine with diamond or netherite", "armor at a Smithing Table."),
+            List.of("Combine with diamond or netherite armor,", "a sword or a stick at a Smithing Table."),
             new RecipeChoice.MaterialChoice(Material.PUMPKIN_PIE),
             new RecipeChoice.MaterialChoice(Material.IRON_INGOT));
 
     public static final RaceTemplate WHITE_HAND = new RaceTemplate("white_hand",
             "White Hand", TextColor.color(0xF2F2F2), Material.WHITE_DYE,
             "The sign of Saruman, daubed on Uruk shields.",
-            List.of("Combine with a diamond or netherite", "sword at a Smithing Table."),
+            List.of("Combine with diamond or netherite armor,", "a sword or a glass bottle at a Smithing Table."),
             new RecipeChoice.MaterialChoice(Material.COAL_BLOCK),
             new RecipeChoice.MaterialChoice(Material.WHITE_DYE));
 

@@ -1,6 +1,8 @@
 package dev.grapeofwrath.ardanborn.weapons;
 
 import dev.grapeofwrath.ardanborn.armor.CustomItems;
+import dev.grapeofwrath.ardanborn.armor.effects.LoreWiseEffect;
+import dev.grapeofwrath.ardanborn.items.ItemPower;
 import dev.grapeofwrath.ardanborn.origins.OriginAbilities;
 import dev.grapeofwrath.ardanborn.origins.OriginCheck;
 import io.papermc.paper.datacomponent.DataComponentTypes;
@@ -107,12 +109,11 @@ public final class PhialOfGaladriel implements ToolUpgrade, Listener {
         phial.setData(DataComponentTypes.LORE, ItemLore.lore()
                 .addLine(Component.text("A light to you in dark places.", NamedTextColor.GRAY))
                 .addLine(Component.empty())
-                .addLine(ToolUpgrade.lore("Right-click: reveal monsters within 10,", NamedTextColor.BLUE))
-                .addLine(ToolUpgrade.lore("drive back spiders, lift darkness (60s)", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("Right-click: reveal monsters,", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("drive back spiders, lift darkness", NamedTextColor.BLUE))
                 .addLine(ToolUpgrade.lore("Off-hand: lights the way", NamedTextColor.BLUE))
                 .addLine(Component.empty())
-                .addLine(ToolUpgrade.lore("Noldor: range 16, frees allies", NamedTextColor.GOLD))
-                .addLine(ToolUpgrade.lore("from darkness too (40s)", NamedTextColor.GOLD))
+                .addLine(ToolUpgrade.lore("Noldor: stronger, and frees allies", NamedTextColor.GOLD))
                 .build());
         CustomItems.tag(phial, ID);
         return phial;
@@ -132,10 +133,11 @@ public final class PhialOfGaladriel implements ToolUpgrade, Listener {
         if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
         if (!is(event.getItem())) return;
         event.setCancelled(true);
-        if (event.getHand() != EquipmentSlot.HAND) return;
+        if (event.getHand() != EquipmentSlot.HAND || !ItemPower.enabled(ID)) return;
         Player player = event.getPlayer();
         boolean noldor = OriginCheck.is(player, OriginCheck.NOLDOR);
-        if (!cooldown.tryUse(player, noldor ? NOLDOR_COOLDOWN_MS : COOLDOWN_MS)) return;
+        if (!cooldown.tryUse(player,
+                LoreWiseEffect.shorten(player, noldor ? NOLDOR_COOLDOWN_MS : COOLDOWN_MS))) return;
         raise(player, noldor ? NOLDOR_RANGE : RANGE, noldor);
     }
 
@@ -154,7 +156,7 @@ public final class PhialOfGaladriel implements ToolUpgrade, Listener {
             if (!(near instanceof Monster monster)) continue;
             monster.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 200, 0, true, false, true));
             if (monster instanceof Spider || monster instanceof CaveSpider) {
-                monster.damage(SPIDER_DAMAGE, light);
+                monster.damage(ItemPower.amount(ID, SPIDER_DAMAGE), light);
                 monster.setTarget(null);
                 Vector away = monster.getLocation().toVector().subtract(player.getLocation().toVector()).setY(0);
                 if (away.lengthSquared() > 0) monster.setVelocity(away.normalize().multiply(1.4).setY(0.4));
@@ -172,7 +174,7 @@ public final class PhialOfGaladriel implements ToolUpgrade, Listener {
     private void updateLights() {
         Set<UUID> holders = new HashSet<>();
         for (Player holder : Bukkit.getOnlinePlayers()) {
-            if (!is(holder.getInventory().getItemInOffHand())) continue;
+            if (!ItemPower.enabled(ID) || !is(holder.getInventory().getItemInOffHand())) continue;
             Location spot = lightSpot(holder);
             if (spot == null) continue;
             holders.add(holder.getUniqueId());

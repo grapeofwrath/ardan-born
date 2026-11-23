@@ -3,7 +3,11 @@ package dev.grapeofwrath.ardanborn.armor.sets;
 import dev.grapeofwrath.ardanborn.armor.ArmorSet;
 import dev.grapeofwrath.ardanborn.armor.ArmorTier;
 import dev.grapeofwrath.ardanborn.armor.SetEffect;
+import dev.grapeofwrath.ardanborn.armor.effects.BoughRunnerEffect;
 import dev.grapeofwrath.ardanborn.armor.effects.ElusiveEffect;
+import dev.grapeofwrath.ardanborn.armor.effects.FarSightedEffect;
+import dev.grapeofwrath.ardanborn.armor.effects.GaladhrimVolleyEffect;
+import dev.grapeofwrath.ardanborn.armor.effects.LeafLightEffect;
 import dev.grapeofwrath.ardanborn.weapons.RaceTemplate;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Color;
@@ -15,12 +19,16 @@ import org.bukkit.plugin.Plugin;
 import java.util.Optional;
 
 /// The Galadhrim of Lothlórien: an armor set made to complement the Sindar origin. Made with the Mallorn
-/// Leaf, the Sindar's template. So far only the chestplate, the Cloak of Lórien, has an effect.
+/// Leaf, the Sindar's template. The chestplate is the Cloak of Lórien.
 public final class LorienSet implements ArmorSet {
     public static final String ID = "lorien";
     private static final TextColor COLOR = TextColor.color(0x9DB58A);
 
     private final ElusiveEffect elusive = new ElusiveEffect(ID);
+    private final FarSightedEffect farSighted = new FarSightedEffect(ID);
+    private final LeafLightEffect leafLight = new LeafLightEffect(ID);
+    private final BoughRunnerEffect boughRunner = new BoughRunnerEffect(ID);
+    private final GaladhrimVolleyEffect galadhrimVolley = new GaladhrimVolleyEffect(ID);
 
     @Override
     public String id() {
@@ -66,6 +74,17 @@ public final class LorienSet implements ArmorSet {
 
     @Override
     public Optional<SetEffect> pieceEffect(EquipmentSlot slot) {
-        return slot == EquipmentSlot.CHEST ? Optional.of(elusive) : Optional.empty();
+        return switch (slot) {
+            case HEAD -> Optional.of(farSighted);
+            case CHEST -> Optional.of(elusive);
+            case LEGS -> Optional.of(leafLight);
+            case FEET -> Optional.of(boughRunner);
+            default -> Optional.empty();
+        };
+    }
+
+    @Override
+    public Optional<SetEffect> fullSetBonus() {
+        return Optional.of(galadhrimVolley);
     }
 }

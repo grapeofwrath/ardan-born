@@ -7,8 +7,8 @@ import dev.grapeofwrath.ardanborn.afflictions.MorgulWound;
 import dev.grapeofwrath.ardanborn.armor.ArmorEffectManager;
 import dev.grapeofwrath.ardanborn.armor.ArmorSets;
 import dev.grapeofwrath.ardanborn.armor.ArmorSmithingListener;
-import dev.grapeofwrath.ardanborn.Keys;
 import dev.grapeofwrath.ardanborn.armor.RecipeGuardListener;
+import dev.grapeofwrath.ardanborn.items.ItemPower;
 import dev.grapeofwrath.ardanborn.items.rings.Rings;
 import dev.grapeofwrath.ardanborn.origins.OriginAbilities;
 import dev.grapeofwrath.ardanborn.origins.OriginFiles;
@@ -22,6 +22,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Set;
 
 /// Origins-Reborn addon (namespace "ardanborn") plus the custom armor sets.
 ///
@@ -62,6 +63,8 @@ public final class ArdanBorn extends OriginsAddon {
             }
         }, 20L, 20L);
 
+        saveDefaultConfig();
+        ItemPower.load(getConfig());
         ArmorSets.registerAll(this);
         armorEffects = new ArmorEffectManager(this);
         var pm = getServer().getPluginManager();
@@ -71,7 +74,9 @@ public final class ArdanBorn extends OriginsAddon {
         ToolUpgrades.registerAll(this);
         Runes.registerAll(this);
         Rings.registerAll(this);
-        saveDefaultConfig();
+        Set<String> ids = ArmorSets.effectIds();
+        ids.addAll(ToolUpgrades.ids());
+        ItemPower.warnUnknown(ids, getLogger());
         MorgulWound.register(this);
         Athelas.register(this);
         armorEffects.start();

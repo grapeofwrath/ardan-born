@@ -3,12 +3,12 @@ package dev.grapeofwrath.ardanborn.armor.effects;
 import dev.grapeofwrath.ardanborn.armor.ArmorTier;
 import dev.grapeofwrath.ardanborn.armor.CustomArmor;
 import dev.grapeofwrath.ardanborn.armor.SetEffect;
+import dev.grapeofwrath.ardanborn.items.ItemPower;
 import dev.grapeofwrath.ardanborn.origins.OriginAbilities;
 import dev.grapeofwrath.ardanborn.origins.OriginCheck;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Particle;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
@@ -22,7 +22,6 @@ import org.bukkit.potion.PotionEffectType;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 /// Chestplate (the Cloak of Lórien): a mob's blow or arrow sometimes passes through only leaves. Sindar
 /// leave the attacker tangled.
@@ -37,6 +36,13 @@ public final class ElusiveEffect implements SetEffect, Listener {
         this.setId = setId;
     }
 
+    private static final String EFFECT_ID = "elusive";
+
+    @Override
+    public String id() {
+        return EFFECT_ID;
+    }
+
     @Override
     public String name() {
         return "Elusive";
@@ -45,9 +51,9 @@ public final class ElusiveEffect implements SetEffect, Listener {
     @Override
     public List<Component> describe(ArmorTier tier) {
         return List.of(
-                Component.text("10% chance a mob's blow or arrow"),
-                Component.text("misses you (15% in woodland)"),
-                Component.text("Sindar: the attacker is tangled"));
+                Component.text("Mobs sometimes miss you,"),
+                Component.text("more often in woodland"),
+                Component.text("Sindar: tangles the attacker"));
     }
 
     /// Runs early, so cancelling stops the damage before other plugins and powers react to it.
@@ -56,9 +62,9 @@ public final class ElusiveEffect implements SetEffect, Listener {
         if (!(event.getEntity() instanceof Player player)) return;
         Mob attacker = attackingMob(event.getDamager());
         if (attacker == null) return;
-        if (CustomArmor.wornTier(player, EquipmentSlot.CHEST, setId) == null) return;
+        if (!ItemPower.enabled(EFFECT_ID) || CustomArmor.wornTier(player, EquipmentSlot.CHEST, setId) == null) return;
         double chance = OriginAbilities.inWoodland(player) ? WOODLAND_CHANCE : CHANCE;
-        if (ThreadLocalRandom.current().nextDouble() >= chance) return;
+        if (!ItemPower.roll(EFFECT_ID, chance)) return;
 
         event.setCancelled(true);
         if (event.getDamager() instanceof Projectile projectile) projectile.remove();

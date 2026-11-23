@@ -3,6 +3,7 @@ package dev.grapeofwrath.ardanborn.weapons;
 import dev.grapeofwrath.ardanborn.Keys;
 import dev.grapeofwrath.ardanborn.armor.ArmorSets;
 import dev.grapeofwrath.ardanborn.armor.CustomItems;
+import dev.grapeofwrath.ardanborn.items.ItemPower;
 import dev.grapeofwrath.ardanborn.origins.OriginCheck;
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import io.papermc.paper.datacomponent.item.CustomModelData;
@@ -38,7 +39,7 @@ public final class SpearOfTheHavens implements ToolUpgrade, Listener {
     public static final String TEMPLATE_ID = "pearl_of_osse";
     public static final String SPEAR_ID = "spear_of_the_havens";
     /// Extra damage for Teleri wielders.
-    private static final double TELERI_BONUS = 1.15;
+    private static final double TELERI_BONUS = 0.15;
     private static final TextColor COLOR = TextColor.color(0x7FD8E6);
 
     @Override
@@ -78,7 +79,7 @@ public final class SpearOfTheHavens implements ToolUpgrade, Listener {
                         .decoration(TextDecoration.ITALIC, true))
                 .addLine(Component.empty())
                 .addLine(ToolUpgrade.lore("Combine with diamond or netherite", NamedTextColor.BLUE))
-                .addLine(ToolUpgrade.lore("armor or a trident at a Smithing Table.", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("armor, a trident or a lead at a Smithing Table.", NamedTextColor.BLUE))
                 .build());
         CustomItems.tag(item, TEMPLATE_ID);
         return item;
@@ -111,7 +112,7 @@ public final class SpearOfTheHavens implements ToolUpgrade, Listener {
                 .addLine(ToolUpgrade.lore("Channeling calls lightning on", NamedTextColor.BLUE))
                 .addLine(ToolUpgrade.lore("foes in water or rain", NamedTextColor.BLUE))
                 .addLine(Component.empty())
-                .addLine(ToolUpgrade.lore("Teleri: +15% damage", NamedTextColor.DARK_AQUA))
+                .addLine(ToolUpgrade.lore("Teleri: extra damage", NamedTextColor.DARK_AQUA))
                 .build());
         // Being tagged also keeps it out of the crafting grid's repair recipe, which would strip it.
         CustomItems.tag(spear, SPEAR_ID);
@@ -121,6 +122,7 @@ public final class SpearOfTheHavens implements ToolUpgrade, Listener {
     /// Always returns: a thrown spear without Loyalty flies back as if it had Loyalty I.
     @EventHandler(ignoreCancelled = true)
     public void onThrow(ProjectileLaunchEvent event) {
+        if (!ItemPower.enabled(SPEAR_ID)) return;
         if (!(event.getEntity() instanceof Trident trident)) return;
         if (!is(trident.getItemStack())) return;
         if (trident.getLoyaltyLevel() == 0) trident.setLoyaltyLevel(1);
@@ -128,6 +130,7 @@ public final class SpearOfTheHavens implements ToolUpgrade, Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onHit(EntityDamageByEntityEvent event) {
+        if (!ItemPower.enabled(SPEAR_ID)) return;
         Player wielder;
         ItemStack spear;
         if (event.getDamager() instanceof Trident trident && trident.getShooter() instanceof Player thrower) {
@@ -142,7 +145,7 @@ public final class SpearOfTheHavens implements ToolUpgrade, Listener {
             return;
         }
         if (is(spear) && OriginCheck.is(wielder, OriginCheck.TELERI)) {
-            event.setDamage(event.getDamage() * TELERI_BONUS);
+            event.setDamage(event.getDamage() * ItemPower.bonus(SPEAR_ID, TELERI_BONUS));
         }
     }
 

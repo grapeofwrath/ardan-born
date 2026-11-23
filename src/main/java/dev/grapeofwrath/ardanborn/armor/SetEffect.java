@@ -10,6 +10,9 @@ import java.util.List;
 /// Effects that also implement [org.bukkit.event.Listener] are registered automatically.
 public interface SetEffect {
 
+    /// Stable id, used in the config (`race-items`). Never change it once released.
+    String id();
+
     /// Short name shown in item lore, e.g. "Snowtread".
     String name();
 

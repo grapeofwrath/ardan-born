@@ -27,6 +27,13 @@ public final class HawkSightEffect implements SetEffect {
 
     private final Map<UUID, Integer> counters = new HashMap<>();
 
+    private static final String EFFECT_ID = "hawk_sight";
+
+    @Override
+    public String id() {
+        return EFFECT_ID;
+    }
+
     @Override
     public String name() {
         return "Hawk-sight";
@@ -35,9 +42,9 @@ public final class HawkSightEffect implements SetEffect {
     @Override
     public List<Component> describe(ArmorTier tier) {
         return List.of(
-                Component.text("Hostile creatures you look at glow"),
-                Component.text("Use in hand to zoom like a spyglass"),
-                Component.text("Eagles: see in the dark above Y " + HIGH_ALTITUDE));
+                Component.text("Monsters you look at glow"),
+                Component.text("Use in hand to zoom"),
+                Component.text("Eagles: see in the dark up high"));
     }
 
     @Override

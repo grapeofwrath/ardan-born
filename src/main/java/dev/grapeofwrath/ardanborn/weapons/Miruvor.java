@@ -1,6 +1,7 @@
 package dev.grapeofwrath.ardanborn.weapons;
 
 import dev.grapeofwrath.ardanborn.armor.CustomItems;
+import dev.grapeofwrath.ardanborn.items.ItemPower;
 import dev.grapeofwrath.ardanborn.origins.OriginCheck;
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import io.papermc.paper.datacomponent.item.CustomModelData;
@@ -70,11 +71,10 @@ public final class Miruvor implements ToolUpgrade, Listener {
         draught.setData(DataComponentTypes.LORE, ItemLore.lore()
                 .addLine(Component.text("The cordial of Imladris.", NamedTextColor.GRAY))
                 .addLine(Component.empty())
-                .addLine(ToolUpgrade.lore("Fills your hunger, Regeneration II", NamedTextColor.BLUE))
-                .addLine(ToolUpgrade.lore("for 8s, lifts Slowness, Weakness", NamedTextColor.BLUE))
-                .addLine(ToolUpgrade.lore("and Mining Fatigue", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("Fills your hunger, heals you", NamedTextColor.BLUE))
+                .addLine(ToolUpgrade.lore("and lifts weariness", NamedTextColor.BLUE))
                 .addLine(Component.empty())
-                .addLine(ToolUpgrade.lore("Peredhil: Regeneration lasts 16s", NamedTextColor.GOLD))
+                .addLine(ToolUpgrade.lore("Peredhil: heals for longer", NamedTextColor.GOLD))
                 .build());
         CustomItems.tag(draught, ID);
         return draught;
@@ -82,7 +82,7 @@ public final class Miruvor implements ToolUpgrade, Listener {
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onDrinkEvent(PlayerItemConsumeEvent event) {
-        if (!is(event.getItem())) return;
+        if (!ItemPower.enabled(ID) || !is(event.getItem())) return;
         Player player = event.getPlayer();
         boolean peredhil = OriginCheck.is(player, OriginCheck.PEREDHIL);
         player.setFoodLevel(20);

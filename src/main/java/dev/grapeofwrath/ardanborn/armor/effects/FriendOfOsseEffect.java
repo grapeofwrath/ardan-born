@@ -3,6 +3,7 @@ package dev.grapeofwrath.ardanborn.armor.effects;
 import dev.grapeofwrath.ardanborn.armor.ArmorTier;
 import dev.grapeofwrath.ardanborn.armor.CustomArmor;
 import dev.grapeofwrath.ardanborn.armor.SetEffect;
+import dev.grapeofwrath.ardanborn.items.ItemPower;
 import dev.grapeofwrath.ardanborn.origins.OriginCheck;
 import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Entity;
@@ -43,6 +44,13 @@ public final class FriendOfOsseEffect implements SetEffect, Listener {
         this.setId = setId;
     }
 
+    private static final String EFFECT_ID = "friend_of_osse";
+
+    @Override
+    public String id() {
+        return EFFECT_ID;
+    }
+
     @Override
     public String name() {
         return "Friend of Ossë";
@@ -51,8 +59,8 @@ public final class FriendOfOsseEffect implements SetEffect, Listener {
     @Override
     public List<Component> describe(ArmorTier tier) {
         return List.of(
-                Component.text("Drowned, guardians and pufferfish"),
-                Component.text("leave you be unless you strike first"),
+                Component.text("Sea creatures leave you be"),
+                Component.text("unless you strike first"),
                 Component.text("Teleri: swift swimming"));
     }
 
@@ -64,7 +72,7 @@ public final class FriendOfOsseEffect implements SetEffect, Listener {
     }
 
     private boolean protects(Player player) {
-        if (CustomArmor.wornTier(player, EquipmentSlot.HEAD, setId) == null) return false;
+        if (!ItemPower.enabled(EFFECT_ID) || CustomArmor.wornTier(player, EquipmentSlot.HEAD, setId) == null) return false;
         Long struck = lastStruck.get(player.getUniqueId());
         return struck == null || System.currentTimeMillis() - struck > PROVOKED_MS;
     }
