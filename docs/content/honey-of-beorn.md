@@ -3,11 +3,11 @@ title: "Honey of Beorn"
 ---
 *From the hives of Beorn's hall.* The Beornings' template, made to suit the [Beorning](ancestries.md#beorning-skin-changer). It makes the **Carrock armor**, the **Hunting Bow** and the **Skin-changer's Claw**.
 
-Like every race item, anyone can use these; Beornings get extra.
+Like every [race item](race-items.md), anyone can use these; Beornings get extra.
 
 ## Crafting the Honey of Beorn
 
-Shaped recipe in a crafting table. It also shows in the recipe book.
+Shaped recipe in a crafting table. See [Templates](race-items.md#templates).
 
 | | | |
 |:-:|:-:|:-:|
@@ -19,7 +19,7 @@ The Honey of Beorn looks like glinting honeycomb. It can't be used in any other 
 
 ## Carrock armor
 
-At a **smithing table**, put the Honey of Beorn with a **diamond or netherite** armor piece (and nothing in the third slot). Pieces work like the [Arkenstone armor](arkenstone.md#arkenstone-armor): they keep enchantments, trim, damage and name, and can be upgraded to netherite.
+Made at a smithing table from the Honey of Beorn and any **diamond or netherite** armor piece. See [Armor](race-items.md#armor) for making, repairing and upgrading it.
 
 | Piece | Effect |
 |---|---|
@@ -31,12 +31,7 @@ At a **smithing table**, put the Honey of Beorn with a **diamond or netherite** 
 
 ## Hunting Bow
 
-At a **smithing table**, put the Honey of Beorn with a **bow** (and nothing in the third slot).
-
-- It keeps its enchantments, damage and any custom name.
-- It's still a normal bow, so it can be enchanted and repaired at an anvil.
-- Applying the Honey to a bow that's already upgraded does nothing.
-- The bow can't be used in crafting recipes, because those would strip its upgrade.
+Made at a smithing table from the Honey of Beorn and a **bow**. See [Weapons](race-items.md#weapons).
 
 | Who | Effect |
 |---|---|
@@ -48,7 +43,7 @@ At a **smithing table**, put the Honey of Beorn with a **bow** (and nothing in t
 
 ## Skin-changer's Claw
 
-At a **smithing table**, put the Honey of Beorn with a **flint** (and nothing in the third slot). Right-click with it in your main hand to use it. It doesn't stack and isn't used up.
+Made at a smithing table from the Honey of Beorn and a **flint**. See [Tools](race-items.md#tools).
 
 | Who | Effect |
 |---|---|

@@ -11,7 +11,7 @@ Each **melee hit** from an eligible mob has a **10% chance** to wound you. You c
 - **Without it:** wither skeletons can wound.
 - Either way, the **Servants of the Enemy** and **Ringwraiths** can always wound, and far more often: **50%** of their melee hits. They come for those who carry the [Rings of Power](rings-of-power.md#those-who-hunt-the-rings).
 
-Undead are zombies and their kin, skeletons and their kin, the Wither, phantoms, zoglins, zombified piglins and undead horses. Server owners can change the chance and the level; see [Configuration](configuration.md#morgul-wound).
+See [what counts as undead](lore-and-items.md#undead). Server owners can change the chance and the level; see [Configuration](configuration.md#morgul-wound).
 
 ## The stages
 

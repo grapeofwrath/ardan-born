@@ -1,7 +1,7 @@
 {{- /* Build-time check that data/nav.toml and content/ list the same pages. Runs once, from the home page. */ -}}
 {{- $listed := slice -}}
 {{- range hugo.Data.nav.top }}{{ $listed = $listed | append . }}{{ end -}}
-{{- range hugo.Data.nav.group }}{{ range .pages }}{{ $listed = $listed | append . }}{{ end }}{{ end -}}
+{{- range hugo.Data.nav.group }}{{ $listed = $listed | append .page }}{{ range .pages }}{{ $listed = $listed | append . }}{{ end }}{{ end -}}
 {{- $seen := dict -}}
 {{- range $listed }}
   {{- with site.GetPage . }}{{ $seen = merge $seen (dict .RelPermalink true) }}{{ else }}{{ errorf "data/nav.toml lists %q, but there is no such page" . }}{{ end }}

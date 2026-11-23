@@ -1,4 +1,4 @@
-{{- /* Sidebar from data/nav.toml: plain top links, then each group as a dropdown. */ -}}
+{{- /* Sidebar from data/nav.toml: plain top links, then each group: its category page, with its pages listed beneath. */ -}}
 {{- $current := . -}}
 <nav class="sidebar" aria-label="Contents">
   <div id="search" class="search"></div>
@@ -8,15 +8,11 @@
     {{- end }}
   </ul>
   {{- range hugo.Data.nav.group }}
-  {{- $open := false }}
-  {{- range .pages }}{{ with site.GetPage . }}{{ if .Eq $current }}{{ $open = true }}{{ end }}{{ end }}{{ end }}
-  <details class="nav-group"{{ if $open }} open{{ end }}>
-    <summary>{{ .name }}</summary>
-    <ul>
-      {{- range .pages }}
-      {{ partial "nav-item.html" (dict "path" . "current" $current) }}
-      {{- end }}
-    </ul>
-  </details>
+  <ul class="nav-group">
+    {{ partial "nav-item.html" (dict "path" .page "current" $current) }}
+    {{- range .pages }}
+    {{ partial "nav-item.html" (dict "path" . "current" $current) }}
+    {{- end }}
+  </ul>
   {{- end }}
 </nav>

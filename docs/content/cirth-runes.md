@@ -57,9 +57,9 @@ When an item is full, a new rune **replaces the oldest**. A diamond item with a 
 
 ### Details
 
-- **Undead** for Westernesse are zombies and their kin, skeletons and their kin, the Wither, phantoms, zoglins, zombified piglins and undead horses.
+- **Westernesse** works on all the [undead](lore-and-items.md#undead).
 - **Frost** on a bow is carried by the arrow, so it still applies if you switch weapons before it lands.
 - **Harvest** works on wheat, carrots, potatoes, beetroots and nether wart. Protection plugins are respected.
-- **Vein** breaks each block as if you'd mined it yourself: protection plugins, Fortune, Silk Touch, Delving and a [Ring of the Seven](rings-of-power.md) all apply, and each block costs the pickaxe durability as normal. It stops if the pickaxe breaks. Ores are coal, iron, copper, gold, redstone, lapis, diamond, emerald and nether quartz ore.
+- **Vein** breaks each block as if you'd mined it yourself: protection plugins, Fortune, Silk Touch, Delving and a [Ring of the Seven](rings-of-power.md) all apply, and each block costs the pickaxe durability as normal. It stops if the pickaxe breaks. See [which ores count](lore-and-items.md#ores).
 
 A resource pack can give rune-stones their own look via `custom_model_data` strings `rune_stone_<rune>`, e.g. `rune_stone_westernesse`.

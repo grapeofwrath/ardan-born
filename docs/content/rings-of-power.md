@@ -39,7 +39,7 @@ The Three and the One are **unique**: only one of each exists at a time. See [Un
 | **Vilya**, the Ring of Air | Speed I and Slow Falling; every 5 seconds you and players within 8 blocks heal 1 heart. | 0.25 |
 | **The One Ring** | Strength II and Resistance I; monsters more than 6 blocks away don't notice you; and Deathless (+40 Shadow). | 2 |
 
-- Ores for the Seven are coal, iron, copper, gold, redstone, lapis, diamond, emerald and nether quartz ore. Silk Touch drops aren't multiplied.
+- For the Seven, see [which ores count](lore-and-items.md#ores). Silk Touch drops aren't multiplied.
 - Deathless doesn't save you from the void or `/kill`.
 - The wraith-world stops monsters from noticing you; one that you attack can still fight back.
 

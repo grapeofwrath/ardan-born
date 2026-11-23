@@ -1,17 +1,18 @@
 # Sidebar order, and the order the prev/next arrows walk. Every page in content/ must be listed once.
+# A group's `page` is its category page: the sidebar heading links to it, and it comes before its `pages`.
 top = ["/", "/installation", "/configuration", "/commands"]
 
 [[group]]
-name = "Origins"
+page = "/origins"
 pages = ["/ancestries", "/classes", "/sizes", "/powers"]
 
 [[group]]
-name = "Race items"
+page = "/race-items"
 pages = [
   "/arkenstone", "/pearl-of-osse", "/feather-of-thorondor", "/honey-of-beorn", "/light-of-the-trees",
   "/mallorn-leaf", "/star-of-elendil", "/evenstar", "/mathom", "/white-hand",
 ]
 
 [[group]]
-name = "Lore and items"
+page = "/lore-and-items"
 pages = ["/cirth-runes", "/rings-of-power", "/morgul-wound"]

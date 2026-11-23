@@ -3,11 +3,11 @@ title: "Mallorn Leaf"
 ---
 *Gold from the trees of Lothlórien.* The Sindar's template, made to suit the [Sindar](ancestries.md#sindar-wood-elf). It makes the **Lórien armor**, the **Bow of the Galadhrim** and **Hithlain**.
 
-Like every race item, anyone can use these; the Sindar get extra.
+Like every [race item](race-items.md), anyone can use these; the Sindar get extra.
 
 ## Crafting the Mallorn Leaf
 
-Shaped recipe in a crafting table. It also shows in the recipe book.
+Shaped recipe in a crafting table. See [Templates](race-items.md#templates).
 
 | | | |
 |:-:|:-:|:-:|
@@ -19,7 +19,7 @@ Any kind of leaves works. The Mallorn Leaf can't be used in any other recipe.
 
 ## Lórien armor
 
-At a **smithing table**, put the Mallorn Leaf with a **diamond or netherite** armor piece (and nothing in the third slot). Pieces work like the [Arkenstone armor](arkenstone.md#arkenstone-armor): they keep enchantments, trim, damage and name, and can be upgraded to netherite.
+Made at a smithing table from the Mallorn Leaf and any **diamond or netherite** armor piece. See [Armor](race-items.md#armor) for making, repairing and upgrading it.
 
 | Piece | Effect |
 |---|---|
@@ -38,7 +38,7 @@ At a **smithing table**, put the Mallorn Leaf with a **diamond or netherite** ar
 
 ## Bow of the Galadhrim
 
-At a **smithing table**, put the Mallorn Leaf with a **bow** (and nothing in the third slot). It keeps its enchantments, damage and name.
+Made at a smithing table from the Mallorn Leaf and a **bow**. See [Weapons](race-items.md#weapons).
 
 | Who | Effect |
 |---|---|
@@ -47,7 +47,7 @@ At a **smithing table**, put the Mallorn Leaf with a **bow** (and nothing in the
 
 ## Hithlain
 
-*The grey rope of Lórien.* At a **smithing table**, put the Mallorn Leaf with a **lead** (and nothing in the third slot). Right-click with it in your main hand to use it. It doesn't stack and isn't used up.
+*The grey rope of Lórien.* Made at a smithing table from the Mallorn Leaf and a **lead**. See [Tools](race-items.md#tools).
 
 | Who | Effect |
 |---|---|

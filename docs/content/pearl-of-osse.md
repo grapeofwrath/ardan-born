@@ -3,11 +3,11 @@ title: "Pearl of Ossë"
 ---
 *A pearl of the shores of Alqualondë, gift of Ossë.* The Teleri's template, made to suit the [Teleri](ancestries.md#teleri-sea-elf). It makes the **Alqualondë armor**, the **Spear of the Havens** and the **Net of the Havens**.
 
-Like every race item, anyone can use these; Teleri get extra.
+Like every [race item](race-items.md), anyone can use these; Teleri get extra.
 
 ## Crafting the Pearl of Ossë
 
-Shaped recipe in a crafting table. It also shows in the recipe book.
+Shaped recipe in a crafting table. See [Templates](race-items.md#templates).
 
 | | | |
 |:-:|:-:|:-:|
@@ -19,7 +19,7 @@ The Pearl of Ossë looks like a Heart of the Sea. It can't be used in any other 
 
 ## Alqualondë armor
 
-At a **smithing table**, put the Pearl of Ossë with a **diamond or netherite** armor piece (and nothing in the third slot). Pieces work like the [Arkenstone armor](arkenstone.md#arkenstone-armor): they keep enchantments, trim, damage and name, and can be upgraded to netherite.
+Made at a smithing table from the Pearl of Ossë and any **diamond or netherite** armor piece. See [Armor](race-items.md#armor) for making, repairing and upgrading it.
 
 | Piece | Effect |
 |---|---|
@@ -38,12 +38,7 @@ The Alqualondë helmet is a **turtle shell with the full diamond or netherite st
 
 ## Spear of the Havens
 
-At a **smithing table**, put the Pearl of Ossë with a **trident** (and nothing in the third slot).
-
-- It keeps its enchantments, damage and any custom name.
-- It's still a normal trident, so it can be enchanted and repaired at an anvil.
-- Applying the Pearl to a spear that's already upgraded does nothing.
-- The spear can't be used in crafting recipes, because those would strip its upgrade.
+Made at a smithing table from the Pearl of Ossë and a **trident**. See [Weapons](race-items.md#weapons).
 
 | Who | Effect |
 |---|---|
@@ -53,7 +48,7 @@ At a **smithing table**, put the Pearl of Ossë with a **trident** (and nothing 
 
 ## Net of the Havens
 
-At a **smithing table**, put the Pearl of Ossë with a **lead** (and nothing in the third slot). Right-click with it in your main hand to use it. It doesn't stack and isn't used up.
+Made at a smithing table from the Pearl of Ossë and a **lead**. See [Tools](race-items.md#tools).
 
 | Who | Effect |
 |---|---|

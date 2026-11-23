@@ -3,11 +3,11 @@ title: "White Hand"
 ---
 *The sign of Saruman, daubed on Uruk shields.* The Uruk-hai's template, made to suit the [Uruk-hai](ancestries.md#uruk-hai-orc). It makes the **Isengard armor**, the **Scimitar of Isengard** and **Orc-draught**.
 
-Like every race item, anyone can use these; the Uruk-hai get extra.
+Like every [race item](race-items.md), anyone can use these; the Uruk-hai get extra.
 
 ## Crafting the White Hand
 
-Shaped recipe in a crafting table. It also shows in the recipe book.
+Shaped recipe in a crafting table. See [Templates](race-items.md#templates).
 
 | | | |
 |:-:|:-:|:-:|
@@ -19,7 +19,7 @@ The White Hand looks like white dye. It can't be used in any other recipe.
 
 ## Isengard armor
 
-At a **smithing table**, put the White Hand with a **diamond or netherite** armor piece (and nothing in the third slot). Pieces work like the [Arkenstone armor](arkenstone.md#arkenstone-armor): they keep enchantments, trim, damage and name, and can be upgraded to netherite.
+Made at a smithing table from the White Hand and any **diamond or netherite** armor piece. See [Armor](race-items.md#armor) for making, repairing and upgrading it.
 
 | Piece | Effect |
 |---|---|
@@ -31,7 +31,7 @@ At a **smithing table**, put the White Hand with a **diamond or netherite** armo
 
 ## Scimitar of Isengard
 
-At a **smithing table**, put the White Hand with a **diamond or netherite sword** (and nothing in the third slot). It keeps its enchantments, damage and name, and can still be upgraded to netherite as usual.
+Made at a smithing table from the White Hand and a **diamond or netherite sword**. See [Weapons](race-items.md#weapons).
 
 | Who | Effect |
 |---|---|
@@ -43,7 +43,7 @@ At a **smithing table**, put the White Hand with a **diamond or netherite sword*
 
 ## Orc-draught
 
-At a **smithing table**, put the White Hand with a **glass bottle** (and nothing in the third slot). Right-click with it in your main hand to use it. It doesn't stack and isn't used up.
+Made at a smithing table from the White Hand and a **glass bottle**. See [Tools](race-items.md#tools).
 
 | Who | Effect |
 |---|---|

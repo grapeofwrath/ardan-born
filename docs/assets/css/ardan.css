@@ -146,21 +146,19 @@ main > * { max-width: 45rem; margin-inline: auto; }
 
 .nav-top { margin-block: .5rem 1rem !important; }
 
-.nav-group { margin-block: .9rem; }
-.nav-group > summary {
-    cursor: pointer;
-    list-style: none;
+/* A category: its page first, in small capitals, with its pages indented beneath. */
+.sidebar .nav-group { margin-block: .9rem; }
+.nav-group > li { padding-inline-start: 1.2em; }
+.nav-group > li:first-child { padding-inline-start: 0; }
+.nav-group > li:first-child > a {
     padding-block: .3rem;
     font-size: .72rem;
     text-transform: uppercase;
     letter-spacing: .25em;
     color: var(--accent-text);
 }
-.nav-group > summary::-webkit-details-marker { display: none; }
-.nav-group > summary::before { content: "▸"; display: inline-block; width: 1.2em; letter-spacing: 0; }
-.nav-group[open] > summary::before { content: "▾"; }
-.nav-group > summary:hover { color: var(--fg); }
-.nav-group > ul { padding-inline-start: 1.2em; }
+.nav-group > li:first-child > a:hover { color: var(--fg); }
+.nav-group > li:first-child.here > a { text-decoration: underline; text-underline-offset: .3em; }
 
 .nav-headings {
     margin: .2rem 0 .4rem !important;

@@ -1,7 +1,7 @@
 {{- /* Previous/next links, walking data/nav.toml in order. */ -}}
 {{- $flat := slice -}}
 {{- range hugo.Data.nav.top }}{{ $flat = $flat | append (site.GetPage .) }}{{ end -}}
-{{- range hugo.Data.nav.group }}{{ range .pages }}{{ $flat = $flat | append (site.GetPage .) }}{{ end }}{{ end -}}
+{{- range hugo.Data.nav.group }}{{ $flat = $flat | append (site.GetPage .page) }}{{ range .pages }}{{ $flat = $flat | append (site.GetPage .) }}{{ end }}{{ end -}}
 {{- $i := -1 -}}
 {{- range $k, $p := $flat }}{{ if $p.Eq $ }}{{ $i = $k }}{{ end }}{{ end -}}
 {{- if ge $i 0 }}

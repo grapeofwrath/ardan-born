@@ -3,11 +3,11 @@ title: "Evenstar"
 ---
 *Undómiel's jewel, white as starlight.* The Peredhil's template, made to suit the [Peredhil](ancestries.md#peredhil-half-elf). It makes the **Imladris armor**, **Hadhafang** and **Miruvor**.
 
-Like every race item, anyone can use these; the Peredhil get extra.
+Like every [race item](race-items.md), anyone can use these; the Peredhil get extra.
 
 ## Crafting the Evenstar
 
-Shaped recipe in a crafting table. It also shows in the recipe book.
+Shaped recipe in a crafting table. See [Templates](race-items.md#templates).
 
 | | | |
 |:-:|:-:|:-:|
@@ -19,7 +19,7 @@ The Evenstar looks like a heart of the sea. It can't be used in any other recipe
 
 ## Imladris armor
 
-At a **smithing table**, put the Evenstar with a **diamond or netherite** armor piece (and nothing in the third slot). Pieces work like the [Arkenstone armor](arkenstone.md#arkenstone-armor): they keep enchantments, trim, damage and name, and can be upgraded to netherite.
+Made at a smithing table from the Evenstar and any **diamond or netherite** armor piece. See [Armor](race-items.md#armor) for making, repairing and upgrading it.
 
 | Piece | Effect |
 |---|---|
@@ -31,7 +31,7 @@ At a **smithing table**, put the Evenstar with a **diamond or netherite** armor 
 
 ## Hadhafang
 
-At a **smithing table**, put the Evenstar with a **diamond or netherite sword** (and nothing in the third slot). It keeps its enchantments, damage and name, and can still be upgraded to netherite as usual.
+Made at a smithing table from the Evenstar and a **diamond or netherite sword**. See [Weapons](race-items.md#weapons).
 
 | Who | Effect |
 |---|---|
@@ -40,7 +40,7 @@ At a **smithing table**, put the Evenstar with a **diamond or netherite sword** 
 
 ## Miruvor
 
-*The cordial of Imladris.* At a **smithing table**, put the Evenstar with a **honey bottle** (and nothing in the third slot). Each Evenstar makes **one** draught.
+*The cordial of Imladris.* Made at a smithing table from the Evenstar and a **honey bottle**. See [Tools](race-items.md#tools). Each Evenstar makes **one** draught.
 
 | Who | Effect when drunk |
 |---|---|

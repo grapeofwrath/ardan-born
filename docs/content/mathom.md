@@ -3,11 +3,11 @@ title: "Mathom"
 ---
 *Too good to throw away, too odd to use; until now.* The Hobbits' template, made to suit the [Hobbit](ancestries.md#hobbit-halfling). It makes the **Mithril armor**, **Sting** and the **Longbottom Pipe**.
 
-Like every race item, anyone can use these; Hobbits get extra.
+Like every [race item](race-items.md), anyone can use these; Hobbits get extra.
 
 ## Crafting the Mathom
 
-Shaped recipe in a crafting table. It also shows in the recipe book.
+Shaped recipe in a crafting table. See [Templates](race-items.md#templates).
 
 | | | |
 |:-:|:-:|:-:|
@@ -19,7 +19,7 @@ The Mathom looks like a bundle. It can't be used in any other recipe.
 
 ## Mithril armor
 
-At a **smithing table**, put the Mathom with a **diamond or netherite** armor piece (and nothing in the third slot). Pieces work like the [Arkenstone armor](arkenstone.md#arkenstone-armor): they keep enchantments, trim, damage and name, and can be upgraded to netherite.
+Made at a smithing table from the Mathom and any **diamond or netherite** armor piece. See [Armor](race-items.md#armor) for making, repairing and upgrading it.
 
 | Piece | Effect |
 |---|---|
@@ -37,7 +37,7 @@ At a **smithing table**, put the Mathom with a **diamond or netherite** armor pi
 
 ## Sting
 
-At a **smithing table**, put the Mathom with a **diamond or netherite sword** (and nothing in the third slot). It keeps its enchantments, damage and name, and can still be upgraded to netherite as usual.
+Made at a smithing table from the Mathom and a **diamond or netherite sword**. See [Weapons](race-items.md#weapons).
 
 | Who | Effect |
 |---|---|
@@ -46,7 +46,7 @@ At a **smithing table**, put the Mathom with a **diamond or netherite sword** (a
 
 ## Longbottom Pipe
 
-At a **smithing table**, put the Mathom with a **stick** (and nothing in the third slot). Right-click with it in your main hand to use it. It doesn't stack and isn't used up.
+Made at a smithing table from the Mathom and a **stick**. See [Tools](race-items.md#tools).
 
 | Who | Effect |
 |---|---|

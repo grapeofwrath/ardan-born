@@ -6,11 +6,11 @@ linkTitle: "Home"
 
 **ArdanBorn** is a Paper plugin for a Tolkien-themed Minecraft server. Server owners should start with [Installation](installation.md) and [Configuration](configuration.md); [Commands](commands.md) covers players and admins. It adds:
 
-- **Origins** for [Origins-Reborn](https://modrinth.com/plugin/origins-reborn): every player picks three, one from each layer, and gets all of their [powers](powers.md).
+- **[Origins](origins.md)** for [Origins-Reborn](https://modrinth.com/plugin/origins-reborn): every player picks three, one from each layer, and gets all of their [powers](powers.md).
   1. [Ancestries](ancestries.md)
   2. [Classes](classes.md)
   3. [Sizes](sizes.md)
-- **Race items** made at a smithing table from each race's template.
+- **[Race items](race-items.md)** made at a smithing table from each race's template.
   - Edain: [Star of Elendil](star-of-elendil.md)
   - Noldor: [Light of the Trees](light-of-the-trees.md)
   - Sindar: [Mallorn Leaf](mallorn-leaf.md)
@@ -21,4 +21,4 @@ linkTitle: "Home"
   - Uruk-hai: [White Hand](white-hand.md)
   - Great Eagle: [Feather of Thorondor](feather-of-thorondor.md)
   - Beorning: [Honey of Beorn](honey-of-beorn.md)
-- **[Cirth Runes](cirth-runes.md)** that Smiths inscribe onto weapons and tools, the cursed **[Rings of Power](rings-of-power.md)**, and the **[Morgul Wound](morgul-wound.md)** that strong undead can inflict.
+- [Lore and items](lore-and-items.md): **[Cirth Runes](cirth-runes.md)** that Smiths inscribe onto weapons and tools, the cursed **[Rings of Power](rings-of-power.md)**, and the **[Morgul Wound](morgul-wound.md)** that strong undead can inflict.

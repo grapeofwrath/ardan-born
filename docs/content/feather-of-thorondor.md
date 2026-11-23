@@ -3,11 +3,11 @@ title: "Feather of Thorondor"
 ---
 *Shed by the King of Eagles.* The Eagles' template, made to suit the [Great Eagle](ancestries.md#great-eagle). It makes the **Thorondor armor**, **Aeglos** and the **Breath of Manwë**.
 
-Like every race item, anyone can use these; Eagles get extra.
+Like every [race item](race-items.md), anyone can use these; Eagles get extra.
 
 ## Crafting the Feather of Thorondor
 
-Shaped recipe in a crafting table. It also shows in the recipe book.
+Shaped recipe in a crafting table. See [Templates](race-items.md#templates).
 
 | | | |
 |:-:|:-:|:-:|
@@ -19,7 +19,7 @@ The Feather of Thorondor looks like a feather. It can't be used in any other rec
 
 ## Thorondor armor
 
-At a **smithing table**, put the Feather with a **diamond or netherite** armor piece (and nothing in the third slot). Pieces work like the [Arkenstone armor](arkenstone.md#arkenstone-armor): they keep enchantments, trim, damage and name, and can be upgraded to netherite.
+Made at a smithing table from the Feather and any **diamond or netherite** armor piece. See [Armor](race-items.md#armor) for making, repairing and upgrading it.
 
 | Piece | Effect |
 |---|---|
@@ -40,7 +40,7 @@ The game only zooms the view while you use a real spyglass, so the Thorondor hel
 
 ## Aeglos
 
-*Snow-point*, the spear of Gil-galad. At a **smithing table**, put the Feather with a **diamond or netherite spear** (and nothing in the third slot). It keeps its enchantments, damage and name, and can still be upgraded to netherite as usual.
+*Snow-point*, the spear of Gil-galad. Made at a smithing table from the Feather and a **diamond or netherite spear**. See [Weapons](race-items.md#weapons).
 
 | Who | Effect |
 |---|---|
@@ -49,7 +49,7 @@ The game only zooms the view while you use a real spyglass, so the Thorondor hel
 
 ## Breath of Manwë
 
-At a **smithing table**, put the Feather with a **breeze rod** (and nothing in the third slot). Right-click with it in your main hand to use it. It doesn't stack and isn't used up.
+Made at a smithing table from the Feather and a **breeze rod**. See [Tools](race-items.md#tools).
 
 | Who | Effect |
 |---|---|

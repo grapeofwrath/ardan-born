@@ -3,11 +3,11 @@ title: "Light of the Trees"
 ---
 *A glimmer of Laurelin and Telperion.* The Noldor's template, made to suit the [Noldor](ancestries.md#noldor-high-elf). It makes the **Gondolin armor**, **Orcrist** and the **Phial of Galadriel**.
 
-Like every race item, anyone can use these; the Noldor get extra.
+Like every [race item](race-items.md), anyone can use these; the Noldor get extra.
 
 ## Crafting the Light of the Trees
 
-Shaped recipe in a crafting table. It also shows in the recipe book.
+Shaped recipe in a crafting table. See [Templates](race-items.md#templates).
 
 | | | |
 |:-:|:-:|:-:|
@@ -19,7 +19,7 @@ The Light of the Trees looks like glinting glowstone dust. It can't be used in a
 
 ## Gondolin armor
 
-At a **smithing table**, put the Light of the Trees with a **diamond or netherite** armor piece (and nothing in the third slot). Pieces work like the [Arkenstone armor](arkenstone.md#arkenstone-armor): they keep enchantments, trim, damage and name, and can be upgraded to netherite.
+Made at a smithing table from the Light of the Trees and any **diamond or netherite** armor piece. See [Armor](race-items.md#armor) for making, repairing and upgrading it.
 
 | Piece | Effect |
 |---|---|
@@ -31,7 +31,7 @@ At a **smithing table**, put the Light of the Trees with a **diamond or netherit
 
 ## Orcrist
 
-At a **smithing table**, put the Light of the Trees with a **diamond or netherite sword** (and nothing in the third slot). It keeps its enchantments, damage and name, and can still be upgraded to netherite as usual.
+Made at a smithing table from the Light of the Trees and a **diamond or netherite sword**. See [Weapons](race-items.md#weapons).
 
 | Who | Effect |
 |---|---|
@@ -40,7 +40,7 @@ At a **smithing table**, put the Light of the Trees with a **diamond or netherit
 
 ## Phial of Galadriel
 
-*A light to you in dark places.* At a **smithing table**, put the Light of the Trees with a **glass bottle** (and nothing in the third slot). The Phial doesn't stack, and it never fills with water.
+*A light to you in dark places.* Made at a smithing table from the Light of the Trees and a **glass bottle**. See [Tools](race-items.md#tools). The Phial doesn't stack, and it never fills with water.
 
 | Who | Effect |
 |---|---|

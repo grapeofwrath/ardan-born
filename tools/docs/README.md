@@ -19,6 +19,7 @@ Pushing to `main` publishes the site (`.github/workflows/docs.yml`). The workflo
 - Every page starts with front matter giving its title: `---` / `title: "Pearl of Ossë"` / `---`. The title becomes the page's heading, so the body starts at `##`.
 - Link to another page by its file, e.g. `[Naugrim](ancestries.md#naugrim-dwarf)`. The build fails on a link to a missing page and warns about a missing `#heading`.
 - A new page must be added to `docs/data/nav.toml`, which sets the sidebar and the order the prev/next arrows walk. The build fails if a page is missing from it.
+- Each sidebar category has its own page (`origins.md`, `race-items.md`, `lore-and-items.md`), set by `page` in `nav.toml`. Information shared by a category goes there; its pages link to it instead of repeating it.
 - Templates are in `docs/layouts/`, styling in `docs/assets/css/ardan.css`.
 
 ## Where the content comes from

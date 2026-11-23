@@ -3,11 +3,11 @@ title: "Star of Elendil"
 ---
 *The Elendilmir, worn by the kings of Arnor.* The Edain's template, made to suit the [Edain](ancestries.md#edain-man). It makes the **Citadel armor**, **Andúril** and the **Horn of Gondor**.
 
-Like every race item, anyone can use these; the Edain get extra.
+Like every [race item](race-items.md), anyone can use these; the Edain get extra.
 
 ## Crafting the Star of Elendil
 
-Shaped recipe in a crafting table. It also shows in the recipe book.
+Shaped recipe in a crafting table. See [Templates](race-items.md#templates).
 
 | | | |
 |:-:|:-:|:-:|
@@ -19,7 +19,7 @@ The Star of Elendil looks like a nether star. It can't be used in any other reci
 
 ## Citadel armor
 
-At a **smithing table**, put the Star of Elendil with a **diamond or netherite** armor piece (and nothing in the third slot). Pieces work like the [Arkenstone armor](arkenstone.md#arkenstone-armor): they keep enchantments, trim, damage and name, and can be upgraded to netherite.
+Made at a smithing table from the Star of Elendil and any **diamond or netherite** armor piece. See [Armor](race-items.md#armor) for making, repairing and upgrading it.
 
 | Piece | Effect |
 |---|---|
@@ -31,7 +31,7 @@ At a **smithing table**, put the Star of Elendil with a **diamond or netherite**
 
 ## Andúril
 
-At a **smithing table**, put the Star of Elendil with a **diamond or netherite sword** (and nothing in the third slot). It keeps its enchantments, damage and name, and can still be upgraded to netherite as usual.
+Made at a smithing table from the Star of Elendil and a **diamond or netherite sword**. See [Weapons](race-items.md#weapons).
 
 | Who | Effect |
 |---|---|
@@ -40,7 +40,7 @@ At a **smithing table**, put the Star of Elendil with a **diamond or netherite s
 
 ## Horn of Gondor
 
-*Blown in need, it is heard far off.* At a **smithing table**, put the Star of Elendil with a **goat horn** of any tune (and nothing in the third slot).
+*Blown in need, it is heard far off.* Made at a smithing table from the Star of Elendil and a **goat horn** of any tune. See [Tools](race-items.md#tools).
 
 | Who | Effect |
 |---|---|

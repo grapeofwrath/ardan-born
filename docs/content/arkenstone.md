@@ -3,11 +3,11 @@ title: "Arkenstone"
 ---
 *The Heart of the Mountain.* The dwarves' template, made to suit the [Naugrim](ancestries.md#naugrim-dwarf). It makes the **Arkenstone armor**, the **Axe of Azaghâl** and the **Arkenstone Pickaxe**.
 
-Like every race item, anyone can use these; Naugrim get extra.
+Like every [race item](race-items.md), anyone can use these; Naugrim get extra.
 
 ## Crafting the Arkenstone
 
-Shaped recipe in a crafting table. It also shows in the recipe book.
+Shaped recipe in a crafting table. See [Templates](race-items.md#templates).
 
 | | | |
 |:-:|:-:|:-:|
@@ -19,19 +19,7 @@ The Arkenstone looks like glowing raw gold. It can't be used in any other recipe
 
 ## Arkenstone armor
 
-At a **smithing table**, put in:
-
-1. the Arkenstone, in the template slot,
-2. a **diamond or netherite** helmet, chestplate, leggings or boots,
-3. nothing in the third slot.
-
-The armor becomes an Arkenstone piece. Each piece therefore comes in two tiers, diamond and netherite. Effects can be stronger on netherite.
-
-- It keeps its enchantments, trim, damage and any custom name.
-- It's still normal armor, so it can be enchanted, trimmed and repaired at an anvil with diamonds (or netherite ingots).
-- A diamond piece can be upgraded to netherite at a smithing table as usual.
-- Applying the Arkenstone to a piece that's already Arkenstone does nothing.
-- Set pieces can't be used in crafting recipes, because those would strip their Arkenstone data. Dyeing is the exception.
+Made at a smithing table from the Arkenstone and any **diamond or netherite** armor piece. See [Armor](race-items.md#armor) for making, repairing and upgrading it. Effects can be stronger on netherite.
 
 | Piece | Effect |
 |---|---|
@@ -51,7 +39,7 @@ In vanilla, only leather boots can walk on powder snow. So Arkenstone boots are 
 
 ## Axe of Azaghâl
 
-At a **smithing table**, put the Arkenstone with a **diamond or netherite axe** (and nothing in the third slot). It keeps its enchantments, damage and name, and can still be upgraded to netherite as usual.
+Made at a smithing table from the Arkenstone and a **diamond or netherite axe**. See [Weapons](race-items.md#weapons).
 
 | Who | Effect |
 |---|---|
@@ -60,7 +48,7 @@ At a **smithing table**, put the Arkenstone with a **diamond or netherite axe** 
 
 ## Arkenstone Pickaxe
 
-At a **smithing table**, put the Arkenstone with a **diamond or netherite pickaxe** (and nothing in the third slot). It keeps its enchantments, damage and name, and can still be upgraded to netherite as usual.
+Made at a smithing table from the Arkenstone and a **diamond or netherite pickaxe**. See [Weapons](race-items.md#weapons).
 
 | Who | Effect |
 |---|---|
