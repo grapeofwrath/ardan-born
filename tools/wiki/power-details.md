@@ -151,7 +151,8 @@ numbers in step with the code (`OriginAbilities.java`) or, for borrowed powers, 
 - Void and `/kill` damage are never reduced.
 
 ## ardanborn:kings_hands
-- **Heal an ally:** sneak and right-click a player with an empty main hand. They get Regeneration II for 8 seconds and are cured of Poison, Wither and a [Morgul wound](Morgul-Wound). 15-second cooldown.
+- **Heal an ally:** sneak and right-click a player with an empty main hand. They get Regeneration II for 8 seconds and are cured of Poison and Wither. 15-second cooldown.
+- **Holding back a wound:** if they carry a [Morgul wound](Morgul-Wound), your touch restarts its timer, so it takes a full stage longer to worsen. It doesn't cure the wound; athelas or miruvor are still needed. Each wounded player can be held back once every 10 minutes, by any Healer.
 - **Channel:** sneak and right-click the air with an empty hand. You and every player within 8 blocks instantly heal 3 hearts, and undead within 8 blocks take 3 hearts of magic damage. 60-second cooldown.
 - Channel's healing counts as magic, so a Peredhil's [Healer of Imladris](#healer-of-imladris) makes it heal 4.5 hearts for them. It doesn't cure Poison or Wither; the ally touch does.
 - The two cooldowns are separate, and your action bar shows the time left.

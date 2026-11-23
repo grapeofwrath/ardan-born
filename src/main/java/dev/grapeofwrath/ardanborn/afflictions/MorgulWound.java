@@ -20,6 +20,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
@@ -30,7 +31,7 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /// The Morgul wound: a cold blade's wound from the servants of the Shadow, which worsens in stages until
-/// a Healer, miruvor or athelas treats it.
+/// athelas or miruvor treats it. A Healer can hold it back for a time.
 ///
 /// Only undead can wound. With LevelledMobs installed, the mob's level (which LevelledMobs keeps in the
 /// mob's persistent data as `levelledmobs:level`) must reach `min-level`; there's no code dependency on
@@ -41,6 +42,9 @@ import java.util.concurrent.ThreadLocalRandom;
 public final class MorgulWound implements Listener {
     private static final NamespacedKey STAGE = Keys.key("morgul_stage");
     private static final NamespacedKey LEFT = Keys.key("morgul_left_ms");
+    private static final NamespacedKey HELD_UNTIL = Keys.key("morgul_held_until");
+    private static final long HOLD_COOLDOWN_MS = 10 * 60_000;
+    private static final double DEATH_EASE_CHANCE = 0.25;
     private static final NamespacedKey LEVELLEDMOBS_LEVEL = new NamespacedKey("levelledmobs", "level");
     private static final int MAX_STAGE = 4;
     private static final List<String> STAGE_NAMES = List.of("",
@@ -51,6 +55,7 @@ public final class MorgulWound implements Listener {
 
     private static boolean enabled = true;
     private static double chance = 0.10;
+    private static double servantChance = 0.50;
     private static int minLevel = 30;
     private static long stageMs = 180_000;
 
@@ -59,6 +64,7 @@ public final class MorgulWound implements Listener {
         if (config != null) {
             enabled = config.getBoolean("enabled", true);
             chance = config.getDouble("chance", 0.10);
+            servantChance = config.getDouble("servant-chance", 0.50);
             minLevel = config.getInt("min-level", 30);
             stageMs = Math.max(1, config.getLong("stage-minutes", 3)) * 60_000;
         }
@@ -101,6 +107,20 @@ public final class MorgulWound implements Listener {
         return true;
     }
 
+    /// A Healer's hands: the wound's timer starts over, but the wound stays. Each wounded player can be held
+    /// back once every [#HOLD_COOLDOWN_MS], whoever the Healer is. Returns false if it's too soon (or there's
+    /// no wound).
+    public static boolean holdBack(Player player) {
+        if (!isWounded(player)) return false;
+        PersistentDataContainer pdc = player.getPersistentDataContainer();
+        long now = System.currentTimeMillis();
+        if (pdc.getOrDefault(HELD_UNTIL, PersistentDataType.LONG, 0L) > now) return false;
+        pdc.set(HELD_UNTIL, PersistentDataType.LONG, now + HOLD_COOLDOWN_MS);
+        pdc.set(LEFT, PersistentDataType.LONG, stageMs);
+        player.sendActionBar(Component.text("Healing hands hold the cold at bay.", NamedTextColor.AQUA));
+        return true;
+    }
+
     /** Miruvor: one stage back, with the timer restarted. A first-stage wound is cured. */
     public static void ease(Player player) {
         int stage = stage(player);
@@ -119,7 +139,8 @@ public final class MorgulWound implements Listener {
         if (!enabled || !(event.getEntity() instanceof Player player)) return;
         if (event.getCause() != EntityDamageEvent.DamageCause.ENTITY_ATTACK) return;
         if (!(event.getDamager() instanceof LivingEntity attacker) || !canWound(attacker)) return;
-        if (isWounded(player) || ThreadLocalRandom.current().nextDouble() >= chance) return;
+        double odds = RingBearer.isServant(attacker) ? servantChance : chance;
+        if (isWounded(player) || ThreadLocalRandom.current().nextDouble() >= odds) return;
         setStage(player, 1);
     }
 
@@ -173,8 +194,24 @@ public final class MorgulWound implements Listener {
         player.addPotionEffect(new PotionEffect(type, 50, amplifier, true, false, true));
     }
 
+    /// Death doesn't cure the wound, so nobody dies on purpose to be rid of it. It may ease a stage (never
+    /// to nothing), and a fading wound always eases, or Wither II would kill the player again on respawn.
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
-        setStage(event.getEntity(), 0);
+        Player player = event.getEntity();
+        int stage = stage(player);
+        if (stage <= 0) return;
+        boolean ease = stage >= MAX_STAGE || ThreadLocalRandom.current().nextDouble() < DEATH_EASE_CHANCE;
+        int next = ease ? Math.max(1, stage - 1) : stage;
+        PersistentDataContainer pdc = player.getPersistentDataContainer();
+        pdc.set(STAGE, PersistentDataType.INTEGER, next);
+        pdc.set(LEFT, PersistentDataType.LONG, stageMs);
+    }
+
+    @EventHandler
+    public void onRespawn(PlayerRespawnEvent event) {
+        if (!isWounded(event.getPlayer())) return;
+        event.getPlayer().sendActionBar(Component.text("The cold blade's wound is still with you.",
+                NamedTextColor.DARK_AQUA).decoration(TextDecoration.ITALIC, true));
     }
 }

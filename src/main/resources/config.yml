@@ -5,6 +5,9 @@ morgul-wound:
   enabled: true
   # Chance per melee hit from an eligible mob (0.10 = 10%).
   chance: 0.10
+  # Chance per melee hit from a Servant of the Enemy or a Ringwraith (sent by a betraying ring, a
+  # new-moon hunt, or the Eye in the Nether).
+  servant-chance: 0.50
   # With LevelledMobs installed: the lowest mob level that can wound. Keep it in step with your
   # LevelledMobs rules. Without LevelledMobs, only wither skeletons and the servants of a betraying
   # Ring of Power can wound.

@@ -8,6 +8,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import dev.grapeofwrath.ardanborn.afflictions.Athelas;
 import dev.grapeofwrath.ardanborn.armor.ArmorSets;
+import dev.grapeofwrath.ardanborn.items.rings.RingType;
 import dev.grapeofwrath.ardanborn.items.rings.Rings;
 import dev.grapeofwrath.ardanborn.weapons.ToolUpgrades;
 import dev.grapeofwrath.ardanborn.weapons.runes.Runes;
@@ -46,6 +47,7 @@ public final class ArdanBornBootstrap implements PluginBootstrap {
                         return Command.SINGLE_SUCCESS;
                     })
                     .then(giveCommand())
+                    .then(ringCommand())
                     .build();
             event.registrar().register(root, "ArdanBorn version and admin commands");
         });
@@ -68,6 +70,35 @@ public final class ArdanBornBootstrap implements PluginBootstrap {
                                 .executes(ctx -> give(ctx, 1))
                                 .then(Commands.argument("amount", IntegerArgumentType.integer(1, 64))
                                         .executes(ctx -> give(ctx, IntegerArgumentType.getInteger(ctx, "amount"))))));
+    }
+
+    /// `/ardanborn ring release <ring>`: sends a unique ring back into the loot pool. Any copy still in
+    /// the world crumbles. For a ring lost somewhere it can't be reached, now that `/kill` can't remove one.
+    private static com.mojang.brigadier.builder.LiteralArgumentBuilder<CommandSourceStack> ringCommand() {
+        return Commands.literal("ring")
+                .requires(source -> source.getSender().hasPermission("ardanborn.rings"))
+                .then(Commands.literal("release")
+                        .then(Commands.argument("ring", StringArgumentType.word())
+                                .suggests((ctx, builder) -> {
+                                    for (RingType type : RingType.values()) {
+                                        if (type.unique() && type.id().startsWith(builder.getRemainingLowerCase())) {
+                                            builder.suggest(type.id());
+                                        }
+                                    }
+                                    return builder.buildFuture();
+                                })
+                                .executes(ctx -> {
+                                    var sender = ctx.getSource().getSender();
+                                    String id = StringArgumentType.getString(ctx, "ring").toLowerCase(Locale.ROOT);
+                                    RingType type = RingType.byId(id);
+                                    if (type == null || !Rings.releaseByCommand(type)) {
+                                        sender.sendMessage(Component.text("Not a unique ring: " + id, NamedTextColor.RED));
+                                        return 0;
+                                    }
+                                    sender.sendMessage(Component.text(type.displayName()
+                                            + " is back in the loot pool. Any existing copy will crumble.", NamedTextColor.GRAY));
+                                    return Command.SINGLE_SUCCESS;
+                                })));
     }
 
     /// Every plugin item obtainable by command: race templates, armor pieces, and tools and weapons.

@@ -10,6 +10,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
@@ -33,6 +34,7 @@ import org.bukkit.inventory.ItemRarity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.util.Vector;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
@@ -60,15 +62,19 @@ public final class Rings implements Listener {
     private static final long ABANDONED_MS = 7L * 24 * 60 * 60 * 1000;
     private static final double COMMON_CHANCE = 0.03;
     private static final double UNIQUE_CHANCE = 0.005;
-    /// Ways an item entity can leave the world that mean the ring is gone.
-    private static final Set<EntityRemoveEvent.Cause> LOST = EnumSet.of(
-            EntityRemoveEvent.Cause.DEATH, EntityRemoveEvent.Cause.DESPAWN, EntityRemoveEvent.Cause.OUT_OF_WORLD,
-            EntityRemoveEvent.Cause.DISCARD, EntityRemoveEvent.Cause.EXPLODE);
+    /// Ways a dropped ring can be removed that it shrugs off: item-clearing plugins, `/kill`, and the like.
+    /// It is put straight back. (Falling out of the world loses it; being picked up or unloaded is normal.)
+    private static final Set<EntityRemoveEvent.Cause> PUT_BACK = EnumSet.of(
+            EntityRemoveEvent.Cause.PLUGIN, EntityRemoveEvent.Cause.DISCARD, EntityRemoveEvent.Cause.DEATH,
+            EntityRemoveEvent.Cause.DESPAWN, EntityRemoveEvent.Cause.EXPLODE, EntityRemoveEvent.Cause.HIT);
+
+    private static Plugin plugin;
 
     private static File dataFile;
     private static final YamlConfiguration DATA = new YamlConfiguration();
 
     public static void registerAll(Plugin plugin) {
+        Rings.plugin = plugin;
         dataFile = new File(plugin.getDataFolder(), "rings.yml");
         if (dataFile.exists()) {
             try {
@@ -152,7 +158,7 @@ public final class Rings implements Listener {
     }
 
     /// The ring is gone: it can be found again, and any copy still around is now stale.
-    static void release(RingType type) {
+    public static void release(RingType type) {
         if (!type.unique()) return;
         DATA.set(type.id() + ".generation", generation(type) + 1);
         DATA.set(type.id() + ".exists", false);
@@ -207,17 +213,14 @@ public final class Rings implements Listener {
     }
 
     /// Unique rings can't burn, blow up or be crushed, with one exception: the One Ring in the Nether's
-    /// fire, where it was made. That is Mount Doom.
+    /// lava, where it was made. That is Mount Doom.
     @EventHandler(priority = EventPriority.HIGH)
     public void onItemDamage(EntityDamageEvent event) {
         if (!(event.getEntity() instanceof Item item)) return;
         RingType type = typeOf(item.getItemStack());
         if (type == null || !type.unique()) return;
-        boolean fire = switch (event.getCause()) {
-            case LAVA, FIRE, FIRE_TICK -> true;
-            default -> false;
-        };
-        if (type == RingType.ONE && fire && item.getWorld().getEnvironment() == World.Environment.NETHER
+        if (type == RingType.ONE && event.getCause() == EntityDamageEvent.DamageCause.LAVA
+                && item.getWorld().getEnvironment() == World.Environment.NETHER
                 && !isStale(item.getItemStack())) {
             event.setCancelled(true);
             mountDoom(item);
@@ -248,7 +251,37 @@ public final class Rings implements Listener {
         ItemStack stack = item.getItemStack();
         RingType type = typeOf(stack);
         if (type == null || !type.unique() || isStale(stack)) return;
-        if (LOST.contains(event.getCause())) release(type);
+        if (event.getCause() == EntityRemoveEvent.Cause.OUT_OF_WORLD) {
+            release(type);
+            return;
+        }
+        // An emptied stack was taken in somewhere (a hopper, a pickup), so there's nothing to put back.
+        if (!PUT_BACK.contains(event.getCause()) || stack.isEmpty()) return;
+        ItemStack copy = stack.clone();
+        Location at = item.getLocation();
+        Bukkit.getScheduler().runTask(plugin, () -> {
+            if (isStale(copy) || at.getWorld() == null) return;
+            Item back = at.getWorld().dropItem(at, copy);
+            back.setVelocity(new Vector());
+            back.setUnlimitedLifetime(true);
+            back.setInvulnerable(true);
+            back.setThrower(item.getThrower());
+        });
+    }
+
+    /// Admin: send a unique ring back into the loot pool. Any copy still around crumbles when next seen.
+    public static boolean releaseByCommand(RingType type) {
+        if (!type.unique()) return false;
+        release(type);
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            if (crumbleStale(player.getInventory())) crumbleMessage(player);
+        }
+        for (World world : Bukkit.getWorlds()) {
+            for (Item item : world.getEntitiesByClass(Item.class)) {
+                if (isStale(item.getItemStack())) item.remove();
+            }
+        }
+        return true;
     }
 
     /// Stale copies crumble on sight: when picked up, when their container opens, when their holder joins.

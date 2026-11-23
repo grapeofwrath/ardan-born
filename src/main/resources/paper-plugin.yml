@@ -37,3 +37,6 @@ permissions:
   ardanborn.give:
     description: Use /ardanborn give to get ArdanBorn custom items
     default: op
+  ardanborn.rings:
+    description: Use /ardanborn ring release to send a unique Ring of Power back into the loot pool
+    default: op

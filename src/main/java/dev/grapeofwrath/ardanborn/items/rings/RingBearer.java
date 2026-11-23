@@ -8,7 +8,6 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
-import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -17,13 +16,17 @@ import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Enemy;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Mob;
 import org.bukkit.entity.Monster;
+import org.bukkit.entity.PigZombie;
+import org.bukkit.entity.PiglinAbstract;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.SkeletonHorse;
 import org.bukkit.entity.WitherSkeleton;
+import org.bukkit.entity.memory.MemoryKey;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -36,10 +39,8 @@ import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemDamageEvent;
-import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
@@ -74,6 +75,10 @@ public final class RingBearer implements Listener {
     private static final double DEATHLESS_COST = 40;
     private static final double GREED_PER_ORE = 1;
     private static final long HUNT_TICKS = 2400; // 2 minutes
+    private static final double EYE_SHADOW_PER_SECOND = 0.5;
+    private static final double MORDOR_RANGE = 24;
+    private static final int NAZGUL_EVERY_SECONDS = 180;
+    private static final double NAZGUL_CHANCE = 0.3;
     private static final Set<EntityDamageEvent.DamageCause> UNSTOPPABLE = EnumSet.of(
             EntityDamageEvent.DamageCause.VOID, EntityDamageEvent.DamageCause.KILL,
             EntityDamageEvent.DamageCause.SUICIDE);
@@ -84,11 +89,14 @@ public final class RingBearer implements Listener {
     private Plugin plugin;
     /// Seconds since each Vilya bearer's last healing pulse.
     private final Map<UUID, Integer> vilyaPulse = new HashMap<>();
+    /// Seconds each player has spent under the Eye (carrying the One Ring in the Nether), this visit.
+    private final Map<UUID, Integer> eyeSeconds = new HashMap<>();
 
     void start(Plugin plugin) {
         this.plugin = plugin;
         Bukkit.getScheduler().runTaskTimer(plugin, this::tickAll, 20L, 20L);
         Miruvor.onDrink(player -> addShadow(player, -15));
+        RingwraithHunts.start(plugin);
     }
 
     // ------------------------------------------------------------------ Shadow
@@ -155,18 +163,28 @@ public final class RingBearer implements Listener {
     }
 
     private void tick(Player player) {
+        boolean eye = underTheEye(player);
+        theEye(player, eye);
         RingType ring = worn(player);
         double before = shadow(player);
         if (ring == null) {
             // Taken off, or moved out of the off-hand: it's off.
             if (player.getPersistentDataContainer().has(WORN)) setWorn(player, false);
+            if (eye) {
+                // The Eye sees the Ring in the Nether whether it's worn or not.
+                addShadow(player, gain(player, EYE_SHADOW_PER_SECOND));
+                applyCurse(player, shadow(player));
+                player.sendActionBar(Component.text("The Eye is upon you. Shadow: " + (int) shadow(player),
+                        NamedTextColor.DARK_RED));
+                return;
+            }
             if (before > 0) {
                 setShadow(player, before - DECAY_PER_SECOND);
                 if ((int) before != (int) shadow(player) && (int) before % 10 == 0) showShadow(player, null);
             }
             return;
         }
-        addShadow(player, gain(player, ring.shadowPerSecond()));
+        addShadow(player, gain(player, ring.shadowPerSecond() + (eye ? EYE_SHADOW_PER_SECOND : 0)));
         double shadow = shadow(player);
         applyPowers(player, ring);
         applyCurse(player, shadow);
@@ -175,6 +193,54 @@ public final class RingBearer implements Listener {
             return;
         }
         showShadow(player, ring);
+    }
+
+    // ------------------------------------------------------------------ the Eye (the One Ring in the Nether)
+
+    /** Carrying the One Ring (worn or not) in the Nether, where the Eye can see it. */
+    public static boolean underTheEye(Player player) {
+        return player.getWorld().getEnvironment() == World.Environment.NETHER
+                && RingwraithHunts.carries(player, RingType.ONE);
+    }
+
+    /// While the Eye is on you: the burden slows you, the Nether's creatures come for you every few
+    /// seconds, and now and then Ringwraiths are sent to hunt you down.
+    private void theEye(Player player, boolean eye) {
+        UUID id = player.getUniqueId();
+        if (!eye) {
+            eyeSeconds.remove(id);
+            return;
+        }
+        Integer seconds = eyeSeconds.get(id);
+        if (seconds == null) {
+            player.sendActionBar(Component.text("The Eye turns toward you.", NamedTextColor.DARK_RED)
+                    .decoration(TextDecoration.ITALIC, true));
+            player.playSound(player.getLocation(), Sound.ENTITY_WARDEN_HEARTBEAT, 1f, 0.5f);
+            seconds = 0;
+        }
+        seconds++;
+        eyeSeconds.put(id, seconds);
+
+        // The burden: heavier for those not made to bear it.
+        effect(player, PotionEffectType.SLOWNESS, OriginCheck.is(player, OriginCheck.HOBBIT) ? 0 : 1);
+
+        if (seconds % 5 == 0) stirMordor(player);
+        if (seconds % NAZGUL_EVERY_SECONDS == 0 && ThreadLocalRandom.current().nextDouble() < NAZGUL_CHANCE) {
+            player.sendActionBar(Component.text("The Nazgûl are sent forth…", NamedTextColor.DARK_GRAY)
+                    .decoration(TextDecoration.ITALIC, true));
+            RingwraithHunts.hunt(player, 2, 24, 32, RingBearer::underTheEye, RingBearer::underTheEye);
+        }
+    }
+
+    /// The Nether's hostile creatures within reach turn on the bearer, piglins too, gold or no gold.
+    /// Zombified piglins are left alone; they'd bring the whole horde.
+    private static void stirMordor(Player player) {
+        for (Entity near : player.getNearbyEntities(MORDOR_RANGE, MORDOR_RANGE / 2, MORDOR_RANGE)) {
+            if (!(near instanceof Mob mob) || !(mob instanceof Enemy) || mob instanceof PigZombie) continue;
+            if (isServant(mob) || player.equals(mob.getTarget())) continue;
+            if (mob instanceof PiglinAbstract) mob.setMemory(MemoryKey.ANGRY_AT, player.getUniqueId());
+            mob.setTarget(player);
+        }
     }
 
     private static void showShadow(Player player, @Nullable RingType ring) {
@@ -294,56 +360,20 @@ public final class RingBearer implements Listener {
         Location at = spawnNear(player);
         WitherSkeleton servant = player.getWorld().spawn(at, WitherSkeleton.class, mob -> {
             mob.customName(Component.text("Servant of the Enemy", NamedTextColor.DARK_GRAY));
-            markServant(mob);
+            RingwraithHunts.markServant(mob);
         });
         servant.setTarget(player);
         dismissLater(servant);
     }
 
     private void spawnRingwraith(Player player) {
-        Location at = spawnNear(player);
-        World world = player.getWorld();
-        SkeletonHorse steed = world.spawn(at, SkeletonHorse.class, horse -> {
-            horse.setTamed(true);
-            horse.getPersistentDataContainer().set(SERVANT, PersistentDataType.BOOLEAN, true);
-            horse.setPersistent(false);
-        });
-        WitherSkeleton wraith = world.spawn(at, WitherSkeleton.class, mob -> {
-            mob.customName(Component.text("Ringwraith", NamedTextColor.DARK_GRAY));
-            markServant(mob);
-            EntityEquipment gear = mob.getEquipment();
-            gear.setHelmet(blackLeather(Material.LEATHER_HELMET));
-            gear.setChestplate(blackLeather(Material.LEATHER_CHESTPLATE));
-            gear.setLeggings(blackLeather(Material.LEATHER_LEGGINGS));
-            gear.setBoots(blackLeather(Material.LEATHER_BOOTS));
-            for (EquipmentSlot slot : List.of(EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS,
-                    EquipmentSlot.FEET, EquipmentSlot.HAND)) {
-                gear.setDropChance(slot, 0f);
-            }
-        });
-        steed.addPassenger(wraith);
-        wraith.setTarget(player);
-        dismissLater(wraith);
-        dismissLater(steed);
-    }
-
-    private static void markServant(WitherSkeleton mob) {
-        mob.setCustomNameVisible(true);
-        mob.setPersistent(false);
-        mob.setRemoveWhenFarAway(false);
-        mob.getPersistentDataContainer().set(SERVANT, PersistentDataType.BOOLEAN, true);
-    }
-
-    private static ItemStack blackLeather(Material material) {
-        ItemStack item = ItemStack.of(material);
-        if (item.getItemMeta() instanceof LeatherArmorMeta meta) {
-            meta.setColor(Color.fromRGB(0x111111));
-            item.setItemMeta(meta);
+        for (Entity entity : RingwraithHunts.spawnRingwraith(spawnNear(player))) {
+            if (entity instanceof WitherSkeleton wraith) wraith.setTarget(player);
+            dismissLater(entity);
         }
-        return item;
     }
 
-    private static Location spawnNear(Player player) {
+    static Location spawnNear(Player player) {
         ThreadLocalRandom random = ThreadLocalRandom.current();
         Location origin = player.getLocation();
         for (int attempt = 0; attempt < 10; attempt++) {
@@ -413,6 +443,7 @@ public final class RingBearer implements Listener {
         RingType ring = worn(player);
         if (ring == null || ring.wraithRange() <= 0) return;
         if (!monster.getWorld().equals(player.getWorld())) return;
+        if (underTheEye(player)) return; // no hiding from the Eye
         double range = ring.wraithRange();
         if (monster.getLocation().distanceSquared(player.getLocation()) > range * range) event.setCancelled(true);
     }

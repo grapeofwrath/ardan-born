@@ -968,13 +968,15 @@ public final class OriginAbilities {
 
         public KingsHands() {
             super("kings_hands", "Hands of the Healer",
-                    "Sneak and right-click an ally with an empty hand to grant Regeneration II and cure Poison, Wither and a Morgul wound (15s cooldown). Do the same in the air to channel healing light: you and players within 8 blocks heal 3 hearts, and the undead nearby are seared (60s).");
+                    "Sneak and right-click an ally with an empty hand to grant Regeneration II and cure Poison and Wither, and hold back a Morgul wound (15s cooldown; a wound can be held back once every 10 minutes). Do the same in the air to channel healing light: you and players within 8 blocks heal 3 hearts, and the undead nearby are seared (60s).");
         }
 
-        private void heal(Player target) {
+        private void heal(Player healer, Player target) {
             target.removePotionEffect(PotionEffectType.POISON);
             target.removePotionEffect(PotionEffectType.WITHER);
-            MorgulWound.cure(target);
+            if (MorgulWound.isWounded(target) && !MorgulWound.holdBack(target)) {
+                healer.sendActionBar(Component.text("The wound resists your hands for now.", NamedTextColor.GRAY));
+            }
             effect(target, PotionEffectType.REGENERATION, 160, 1);
             target.getWorld().spawnParticle(Particle.HEART, target.getLocation().add(0, 1.8, 0), 6, 0.3, 0.3, 0.3, 0);
         }
@@ -986,7 +988,7 @@ public final class OriginAbilities {
             runForAbility(e.getPlayer(), p -> {
                 if (!p.isSneaking() || !p.getInventory().getItemInMainHand().getType().isAir()) return;
                 if (!others.tryUse(p, 15_000)) return;
-                heal(target);
+                heal(p, target);
             });
         }
 
