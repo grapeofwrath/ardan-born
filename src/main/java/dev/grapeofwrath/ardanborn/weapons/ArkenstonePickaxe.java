@@ -38,7 +38,7 @@ import java.util.UUID;
 /// The Arkenstone pickaxe: the Arkenstone (the dwarves' template, which also makes the armor set)
 /// combined with a diamond or netherite pickaxe. It mines 3×3, in the plane of the face you dig into;
 /// sneak to mine a single block. Naugrim wear it down only for the block they aim at.
-public final class ArkenstonePick implements ToolUpgrade, Listener {
+public final class ArkenstonePickaxe implements ToolUpgrade, Listener {
     public static final String ID = "arkenstone_pickaxe";
     private static final TextColor COLOR = TextColor.color(0xD8ECFF);
     /// Neighbors harder than this aren't broken unless the center block is at least as hard. This takes

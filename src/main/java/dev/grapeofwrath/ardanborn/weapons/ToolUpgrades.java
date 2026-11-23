@@ -26,7 +26,7 @@ import java.util.function.Supplier;
 /// Registry of all [ToolUpgrade]s, and the smithing table logic that makes them.
 public final class ToolUpgrades implements Listener {
     private static final List<ToolUpgrade> UPGRADES = List.of(
-            new HavensTrident(), new Aeglos(), new ArkenstonePick(), new HuntingBow(),
+            new SpearOfTheHavens(), new Aeglos(), new ArkenstonePickaxe(), new HuntingBow(),
             new PhialOfGaladriel(), new HornOfGondor(), new Miruvor(), new ScimitarOfIsengard());
 
     public static void registerAll(Plugin plugin) {

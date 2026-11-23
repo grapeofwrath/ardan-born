@@ -110,7 +110,7 @@ public final class HornOfGondor implements ToolUpgrade, Listener {
             ally.sendActionBar(Component.text("The Horn of Gondor sounds!", RaceTemplate.STAR_OF_ELENDIL.color()));
         }
         player.getWorld().spawnParticle(Particle.NOTE, player.getEyeLocation(), 12, 1, 0.5, 1, 1);
-        if (OriginCheck.is(player, OriginCheck.EDAIN)) OriginAbilities.LastStand.renew(player);
+        if (OriginCheck.is(player, OriginCheck.EDAIN)) OriginAbilities.HopeUnquenched.renew(player);
         if (!golems.isEmpty() && plugin != null) rally(player, golems);
     }
 

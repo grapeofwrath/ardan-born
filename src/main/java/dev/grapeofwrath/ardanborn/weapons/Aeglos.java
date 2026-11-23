@@ -76,7 +76,7 @@ public final class Aeglos implements ToolUpgrade, Listener {
         if (victim.isGlowing() || victim.hasPotionEffect(PotionEffectType.GLOWING)) {
             event.setDamage(event.getDamage() * GLOWING_BONUS);
         }
-        if (player.isGliding() && OriginCheck.is(player, OriginCheck.EAGLE)) {
+        if (player.isGliding() && OriginCheck.is(player, OriginCheck.GREAT_EAGLE)) {
             victim.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, MARK_TICKS, 0, true, false, false));
         }
     }

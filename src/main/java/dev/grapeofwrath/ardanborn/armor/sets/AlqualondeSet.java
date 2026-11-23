@@ -3,7 +3,7 @@ package dev.grapeofwrath.ardanborn.armor.sets;
 import dev.grapeofwrath.ardanborn.armor.ArmorSet;
 import dev.grapeofwrath.ardanborn.armor.SetEffect;
 import dev.grapeofwrath.ardanborn.armor.effects.FriendOfOsseEffect;
-import dev.grapeofwrath.ardanborn.weapons.HavensTrident;
+import dev.grapeofwrath.ardanborn.weapons.SpearOfTheHavens;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.EquipmentSlot;
@@ -37,17 +37,17 @@ public final class AlqualondeSet implements ArmorSet {
 
     @Override
     public ItemStack createTemplate() {
-        return HavensTrident.createTemplate();
+        return SpearOfTheHavens.createTemplate();
     }
 
     @Override
     public boolean isTemplate(ItemStack item) {
-        return HavensTrident.isPearl(item);
+        return SpearOfTheHavens.isPearl(item);
     }
 
     @Override
     public void registerRecipes(Plugin plugin) {
-        HavensTrident.registerTemplateRecipe();
+        SpearOfTheHavens.registerTemplateRecipe();
     }
 
     /// The helmet is a turtle shell with diamond or netherite stats: vanilla gives water breathing after

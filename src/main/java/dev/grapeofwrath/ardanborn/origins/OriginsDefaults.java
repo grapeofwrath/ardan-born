@@ -20,7 +20,7 @@ public final class OriginsDefaults {
         changed |= setIfAbsent(config, "origin-selection.layer-orders.class", 0);
         changed |= setIfAbsent(config, "origin-selection.layer-orders.size", -1);
         // Regular height unless the player picks otherwise, so the size layer never blocks joining.
-        changed |= setIfAbsent(config, "origin-selection.default-origin.size", "size_normal");
+        changed |= setIfAbsent(config, "origin-selection.default-origin.size", "normal_size");
 
         if (changed) {
             origins.saveConfig();

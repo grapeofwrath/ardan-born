@@ -28,7 +28,7 @@ Some origins use powers from these Origins-Reborn addons. If an addon is missing
 - ArdanBorn copies its origins into `plugins/ArdanBorn/origins/`. Existing files are never overwritten, and deleted ones come back.
 - It adds layer defaults to `plugins/Origins-Reborn/config.yml`, but only keys that aren't there yet:
   - layers are chosen in the order `origin` → `class` → `size`
-  - `size` defaults to `size_normal`
+  - `size` defaults to `normal_size`
 - It rewords some powers from Origins-Reborn and its addons in `plugins/Origins-Reborn/translations.yml` (for example, Spectral becomes Soft-footed). It only changes entries that are missing or still have the original wording, so your own edits stay. The new wording also shows on stock origins that share those powers.
 
 **Updating:** because existing origin files are never overwritten, delete an origin's file from `plugins/ArdanBorn/origins/` to get its new version after an update.

@@ -14,16 +14,16 @@ numbers in step with the code (`OriginAbilities.java`) or, for borrowed powers, 
 - Each orb or reward is rounded up, so even 1-point orbs give 2.
 - Sources include mobs, ore, smelting, breeding, fishing and trading.
 
-## ardanborn:last_stand
+## ardanborn:hope_unquenched
 - Any damage that leaves you alive at or below 30% counts. A killing blow doesn't trigger it.
 - Resistance I and Regeneration I, with a golden flash and "Hope unquenched!" on your action bar.
 - The cooldown starts when it triggers.
 
-## ardanborn:eldar_body
+## ardanborn:undying_body
 - Every source is blocked: food, potions, cave spiders, husks, witches.
 - Other harmful effects such as Wither, Weakness and Slowness still apply.
 
-## ardanborn:eldar_lore
+## ardanborn:deep_lore
 - An option never costs less than its slot number (1, 2 or 3 levels).
 - The lapis cost and the enchantments you get are the same.
 
@@ -46,7 +46,7 @@ numbers in step with the code (`OriginAbilities.java`) or, for borrowed powers, 
 - Saturation is filled too, and the healing is Regeneration I for 5 seconds.
 - Bread eaten while it's on cooldown works as normal bread.
 
-## ardanborn:falmari_lungs
+## ardanborn:breath_of_the_sea
 
 ## ardanborn:seas_vigor
 - The new hearts start empty and fill as you heal. When you leave the water or the rain stops, they're removed, along with any health in them.
@@ -78,11 +78,11 @@ numbers in step with the code (`OriginAbilities.java`) or, for borrowed powers, 
 ## ardanborn:fortunate_folk
 - Luck I. It improves fishing treasure and some chest loot.
 
-## ardanborn:tree_roots
+## ardanborn:tough_as_old_tree_roots
 - The Wither reduction covers the Wither effect: wither skeletons, wither roses, the Wither's skulls' effect.
 - Slowness from potions, arrows and mobs is shortened, but not from other ArdanBorn or Origins powers.
 
-## ardanborn:bloodlust
+## ardanborn:battle_fury
 - Speed I and Strength I. Killing players counts too.
 - Kills in a row refresh the timers.
 
@@ -128,7 +128,7 @@ numbers in step with the code (`OriginAbilities.java`) or, for borrowed powers, 
 - Reaches one mob within 2.5 blocks of the target.
 - Players, pets and villagers are never hit.
 
-## ardanborn:keen_tracker
+## ardanborn:hunt_prey
 - Only mobs can be prey, never players. The glow shows through walls.
 - A new arrow hit on another mob moves the mark there; the old prey stops glowing.
 - The arrow that marks a mob gets the bonus only if that mob was already your prey.
@@ -141,25 +141,25 @@ numbers in step with the code (`OriginAbilities.java`) or, for borrowed powers, 
 - Several Defenders nearby don't stack.
 - Void and `/kill` damage are never reduced.
 
-## ardanborn:kings_hands
+## ardanborn:hands_of_the_healer
 - **Heal an ally:** Regeneration II lasts 8 seconds. Your main hand must be empty.
 - **Holding back a wound:** your touch restarts a [Morgul wound](morgul-wound.md)'s timer, so it takes a full stage longer to worsen. It doesn't cure the wound; athelas or miruvor are still needed. The 10-minute limit is per wounded player, whichever Healer it was.
 - **Channel:** undead within 8 blocks take 3 hearts of magic damage. It doesn't cure Poison or Wither.
 - Channel's healing counts as magic, so a Peredhil's [Healer of Imladris](#healer-of-imladris) makes it heal 4.5 hearts for them.
 - The two cooldowns are separate, and your action bar shows the time left.
 
-## ardanborn:wizard_staff
+## ardanborn:light_of_the_staff
 - The glow lasts 5 seconds, and the undead burn for 4.
 - The damage is magic, so it ignores armor and melee bonuses such as [Wrath of the Noldor](#wrath-of-the-noldor) don't apply. Kills still count as yours.
 - The cooldown shows on your action bar.
 
-## ardanborn:gentle_friend
+## ardanborn:friend_of_beasts
 - The beasts are wolves, bees, polar bears, llamas, trader llamas, pandas and goats.
 - The damage reduction covers every animal you've tamed (wolves, cats, parrots, horses, donkeys, mules, llamas, camels…), from any source, while you're online, wherever it is. Void and `/kill` damage aren't reduced.
 - The healing reaches 16 blocks. Pets at full health are skipped.
 - [Huan](#call-of-huan) counts as your pet, so he gets both.
 
-## ardanborn:master_smith
+## ardanborn:mending_craft
 - Only the item in your main hand counts as held. Each armor piece is repaired.
 - Stacks with Mending.
 

@@ -108,16 +108,16 @@ public final class OriginAbilities {
     public static List<Ability> all() {
         return List.of(
                 // Ancestries
-                new GiftOfMen(), new LastStand(), new EldarBody(), new EldarLore(),
-                new WoodlandStride(), new BaneOfMirkwood(), new FalmariLungs(), new SeasVigor(),new DelversInstinct(), new ForgeHardened(),
-                new SecondBreakfast(), new FortunateFolk(), new Bloodlust(), new IronStomach(),
+                new GiftOfMen(), new HopeUnquenched(), new UndyingBody(), new DeepLore(),
+                new WoodlandStride(), new BaneOfMirkwood(), new BreathOfTheSea(), new SeasVigor(),new DelversInstinct(), new ForgeHardened(),
+                new SecondBreakfast(), new FortunateFolk(), new BattleFury(), new IronStomach(),
                 new Moonbound(), new ElvenWrought(), new Lembas(), new StarOfEarendil(), new SwiftMessenger(),
                 new PearlsOfAlqualonde(), new TidesFury(), new AxeOfDurin(),
-                new TreeRoots(), new WrathOfTheNoldor(), new HealerOfImladris(), new LeafWalker(),
+                new ToughAsOldTreeRoots(), new WrathOfTheNoldor(), new HealerOfImladris(), new LeafWalker(),
                 // Classes
-                new FirstStrike(), new HardenedVeteran(), new Cleave(), new KeenTracker(), new Wayfarer(),
-                new ShieldWall(), new KingsHands(), new WizardStaff(), new GentleFriend(),
-                new MasterSmith(), new Backstab(), new QuietSteps(), new Unseen(), new SongsOfPower(), new SilverTongue(),
+                new FirstStrike(), new HardenedVeteran(), new Cleave(), new HuntPrey(), new Wayfarer(),
+                new ShieldWall(), new HandsOfTheHealer(), new LightOfTheStaff(), new FriendOfBeasts(),
+                new MendingCraft(), new Backstab(), new QuietSteps(), new Unseen(), new SongsOfPower(), new SilverTongue(),
                 new HealingPresence(), new CallOfHuan(), new GreenThumb(), new SmithsMark()
         );
     }
@@ -244,11 +244,11 @@ public final class OriginAbilities {
     }
 
     /** Edain / Peredhil: hope in the darkest hour. */
-    public static final class LastStand extends Base implements Listener {
+    public static final class HopeUnquenched extends Base implements Listener {
         private static final Cooldown cooldown = new Cooldown();
 
-        public LastStand() {
-            super("last_stand", "Hope Unquenched",
+        public HopeUnquenched() {
+            super("hope_unquenched", "Hope Unquenched",
                     "When a blow would leave you below 30% health, you gain Resistance and Regeneration for 8 seconds. Once every 90 seconds.");
         }
 
@@ -275,9 +275,9 @@ public final class OriginAbilities {
     }
 
     /** Elves: no sickness. */
-    public static final class EldarBody extends Base implements Listener {
-        public EldarBody() {
-            super("eldar_body", "Undying Body",
+    public static final class UndyingBody extends Base implements Listener {
+        public UndyingBody() {
+            super("undying_body", "Undying Body",
                     "The Eldar do not sicken as Men do. You are immune to Poison and Hunger effects.");
         }
 
@@ -293,9 +293,9 @@ public final class OriginAbilities {
     }
 
     /** Noldor: lore and craft. */
-    public static final class EldarLore extends Base implements Listener {
-        public EldarLore() {
-            super("eldar_lore", "Deep Lore",
+    public static final class DeepLore extends Base implements Listener {
+        public DeepLore() {
+            super("deep_lore", "Deep Lore",
                     "The Noldor are masters of craft and lore. Enchanting costs you one fewer experience level.");
         }
 
@@ -345,9 +345,9 @@ public final class OriginAbilities {
     }
 
     /** Teleri: breath of the sea. */
-    public static final class FalmariLungs extends Base implements Listener {
-        public FalmariLungs() {
-            super("falmari_lungs", "Breath of the Sea",
+    public static final class BreathOfTheSea extends Base implements Listener {
+        public BreathOfTheSea() {
+            super("breath_of_the_sea", "Breath of the Sea",
                     "The Teleri are born of the shore. You can breathe underwater indefinitely.");
         }
 
@@ -405,7 +405,7 @@ public final class OriginAbilities {
         }
     }
 
-    /** Dwarves and smiths: hardened against fire. Shared by Naugrim and Inventor. */
+    /** Dwarves and smiths: hardened against fire. Shared by Naugrim and Smith. */
     public static final class ForgeHardened extends Base implements Listener {
         private static final Set<EntityDamageEvent.DamageCause> FIRE_CAUSES = EnumSet.of(
                 EntityDamageEvent.DamageCause.FIRE,
@@ -457,13 +457,13 @@ public final class OriginAbilities {
     }
 
     /** Uruk-hai: fury of battle. */
-    public static final class Bloodlust extends Base implements Listener {
+    public static final class BattleFury extends Base implements Listener {
         private static final long FURY_MS = 8_000;
         /// When each player's fury last began, so items (the Scimitar of Isengard) can tell it's active.
         private static final Map<UUID, Long> furyFrom = new HashMap<>();
 
-        public Bloodlust() {
-            super("bloodlust", "Battle-fury",
+        public BattleFury() {
+            super("battle_fury", "Battle-fury",
                     "Each kill fills you with fury: Speed for 8 seconds and Strength for 5 seconds.");
         }
 
@@ -690,9 +690,9 @@ public final class OriginAbilities {
     }
 
     /** Hobbits: there is more to them than meets the eye. */
-    public static final class TreeRoots extends Base implements Listener {
-        public TreeRoots() {
-            super("tree_roots", "Tough as Old Tree-roots",
+    public static final class ToughAsOldTreeRoots extends Base implements Listener {
+        public ToughAsOldTreeRoots() {
+            super("tough_as_old_tree_roots", "Tough as Old Tree-roots",
                     "Hobbits are hard to break, as Frodo bore the Ring. You take 30% less damage from Wither, Slowness lasts half as long on you, and Darkness cannot touch you.");
         }
 
@@ -786,7 +786,7 @@ public final class OriginAbilities {
 
     // ================================================================== CLASSES
 
-    /** Fighter. */
+    /** Warrior. */
     public static final class FirstStrike extends Base implements Listener {
         private final Map<UUID, Long> lastAttack = new HashMap<>();
 
@@ -808,7 +808,7 @@ public final class OriginAbilities {
         }
     }
 
-    /** Fighter / Warrior: years of battle have toughened you. */
+    /** Warrior: years of battle have toughened you. */
     public static final class HardenedVeteran extends Base implements Tickable {
         private static final NamespacedKey HEALTH = Keys.key("hardened_veteran_health");
         private static final NamespacedKey KNOCKBACK = Keys.key("hardened_veteran_knockback");
@@ -840,7 +840,7 @@ public final class OriginAbilities {
         }
     }
 
-    /** Fighter. */
+    /** Warrior. */
     public static final class Cleave extends Base implements Listener {
         private static boolean cleaving = false;
 
@@ -874,7 +874,7 @@ public final class OriginAbilities {
     }
 
     /** Ranger. */
-    public static final class KeenTracker extends Base implements Listener {
+    public static final class HuntPrey extends Base implements Listener {
         private static final long PREY_MS = 60_000;
         private static final int PREY_TICKS = 1200;
         private static final double PREY_BONUS = 1.2;
@@ -883,8 +883,8 @@ public final class OriginAbilities {
 
         private final Map<UUID, Prey> prey = new HashMap<>();
 
-        public KeenTracker() {
-            super("keen_tracker", "Hunt Prey",
+        public HuntPrey() {
+            super("hunt_prey", "Hunt Prey",
                     "The last creature your arrow struck becomes your prey for 60 seconds: it glows, and you deal 20% more damage to it from any source.");
         }
 
@@ -929,7 +929,7 @@ public final class OriginAbilities {
         }
     }
 
-    /** Champion. */
+    /** Defender. */
     public static final class ShieldWall extends Base implements Listener {
         private static final Set<EntityDamageEvent.DamageCause> IGNORED = EnumSet.of(
                 EntityDamageEvent.DamageCause.VOID,
@@ -951,7 +951,7 @@ public final class OriginAbilities {
                 return;
             }
             for (Entity near : victim.getNearbyEntities(5, 3, 5)) {
-                if (near instanceof Player champion && hasAbility(champion) && holdsShield(champion)) {
+                if (near instanceof Player defender && hasAbility(defender) && holdsShield(defender)) {
                     e.setDamage(e.getDamage() * 0.9);
                     return;
                 }
@@ -959,15 +959,15 @@ public final class OriginAbilities {
         }
     }
 
-    /** Cleric / Healer: "the hands of the king are the hands of a healer". */
-    public static final class KingsHands extends Base implements Listener {
+    /** Healer: "the hands of the king are the hands of a healer". */
+    public static final class HandsOfTheHealer extends Base implements Listener {
         private final Cooldown others = new Cooldown();
         private final Cooldown channel = new Cooldown();
         private static final double CHANNEL_RANGE = 8;
         private static final double CHANNEL_AMOUNT = 6.0; // 3 hearts
 
-        public KingsHands() {
-            super("kings_hands", "Hands of the Healer",
+        public HandsOfTheHealer() {
+            super("hands_of_the_healer", "Hands of the Healer",
                     "Sneak and right-click an ally with an empty hand to grant Regeneration II and cure Poison and Wither, and hold back a Morgul wound (15s cooldown; a wound can be held back once every 10 minutes). Do the same in the air to channel healing light: you and players within 8 blocks heal 3 hearts, and the undead nearby are seared (60s).");
         }
 
@@ -1028,12 +1028,12 @@ public final class OriginAbilities {
         }
     }
 
-    /** Wizard / Loremaster: Gandalf's light. */
-    public static final class WizardStaff extends Base implements Listener {
+    /** Loremaster: Gandalf's light. */
+    public static final class LightOfTheStaff extends Base implements Listener {
         private final Cooldown cooldown = new Cooldown();
 
-        public WizardStaff() {
-            super("wizard_staff", "Light of the Staff",
+        public LightOfTheStaff() {
+            super("light_of_the_staff", "Light of the Staff",
                     "Right-click with a Blaze Rod as your staff to drive back the shadow: hostile creatures within 6 blocks take 3 hearts of damage and are thrown back and revealed, and the undead take double and are set alight. 15 second cooldown.");
         }
 
@@ -1063,8 +1063,8 @@ public final class OriginAbilities {
         }
     }
 
-    /** Druid / Beastfriend: Beren, Huan and the Eagles. */
-    public static final class GentleFriend extends Base implements Listener, Tickable {
+    /** Beastfriend: Beren, Huan and the Eagles. */
+    public static final class FriendOfBeasts extends Base implements Listener, Tickable {
         private static final Set<EntityType> BEASTS = EnumSet.of(
                 EntityType.WOLF, EntityType.BEE, EntityType.POLAR_BEAR, EntityType.LLAMA,
                 EntityType.TRADER_LLAMA, EntityType.PANDA, EntityType.GOAT);
@@ -1073,8 +1073,8 @@ public final class OriginAbilities {
         private static final double PET_RANGE = 16.0;
         private final Map<UUID, Long> lastPulse = new HashMap<>();
 
-        public GentleFriend() {
-            super("gentle_friend", "Friend of Beasts",
+        public FriendOfBeasts() {
+            super("friend_of_beasts", "Friend of Beasts",
                     "Wild beasts such as wolves, bees and bears won't pick you as a target unless you strike first. Your tamed animals take half damage and heal 1 heart every 10 seconds while near you.");
         }
 
@@ -1117,14 +1117,14 @@ public final class OriginAbilities {
         }
     }
 
-    /** Inventor / Smith: self-mending craft. */
-    public static final class MasterSmith extends Base implements Tickable {
+    /** Smith: self-mending craft. */
+    public static final class MendingCraft extends Base implements Tickable {
         private static final EquipmentSlot[] SLOTS = {
                 EquipmentSlot.HAND, EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET};
         private final Map<UUID, Long> lastRepair = new HashMap<>();
 
-        public MasterSmith() {
-            super("master_smith", "Mending Craft",
+        public MendingCraft() {
+            super("mending_craft", "Mending Craft",
                     "Your own good work endures. Your held item and worn armor slowly repair themselves (1 durability every 10 seconds).");
         }
 
@@ -1148,7 +1148,7 @@ public final class OriginAbilities {
         }
     }
 
-    /** Rogue / Burglar. */
+    /** Burglar. */
     public static final class Backstab extends Base implements Listener {
         public Backstab() {
             super("backstab", "Backstab",
@@ -1172,7 +1172,7 @@ public final class OriginAbilities {
         }
     }
 
-    /** Rogue / Burglar. */
+    /** Burglar. */
     public static final class QuietSteps extends Base implements Listener, Tickable {
         public QuietSteps() {
             super("quiet_steps", "Quiet Steps",
@@ -1193,7 +1193,7 @@ public final class OriginAbilities {
         }
     }
 
-    /** Rogue / Burglar: Bilbo slipping past the trolls, the spiders and Smaug. */
+    /** Burglar: Bilbo slipping past the trolls, the spiders and Smaug. */
     public static final class Unseen extends Base implements Listener {
         private static final double RANGE = 6.0;
 
@@ -1215,7 +1215,7 @@ public final class OriginAbilities {
         }
     }
 
-    /** Bard / Minstrel: the Music of the Ainur. */
+    /** Minstrel: the Music of the Ainur. */
     public static final class SongsOfPower extends Base implements Listener {
         private static final long COOLDOWN_MS = 90_000;
         private static final double ALLY_RANGE = 24;
@@ -1338,7 +1338,7 @@ public final class OriginAbilities {
         }
     }
 
-    /** Bard / Minstrel. */
+    /** Minstrel. */
     public static final class SilverTongue extends Base implements Tickable {
         public SilverTongue() {
             super("silver_tongue", "Silver Tongue",
@@ -1358,7 +1358,7 @@ public final class OriginAbilities {
         }
     }
 
-    /** Cleric / Healer: a presence that mends. */
+    /** Healer: a presence that mends. */
     public static final class HealingPresence extends Base implements Tickable {
         private static final long PULSE_MS = 10_000;
         private static final double AMOUNT = 2.0; // 1 heart
@@ -1394,7 +1394,7 @@ public final class OriginAbilities {
         }
     }
 
-    /** Druid / Beastfriend: Huan, the hound of Valinor, who fought beside Beren and Lúthien. */
+    /** Beastfriend: Huan, the hound of Valinor, who fought beside Beren and Lúthien. */
     public static final class CallOfHuan extends Base implements Listener {
         private static final NamespacedKey HUAN = Keys.key("huan");
         private static final long STAY_TICKS = 1200; // 60 seconds
@@ -1502,7 +1502,7 @@ public final class OriginAbilities {
         }
     }
 
-    /** Alchemist / Herbalist: green things flourish in their care. */
+    /** Herbalist: green things flourish in their care. */
     public static final class GreenThumb extends Base implements Tickable {
         private static final int RADIUS = 5;
         private static final int HEIGHT = 2;
@@ -1546,7 +1546,7 @@ public final class OriginAbilities {
         }
     }
 
-    /** Inventor / Smith: work made to last, and blessed under the full moon. */
+    /** Smith: work made to last, and blessed under the full moon. */
     public static final class SmithsMark extends Base implements Listener {
         /// Items that count as tools or weapons for the full-moon enchantment.
         private static final List<Tag<Material>> TOOLS_AND_WEAPONS = List.of(

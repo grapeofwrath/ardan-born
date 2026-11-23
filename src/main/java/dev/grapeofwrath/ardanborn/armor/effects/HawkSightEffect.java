@@ -50,7 +50,7 @@ public final class HawkSightEffect implements SetEffect {
             monster.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 100, 0, true, false, false));
         }
         if (player.getLocation().getY() > HIGH_ALTITUDE && !player.isOnGround()
-                && OriginCheck.is(player, OriginCheck.EAGLE)) {
+                && OriginCheck.is(player, OriginCheck.GREAT_EAGLE)) {
             player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 320, 0, true, false, true));
         }
     }

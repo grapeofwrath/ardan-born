@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 public final class OriginCheck {
     public static final String TELERI = "teleri";
     public static final String NAUGRIM = "naugrim";
-    public static final String EAGLE = "eagle";
+    public static final String GREAT_EAGLE = "great_eagle";
     public static final String BEORNING = "beorning";
     public static final String NOLDOR = "noldor";
     public static final String SINDAR = "sindar";

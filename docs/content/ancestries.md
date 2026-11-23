@@ -145,7 +145,7 @@ Great, sun-hardened Orcs bred for war. No weakness to daylight, a stomach of iro
 
 Of the great eagles of Thorondor, lords of the sky. You can take wing, ride the winds skyward, carry a rider upon your back, strike hard from the air, and never fear a fall.
 
-**Impact:** High · **Icon:** `feather` · **File:** `eagle.json`
+**Impact:** High · **Icon:** `feather` · **File:** `great_eagle.json`
 
 **Race item:** [Feather of Thorondor](feather-of-thorondor.md)
 

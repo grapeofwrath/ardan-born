@@ -12,7 +12,7 @@ Your **size** is chosen last, in the `size` layer. It defaults to Normal Size.
 
 Stand at the ordinary height of your people.
 
-**Impact:** None · **Icon:** `oak_log` · **File:** `size_normal.json`
+**Impact:** None · **Icon:** `oak_log` · **File:** `normal_size.json`
 
 No powers.
 
@@ -20,7 +20,7 @@ No powers.
 
 You are only one block tall, half the height of a regular player. Slip through low gaps and small spaces.
 
-**Impact:** Low · **Icon:** `oak_sapling` · **File:** `size_small.json`
+**Impact:** Low · **Icon:** `oak_sapling` · **File:** `small_size.json`
 
 | Power | What it does | From |
 |---|---|---|

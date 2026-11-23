@@ -1,8 +1,8 @@
 {
     "powers": [
         "origins:cat_vision",
-        "ardanborn:eldar_body",
-        "ardanborn:eldar_lore",
+        "ardanborn:undying_body",
+        "ardanborn:deep_lore",
         "ardanborn:elven_wrought",
         "ardanborn:wrath_of_the_noldor"
     ],

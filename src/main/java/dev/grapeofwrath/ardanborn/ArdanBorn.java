@@ -12,6 +12,7 @@ import dev.grapeofwrath.ardanborn.armor.RecipeGuardListener;
 import dev.grapeofwrath.ardanborn.items.rings.Rings;
 import dev.grapeofwrath.ardanborn.origins.OriginAbilities;
 import dev.grapeofwrath.ardanborn.origins.OriginFiles;
+import dev.grapeofwrath.ardanborn.origins.OriginRenames;
 import dev.grapeofwrath.ardanborn.origins.OriginsDefaults;
 import dev.grapeofwrath.ardanborn.origins.PowerText;
 import dev.grapeofwrath.ardanborn.weapons.ToolUpgrades;
@@ -45,6 +46,7 @@ public final class ArdanBorn extends OriginsAddon {
     @Override
     public void onRegister() {
         // Must run before Origins-Reborn reads plugins/ArdanBorn/origins/.
+        OriginRenames.apply(getDataFolder().toPath(), getLogger());
         OriginFiles.syncBundled(this);
         OriginsDefaults.apply(getLogger());
         PowerText.apply(getLogger());

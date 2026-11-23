@@ -42,13 +42,13 @@ Each kill fills you with fury: Speed for 8 seconds and Strength for 5 seconds.
 - Speed I and Strength I. Killing players counts too.
 - Kills in a row refresh the timers.
 
-`ardanborn:bloodlust` · from ArdanBorn · used by [Uruk-hai (Orc)](ancestries.md#uruk-hai-orc)
+`ardanborn:battle_fury` · from ArdanBorn · used by [Uruk-hai (Orc)](ancestries.md#uruk-hai-orc)
 
 ### Breath of the Sea
 
 The Teleri are born of the shore. You can breathe underwater indefinitely.
 
-`ardanborn:falmari_lungs` · from ArdanBorn · used by [Teleri (Sea Elf)](ancestries.md#teleri-sea-elf)
+`ardanborn:breath_of_the_sea` · from ArdanBorn · used by [Teleri (Sea Elf)](ancestries.md#teleri-sea-elf)
 
 ### Call of Huan
 
@@ -78,7 +78,7 @@ The Noldor are masters of craft and lore. Enchanting costs you one fewer experie
 - An option never costs less than its slot number (1, 2 or 3 levels).
 - The lapis cost and the enchantments you get are the same.
 
-`ardanborn:eldar_lore` · from ArdanBorn · used by [Noldor (High Elf)](ancestries.md#noldor-high-elf)
+`ardanborn:deep_lore` · from ArdanBorn · used by [Noldor (High Elf)](ancestries.md#noldor-high-elf)
 
 ### Delver's Instinct
 
@@ -132,7 +132,7 @@ Wild beasts such as wolves, bees and bears won't pick you as a target unless you
 - The healing reaches 16 blocks. Pets at full health are skipped.
 - [Huan](#call-of-huan) counts as your pet, so he gets both.
 
-`ardanborn:gentle_friend` · from ArdanBorn · used by [Beastfriend](classes.md#beastfriend)
+`ardanborn:friend_of_beasts` · from ArdanBorn · used by [Beastfriend](classes.md#beastfriend)
 
 ### Gift of Men
 
@@ -164,7 +164,7 @@ Sneak and right-click an ally with an empty hand to grant Regeneration II and cu
 - Channel's healing counts as magic, so a Peredhil's [Healer of Imladris](#healer-of-imladris) makes it heal 4.5 hearts for them.
 - The two cooldowns are separate, and your action bar shows the time left.
 
-`ardanborn:kings_hands` · from ArdanBorn · used by [Healer](classes.md#healer)
+`ardanborn:hands_of_the_healer` · from ArdanBorn · used by [Healer](classes.md#healer)
 
 ### Hardened Veteran
 
@@ -202,7 +202,7 @@ When a blow would leave you below 30% health, you gain Resistance and Regenerati
 - Resistance I and Regeneration I, with a golden flash and "Hope unquenched!" on your action bar.
 - The cooldown starts when it triggers.
 
-`ardanborn:last_stand` · from ArdanBorn · used by [Edain (Man)](ancestries.md#edain-man)
+`ardanborn:hope_unquenched` · from ArdanBorn · used by [Edain (Man)](ancestries.md#edain-man)
 
 ### Hunt Prey
 
@@ -212,7 +212,7 @@ The last creature your arrow struck becomes your prey for 60 seconds: it glows, 
 - A new arrow hit on another mob moves the mark there; the old prey stops glowing.
 - The arrow that marks a mob gets the bonus only if that mob was already your prey.
 
-`ardanborn:keen_tracker` · from ArdanBorn · used by [Ranger](classes.md#ranger)
+`ardanborn:hunt_prey` · from ArdanBorn · used by [Ranger](classes.md#ranger)
 
 ### Iron Stomach
 
@@ -250,7 +250,7 @@ Right-click with a Blaze Rod as your staff to drive back the shadow: hostile cre
 - The damage is magic, so it ignores armor and melee bonuses such as [Wrath of the Noldor](#wrath-of-the-noldor) don't apply. Kills still count as yours.
 - The cooldown shows on your action bar.
 
-`ardanborn:wizard_staff` · from ArdanBorn · used by [Loremaster](classes.md#loremaster)
+`ardanborn:light_of_the_staff` · from ArdanBorn · used by [Loremaster](classes.md#loremaster)
 
 ### Mending Craft
 
@@ -259,7 +259,7 @@ Your own good work endures. Your held item and worn armor slowly repair themselv
 - Only the item in your main hand counts as held. Each armor piece is repaired.
 - Stacks with Mending.
 
-`ardanborn:master_smith` · from ArdanBorn · used by [Smith](classes.md#smith)
+`ardanborn:mending_craft` · from ArdanBorn · used by [Smith](classes.md#smith)
 
 ### Moonbound
 
@@ -425,7 +425,7 @@ Hobbits are hard to break, as Frodo bore the Ring. You take 30% less damage from
 - The Wither reduction covers the Wither effect: wither skeletons, wither roses, the Wither's skulls' effect.
 - Slowness from potions, arrows and mobs is shortened, but not from other ArdanBorn or Origins powers.
 
-`ardanborn:tree_roots` · from ArdanBorn · used by [Hobbit (Halfling)](ancestries.md#hobbit-halfling)
+`ardanborn:tough_as_old_tree_roots` · from ArdanBorn · used by [Hobbit (Halfling)](ancestries.md#hobbit-halfling)
 
 ### Undying Body
 
@@ -434,7 +434,7 @@ The Eldar do not sicken as Men do. You are immune to Poison and Hunger effects.
 - Every source is blocked: food, potions, cave spiders, husks, witches.
 - Other harmful effects such as Wither, Weakness and Slowness still apply.
 
-`ardanborn:eldar_body` · from ArdanBorn · used by [Noldor (High Elf)](ancestries.md#noldor-high-elf), [Peredhil (Half-elf)](ancestries.md#peredhil-half-elf)
+`ardanborn:undying_body` · from ArdanBorn · used by [Noldor (High Elf)](ancestries.md#noldor-high-elf), [Peredhil (Half-elf)](ancestries.md#peredhil-half-elf)
 
 ### Unseen
 

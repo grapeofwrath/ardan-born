@@ -46,3 +46,38 @@ lootables:
 ```
 
 Looted chests then refill between `refresh-min` and `refresh-max` after being looted (12 hours to 2 days by default), and `restrict-player-reloot` stops one player farming the same chest. Refilled chests can hold rings too, and unique rings still can't be duplicated.
+
+## Renamed ids
+
+Some origin files and power ids were renamed to match the names players see. ArdanBorn updates its own files in `plugins/ArdanBorn/origins/` and the default origins in Origins-Reborn's `config.yml` when the server starts, and keeps your edits. If both the old and new file exist, the old one is set aside as `.json.old`. Players keep their origins.
+
+If you've used an ArdanBorn power in your own origin files elsewhere, update its id yourself:
+
+| Old power id | New power id |
+|---|---|
+| `ardanborn:bloodlust` | `ardanborn:battle_fury` |
+| `ardanborn:eldar_body` | `ardanborn:undying_body` |
+| `ardanborn:eldar_lore` | `ardanborn:deep_lore` |
+| `ardanborn:falmari_lungs` | `ardanborn:breath_of_the_sea` |
+| `ardanborn:gentle_friend` | `ardanborn:friend_of_beasts` |
+| `ardanborn:keen_tracker` | `ardanborn:hunt_prey` |
+| `ardanborn:kings_hands` | `ardanborn:hands_of_the_healer` |
+| `ardanborn:last_stand` | `ardanborn:hope_unquenched` |
+| `ardanborn:master_smith` | `ardanborn:mending_craft` |
+| `ardanborn:tree_roots` | `ardanborn:tough_as_old_tree_roots` |
+| `ardanborn:wizard_staff` | `ardanborn:light_of_the_staff` |
+
+| Old origin file | New origin file |
+|---|---|
+| `alchemist.json` | `herbalist.json` |
+| `bard.json` | `minstrel.json` |
+| `champion.json` | `defender.json` |
+| `cleric.json` | `healer.json` |
+| `druid.json` | `beastfriend.json` |
+| `eagle.json` | `great_eagle.json` |
+| `fighter.json` | `warrior.json` |
+| `inventor.json` | `smith.json` |
+| `rogue.json` | `burglar.json` |
+| `size_normal.json` | `normal_size.json` |
+| `size_small.json` | `small_size.json` |
+| `wizard.json` | `loremaster.json` |

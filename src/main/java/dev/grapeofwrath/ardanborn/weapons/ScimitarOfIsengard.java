@@ -80,7 +80,7 @@ public final class ScimitarOfIsengard implements ToolUpgrade, Listener {
         double max = attr == null ? victim.getHealth() : attr.getValue();
         if (victim.getHealth() < max / 2) event.setDamage(event.getDamage() * FINISHING_BONUS);
 
-        if (OriginCheck.is(player, OriginCheck.URUK_HAI) && OriginAbilities.Bloodlust.active(player)) {
+        if (OriginCheck.is(player, OriginCheck.URUK_HAI) && OriginAbilities.BattleFury.active(player)) {
             player.heal(FURY_HEAL, EntityRegainHealthEvent.RegainReason.CUSTOM);
         }
     }

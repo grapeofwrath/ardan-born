@@ -34,7 +34,7 @@ import java.util.List;
 /// The Spear of the Havens: the Pearl of Ossë (the Teleri's template, which also makes the Alqualondë
 /// armor) combined with a trident. It always returns when thrown, and with Channeling calls lightning on
 /// foes in water or rain. Teleri deal extra damage with it.
-public final class HavensTrident implements ToolUpgrade, Listener {
+public final class SpearOfTheHavens implements ToolUpgrade, Listener {
     public static final String TEMPLATE_ID = "pearl_of_osse";
     public static final String SPEAR_ID = "spear_of_the_havens";
     /// Extra damage for Teleri wielders.
@@ -53,7 +53,7 @@ public final class HavensTrident implements ToolUpgrade, Listener {
 
     @Override
     public boolean isTemplate(@Nullable ItemStack item) {
-        return HavensTrident.isPearl(item);
+        return SpearOfTheHavens.isPearl(item);
     }
 
     @Override

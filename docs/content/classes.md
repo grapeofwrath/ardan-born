@@ -20,7 +20,7 @@ Your **class** is the calling you follow. It is chosen second, in the `class` la
 
 A veteran soldier of the free peoples. Your first blow lands hard, your blade carries through to the next foe, and long years of war have made you tough.
 
-**Impact:** Medium · **Icon:** `diamond_sword` · **File:** `fighter.json`
+**Impact:** Medium · **Icon:** `diamond_sword` · **File:** `warrior.json`
 
 | Power | What it does | From |
 |---|---|---|
@@ -44,7 +44,7 @@ A Dunadan-style wanderer of the wild lands. Your arrows fly true and reveal your
 
 A quiet, quick-fingered scout. Strike the unwary from behind for extra harm, and slip along on soft feet where foes far off never see you.
 
-**Impact:** Low · **Icon:** `shears` · **File:** `rogue.json`
+**Impact:** Low · **Icon:** `shears` · **File:** `burglar.json`
 
 | Power | What it does | From |
 |---|---|---|
@@ -56,7 +56,7 @@ A quiet, quick-fingered scout. Strike the unwary from behind for extra harm, and
 
 Song was the first power in the world. Sound a horn to lift your companions, and talk your way to better prices.
 
-**Impact:** Medium · **Icon:** `goat_horn` · **File:** `bard.json`
+**Impact:** Medium · **Icon:** `goat_horn` · **File:** `minstrel.json`
 
 | Power | What it does | From |
 |---|---|---|
@@ -67,7 +67,7 @@ Song was the first power in the world. Sound a horn to lift your companions, and
 
 A shieldbearer sworn to protect. Hold a shield and you, and the friends beside you, are harder to harm.
 
-**Impact:** Medium · **Icon:** `shield` · **File:** `champion.json`
+**Impact:** Medium · **Icon:** `shield` · **File:** `defender.json`
 
 | Power | What it does | From |
 |---|---|---|
@@ -78,7 +78,7 @@ A shieldbearer sworn to protect. Hold a shield and you, and the friends beside y
 
 The hands of the king are the hands of a healer. Cure the poisoned and wounded with a touch, and mend all who stand near you.
 
-**Impact:** Low · **Icon:** `glistering_melon_slice` · **File:** `cleric.json`
+**Impact:** Low · **Icon:** `glistering_melon_slice` · **File:** `healer.json`
 
 | Power | What it does | From |
 |---|---|---|
@@ -89,7 +89,7 @@ The hands of the king are the hands of a healer. Cure the poisoned and wounded w
 
 A student of the deep lore, bearing a staff of light. Smite the shadow and hold it at bay and recover your strength through stillness.
 
-**Impact:** Medium · **Icon:** `blaze_rod` · **File:** `wizard.json`
+**Impact:** Medium · **Icon:** `blaze_rod` · **File:** `loremaster.json`
 
 | Power | What it does | From |
 |---|---|---|
@@ -100,7 +100,7 @@ A student of the deep lore, bearing a staff of light. Smite the shadow and hold 
 
 Like Beren and Luthien, a friend to wild things. Beasts do not trouble you, the animals in your care are hardy, and Huan the hound of Valinor answers your call.
 
-**Impact:** Low · **Icon:** `bone` · **File:** `druid.json`
+**Impact:** Low · **Icon:** `bone` · **File:** `beastfriend.json`
 
 | Power | What it does | From |
 |---|---|---|
@@ -111,7 +111,7 @@ Like Beren and Luthien, a friend to wild things. Beasts do not trouble you, the 
 
 A gatherer of herbs and brewer of draughts. Your potions are stronger, and green things grow quickly in your care.
 
-**Impact:** Low · **Icon:** `brewing_stand` · **File:** `alchemist.json`
+**Impact:** Low · **Icon:** `brewing_stand` · **File:** `herbalist.json`
 
 | Power | What it does | From |
 |---|---|---|
@@ -122,7 +122,7 @@ A gatherer of herbs and brewer of draughts. Your potions are stronger, and green
 
 A smith in the tradition of Aule and Feanor. Your own work mends itself, and everything you forge is made to last.
 
-**Impact:** Low · **Icon:** `anvil` · **File:** `inventor.json`
+**Impact:** Low · **Icon:** `anvil` · **File:** `smith.json`
 
 | Power | What it does | From |
 |---|---|---|

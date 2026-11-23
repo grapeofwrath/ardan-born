@@ -59,7 +59,7 @@ public final class ArkenstoneSet implements ArmorSet {
         return template();
     }
 
-    /// The Arkenstone. It makes the armor set, and the Arkenstone pickaxe (see weapons.ArkenstonePick).
+    /// The Arkenstone. It makes the armor set, and the Arkenstone pickaxe (see weapons.ArkenstonePickaxe).
     public static ItemStack template() {
         // Looks like raw gold, but is built on prismarine crystals: raw gold itself could be smelted
         // or used in vanilla recipes. RecipeGuardListener keeps it out of prismarine recipes.
