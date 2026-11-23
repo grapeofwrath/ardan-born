@@ -73,6 +73,13 @@ public record RaceTemplate(String id, String name, TextColor color, Material loo
             new RecipeChoice.MaterialChoice(Material.COAL_BLOCK),
             new RecipeChoice.MaterialChoice(Material.WHITE_DYE));
 
+    public static final RaceTemplate BANNER_OF_THE_MARK = new RaceTemplate("banner_of_the_mark",
+            "Banner of the Mark", TextColor.color(0x5FAE5B), Material.GREEN_BANNER,
+            "White upon green, the horse runs free.",
+            List.of("Wed it at a Smithing Table to diamond or", "netherite armor, horse armor or a spear."),
+            new RecipeChoice.MaterialChoice(Material.HAY_BLOCK),
+            new RecipeChoice.MaterialChoice(Material.LEATHER));
+
     public ItemStack create() {
         ItemStack item = ItemStack.of(Material.PRISMARINE_CRYSTALS);
         item.setData(DataComponentTypes.ITEM_MODEL, look.getKey());

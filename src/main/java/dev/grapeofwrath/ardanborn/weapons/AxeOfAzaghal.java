@@ -16,7 +16,7 @@ import java.util.List;
 public final class AxeOfAzaghal extends RaceItem implements Listener {
     public AxeOfAzaghal() {
         super("axe_of_azaghal", "Axe of Azaghâl", Template.ARKENSTONE,
-                OriginCheck.NAUGRIM, List.of(Material.DIAMOND_AXE, Material.NETHERITE_AXE));
+                OriginCheck.DWARF, List.of(Material.DIAMOND_AXE, Material.NETHERITE_AXE));
     }
 
     private static final double BIG = 40; // 20 hearts
@@ -28,7 +28,7 @@ public final class AxeOfAzaghal extends RaceItem implements Listener {
 
     @Override
     protected List<String> ownLines() {
-        return List.of("Naugrim: more bitter yet");
+        return List.of("Dwarves: more bitter yet");
     }
 
     @EventHandler(ignoreCancelled = true)

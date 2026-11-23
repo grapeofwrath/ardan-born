@@ -12,15 +12,16 @@ import org.bukkit.entity.Player;
 /// display name doesn't break anything.
 public final class OriginCheck {
     public static final String TELERI = "teleri";
-    public static final String NAUGRIM = "naugrim";
+    public static final String DWARF = "dwarf";
     public static final String GREAT_EAGLE = "great_eagle";
     public static final String BEORNING = "beorning";
     public static final String NOLDOR = "noldor";
-    public static final String SINDAR = "sindar";
-    public static final String EDAIN = "edain";
+    public static final String SILVAN = "silvan";
+    public static final String DUNEDAIN = "dunedain";
     public static final String PEREDHIL = "peredhil";
     public static final String HOBBIT = "hobbit";
     public static final String URUK_HAI = "uruk_hai";
+    public static final String ROHIRRIM = "rohirrim";
 
     private OriginCheck() {}
 

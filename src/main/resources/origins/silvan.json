@@ -9,9 +9,9 @@
     "icon": {
         "item": "minecraft:oak_leaves"
     },
-    "order": 3,
+    "order": 4,
     "impact": 2,
     "layer": "origin",
-    "name": "Sindar (Wood Elf)",
-    "description": "Grey Elves and green they were, and they loved the twilight of the forest. Silent were their feet beneath the boughs and swift above them; their arrows seldom failed, and the waybread of their kin sustained them."
+    "name": "Silvan (Wood Elf)",
+    "description": "The Silvan Elves did not go over the Sea, for they loved the twilight of the forest. Silent were their feet beneath the boughs and swift above them; their arrows seldom failed, and the waybread of their kin sustained them."
 }

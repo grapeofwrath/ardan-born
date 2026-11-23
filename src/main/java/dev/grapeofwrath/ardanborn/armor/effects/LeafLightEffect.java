@@ -18,12 +18,12 @@ import java.util.List;
 /// Leggings: an arrow that strikes home quickens your step.
 public final class LeafLightEffect extends PieceEffect implements Listener {
     public LeafLightEffect(String setId) {
-        super("leaf_light", "Leaf-light", setId, EquipmentSlot.LEGS, OriginCheck.SINDAR);
+        super("leaf_light", "Leaf-light", setId, EquipmentSlot.LEGS, OriginCheck.SILVAN);
     }
 
     @Override
     protected List<String> lines() {
-        return List.of("When your arrow hits you have Speed", "Sindar: swifter in woodland");
+        return List.of("When your arrow hits you have Speed", "Silvan Elves: swifter in woodland");
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

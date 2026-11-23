@@ -18,12 +18,12 @@ import java.util.List;
 /// Full set: an arrow sometimes strikes a second foe.
 public final class GaladhrimVolleyEffect extends PieceEffect implements Listener {
     public GaladhrimVolleyEffect(String setId) {
-        super("galadhrim_volley", "Galadhrim Volley", setId, null, OriginCheck.SINDAR);
+        super("galadhrim_volley", "Galadhrim Volley", setId, null, OriginCheck.SILVAN);
     }
 
     @Override
     protected List<String> lines() {
-        return List.of("At times an arrow strikes a second foe", "Sindar: more often");
+        return List.of("At times an arrow strikes a second foe", "Silvan Elves: more often");
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

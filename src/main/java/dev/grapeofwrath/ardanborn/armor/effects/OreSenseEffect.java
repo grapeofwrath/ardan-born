@@ -40,11 +40,11 @@ import java.util.Map;
 import java.util.UUID;
 
 /// Helmet: sneak and right-click with a pickaxe to sense the ores around you. They glow through the
-/// stone for you alone, for 30 seconds or until you step away. Mined ore stops glowing. Naugrim sense further.
+/// stone for you alone, for 30 seconds or until you step away. Mined ore stops glowing. Dwarves sense further.
 public final class OreSenseEffect implements SetEffect, Listener {
     private static final int DIAMOND_RADIUS = 8;
     private static final int NETHERITE_RADIUS = 12;
-    private static final int NAUGRIM_BONUS = 4;
+    private static final int DWARF_BONUS = 4;
     private static final int MAX_MARKS = 256;
     private static final long SHOW_TICKS = 600;
     private static final long COOLDOWN_MS = 60_000;
@@ -97,7 +97,7 @@ public final class OreSenseEffect implements SetEffect, Listener {
         return List.of(
                 Component.text("Sneak and right-click with a pickaxe"),
                 Component.text("and the ores near you are made known"),
-                Component.text("Naugrim: those further off also"));
+                Component.text("Dwarves: those further off also"));
     }
 
     private static int radius(ArmorTier tier) {
@@ -118,7 +118,7 @@ public final class OreSenseEffect implements SetEffect, Listener {
         event.setCancelled(true);
         if (!cooldown.tryUse(player, LoreWiseEffect.shorten(player, COOLDOWN_MS))) return;
 
-        int radius = radius(tier) + (OriginCheck.is(player, OriginCheck.NAUGRIM) ? NAUGRIM_BONUS : 0);
+        int radius = radius(tier) + (OriginCheck.is(player, OriginCheck.DWARF) ? DWARF_BONUS : 0);
         int found = reveal(player, radius);
         player.playSound(player.getLocation(), Sound.BLOCK_AMETHYST_BLOCK_RESONATE, 1f, 0.7f);
         player.sendActionBar(Component.text(found == 0 ? "The stone here is silent" : "You sense " + found + " ore",

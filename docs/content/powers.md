@@ -8,7 +8,7 @@ entries: true
 
 Axes deal 20% more damage and give Slowness I for 2 seconds.
 
-`ardanborn:axe_of_durin` · from ArdanBorn · used by [Naugrim (Dwarf)](ancestries.md#naugrim-dwarf)
+`ardanborn:axe_of_durin` · from ArdanBorn · used by [Dwarf](ancestries.md#dwarf)
 
 ### Backstab
 
@@ -26,7 +26,16 @@ Arrows and thrown tridents deal 20% more damage while you're in a [woodland biom
 
 - The two bonuses stack: ×1.8 against a spider in woodland.
 
-`ardanborn:bane_of_mirkwood` · from ArdanBorn · used by [Sindar (Wood Elf)](ancestries.md#sindar-wood-elf)
+`ardanborn:bane_of_mirkwood` · from ArdanBorn · used by [Silvan (Wood Elf)](ancestries.md#silvan-wood-elf)
+
+### Bane of the Dunlendings
+
+Melee hits and projectiles deal 20% more damage to illagers.
+
+- Illagers: pillagers, vindicators, evokers and illusioners. Not ravagers, vexes or witches.
+- Not part of the 60% cap; multiplies with it.
+
+`ardanborn:bane_of_the_dunlendings` · from ArdanBorn · used by [Rohirrim (Horse-lord)](ancestries.md#rohirrim-horse-lord)
 
 ### Battle-fury
 
@@ -40,6 +49,15 @@ Breathe underwater indefinitely.
 
 `ardanborn:breath_of_the_sea` · from ArdanBorn · used by [Teleri (Sea Elf)](ancestries.md#teleri-sea-elf)
 
+### Breeder of the Mark
+
+Foals you breed have speed, jump and health no lower than the average of their parents, and grow up in 10 minutes. They can be one of the [Mearas](banner-of-the-mark.md#the-mearas).
+
+- Each quality is the better of the foal's own and its parents' average.
+- Works on mules, but only horses can be Mearas.
+
+`ardanborn:breeder_of_the_mark` · from ArdanBorn · used by [Rohirrim (Horse-lord)](ancestries.md#rohirrim-horse-lord)
+
 ### Call of Huan
 
 Right-click with a bone, in the air or at a block, to call Huan for 60 seconds. 3-minute cooldown, from when you call him. The bone isn't used up.
@@ -50,6 +68,16 @@ Right-click with a bone, in the air or at a block, to call Huan for 60 seconds. 
 - Bones still tame ordinary wolves. The cooldown shows on your action bar.
 
 `ardanborn:call_of_huan` · from ArdanBorn · used by [Beastfriend](classes.md#beastfriend)
+
+### Charge of the Mark
+
+Melee hits while riding deal 20% more damage. After 3 seconds of galloping, the next melee hit also knocks a monster back.
+
+- Riding means a horse, donkey, mule, camel or llama. Galloping is 4 blocks per second or more.
+- A hit that knocks a monster back starts the 3 seconds again. Bosses aren't knocked back.
+- Adds to Spear-hardy, the [Spear of the Mark](banner-of-the-mark.md#spear-of-the-mark) and Death!, up to [60%](configuration.md#rohirrim) together.
+
+`ardanborn:charge_of_the_mark` · from ArdanBorn · used by [Rohirrim (Horse-lord)](ancestries.md#rohirrim-horse-lord)
 
 ### Cleave
 
@@ -69,7 +97,7 @@ Haste I and Night Vision below Y 50 where sky light is under 4.
 
 - Night Vision lasts 16 seconds after you leave.
 
-`ardanborn:delvers_instinct` · from ArdanBorn · used by [Naugrim (Dwarf)](ancestries.md#naugrim-dwarf)
+`ardanborn:delvers_instinct` · from ArdanBorn · used by [Dwarf](ancestries.md#dwarf)
 
 ### Elven-wrought
 
@@ -87,7 +115,7 @@ A melee hit after 3 seconds without one deals 50% more damage. Every melee hit t
 
 40% less damage from fire, burning, lava and magma blocks. You can still catch fire. Works alongside Fire Resistance.
 
-`ardanborn:forge_hardened` · from ArdanBorn · used by [Naugrim (Dwarf)](ancestries.md#naugrim-dwarf)
+`ardanborn:forge_hardened` · from ArdanBorn · used by [Dwarf](ancestries.md#dwarf)
 
 ### Fortunate Folk
 
@@ -111,7 +139,7 @@ Wild beasts don't target you unless you strike first. Your tamed animals take ha
 
 - Sources include mobs, ore, smelting, breeding, fishing and trading.
 
-`ardanborn:gift_of_men` · from ArdanBorn · used by [Edain (Man)](ancestries.md#edain-man)
+`ardanborn:gift_of_men` · from ArdanBorn · used by [Dúnedain (Man of the West)](ancestries.md#dúnedain-man-of-the-west)
 
 ### Green Thumb
 
@@ -160,7 +188,7 @@ Every 10 seconds, you and players within 6 blocks heal 1 heart. Players at full 
 
 Damage that leaves you alive at or below 30% health gives Resistance I and Regeneration I for 8 seconds. 90-second cooldown, from when it triggers.
 
-`ardanborn:hope_unquenched` · from ArdanBorn · used by [Edain (Man)](ancestries.md#edain-man)
+`ardanborn:hope_unquenched` · from ArdanBorn · used by [Dúnedain (Man of the West)](ancestries.md#dúnedain-man-of-the-west)
 
 ### Hunt Prey
 
@@ -184,13 +212,13 @@ No fall damage landing on leaves. Speed II and Jump Boost II while on leaves and
 
 - Any leaves, including azalea and mangrove. You can't pass through them.
 
-`ardanborn:leaf_walker` · from ArdanBorn · used by [Sindar (Wood Elf)](ancestries.md#sindar-wood-elf)
+`ardanborn:leaf_walker` · from ArdanBorn · used by [Silvan (Wood Elf)](ancestries.md#silvan-wood-elf)
 
 ### Lembas
 
 Bread fills hunger and saturation and gives Regeneration I for 5 seconds. 60-second cooldown; until then bread is ordinary.
 
-`ardanborn:lembas` · from ArdanBorn · used by [Sindar (Wood Elf)](ancestries.md#sindar-wood-elf)
+`ardanborn:lembas` · from ArdanBorn · used by [Silvan (Wood Elf)](ancestries.md#silvan-wood-elf)
 
 ### Light of the Staff
 
@@ -316,6 +344,14 @@ Sound a goat horn to play its song, within 24 blocks. 90-second cooldown shared 
 
 `ardanborn:songs_of_power` · from ArdanBorn · used by [Minstrel](classes.md#minstrel)
 
+### Spear-hardy
+
+Spears deal 15% more damage, mounted or on foot.
+
+- Adds to [Charge of the Mark](#charge-of-the-mark) and the Rohirrim's items, up to [60%](configuration.md#rohirrim) together.
+
+`ardanborn:spear_hardy` · from ArdanBorn · used by [Rohirrim (Horse-lord)](ancestries.md#rohirrim-horse-lord)
+
 ### Star of Eärendil
 
 Regeneration I and Night Vision at night in the Overworld, with open sky overhead. Glass counts as open; leaves don't.
@@ -368,7 +404,7 @@ Speed I in woodland biomes and for 3 seconds after leaving.
 
 - Woodland: any biome with *forest*, *taiga*, *jungle*, *grove* or *woods* in its name.
 
-`ardanborn:woodland_stride` · from ArdanBorn · used by [Sindar (Wood Elf)](ancestries.md#sindar-wood-elf)
+`ardanborn:woodland_stride` · from ArdanBorn · used by [Silvan (Wood Elf)](ancestries.md#silvan-wood-elf)
 
 ### Wrath of the Noldor
 
@@ -414,7 +450,7 @@ Bees don't attack when you take honey or honeycomb, with or without a campfire.
 
 Ores drop as if your tool had 2 more levels of Fortune.
 
-`fantasyorigins:fortune_increaser` · from [Origins-Fantasy](https://modrinth.com/plugin/origins-fantasy) · used by [Naugrim (Dwarf)](ancestries.md#naugrim-dwarf)
+`fantasyorigins:fortune_increaser` · from [Origins-Fantasy](https://modrinth.com/plugin/origins-fantasy) · used by [Dwarf](ancestries.md#dwarf)
 
 ### Endless Quiver
 
@@ -444,7 +480,7 @@ Regeneration I after standing still for a moment. Any movement ends it.
 
 +1.5 blocks of reach for blocks and entities.
 
-`origins:extra_reach` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Edain (Man)](ancestries.md#edain-man)
+`origins:extra_reach` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Dúnedain (Man of the West)](ancestries.md#dúnedain-man-of-the-west)
 
 ### Mighty Frame
 
@@ -474,7 +510,7 @@ One block tall. You fit through 1-block gaps.
 
 Sculk sensors and shriekers don't detect you walking, landing, eating or drinking.
 
-`magicorigins:silent` · from [Origins-Magic](https://modrinth.com/plugin/origins-magic) · used by [Hobbit (Halfling)](ancestries.md#hobbit-halfling), [Sindar (Wood Elf)](ancestries.md#sindar-wood-elf)
+`magicorigins:silent` · from [Origins-Magic](https://modrinth.com/plugin/origins-magic) · used by [Hobbit (Halfling)](ancestries.md#hobbit-halfling), [Silvan (Wood Elf)](ancestries.md#silvan-wood-elf)
 
 ### Spoils of Victory
 
@@ -486,7 +522,7 @@ Kills give extra health, more from stronger creatures, up to 30 extra hearts.
 
 Jump Boost II while sprinting.
 
-`origins:sprint_jump` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Edain (Man)](ancestries.md#edain-man)
+`origins:sprint_jump` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Dúnedain (Man of the West)](ancestries.md#dúnedain-man-of-the-west)
 
 ### Strong Arms
 

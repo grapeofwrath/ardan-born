@@ -15,17 +15,17 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.List;
 
-/// Boots: step up full blocks. Sindar leap higher in woodland.
+/// Boots: step up full blocks. Silvan Elves leap higher in woodland.
 public final class BoughRunnerEffect extends PieceEffect {
     private static final NamespacedKey KEY = Keys.key("bough_runner");
 
     public BoughRunnerEffect(String setId) {
-        super("bough_runner", "Bough-runner", setId, EquipmentSlot.FEET, OriginCheck.SINDAR);
+        super("bough_runner", "Bough-runner", setId, EquipmentSlot.FEET, OriginCheck.SILVAN);
     }
 
     @Override
     protected List<String> lines() {
-        return List.of("You step up full blocks", "Sindar: in woodland you leap higher");
+        return List.of("You step up full blocks", "Silvan Elves: in woodland you leap higher");
     }
 
     @Override

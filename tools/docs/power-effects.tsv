@@ -65,3 +65,7 @@ origins:strong_arms	Mine natural stone without a pickaxe and still get its drop:
 origins:tailwind	+20% walking speed.
 fantasyorigins:strong_skin	Arrows and other projectiles deal a quarter of their damage.
 origins:elytra	Glide without an elytra: jump, then jump again in mid-air. Firework rockets work, and you can wear a chestplate.
+ardanborn:charge_of_the_mark	Melee hits while riding deal 20% more damage. After 3 seconds of galloping, the next melee hit also knocks a monster back.
+ardanborn:breeder_of_the_mark	Foals you breed have speed, jump and health no lower than the average of their parents, and grow up in 10 minutes. They can be one of the [Mearas](banner-of-the-mark.md#the-mearas).
+ardanborn:spear_hardy	Spears deal 15% more damage, mounted or on foot.
+ardanborn:bane_of_the_dunlendings	Melee hits and projectiles deal 20% more damage to illagers.

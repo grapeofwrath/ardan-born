@@ -18,12 +18,12 @@ import java.util.List;
 /// Full set: ores sometimes yield double.
 public final class DurinsWealthEffect extends PieceEffect implements Listener {
     public DurinsWealthEffect(String setId) {
-        super("durins_wealth", "Durin's Wealth", setId, null, OriginCheck.NAUGRIM);
+        super("durins_wealth", "Durin's Wealth", setId, null, OriginCheck.DWARF);
     }
 
     @Override
     protected List<String> lines() {
-        return List.of("At times ores drop double", "Naugrim: more often");
+        return List.of("At times ores drop double", "Dwarves: more often");
     }
 
     @EventHandler(ignoreCancelled = true)

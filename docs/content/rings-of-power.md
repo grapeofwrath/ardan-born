@@ -21,7 +21,7 @@ Take the ring in your off-hand and right-click to put it on, and right-click aga
 
 | Ring | Power while worn | Shadow each second |
 |---|---|---|
-| **Ring of the Seven** | [Ores](lore-and-items.md#ores) yield as though your tool has 2 more levels of Fortune, and at times 1-3 gold nuggets besides. With each ore mined greed adds 1 Shadow, save to the Naugrim, who do not feel it. | 0.5 |
+| **Ring of the Seven** | [Ores](lore-and-items.md#ores) yield as though your tool has 2 more levels of Fortune, and at times 1-3 gold nuggets besides. With each ore mined greed adds 1 Shadow, save to the Dwarves, who do not feel it. | 0.5 |
 | **Ring of the Nine** | **Deathless:** a lethal hit leaves you with 1 heart, at the price of 40 Shadow. **Wraith-world:** monsters more than 8 blocks away do not perceive you. | 1.5 |
 | **Narya**, the Ring of Fire | You have Fire Resistance, and your melee hits set your foes alight; and you and all players within 8 blocks have Strength I. | 0.25 |
 | **Nenya**, the Ring of Adamant | You have Water Breathing, Dolphin's Grace and Resistance I, and your gear loses no durability. | 0.25 |

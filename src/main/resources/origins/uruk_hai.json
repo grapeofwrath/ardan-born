@@ -8,7 +8,7 @@
     "icon": {
         "item": "minecraft:rotten_flesh"
     },
-    "order": 8,
+    "order": 9,
     "impact": 2,
     "layer": "origin",
     "name": "Uruk-hai (Orc)",

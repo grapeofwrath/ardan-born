@@ -19,12 +19,12 @@ public final class StridersGaitEffect extends PieceEffect implements Listener {
     private final Map<UUID, Long> since = new HashMap<>();
 
     public StridersGaitEffect(String setId) {
-        super("striders_gait", "Strider's Gait", setId, EquipmentSlot.LEGS, OriginCheck.EDAIN);
+        super("striders_gait", "Strider's Gait", setId, EquipmentSlot.LEGS, OriginCheck.DUNEDAIN);
     }
 
     @Override
     protected List<String> lines() {
-        return List.of("Sprint on, and you have Speed", "Edain: sooner");
+        return List.of("Sprint on, and you have Speed", "Dúnedain: sooner");
     }
 
     @Override

@@ -5,6 +5,7 @@ import dev.grapeofwrath.ardanborn.armor.sets.AlqualondeSet;
 import dev.grapeofwrath.ardanborn.armor.sets.ArkenstoneSet;
 import dev.grapeofwrath.ardanborn.armor.sets.CarrockSet;
 import dev.grapeofwrath.ardanborn.armor.sets.CitadelSet;
+import dev.grapeofwrath.ardanborn.armor.sets.EdorasSet;
 import dev.grapeofwrath.ardanborn.armor.sets.GondolinSet;
 import dev.grapeofwrath.ardanborn.armor.sets.ImladrisSet;
 import dev.grapeofwrath.ardanborn.armor.sets.IsengardSet;
@@ -52,6 +53,7 @@ public final class ArmorSets {
         register(plugin, new ImladrisSet());
         register(plugin, new IsengardSet());
         register(plugin, new CarrockSet());
+        register(plugin, new EdorasSet());
         registerNetheriteUpgrades();
     }
 

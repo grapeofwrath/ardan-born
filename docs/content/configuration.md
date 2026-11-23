@@ -16,6 +16,11 @@ race-items:
   power: 1.0
   overrides: {}
   disabled: []
+rohirrim:
+  damage-bonus-cap: 0.60
+mearas:
+  chance: 0.02
+  shadowfax-chance: 0.20
 ```
 
 ### Morgul wound
@@ -47,6 +52,25 @@ These settings control how strong race item and armor effects are. The numbers o
 - An id is the name of the item or effect in lower case, with underscores and no accents or apostrophes, such as `axe_of_azaghal`, `durins_wealth`. The Mithril Coat is `mithril`. A typo is reported in the console at startup.
 - What a piece does just by being its base item (walking on powder snow, the spyglass, the turtle shell) can't be disabled.
 
+### Rohirrim
+
+| Setting | Default | What it does |
+|---|---|---|
+| `damage-bonus-cap` | `0.60` | The most that Charge of the Mark, Spear-hardy, the [Spear of the Mark](banner-of-the-mark.md#spear-of-the-mark) and Death! can add to melee damage together (0.60 is 60%). Item power is applied before the cap |
+
+### Mearas
+
+These settings control the [Mearas](banner-of-the-mark.md#the-mearas).
+
+| Setting | Default | What it does |
+|---|---|---|
+| `chance` | `0.02` | Chance that an eligible foal or wild horse is one of the Mearas (0.02 is 2%). Each horse is rolled once |
+| `shadowfax-chance` | `0.20` | Chance that a new Meara is Shadowfax, while there is none in the world |
+
+## Shadowfax
+
+`plugins/ArdanBorn/shadowfax.yml` records the living [Shadowfax](banner-of-the-mark.md#shadowfax). Don't edit it while the server is running. If it is deleted, another Shadowfax can appear.
+
 ## Rings of Power
 
 `plugins/ArdanBorn/rings.yml` tracks the unique [Rings of Power](rings-of-power.md#unique-rings). Don't edit it while the server is running.
@@ -63,38 +87,3 @@ lootables:
 ```
 
 Looted chests then refill between `refresh-min` and `refresh-max` after being looted (12 hours to 2 days by default), and `restrict-player-reloot` stops one player farming the same chest. Refilled chests can hold rings too, and unique rings still can't be duplicated.
-
-## Renamed ids
-
-Some origin files and power ids were renamed to match the names players see. ArdanBorn updates its own files in `plugins/ArdanBorn/origins/` and the default origins in Origins-Reborn's `config.yml` when the server starts, and keeps your edits. If both the old and new file exist, the old one is set aside as `.json.old`. Players keep their origins.
-
-If you use ArdanBorn powers in your own origin files elsewhere, update their ids yourself:
-
-| Old power id | New power id |
-|---|---|
-| `ardanborn:bloodlust` | `ardanborn:battle_fury` |
-| `ardanborn:eldar_body` | `ardanborn:undying_body` |
-| `ardanborn:eldar_lore` | `ardanborn:deep_lore` |
-| `ardanborn:falmari_lungs` | `ardanborn:breath_of_the_sea` |
-| `ardanborn:gentle_friend` | `ardanborn:friend_of_beasts` |
-| `ardanborn:keen_tracker` | `ardanborn:hunt_prey` |
-| `ardanborn:kings_hands` | `ardanborn:hands_of_the_healer` |
-| `ardanborn:last_stand` | `ardanborn:hope_unquenched` |
-| `ardanborn:master_smith` | `ardanborn:mending_craft` |
-| `ardanborn:tree_roots` | `ardanborn:tough_as_old_tree_roots` |
-| `ardanborn:wizard_staff` | `ardanborn:light_of_the_staff` |
-
-| Old origin file | New origin file |
-|---|---|
-| `alchemist.json` | `herbalist.json` |
-| `bard.json` | `minstrel.json` |
-| `champion.json` | `defender.json` |
-| `cleric.json` | `healer.json` |
-| `druid.json` | `beastfriend.json` |
-| `eagle.json` | `great_eagle.json` |
-| `fighter.json` | `warrior.json` |
-| `inventor.json` | `smith.json` |
-| `rogue.json` | `burglar.json` |
-| `size_normal.json` | `normal_size.json` |
-| `size_small.json` | `small_size.json` |
-| `wizard.json` | `loremaster.json` |

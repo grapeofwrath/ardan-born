@@ -1,0 +1,16 @@
+{
+    "powers": [
+        "ardanborn:gift_of_men",
+        "ardanborn:hope_unquenched",
+        "origins:extra_reach",
+        "origins:sprint_jump"
+    ],
+    "icon": {
+        "item": "minecraft:white_banner"
+    },
+    "order": 1,
+    "impact": 1,
+    "layer": "origin",
+    "name": "D\u00fanedain (Man of the West)",
+    "description": "Heirs of N\u00famenor were the D\u00fanedain, and long after its drowning they kept the memory of the West. Swiftly they learned, and far they reached; and when hope failed they did not yield, but were then most to be feared."
+}

@@ -1,7 +1,7 @@
 ---
 title: "Arkenstone"
 ---
-The Heart of the Mountain was the Arkenstone, and the [Naugrim](ancestries.md#naugrim-dwarf) prized it above all the works of their hands. From it are made the Arkenstone armor, the Axe of Azaghâl and the Arkenstone Pickaxe.
+The Heart of the Mountain was the Arkenstone, and the [Dwarves](ancestries.md#dwarf) prized it above all the works of their hands. From it are made the Arkenstone armor, the Axe of Azaghâl and the Arkenstone Pickaxe.
 
 ## The making of the Arkenstone
 
@@ -19,11 +19,11 @@ Any [armor](race-items.md#armor) of diamond or netherite may be joined with the 
 
 | Piece | Effect |
 |---|---|
-| Helmet | **Ore-sense:** sneak and right-click with any pickaxe, and the ores within 8 blocks (12 in netherite) glow through the stone for 10 seconds, to your eyes alone. It may be done once in 60 seconds. For the **Naugrim** it reaches 4 blocks further. |
-| Chestplate | **Unmoved:** you have 40% knockback resistance, and take 25% less damage from explosions. In deep and unlit places, below Y 50 and out of the sky's light, the **Naugrim** take 15% less damage. |
-| Leggings | **Dwarf-march:** sprinting in deep and unlit places costs no hunger. The **Naugrim** have Haste II for 5 seconds after mining an ore. |
-| Boots | **Snowtread:** you walk upon powder snow and do not sink, unless you sneak, and you are immune to freezing. The **Naugrim** have also **Mountain Stride**, and step up full blocks without jumping; and in netherite they go 10% faster on natural stone and deepslate. |
-| Full set | **Durin's Wealth:** there is a 10% chance that a mined ore drops double, though not with Silk Touch. For the **Naugrim** it is 15%. |
+| Helmet | **Ore-sense:** sneak and right-click with any pickaxe, and the ores within 8 blocks (12 in netherite) glow through the stone for 10 seconds, to your eyes alone. It may be done once in 60 seconds. For the **Dwarves** it reaches 4 blocks further. |
+| Chestplate | **Unmoved:** you have 40% knockback resistance, and take 25% less damage from explosions. In deep and unlit places, below Y 50 and out of the sky's light, the **Dwarves** take 15% less damage. |
+| Leggings | **Dwarf-march:** sprinting in deep and unlit places costs no hunger. The **Dwarves** have Haste II for 5 seconds after mining an ore. |
+| Boots | **Snowtread:** you walk upon powder snow and do not sink, unless you sneak, and you are immune to freezing. The **Dwarves** have also **Mountain Stride**, and step up full blocks without jumping; and in netherite they go 10% faster on natural stone and deepslate. |
+| Full set | **Durin's Wealth:** there is a 10% chance that a mined ore drops double, though not with Silk Touch. For the **Dwarves** it is 15%. |
 
 ### The boots
 
@@ -36,7 +36,7 @@ The axe is made from an [axe](race-items.md#weapons) of diamond or netherite.
 | Who | Effect |
 |---|---|
 | Anyone | Against foes of 20 or more hearts it deals 15% more damage. |
-| Naugrim | It deals them 25% more, and this stacks with [Axe of Durin](powers.md#axe-of-durin). |
+| Dwarf | It deals them 25% more, and this stacks with [Axe of Durin](powers.md#axe-of-durin). |
 
 ## Arkenstone Pickaxe
 
@@ -45,7 +45,7 @@ The pickaxe is made from a [pickaxe](race-items.md#weapons) of diamond or nether
 | Who | Effect |
 |---|---|
 | Anyone | **Tunnel-bore:** it mines an area of 3×3, or a single block while you sneak. |
-| Naugrim | The extra blocks cost no durability. |
+| Dwarf | The extra blocks cost no durability. |
 
 - The 3×3 lies in the face into which you dig: flat in the top or bottom of a block, and upright in its side.
 - It takes only such blocks as a pickaxe mines, and none harder than the one at which you aimed, save ores, which it takes always. Obsidian, ancient debris and containers it leaves unbroken.

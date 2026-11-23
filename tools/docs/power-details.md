@@ -129,3 +129,19 @@ Never drawn: Silk Touch, Mending, Infinity, Flame, Multishot, Channeling. Only t
 
 ## ardanborn:wrath_of_the_noldor
 - Creatures of the Nether: blazes, ghasts, magma cubes, hoglins, piglins, piglin brutes.
+
+## ardanborn:charge_of_the_mark
+- Riding means a horse, donkey, mule, camel or llama. Galloping is 4 blocks per second or more.
+- A hit that knocks a monster back starts the 3 seconds again. Bosses aren't knocked back.
+- Adds to Spear-hardy, the [Spear of the Mark](banner-of-the-mark.md#spear-of-the-mark) and Death!, up to [60%](configuration.md#rohirrim) together.
+
+## ardanborn:breeder_of_the_mark
+- Each quality is the better of the foal's own and its parents' average.
+- Works on mules, but only horses can be Mearas.
+
+## ardanborn:spear_hardy
+- Adds to [Charge of the Mark](#charge-of-the-mark) and the Rohirrim's items, up to [60%](configuration.md#rohirrim) together.
+
+## ardanborn:bane_of_the_dunlendings
+- Illagers: pillagers, vindicators, evokers and illusioners. Not ravagers, vexes or witches.
+- Not part of the 60% cap; multiplies with it.

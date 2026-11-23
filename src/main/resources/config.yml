@@ -25,3 +25,15 @@ race-items:
   overrides: {}
   # Items and armor effects that do nothing, e.g. [sting, fellowship]
   disabled: []
+
+rohirrim:
+  # The most that Charge of the Mark, Spear-hardy, the Spear of the Mark and Death! can add to melee damage
+  # together (0.60 = 60%).
+  damage-bonus-cap: 0.60
+
+mearas:
+  # Chance that a horse is one of the Mearas: a foal bred by one of the Rohirrim, or a wild horse in the plains
+  # (0.02 = 2%). Each horse is rolled once.
+  chance: 0.02
+  # Chance that a new Meara is Shadowfax, while there is no Shadowfax in the world (0.20 = 20%).
+  shadowfax-chance: 0.20

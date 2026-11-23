@@ -15,7 +15,7 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 
-/// Boots: walk on powder snow without sinking, and never freeze. Naugrim also get Mountain Stride: they
+/// Boots: walk on powder snow without sinking, and never freeze. Dwarves also get Mountain Stride: they
 /// step up full blocks, and on netherite move faster over natural stone.
 ///
 /// Vanilla grants Snowtread, on server and client alike, only to boots that are `minecraft:leather_boots`
@@ -45,18 +45,18 @@ public final class SnowtreadEffect implements SetEffect {
     public List<Component> describe(ArmorTier tier) {
         return List.of(
                 Component.text("You walk upon powder snow, nor ever freeze"),
-                Component.text("Naugrim: and step up full blocks"));
+                Component.text("Dwarves: and step up full blocks"));
     }
 
     @Override
     public void tick(Player player, ArmorTier tier) {
-        boolean naugrim = OriginCheck.is(player, OriginCheck.NAUGRIM);
-        Effects.modifier(player, Attribute.STEP_HEIGHT, STEP_KEY, naugrim ? STEP_BONUS : 0,
+        boolean dwarf = OriginCheck.is(player, OriginCheck.DWARF);
+        Effects.modifier(player, Attribute.STEP_HEIGHT, STEP_KEY, dwarf ? STEP_BONUS : 0,
                 AttributeModifier.Operation.ADD_NUMBER);
         boolean onStone = Tag.BASE_STONE_OVERWORLD.isTagged(
                 player.getLocation().getBlock().getRelative(BlockFace.DOWN).getType());
         Effects.modifier(player, Attribute.MOVEMENT_SPEED, SPEED_KEY,
-                naugrim && tier == ArmorTier.NETHERITE && onStone ? STONE_SPEED_BONUS : 0,
+                dwarf && tier == ArmorTier.NETHERITE && onStone ? STONE_SPEED_BONUS : 0,
                 AttributeModifier.Operation.ADD_SCALAR);
     }
 

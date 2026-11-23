@@ -38,7 +38,7 @@ import java.util.UUID;
 
 /// The Arkenstone pickaxe: the Arkenstone (the dwarves' template, which also makes the armor set)
 /// combined with a diamond or netherite pickaxe. It mines 3×3, in the plane of the face you dig into;
-/// sneak to mine a single block. Naugrim wear it down only for the block they aim at.
+/// sneak to mine a single block. Dwarves wear it down only for the block they aim at.
 public final class ArkenstonePickaxe implements ToolUpgrade, Listener {
     public static final String ID = "arkenstone_pickaxe";
     private static final TextColor COLOR = TextColor.color(0xD8ECFF);
@@ -81,7 +81,7 @@ public final class ArkenstonePickaxe implements ToolUpgrade, Listener {
         pick.setData(DataComponentTypes.LORE, ItemLore.lore()
                 .addLine(ToolUpgrade.lore("Tunnel-bore", NamedTextColor.GOLD))
                 .addLine(ToolUpgrade.lore("Delves 3×3; sneak to delve one block", NamedTextColor.GRAY))
-                .addLine(ToolUpgrade.lore("Naugrim: for the extra blocks", NamedTextColor.DARK_AQUA))
+                .addLine(ToolUpgrade.lore("Dwarves: for the extra blocks", NamedTextColor.DARK_AQUA))
                 .addLine(ToolUpgrade.lore("it takes no wear", NamedTextColor.DARK_AQUA))
                 .build());
         CustomItems.tag(pick, ID);
@@ -118,11 +118,11 @@ public final class ArkenstonePickaxe implements ToolUpgrade, Listener {
         }
     }
 
-    /// Naugrim: the extra blocks cost no durability.
+    /// Dwarves: the extra blocks cost no durability.
     @EventHandler(ignoreCancelled = true)
     public void onWear(PlayerItemDamageEvent event) {
         Player player = event.getPlayer();
-        if (boring.contains(player.getUniqueId()) && OriginCheck.is(player, OriginCheck.NAUGRIM)) {
+        if (boring.contains(player.getUniqueId()) && OriginCheck.is(player, OriginCheck.DWARF)) {
             event.setCancelled(true);
         }
     }

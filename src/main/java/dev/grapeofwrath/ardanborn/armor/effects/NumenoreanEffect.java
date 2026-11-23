@@ -18,12 +18,12 @@ import java.util.List;
 /// Boots: boats you ride are unharmed, and fish bite sooner.
 public final class NumenoreanEffect extends PieceEffect implements Listener {
     public NumenoreanEffect(String setId) {
-        super("numenorean", "Númenórean", setId, EquipmentSlot.FEET, OriginCheck.EDAIN);
+        super("numenorean", "Númenórean", setId, EquipmentSlot.FEET, OriginCheck.DUNEDAIN);
     }
 
     @Override
     protected List<String> lines() {
-        return List.of("Your boats are safe, and fish bite sooner", "Edain: sooner still");
+        return List.of("Your boats are safe, and fish bite sooner", "Dúnedain: sooner still");
     }
 
     private boolean guarded(Entity vehicle) {

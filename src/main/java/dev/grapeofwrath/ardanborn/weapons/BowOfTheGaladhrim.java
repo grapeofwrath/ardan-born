@@ -22,7 +22,7 @@ import java.util.List;
 public final class BowOfTheGaladhrim extends RaceItem implements Listener {
     public BowOfTheGaladhrim() {
         super("bow_of_the_galadhrim", "Bow of the Galadhrim", Template.of(RaceTemplate.MALLORN_LEAF),
-                OriginCheck.SINDAR, List.of(Material.BOW));
+                OriginCheck.SILVAN, List.of(Material.BOW));
     }
 
     /// Marks full-draw arrows shot from the bow, so their hits are known even after the bow is put away.
@@ -35,7 +35,7 @@ public final class BowOfTheGaladhrim extends RaceItem implements Listener {
 
     @Override
     protected List<String> ownLines() {
-        return List.of("Sindar: and slows them");
+        return List.of("Silvan Elves: and slows them");
     }
 
     @EventHandler(ignoreCancelled = true)

@@ -5,13 +5,14 @@ Each ancestry has a template, which makes a set of armor, a weapon and a tool. A
 
 | Ancestry | Template | Armor | Weapon | Tool |
 |---|---|---|---|---|
-| Naugrim | [Arkenstone](arkenstone.md) | Arkenstone | Axe of Azaghâl | Arkenstone Pickaxe |
+| Dwarf | [Arkenstone](arkenstone.md) | Arkenstone | Axe of Azaghâl | Arkenstone Pickaxe |
 | Teleri | [Pearl of Ossë](pearl-of-osse.md) | Alqualondë | Spear of the Havens | Net of the Havens |
 | Great Eagle | [Feather of Thorondor](feather-of-thorondor.md) | Thorondor | Aeglos | Breath of Manwë |
 | Beorning | [Honey of Beorn](honey-of-beorn.md) | Carrock | Hunting Bow | Skin-changer's Claw |
 | Noldor | [Light of the Trees](light-of-the-trees.md) | Gondolin | Orcrist | Phial of Galadriel |
-| Sindar | [Mallorn Leaf](mallorn-leaf.md) | Lórien | Bow of the Galadhrim | Hithlain |
-| Edain | [Star of Elendil](star-of-elendil.md) | Citadel | Andúril | Horn of Gondor |
+| Silvan | [Mallorn Leaf](mallorn-leaf.md) | Lórien | Bow of the Galadhrim | Hithlain |
+| Dúnedain | [Star of Elendil](star-of-elendil.md) | Citadel | Andúril | Horn of Gondor |
+| Rohirrim | [Banner of the Mark](banner-of-the-mark.md) | Edoras | Spear of the Mark | Barding of the Mark |
 | Peredhil | [Evenstar](evenstar.md) | Imladris | Hadhafang | Miruvor |
 | Hobbit | [Mathom](mathom.md) | Mithril | Sting | Longbottom Pipe |
 | Uruk-hai | [White Hand](white-hand.md) | Isengard | Scimitar of Isengard | Orc-draught |
@@ -66,4 +67,4 @@ These rules also apply to the Arkenstone Pickaxe.
 
 The Net of the Havens, Breath of Manwë, Skin-changer's Claw, Hithlain, Longbottom Pipe and Orc-draught are used by right-clicking with them in your main hand. They don't stack and aren't used up, and they no longer do what their base item does.
 
-The Arkenstone Pickaxe, Phial of Galadriel, Horn of Gondor and Miruvor each work differently, as described on their pages.
+The Arkenstone Pickaxe, Phial of Galadriel, Horn of Gondor, Miruvor and Barding of the Mark each work differently, as described on their pages.

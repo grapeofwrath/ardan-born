@@ -23,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-/// Chestplate (the Cloak of Lórien): a mob's blow or arrow sometimes passes through only leaves. Sindar
+/// Chestplate (the Cloak of Lórien): a mob's blow or arrow sometimes passes through only leaves. Silvan Elves
 /// leave the attacker tangled.
 public final class ElusiveEffect implements SetEffect, Listener {
     private static final double CHANCE = 0.10;
@@ -53,7 +53,7 @@ public final class ElusiveEffect implements SetEffect, Listener {
         return List.of(
                 Component.text("At times the blows of mobs miss you,"),
                 Component.text("more often in woodland"),
-                Component.text("Sindar: and the attacker is tangled"));
+                Component.text("Silvan Elves: and the attacker is tangled"));
     }
 
     /// Runs early, so cancelling stops the damage before other plugins and powers react to it.
@@ -69,7 +69,7 @@ public final class ElusiveEffect implements SetEffect, Listener {
         event.setCancelled(true);
         if (event.getDamager() instanceof Projectile projectile) projectile.remove();
         player.getWorld().spawnParticle(Particle.CHERRY_LEAVES, player.getLocation().add(0, 1, 0), 20, 0.4, 0.6, 0.4, 0);
-        if (OriginCheck.is(player, OriginCheck.SINDAR)) {
+        if (OriginCheck.is(player, OriginCheck.SILVAN)) {
             attacker.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, TANGLE_TICKS, 1, true, true, true));
         }
     }

@@ -16,8 +16,8 @@ Some origins use powers from these addons. If one is missing, those origins can 
 
 | Addon | Tested version | Used by |
 |---|---|---|
-| [Origins-Fantasy](https://modrinth.com/plugin/origins-fantasy) | 1.1.14 | Beorning, Defender, Naugrim, Sindar, Small Size |
-| [Origins-Magic](https://modrinth.com/plugin/origins-magic) | 1.0.18 | Beorning, Herbalist, Hobbit, Loremaster, Sindar |
+| [Origins-Fantasy](https://modrinth.com/plugin/origins-fantasy) | 1.1.14 | Beorning, Defender, Dwarf, Silvan, Small Size |
+| [Origins-Magic](https://modrinth.com/plugin/origins-magic) | 1.0.18 | Beorning, Herbalist, Hobbit, Loremaster, Silvan |
 | [Origins-Mobs](https://modrinth.com/plugin/origins-mobs) | 1.0.41 | Beastfriend, Beorning, Great Eagle, Healer, Herbalist |
 | [Origins-Monsters](https://modrinth.com/plugin/origins-monsters) | 1.2.3 | Ranger |
 

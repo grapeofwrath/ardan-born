@@ -18,17 +18,17 @@ import org.bukkit.inventory.EquipmentSlot;
 
 import java.util.List;
 
-/// Chestplate: hard to throw back, and blasts do less. Naugrim take less harm in the deep.
+/// Chestplate: hard to throw back, and blasts do less. Dwarves take less harm in the deep.
 public final class UnmovedEffect extends PieceEffect implements Listener {
     private static final NamespacedKey KEY = Keys.key("unmoved");
 
     public UnmovedEffect(String setId) {
-        super("unmoved", "Unmoved", setId, EquipmentSlot.CHEST, OriginCheck.NAUGRIM);
+        super("unmoved", "Unmoved", setId, EquipmentSlot.CHEST, OriginCheck.DWARF);
     }
 
     @Override
     protected List<String> lines() {
-        return List.of("Not lightly moved, nor hurt by blasts so sorely", "Naugrim: hardier in the deep");
+        return List.of("Not lightly moved, nor hurt by blasts so sorely", "Dwarves: hardier in the deep");
     }
 
     @Override

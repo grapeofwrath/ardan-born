@@ -9,7 +9,7 @@
     "icon": {
         "item": "minecraft:feather"
     },
-    "order": 9,
+    "order": 10,
     "impact": 3,
     "layer": "origin",
     "name": "Great Eagle",

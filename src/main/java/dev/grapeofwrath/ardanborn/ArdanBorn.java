@@ -10,9 +10,11 @@ import dev.grapeofwrath.ardanborn.armor.ArmorSmithingListener;
 import dev.grapeofwrath.ardanborn.armor.RecipeGuardListener;
 import dev.grapeofwrath.ardanborn.items.ItemPower;
 import dev.grapeofwrath.ardanborn.items.rings.Rings;
+import dev.grapeofwrath.ardanborn.mounts.Mearas;
+import dev.grapeofwrath.ardanborn.mounts.Riding;
+import dev.grapeofwrath.ardanborn.mounts.RohirrimDamage;
 import dev.grapeofwrath.ardanborn.origins.OriginAbilities;
 import dev.grapeofwrath.ardanborn.origins.OriginFiles;
-import dev.grapeofwrath.ardanborn.origins.OriginRenames;
 import dev.grapeofwrath.ardanborn.origins.OriginsDefaults;
 import dev.grapeofwrath.ardanborn.origins.PowerText;
 import dev.grapeofwrath.ardanborn.weapons.ToolUpgrades;
@@ -47,7 +49,6 @@ public final class ArdanBorn extends OriginsAddon {
     @Override
     public void onRegister() {
         // Must run before Origins-Reborn reads plugins/ArdanBorn/origins/.
-        OriginRenames.apply(getDataFolder().toPath(), getLogger());
         OriginFiles.syncBundled(this);
         OriginsDefaults.apply(getLogger());
         PowerText.apply(getLogger());
@@ -65,6 +66,9 @@ public final class ArdanBorn extends OriginsAddon {
 
         saveDefaultConfig();
         ItemPower.load(getConfig());
+        Riding.register(this);
+        RohirrimDamage.register(this);
+        Mearas.register(this);
         ArmorSets.registerAll(this);
         armorEffects = new ArmorEffectManager(this);
         var pm = getServer().getPluginManager();
@@ -85,6 +89,7 @@ public final class ArdanBorn extends OriginsAddon {
     @Override
     public void onDisable() {
         if (armorEffects != null) armorEffects.shutdown();
+        Mearas.shutdown();
         OriginAbilities.CallOfHuan.dismissAll();
         ArmorSets.unregisterAll();
     }

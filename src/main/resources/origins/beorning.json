@@ -8,7 +8,7 @@
     "icon": {
         "item": "minecraft:honey_bottle"
     },
-    "order": 10,
+    "order": 11,
     "impact": 3,
     "layer": "origin",
     "name": "Beorning (Skin-changer)",

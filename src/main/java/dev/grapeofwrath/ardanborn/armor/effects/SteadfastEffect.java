@@ -12,15 +12,15 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.List;
 
-/// Helmet: no Weakness. Edain shake off harmful effects sooner. Effects from plugins, such as the Morgul wound's, aren't changed.
+/// Helmet: no Weakness. Dúnedain shake off harmful effects sooner. Effects from plugins, such as the Morgul wound's, aren't changed.
 public final class SteadfastEffect extends PieceEffect implements Listener {
     public SteadfastEffect(String setId) {
-        super("steadfast", "Steadfast", setId, EquipmentSlot.HEAD, OriginCheck.EDAIN);
+        super("steadfast", "Steadfast", setId, EquipmentSlot.HEAD, OriginCheck.DUNEDAIN);
     }
 
     @Override
     protected List<String> lines() {
-        return List.of("Weakness touches you not", "Edain: other ill effects pass sooner");
+        return List.of("Weakness touches you not", "Dúnedain: other ill effects pass sooner");
     }
 
     @EventHandler(ignoreCancelled = true)

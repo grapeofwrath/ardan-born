@@ -484,6 +484,6 @@ public final class RingBearer implements Listener {
             event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation().add(0.5, 0.5, 0.5),
                     ItemStack.of(Material.GOLD_NUGGET, random.nextInt(1, 4)));
         }
-        if (!OriginCheck.is(player, OriginCheck.NAUGRIM)) addShadow(player, gain(player, GREED_PER_ORE));
+        if (!OriginCheck.is(player, OriginCheck.DWARF)) addShadow(player, gain(player, GREED_PER_ORE));
     }
 }

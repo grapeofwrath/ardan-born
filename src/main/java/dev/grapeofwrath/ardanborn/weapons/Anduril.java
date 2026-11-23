@@ -16,7 +16,7 @@ import java.util.List;
 public final class Anduril extends RaceItem implements Listener {
     public Anduril() {
         super("anduril", "Andúril", Template.of(RaceTemplate.STAR_OF_ELENDIL),
-                OriginCheck.EDAIN, SWORDS);
+                OriginCheck.DUNEDAIN, SWORDS);
     }
 
     private static final int BURN_TICKS = 80;
@@ -29,7 +29,7 @@ public final class Anduril extends RaceItem implements Listener {
 
     @Override
     protected List<String> ownLines() {
-        return List.of("Edain: mightier still");
+        return List.of("Dúnedain: mightier still");
     }
 
     @EventHandler(ignoreCancelled = true)

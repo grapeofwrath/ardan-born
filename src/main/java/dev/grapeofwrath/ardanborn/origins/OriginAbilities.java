@@ -6,6 +6,9 @@ import dev.grapeofwrath.ardanborn.ArdanBorn;
 import dev.grapeofwrath.ardanborn.Keys;
 import dev.grapeofwrath.ardanborn.afflictions.MorgulWound;
 import dev.grapeofwrath.ardanborn.armor.CustomItems;
+import dev.grapeofwrath.ardanborn.items.Effects;
+import dev.grapeofwrath.ardanborn.mounts.Riding;
+import dev.grapeofwrath.ardanborn.mounts.RohirrimDamage;
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
@@ -30,8 +33,10 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.AbstractArrow;
 import org.bukkit.entity.AbstractHorse;
 import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Enemy;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Illager;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Mob;
@@ -114,6 +119,7 @@ public final class OriginAbilities {
                 new Moonbound(), new ElvenWrought(), new Lembas(), new StarOfEarendil(), new SwiftMessenger(),
                 new PearlsOfAlqualonde(), new TidesFury(), new AxeOfDurin(),
                 new ToughAsOldTreeRoots(), new WrathOfTheNoldor(), new HealerOfImladris(), new LeafWalker(),
+                new ChargeOfTheMark(), new BreederOfTheMark(), new SpearHardy(), new BaneOfTheDunlendings(),
                 // Classes
                 new FirstStrike(), new HardenedVeteran(), new Cleave(), new HuntPrey(), new Wayfarer(),
                 new ShieldWall(), new HandsOfTheHealer(), new LightOfTheStaff(), new FriendOfBeasts(),
@@ -214,7 +220,7 @@ public final class OriginAbilities {
         return e.getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK;
     }
 
-    /** Forests, taigas, jungles and groves: the Sindar's home ground. */
+    /** Forests, taigas, jungles and groves: the Silvan Elves' home ground. */
     public static boolean inWoodland(Player p) {
         String biome = p.getLocation().getBlock().getBiome().getKey().getKey();
         return biome.contains("forest") || biome.contains("taiga") || biome.contains("jungle")
@@ -239,7 +245,7 @@ public final class OriginAbilities {
 
     // ================================================================ ANCESTRIES
 
-    /** Edain: the Gift of Men. */
+    /** Dúnedain: the Gift of Men. */
     public static final class GiftOfMen extends Base implements Listener {
         public GiftOfMen() {
             super("gift_of_men", "Gift of Men",
@@ -255,7 +261,7 @@ public final class OriginAbilities {
         }
     }
 
-    /** Edain / Peredhil: hope in the darkest hour. */
+    /** Dúnedain / Peredhil: hope in the darkest hour. */
     public static final class HopeUnquenched extends Base implements Listener {
         private static final Cooldown cooldown = new Cooldown();
 
@@ -264,7 +270,7 @@ public final class OriginAbilities {
                     "When a blow has left you below 30% of your health, a strength unlooked-for awakes, and you are granted Resistance and Regeneration for 8 seconds; but not again until 90 seconds are gone.");
         }
 
-        /** Makes Hope Unquenched ready again (the Horn of Gondor, blown by one of the Edain). */
+        /** Makes Hope Unquenched ready again (the Horn of Gondor, blown by one of the Dúnedain). */
         public static void renew(Player player) {
             cooldown.reset(player);
         }
@@ -320,7 +326,7 @@ public final class OriginAbilities {
         }
     }
 
-    /** Sindar: at home beneath the trees. */
+    /** Silvan Elves: at home beneath the trees. */
     public static final class WoodlandStride extends Base implements Tickable {
         public WoodlandStride() {
             super("woodland_stride", "Woodland Stride",
@@ -335,7 +341,7 @@ public final class OriginAbilities {
         }
     }
 
-    /** Sindar: hunters of the spiders of Mirkwood. */
+    /** Silvan Elves: hunters of the spiders of Mirkwood. */
     public static final class BaneOfMirkwood extends Base implements Listener {
         public BaneOfMirkwood() {
             super("bane_of_mirkwood", "Bane of Mirkwood",
@@ -416,7 +422,7 @@ public final class OriginAbilities {
         }
     }
 
-    /** Dwarves and smiths: hardened against fire. Shared by Naugrim and Smith. */
+    /** Dwarves and smiths: hardened against fire. Shared by Dwarf and Smith. */
     public static final class ForgeHardened extends Base implements Listener {
         private static final Set<EntityDamageEvent.DamageCause> FIRE_CAUSES = EnumSet.of(
                 EntityDamageEvent.DamageCause.FIRE,
@@ -561,7 +567,7 @@ public final class OriginAbilities {
         }
     }
 
-    /** Sindar: the waybread of the Elves. */
+    /** Silvan Elves: the waybread of the Elves. */
     public static final class Lembas extends Base implements Listener {
         private final Cooldown cooldown = new Cooldown();
 
@@ -634,6 +640,87 @@ public final class OriginAbilities {
         }
     }
 
+    /** Rohirrim: the charge of the Riders. */
+    public static final class ChargeOfTheMark extends Base implements Listener {
+        private static final int GALLOP_TICKS = 60; // 3 seconds
+
+        public ChargeOfTheMark() {
+            super("charge_of_the_mark", "Charge of the Mark",
+                    "Fell is the charge of the Riders. From the saddle your blows deal 20% more damage; and when you have galloped for 3 seconds, your next blow hurls a monster back.");
+            RohirrimDamage.add(p -> Riding.mounted(p) && hasAbility(p) ? 0.2 : 0);
+        }
+
+        @EventHandler(ignoreCancelled = true)
+        public void onHit(EntityDamageByEntityEvent e) {
+            Player attacker = Effects.meleeAttacker(e);
+            if (attacker == null || !(e.getEntity() instanceof Enemy) || !(e.getEntity() instanceof LivingEntity foe)) return;
+            if (Riding.gallopTicks(attacker) < GALLOP_TICKS) return;
+            runForAbility(attacker, p -> {
+                Riding.restartGallop(p);
+                Effects.push(foe, p.getLocation(), 1.0);
+            });
+        }
+    }
+
+    /** Rohirrim: breeders of the horses of the Mark, and of the Mearas. */
+    public static final class BreederOfTheMark extends Base implements Listener {
+        private static final int FOAL_AGE = -12_000; // 10 minutes, half the usual
+        private static @Nullable BreederOfTheMark instance;
+
+        public BreederOfTheMark() {
+            super("breeder_of_the_mark", "Breeder of the Mark",
+                    "The horses that you breed take after the better of their line: in speed, leap and health a foal is never less than the mean of its parents, and it grows in half the time. At times one is born of the Mearas.");
+            instance = this;
+        }
+
+        public static boolean has(Player player) {
+            return instance != null && instance.hasAbility(player);
+        }
+
+        @EventHandler(ignoreCancelled = true)
+        public void onBreed(EntityBreedEvent e) {
+            if (!(e.getEntity() instanceof AbstractHorse foal) || !(e.getBreeder() instanceof Player breeder)) return;
+            runForAbility(breeder, _ -> {
+                for (Attribute attribute : List.of(Attribute.MAX_HEALTH, Attribute.MOVEMENT_SPEED, Attribute.JUMP_STRENGTH)) {
+                    var own = foal.getAttribute(attribute);
+                    var mother = e.getMother().getAttribute(attribute);
+                    var father = e.getFather().getAttribute(attribute);
+                    if (own == null || mother == null || father == null) continue;
+                    own.setBaseValue(Math.max(own.getBaseValue(), (mother.getBaseValue() + father.getBaseValue()) / 2));
+                }
+                var health = foal.getAttribute(Attribute.MAX_HEALTH);
+                if (health != null) foal.setHealth(health.getValue());
+                foal.setAge(FOAL_AGE);
+            });
+        }
+    }
+
+    /** Rohirrim: the spear is the Riders' weapon. */
+    public static final class SpearHardy extends Base {
+        public SpearHardy() {
+            super("spear_hardy", "Spear-hardy",
+                    "Long have the Riders borne the ash spear. In your hand a spear deals 15% more damage, whether you ride or go on foot.");
+            RohirrimDamage.add(p -> p.getInventory().getItemInMainHand().getType().name().endsWith("_SPEAR")
+                    && hasAbility(p) ? 0.15 : 0);
+        }
+    }
+
+    /** Rohirrim: old foes of the raiders out of Dunland. */
+    public static final class BaneOfTheDunlendings extends Base implements Listener {
+        public BaneOfTheDunlendings() {
+            super("bane_of_the_dunlendings", "Bane of the Dunlendings",
+                    "Long was the hatred between the Mark and the raiders out of Dunland. Illagers take 20% more damage from your blows and your arrows.");
+        }
+
+        @EventHandler(ignoreCancelled = true)
+        public void onHit(EntityDamageByEntityEvent e) {
+            if (!(e.getEntity() instanceof Illager)) return;
+            Player attacker = e.getDamager() instanceof Projectile shot && shot.getShooter() instanceof Player shooter
+                    ? shooter : Effects.swingAttacker(e);
+            if (attacker != null) runForAbility(attacker, _ -> e.setDamage(e.getDamage() * 1.2));
+        }
+    }
+
     /** Teleri: the sea gives up its treasures. */
     public static final class PearlsOfAlqualonde extends Base implements Listener, Tickable {
         public PearlsOfAlqualonde() {
@@ -680,7 +767,7 @@ public final class OriginAbilities {
         }
     }
 
-    /** Naugrim: the axe is the dwarves' weapon. */
+    /** Dwarves: the axe is the dwarves' weapon. */
     public static final class AxeOfDurin extends Base implements Listener {
         public AxeOfDurin() {
             super("axe_of_durin", "Axe of Durin",
@@ -765,7 +852,7 @@ public final class OriginAbilities {
         }
     }
 
-    /** Sindar: the Silvan Elves of the treetops. */
+    /** Silvan Elves: runners of the treetops. */
     public static final class LeafWalker extends Base implements Listener, Tickable {
         public LeafWalker() {
             super("leaf_walker", "Leaf-walker",

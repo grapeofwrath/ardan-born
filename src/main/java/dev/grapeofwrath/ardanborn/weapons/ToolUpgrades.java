@@ -32,7 +32,7 @@ public final class ToolUpgrades implements Listener {
             new PhialOfGaladriel(), new HornOfGondor(), new Miruvor(), new ScimitarOfIsengard(),
             new AxeOfAzaghal(), new NetOfTheHavens(), new BreathOfManwe(), new BowOfTheGaladhrim(), new Hithlain(),
             new Sting(), new LongbottomPipe(), new Orcrist(), new Anduril(), new Hadhafang(), new OrcDraught(),
-            new SkinChangersClaw());
+            new SkinChangersClaw(), new SpearOfTheMark(), new BardingOfTheMark());
 
     public static void registerAll(Plugin plugin) {
         // The templates themselves are registered with their armor sets.
@@ -49,6 +49,7 @@ public final class ToolUpgrades implements Listener {
             if (upgrade instanceof Listener listener) Bukkit.getPluginManager().registerEvents(listener, plugin);
             if (upgrade instanceof PhialOfGaladriel phial) phial.start(plugin);
             if (upgrade instanceof HornOfGondor horn) horn.start(plugin);
+            if (upgrade instanceof BardingOfTheMark barding) barding.start(plugin);
         }
         Bukkit.getPluginManager().registerEvents(new ToolUpgrades(), plugin);
     }

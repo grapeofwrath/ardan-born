@@ -8,9 +8,9 @@
     "icon": {
         "item": "minecraft:iron_pickaxe"
     },
-    "order": 6,
+    "order": 7,
     "impact": 2,
     "layer": "origin",
-    "name": "Naugrim (Dwarf)",
-    "description": "Aul\u00eb made the Naugrim to endure, and stubborn they were from the beginning. They dwelt gladly in the deep places and found the riches there; fire did not daunt them, and bitter were their axes."
+    "name": "Dwarf",
+    "description": "Aul\u00eb made the Dwarves to endure, and stubborn they were from the beginning. They dwelt gladly in the deep places and found the riches there; fire did not daunt them, and bitter were their axes."
 }

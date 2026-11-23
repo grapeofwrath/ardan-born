@@ -21,12 +21,13 @@ Here are set down the peoples and powers of ArdanBorn, a Paper plugin for server
 
 | Ancestry | Template |
 |---|---|
-| Edain | [Star of Elendil](star-of-elendil.md) |
+| Dúnedain | [Star of Elendil](star-of-elendil.md) |
+| Rohirrim | [Banner of the Mark](banner-of-the-mark.md) |
 | Noldor | [Light of the Trees](light-of-the-trees.md) |
-| Sindar | [Mallorn Leaf](mallorn-leaf.md) |
+| Silvan | [Mallorn Leaf](mallorn-leaf.md) |
 | Teleri | [Pearl of Ossë](pearl-of-osse.md) |
 | Peredhil | [Evenstar](evenstar.md) |
-| Naugrim | [Arkenstone](arkenstone.md) |
+| Dwarf | [Arkenstone](arkenstone.md) |
 | Hobbit | [Mathom](mathom.md) |
 | Uruk-hai | [White Hand](white-hand.md) |
 | Great Eagle | [Feather of Thorondor](feather-of-thorondor.md) |

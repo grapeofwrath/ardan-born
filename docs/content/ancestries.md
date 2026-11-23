@@ -3,20 +3,21 @@ title: "Ancestries"
 ---
 | | Impact | Powers |
 |---|---|---|
-| [Edain (Man)](#edain-man) | Low | 4 |
+| [Dúnedain (Man of the West)](#dúnedain-man-of-the-west) | Low | 4 |
+| [Rohirrim (Horse-lord)](#rohirrim-horse-lord) | Medium | 4 |
 | [Noldor (High Elf)](#noldor-high-elf) | Low | 5 |
-| [Sindar (Wood Elf)](#sindar-wood-elf) | Medium | 5 |
+| [Silvan (Wood Elf)](#silvan-wood-elf) | Medium | 5 |
 | [Teleri (Sea Elf)](#teleri-sea-elf) | Medium | 5 |
 | [Peredhil (Half-elf)](#peredhil-half-elf) | Low | 5 |
-| [Naugrim (Dwarf)](#naugrim-dwarf) | Medium | 4 |
+| [Dwarf](#dwarf) | Medium | 4 |
 | [Hobbit (Halfling)](#hobbit-halfling) | Low | 5 |
 | [Uruk-hai (Orc)](#uruk-hai-orc) | Medium | 4 |
 | [Great Eagle](#great-eagle) | High | 5 |
 | [Beorning (Skin-changer)](#beorning-skin-changer) | High | 4 |
 
-## Edain (Man)
+## Dúnedain (Man of the West)
 
-**Impact:** Low · **Icon:** `white_banner` · **File:** `edain.json`
+**Impact:** Low · **Icon:** `white_banner` · **File:** `dunedain.json`
 
 **Race item:** [Star of Elendil](star-of-elendil.md)
 
@@ -26,6 +27,19 @@ title: "Ancestries"
 | [Hope Unquenched](powers.md#hope-unquenched) | Damage that leaves you alive at or below 30% health gives Resistance I and Regeneration I for 8 seconds. 90-second cooldown, from when it triggers. | ArdanBorn |
 | [Long Reach](powers.md#long-reach) | +1.5 blocks of reach for blocks and entities. | [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) |
 | [Strong Ankles](powers.md#strong-ankles) | Jump Boost II while sprinting. | [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) |
+
+## Rohirrim (Horse-lord)
+
+**Impact:** Medium · **Icon:** `saddle` · **File:** `rohirrim.json`
+
+**Race item:** [Banner of the Mark](banner-of-the-mark.md)
+
+| Power | What it does | From |
+|---|---|---|
+| [Charge of the Mark](powers.md#charge-of-the-mark) | Melee hits while riding deal 20% more damage. After 3 seconds of galloping, the next melee hit also knocks a monster back. | ArdanBorn |
+| [Breeder of the Mark](powers.md#breeder-of-the-mark) | Foals you breed have speed, jump and health no lower than the average of their parents, and grow up in 10 minutes. They can be one of the [Mearas](banner-of-the-mark.md#the-mearas). | ArdanBorn |
+| [Spear-hardy](powers.md#spear-hardy) | Spears deal 15% more damage, mounted or on foot. | ArdanBorn |
+| [Bane of the Dunlendings](powers.md#bane-of-the-dunlendings) | Melee hits and projectiles deal 20% more damage to illagers. | ArdanBorn |
 
 ## Noldor (High Elf)
 
@@ -41,9 +55,9 @@ title: "Ancestries"
 | [Elven-wrought](powers.md#elven-wrought) | Tools, weapons, armor, shields, elytra and fishing rods have a 40% chance to lose no durability when used. Stacks with Unbreaking. | ArdanBorn |
 | [Wrath of the Noldor](powers.md#wrath-of-the-noldor) | Melee hits deal 25% more damage to the [undead](lore-and-items.md#undead) and to creatures of the Nether. Not projectiles. | ArdanBorn |
 
-## Sindar (Wood Elf)
+## Silvan (Wood Elf)
 
-**Impact:** Medium · **Icon:** `oak_leaves` · **File:** `sindar.json`
+**Impact:** Medium · **Icon:** `oak_leaves` · **File:** `silvan.json`
 
 **Race item:** [Mallorn Leaf](mallorn-leaf.md)
 
@@ -83,9 +97,9 @@ title: "Ancestries"
 | [Swift Messenger](powers.md#swift-messenger) | Horses, donkeys, mules, camels and llamas you ride have Speed I and take no fall damage. | ArdanBorn |
 | [Healer of Imladris](powers.md#healer-of-imladris) | Instant Health, Regeneration and golden apples heal you 50% more. | ArdanBorn |
 
-## Naugrim (Dwarf)
+## Dwarf
 
-**Impact:** Medium · **Icon:** `iron_pickaxe` · **File:** `naugrim.json`
+**Impact:** Medium · **Icon:** `iron_pickaxe` · **File:** `dwarf.json`
 
 **Race item:** [Arkenstone](arkenstone.md)
 

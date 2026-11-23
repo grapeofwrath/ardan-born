@@ -15,12 +15,12 @@ import java.util.List;
 /// Helmet: long shots strike harder.
 public final class FarSightedEffect extends PieceEffect implements Listener {
     public FarSightedEffect(String setId) {
-        super("far_sighted", "Far-sighted", setId, EquipmentSlot.HEAD, OriginCheck.SINDAR);
+        super("far_sighted", "Far-sighted", setId, EquipmentSlot.HEAD, OriginCheck.SILVAN);
     }
 
     @Override
     protected List<String> lines() {
-        return List.of("Arrows from afar strike the harder", "Sindar: harder still");
+        return List.of("Arrows from afar strike the harder", "Silvan Elves: harder still");
     }
 
     @EventHandler(ignoreCancelled = true)

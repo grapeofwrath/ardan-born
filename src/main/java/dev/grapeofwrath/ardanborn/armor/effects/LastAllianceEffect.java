@@ -19,12 +19,12 @@ public final class LastAllianceEffect extends PieceEffect implements Listener {
     private final OriginAbilities.Cooldown cooldown = new OriginAbilities.Cooldown();
 
     public LastAllianceEffect(String setId) {
-        super("last_alliance", "Last Alliance", setId, null, OriginCheck.EDAIN);
+        super("last_alliance", "Last Alliance", setId, null, OriginCheck.DUNEDAIN);
     }
 
     @Override
     protected List<String> lines() {
-        return List.of("Near death, you and players near you", "have Strength and Speed", "Edain: ready again sooner");
+        return List.of("Near death, you and players near you", "have Strength and Speed", "Dúnedain: ready again sooner");
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

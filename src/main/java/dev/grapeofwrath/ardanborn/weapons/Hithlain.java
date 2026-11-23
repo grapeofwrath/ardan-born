@@ -24,7 +24,7 @@ import java.util.UUID;
 public final class Hithlain extends Artifact {
     public Hithlain() {
         super("hithlain", "Hithlain", Template.of(RaceTemplate.MALLORN_LEAF),
-                OriginCheck.SINDAR, Material.LEAD);
+                OriginCheck.SILVAN, Material.LEAD);
     }
 
     /// How long after a pull a fall does no harm.
@@ -44,7 +44,7 @@ public final class Hithlain extends Artifact {
 
     @Override
     protected List<String> ownLines() {
-        return List.of("Sindar: from further, and more often");
+        return List.of("Silvan Elves: from further, and more often");
     }
 
     @Override

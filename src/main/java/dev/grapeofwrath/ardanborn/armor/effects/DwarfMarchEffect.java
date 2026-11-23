@@ -16,15 +16,15 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.List;
 
-/// Leggings: sprinting in deep, unlit places is tireless. Naugrim work faster after each ore.
+/// Leggings: sprinting in deep, unlit places is tireless. Dwarves work faster after each ore.
 public final class DwarfMarchEffect extends PieceEffect implements Listener {
     public DwarfMarchEffect(String setId) {
-        super("dwarf_march", "Dwarf-march", setId, EquipmentSlot.LEGS, OriginCheck.NAUGRIM);
+        super("dwarf_march", "Dwarf-march", setId, EquipmentSlot.LEGS, OriginCheck.DWARF);
     }
 
     @Override
     protected List<String> lines() {
-        return List.of("In the deep you sprint and do not tire", "Naugrim: mining ore brings Haste");
+        return List.of("In the deep you sprint and do not tire", "Dwarves: mining ore brings Haste");
     }
 
     @EventHandler(ignoreCancelled = true)

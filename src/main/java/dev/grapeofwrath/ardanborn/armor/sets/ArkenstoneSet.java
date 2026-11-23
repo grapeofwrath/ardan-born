@@ -30,7 +30,7 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.Optional;
 
-/// The Heart of the Mountain: a dwarven armor set made to complement the Naugrim origin.
+/// The Heart of the Mountain: a dwarven armor set made to complement the Dwarf origin.
 public final class ArkenstoneSet implements ArmorSet {
     public static final String ID = "arkenstone";
     private static final TextColor COLOR = TextColor.color(0xD8ECFF);

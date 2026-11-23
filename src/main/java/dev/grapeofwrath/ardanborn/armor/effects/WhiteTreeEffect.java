@@ -23,12 +23,12 @@ public final class WhiteTreeEffect extends PieceEffect implements Listener {
     private final Map<UUID, Long> hurt = new HashMap<>();
 
     public WhiteTreeEffect(String setId) {
-        super("white_tree", "White Tree", setId, EquipmentSlot.CHEST, OriginCheck.EDAIN);
+        super("white_tree", "White Tree", setId, EquipmentSlot.CHEST, OriginCheck.DUNEDAIN);
     }
 
     @Override
     protected List<String> lines() {
-        return List.of("When harm is past, you heal", "Edain: and heal faster");
+        return List.of("When harm is past, you heal", "Dúnedain: and heal faster");
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

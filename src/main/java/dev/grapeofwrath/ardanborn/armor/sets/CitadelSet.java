@@ -8,7 +8,7 @@ import dev.grapeofwrath.ardanborn.armor.effects.WhiteTreeEffect;
 import dev.grapeofwrath.ardanborn.weapons.RaceTemplate;
 import net.kyori.adventure.text.format.TextColor;
 
-/// The Guards of the Citadel: the Edain's armor set, made with the Star of Elendil.
+/// The Guards of the Citadel: the Dúnedain's armor set, made with the Star of Elendil.
 public final class CitadelSet extends RaceSet {
     public static final String ID = "citadel";
 

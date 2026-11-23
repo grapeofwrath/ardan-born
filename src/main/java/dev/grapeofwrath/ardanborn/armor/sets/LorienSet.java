@@ -18,8 +18,8 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.Optional;
 
-/// The Galadhrim of Lothlórien: an armor set made to complement the Sindar origin. Made with the Mallorn
-/// Leaf, the Sindar's template. The chestplate is the Cloak of Lórien.
+/// The Galadhrim of Lothlórien: an armor set made to complement the Silvan origin. Made with the Mallorn
+/// Leaf, the Silvan Elves' template. The chestplate is the Cloak of Lórien.
 public final class LorienSet implements ArmorSet {
     public static final String ID = "lorien";
     private static final TextColor COLOR = TextColor.color(0x9DB58A);

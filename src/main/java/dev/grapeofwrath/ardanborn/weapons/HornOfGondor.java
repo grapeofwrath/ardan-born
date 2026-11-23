@@ -31,9 +31,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-/// The Horn of Gondor: the Edain's template (Star of Elendil) combined with a goat horn. Blown, it lifts
+/// The Horn of Gondor: the Dúnedain's template (Star of Elendil) combined with a goat horn. Blown, it lifts
 /// every player within 48 blocks with Strength and Resistance, and rallies nearby iron golems to the
-/// horn-blower's side for 30 seconds. Edain who blow it also find their hope renewed: Last Stand is ready
+/// horn-blower's side for 30 seconds. Dúnedain who blow it also find their hope renewed: Hope Unquenched is ready
 /// again.
 public final class HornOfGondor implements ToolUpgrade, Listener {
     public static final String ID = "horn_of_gondor";
@@ -78,7 +78,7 @@ public final class HornOfGondor implements ToolUpgrade, Listener {
                 .addLine(ToolUpgrade.lore("Players near you are strengthened,", NamedTextColor.BLUE))
                 .addLine(ToolUpgrade.lore("and iron golems rally to you", NamedTextColor.BLUE))
                 .addLine(Component.empty())
-                .addLine(ToolUpgrade.lore("Edain: Hope Unquenched is renewed", NamedTextColor.GOLD))
+                .addLine(ToolUpgrade.lore("Dúnedain: Hope Unquenched is renewed", NamedTextColor.GOLD))
                 .build());
         CustomItems.tag(horn, ID);
         return horn;
@@ -109,7 +109,7 @@ public final class HornOfGondor implements ToolUpgrade, Listener {
             ally.sendActionBar(Component.text("The Horn of Gondor is blown!", RaceTemplate.STAR_OF_ELENDIL.color()));
         }
         player.getWorld().spawnParticle(Particle.NOTE, player.getEyeLocation(), 12, 1, 0.5, 1, 1);
-        if (OriginCheck.is(player, OriginCheck.EDAIN)) OriginAbilities.HopeUnquenched.renew(player);
+        if (OriginCheck.is(player, OriginCheck.DUNEDAIN)) OriginAbilities.HopeUnquenched.renew(player);
         if (!golems.isEmpty() && plugin != null) rally(player, golems);
     }
 
