@@ -1,13 +1,9 @@
 ---
 title: "Cirth Runes"
 ---
-The Cirth are the runes of the Dwarves and the Elves of Beleriand. **Anyone** can craft a rune-stone, but only a **[Smith](classes.md#smith)** can inscribe one onto a weapon or tool. Bring your stones to a Smith.
+The Cirth were the runes of the Dwarves, and of the Elves of Beleriand. Any may craft a rune-stone, but only a [Smith](classes.md#smith) has the skill to inscribe it; and once inscribed, the rune serves whoever holds the weapon or tool.
 
-Runes work for whoever holds the item. They aren't tied to any ancestry.
-
-## Crafting rune-stones
-
-Shaped recipe in a crafting table: an **amethyst shard** in the center, ingredient **A** in the corners and ingredient **B** on the edges. Every recipe shows in the recipe book.
+## The making of rune-stones
 
 | | | |
 |:-:|:-:|:-:|
@@ -24,42 +20,44 @@ Shaped recipe in a crafting table: an **amethyst shard** in the center, ingredie
 | Harvest | Wheat | Bone Meal |
 | Vein | Redstone Dust | Iron Ingot |
 
-Rune-stones look like glinting amethyst shards. They can't be used in any other recipe.
+The recipes are shaped, and are shown in the recipe book. Rune-stones have the likeness of amethyst shards that glint, and they cannot be used in other recipes.
 
-## Inscribing a rune
+## Inscribing
 
-At a **smithing table**: the **rune-stone** in the template slot, the **weapon or tool** in the middle slot, and **one lapis lazuli** in the last slot.
+At a smithing table the Smith sets these things, and the rune-stone and the lapis are consumed. For any who is not a Smith the result slot remains empty.
 
-- The result only appears for a Smith. For anyone else the result slot stays empty.
-- The rune-stone and the lapis are used up.
-- The item keeps its enchantments, damage, name and any race-item upgrade (for example, a runed sword can still become a [Scimitar of Isengard](white-hand.md), and keeps its rune).
-- The runes are listed at the end of the item's tooltip.
+| Slot | Item |
+|---|---|
+| Template | Rune-stone |
+| Middle | Weapon or tool |
+| Last | 1 lapis lazuli |
+
+The item keeps its enchantments, damage and name, and any race-item upgrade; and an item that bears a rune may still become a [race item](race-items.md#weapons), and keeps its rune. The runes are written at the end of its tooltip.
 
 ### How many runes
 
-| Item | Runes it can hold |
+| Item | Runes |
 |---|---|
-| Netherite items | 2, never two of the same |
-| Everything else (any other tier, and bows, crossbows, tridents, maces) | 1 |
+| Netherite | 2, and never two of the same |
+| All else, with bows, crossbows, tridents and maces | 1 |
 
-When an item is full, a new rune **replaces the oldest**. A diamond item with a rune keeps it when you upgrade it to netherite, and then has room for a second.
+When an item can hold no more, a new rune takes the place of the oldest. Diamond that is upgraded to netherite keeps its rune, and has room for a second.
 
 ## The runes
 
-| Rune | Goes on | Effect |
+| Rune | Inscribed upon | Effect |
 |---|---|---|
-| **Westernesse** (the barrow-blades) | Swords, axes, spears, maces, tridents | ×1.3 melee damage against the undead |
-| **Warning** (as Sting) | Swords, axes, spears, maces, tridents | While you hold it and a monster is within 16 blocks, your action bar reads *Your blade glows blue* and blue sparks show at the blade |
-| **Frost** (the Helcaraxë) | Swords, axes, spears, maces, tridents, bows, crossbows | Hits give the target Slowness I for 2 seconds: melee hits, and arrows or thrown tridents |
-| **Delving** | Pickaxes | Iron, copper and gold ore (and their deepslate forms) drop ingots instead of raw metal. Fortune still multiplies them |
-| **Harvest** | Hoes | Right-click a ripe crop: every ripe crop in the 3×3 around it is reaped and replanted from its own drops. 1 durability per use |
-| **Vein** | Pickaxes | Mine an ore **while sneaking** and the connected ore of the same kind breaks too, up to 16 more blocks |
+| **Westernesse** | Swords, axes, spears, maces, tridents | ×1.3 melee damage to the [undead](lore-and-items.md#undead) |
+| **Warning** | Swords, axes, spears, maces, tridents | While you hold it and a monster is within 16 blocks, your action bar reads *Your blade glows blue*, and blue sparks are seen at the blade. |
+| **Frost** | Swords, axes, spears, maces, tridents, bows, crossbows | Melee hits, arrows and thrown tridents give Slowness I for 2 seconds. |
+| **Delving** | Pickaxes | Iron, copper and gold ore, and their deepslate forms, yield ingots. Fortune multiplies them still. |
+| **Harvest** | Hoes | Right-click a ripe crop, and every ripe crop in the 3×3 about it is reaped, and replanted from its own drops, at the cost of 1 durability. |
+| **Vein** | Pickaxes | Mine an [ore](lore-and-items.md#ores) while sneaking, and the connected ore of the same kind is broken with it, up to 16 more blocks. |
 
 ### Details
 
-- **Westernesse** works on all the [undead](lore-and-items.md#undead).
-- **Frost** on a bow is carried by the arrow, so it still applies if you switch weapons before it lands.
-- **Harvest** works on wheat, carrots, potatoes, beetroots and nether wart. Protection plugins are respected.
-- **Vein** breaks each block as if you'd mined it yourself: protection plugins, Fortune, Silk Touch, Delving and a [Ring of the Seven](rings-of-power.md) all apply, and each block costs the pickaxe durability as normal. It stops if the pickaxe breaks. See [which ores count](lore-and-items.md#ores).
+- **Frost** is carried by the arrow, and so it remains though you change weapons.
+- **Harvest** avails with wheat, carrots, potatoes, beetroots and nether wart, and it respects protection plugins.
+- **Vein** breaks each block as though you had mined it. Protection plugins, Fortune, Silk Touch, Delving and the [Ring of the Seven](rings-of-power.md#the-rings) all apply, and each block costs durability. If the pickaxe breaks, it goes no further.
 
-A resource pack can give rune-stones their own look via `custom_model_data` strings `rune_stone_<rune>`, e.g. `rune_stone_westernesse`.
+`custom_model_data`: `rune_stone_<rune>`, e.g. `rune_stone_westernesse`

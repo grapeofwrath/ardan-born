@@ -1,13 +1,9 @@
 ---
 title: "Star of Elendil"
 ---
-*The Elendilmir, worn by the kings of Arnor.* The Edain's template, made to suit the [Edain](ancestries.md#edain-man). It makes the **Citadel armor**, **Andúril** and the **Horn of Gondor**.
+The Elendilmir was borne upon the brow of the kings of Arnor, who were of the [Edain](ancestries.md#edain-man). From its light are made the Citadel armor, the sword Andúril, and the Horn of Gondor.
 
-Like every [race item](race-items.md), anyone can use these; the Edain get extra.
-
-## Crafting the Star of Elendil
-
-Shaped recipe in a crafting table. See [Templates](race-items.md#templates).
+## The making of the Star
 
 | | | |
 |:-:|:-:|:-:|
@@ -15,40 +11,40 @@ Shaped recipe in a crafting table. See [Templates](race-items.md#templates).
 | Gold Ingot | Diamond | Gold Ingot |
 | Quartz | Iron Ingot | Quartz |
 
-The Star of Elendil looks like a nether star. It can't be used in any other recipe.
+When it is made it has the likeness of a nether star.
 
 ## Citadel armor
 
-Made at a smithing table from the Star of Elendil and any **diamond or netherite** armor piece. See [Armor](race-items.md#armor) for making, repairing and upgrading it.
+Any [armor](race-items.md#armor) of diamond or netherite may be joined with the Star.
 
 | Piece | Effect |
 |---|---|
-| Helmet | **Steadfast:** immune to Weakness. **Edain:** other harmful effects last 25% less. A Morgul wound's effects aren't changed. |
-| Chestplate | **White Tree:** after 8 seconds without harm, heal 1 heart every 4 seconds. **Edain:** every 3 seconds. |
-| Leggings | **Strider's Gait:** sprint for 5 seconds and you have Speed I until you stop. **Edain:** 3 seconds. |
-| Boots | **Númenórean:** boats you ride take no damage, and fish bite 10% sooner. **Edain:** 20%. |
-| Full set | **Last Alliance:** a hit that leaves you below 30% health gives you and players within 8 blocks Strength I and Speed I for 8 seconds. 2-minute cooldown. **Edain:** 90 seconds. |
+| Helmet | **Steadfast:** you are immune to Weakness. Upon the **Edain** other harmful effects last 25% less, save those of a Morgul wound. |
+| Chestplate | **White Tree:** when you have been 8 seconds without harm, you heal 1 heart every 4 seconds, and the **Edain** every 3 seconds. |
+| Leggings | **Strider's Gait:** when you have sprinted for 5 seconds you have Speed I until you stop. The **Edain** need sprint but 3 seconds. |
+| Boots | **Númenórean:** the boats in which you ride take no damage, and fish bite 10% sooner. For the **Edain** it is 20%. |
+| Full set | **Last Alliance:** when a hit leaves you below 30% health, you and all players within 8 blocks have Strength I and Speed I for 8 seconds. It may not come again until 2 minutes have passed, or 90 seconds for the **Edain**. |
 
 ## Andúril
 
-Made at a smithing table from the Star of Elendil and a **diamond or netherite sword**. See [Weapons](race-items.md#weapons).
+Andúril is made from a [sword](race-items.md#weapons) of diamond or netherite.
 
 | Who | Effect |
 |---|---|
-| Anyone | Sets the undead alight. **+5% damage** for each other player within 12 blocks, up to 15%. |
-| Edain | Counts one more player, so an Edain alone has +5%. |
+| Anyone | It sets the [undead](lore-and-items.md#undead) alight, and deals 5% more damage for each other player within 12 blocks, up to 15%. |
+| Edain | One more player is counted, so that one who is alone has 5%. |
 
 ## Horn of Gondor
 
-*Blown in need, it is heard far off.* Made at a smithing table from the Star of Elendil and a **goat horn** of any tune. See [Tools](race-items.md#tools).
+The horn is made from a [goat horn](race-items.md#tools) of any tune.
 
 | Who | Effect |
 |---|---|
-| Anyone | **Blow it:** you and every player within 48 blocks get Strength I and Resistance I for 15 seconds. Iron golems within 48 blocks **rally** to you for 30 seconds. 5-minute cooldown. |
-| Edain | It also renews [Hope Unquenched](powers.md#hope-unquenched): its cooldown is reset, so it's ready again. |
+| Anyone | When it is blown, you and all players within 48 blocks have Strength I and Resistance I for 15 seconds, and the iron golems within 48 blocks rally to you for 30 seconds. It may not be blown again to this effect until 5 minutes have passed. |
+| Edain | The cooldown of [Hope Unquenched](powers.md#hope-unquenched) is ended also. |
 
-- While the golems rally, each second they go after the nearest monster within 16 blocks of you, or walk to you if there's none.
-- The horn plays its own tune as usual. While on cooldown it's just a horn, and your action bar shows the time left.
-- A Minstrel's [Songs of Power](powers.md#songs-of-power) don't play from the Horn of Gondor.
+- The golems that rally attack the monster nearest to you within 16 blocks, or if there is none they walk to your side.
+- The horn sounds its own tune, even on cooldown, and your action bar shows the time that is left.
+- [Songs of Power](powers.md#songs-of-power) are not played from it.
 
-A resource pack can give these items their own look via `custom_model_data` strings `star_of_elendil`, `horn_of_gondor`, `citadel` and `anduril`.
+`custom_model_data`: `star_of_elendil`, `horn_of_gondor`, `citadel`, `anduril`

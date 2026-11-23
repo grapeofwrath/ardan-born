@@ -1,11 +1,9 @@
 ---
 title: "Configuration"
 ---
-For server owners. Every setting ArdanBorn has, and the server settings worth knowing about.
-
 ## ArdanBorn settings
 
-`plugins/ArdanBorn/config.yml` is created on first start. Restart the server after changing it. A setting missing from an older file uses its default; you don't need to add it.
+`plugins/ArdanBorn/config.yml` is created the first time the server starts. Restart the server after you change it. If an older file is missing a setting, the default is used.
 
 ```yaml
 morgul-wound:
@@ -22,7 +20,7 @@ race-items:
 
 ### Morgul wound
 
-These control the [Morgul wound](morgul-wound.md).
+These settings control the [Morgul wound](morgul-wound.md).
 
 | Setting | Default | What it does |
 |---|---|---|
@@ -32,11 +30,11 @@ These control the [Morgul wound](morgul-wound.md).
 | `min-level` | `30` | With LevelledMobs: the lowest mob level that can wound |
 | `stage-minutes` | `3` | Online minutes before the wound worsens |
 
-**[LevelledMobs](https://modrinth.com/plugin/levelledmobs)** is optional, and ArdanBorn has no code dependency on it: it reads the level LevelledMobs stores on each mob. Set `min-level` to suit your LevelledMobs rules. If its levels rarely reach 30 on your server (with weighted-random levels most mobs are low), lower it.
+**[LevelledMobs](https://modrinth.com/plugin/levelledmobs)** is optional. When it is installed, ArdanBorn reads the level it stores on each mob. If mobs on your server rarely reach level 30, as is common with weighted-random levels, lower `min-level` to suit.
 
 ### Race items
 
-These set how strong every race item and armor effect is. The pages here give the numbers at power 1.0; item tooltips give none.
+These settings control how strong race item and armor effects are. The numbers on this wiki are at power 1.0, and item tooltips don't show numbers.
 
 | Setting | Default | What it does |
 |---|---|---|
@@ -44,20 +42,20 @@ These set how strong every race item and armor effect is. The pages here give th
 | `overrides` | none | A power for single items or armor effects, instead of the one above, e.g. `{sting: 1.5}` |
 | `disabled` | none | Items and armor effects that do nothing, e.g. `[sting, fellowship]` |
 
-- One reduction never goes above 50%, and one chance never above 60%.
-- Cooldowns, ranges, speed, durations, potion effects and Soft Landing don't change.
-- Ids are the item's or effect's name in lower case with underscores and no accents or apostrophes, e.g. `axe_of_azaghal`, `durins_wealth`. The Mithril Coat is `mithril`. A typo is reported in the console at startup.
+- A single reduction never goes above 50%, and a single chance never goes above 60%.
+- Power does not change cooldowns, ranges, speed, durations, potion effects or Soft Landing.
+- An id is the name of the item or effect in lower case, with underscores and no accents or apostrophes, such as `axe_of_azaghal`, `durins_wealth`. The Mithril Coat is `mithril`. A typo is reported in the console at startup.
 - What a piece does just by being its base item (walking on powder snow, the spyglass, the turtle shell) can't be disabled.
 
 ## Rings of Power
 
 `plugins/ArdanBorn/rings.yml` tracks the unique [Rings of Power](rings-of-power.md#unique-rings). Don't edit it while the server is running.
 
-**Item-clearing plugins** (ClearLag and the like) and scheduled `/kill @e[type=item]` commands are fine to keep. A unique ring they remove is put straight back where it was. Whitelisting the rings in those plugins saves the round trip, but isn't needed.
+Item-clearing plugins such as ClearLag, and scheduled `/kill @e[type=item]` commands, are safe to use. If they remove a unique ring, it is put back where it was.
 
 ## Loot refills
 
-Rings of Power are found in [chests](rings-of-power.md#finding-a-ring), and chests that have been looted stay empty. To let rings keep turning up, turn on Paper's loot refills in `config/paper-world-defaults.yml` (no plugin needed):
+[Rings of Power](rings-of-power.md#finding-a-ring) are found in chests, and a chest stays empty once it has been looted. If you want rings to keep appearing, turn on Paper's loot refills in `config/paper-world-defaults.yml`:
 
 ```yaml
 lootables:
@@ -70,7 +68,7 @@ Looted chests then refill between `refresh-min` and `refresh-max` after being lo
 
 Some origin files and power ids were renamed to match the names players see. ArdanBorn updates its own files in `plugins/ArdanBorn/origins/` and the default origins in Origins-Reborn's `config.yml` when the server starts, and keeps your edits. If both the old and new file exist, the old one is set aside as `.json.old`. Players keep their origins.
 
-If you've used an ArdanBorn power in your own origin files elsewhere, update its id yourself:
+If you use ArdanBorn powers in your own origin files elsewhere, update their ids yourself:
 
 | Old power id | New power id |
 |---|---|

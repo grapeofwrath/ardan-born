@@ -1,8 +1,6 @@
 ---
 title: "Classes"
 ---
-Your **class** is the calling you follow. It is chosen second, in the `class` layer, and combines with any ancestry.
-
 | | Impact | Powers |
 |---|---|---|
 | [Warrior](#warrior) | Medium | 3 |
@@ -18,113 +16,93 @@ Your **class** is the calling you follow. It is chosen second, in the `class` la
 
 ## Warrior
 
-A veteran soldier of the free peoples. Your first blow lands hard, your blade carries through to the next foe, and long years of war have made you tough.
-
 **Impact:** Medium · **Icon:** `diamond_sword` · **File:** `warrior.json`
 
 | Power | What it does | From |
 |---|---|---|
-| [First Strike](powers.md#first-strike) | Your opening blow after 3 seconds without attacking deals 50% more damage. | ArdanBorn |
-| [Cleave](powers.md#cleave) | Sword and axe blows carry through: a hostile mob next to your target takes half the damage. | ArdanBorn |
-| [Hardened Veteran](powers.md#hardened-veteran) | Long years of war have toughened you. You have 2 extra hearts and are harder to knock back. | ArdanBorn |
+| [First Strike](powers.md#first-strike) | A melee hit after 3 seconds without one deals 50% more damage. Every melee hit that lands restarts the timer. | ArdanBorn |
+| [Cleave](powers.md#cleave) | Sword and axe hits also deal half damage to one hostile mob within 2.5 blocks of the target. Never hits players, pets or villagers. | ArdanBorn |
+| [Hardened Veteran](powers.md#hardened-veteran) | +2 hearts and +25% knockback resistance, which stacks with netherite armor. The new hearts start empty. | ArdanBorn |
 
 ## Ranger
-
-A Dunadan-style wanderer of the wild lands. Your arrows fly true and reveal your prey, and the long road does not weary you.
 
 **Impact:** Medium · **Icon:** `bow` · **File:** `ranger.json`
 
 | Power | What it does | From |
 |---|---|---|
-| [Endless Quiver](powers.md#endless-quiver) | Arrows you shoot are never used up. | [Origins-Monsters](https://modrinth.com/plugin/origins-monsters) |
-| [Hunt Prey](powers.md#hunt-prey) | The last creature your arrow struck becomes your prey for 60 seconds: it glows, and you deal 20% more damage to it from any source. | ArdanBorn |
-| [Wayfarer](powers.md#wayfarer) | Long roads are your home. A quarter of the time, you lose no hunger when you would have. | ArdanBorn |
+| [Endless Quiver](powers.md#endless-quiver) | Arrows aren't used up, including tipped and spectral. | [Origins-Monsters](https://modrinth.com/plugin/origins-monsters) |
+| [Hunt Prey](powers.md#hunt-prey) | The last mob your arrow hit glows for 60 seconds, through walls, and takes 20% more damage from you, from any source. | ArdanBorn |
+| [Wayfarer](powers.md#wayfarer) | 25% chance not to lose a hunger point. Saturation drains as usual. | ArdanBorn |
 
 ## Burglar
-
-A quiet, quick-fingered scout. Strike the unwary from behind for extra harm, and slip along on soft feet where foes far off never see you.
 
 **Impact:** Low · **Icon:** `shears` · **File:** `burglar.json`
 
 | Power | What it does | From |
 |---|---|---|
-| [Backstab](powers.md#backstab) | Melee hits from behind your target deal 35% more damage, or 50% more if it hasn't noticed you. | ArdanBorn |
-| [Quiet Steps](powers.md#quiet-steps) | You move a little faster while sneaking. | ArdanBorn |
-| [Unseen](powers.md#unseen) | While you sneak, hostile creatures more than 6 blocks away don't notice you. | ArdanBorn |
+| [Backstab](powers.md#backstab) | Melee hits from behind deal 35% more damage, or 50% more to a mob that isn't targeting you. | ArdanBorn |
+| [Quiet Steps](powers.md#quiet-steps) | Speed I while sneaking. | ArdanBorn |
+| [Unseen](powers.md#unseen) | While you sneak, hostile mobs more than 6 blocks away don't notice you. | ArdanBorn |
 
 ## Minstrel
-
-Song was the first power in the world. Sound a horn to lift your companions, and talk your way to better prices.
 
 **Impact:** Medium · **Icon:** `goat_horn` · **File:** `minstrel.json`
 
 | Power | What it does | From |
 |---|---|---|
-| [Songs of Power](powers.md#songs-of-power) | Sound a Goat Horn to play the song its tune carries: rest, valor, seeking or the walking song from common horns, and courage, gathering, hope or Lúthien's lullaby from a screaming goat's. Songs reach players within 24 blocks. 90 second cooldown shared by all songs. | ArdanBorn |
-| [Silver Tongue](powers.md#silver-tongue) | Villagers and wandering traders warm to you. Near them you gain Hero of the Village for cheaper trades. | ArdanBorn |
+| [Songs of Power](powers.md#songs-of-power) | Sound a goat horn to play its song, within 24 blocks. 90-second cooldown shared by all songs. | ArdanBorn |
+| [Silver Tongue](powers.md#silver-tongue) | Hero of the Village I within 8 blocks of a villager or wandering trader, and for 3 seconds after. | ArdanBorn |
 
 ## Defender
-
-A shieldbearer sworn to protect. Hold a shield and you, and the friends beside you, are harder to harm.
 
 **Impact:** Medium · **Icon:** `shield` · **File:** `defender.json`
 
 | Power | What it does | From |
 |---|---|---|
-| [Shield Wall](powers.md#shield-wall) | While you hold a shield you take 15% less damage, and allies within 5 blocks take 10% less. | ArdanBorn |
-| [Thick Skin](powers.md#thick-skin) | Your hide is tough enough that arrows do much less damage to you. | [Origins-Fantasy](https://modrinth.com/plugin/origins-fantasy) |
+| [Shield Wall](powers.md#shield-wall) | While holding a shield in either hand, you take 15% less damage and other players within 5 blocks take 10% less. Several Defenders don't stack. Not void or `/kill`. | ArdanBorn |
+| [Thick Skin](powers.md#thick-skin) | Arrows and other projectiles deal a quarter of their damage. | [Origins-Fantasy](https://modrinth.com/plugin/origins-fantasy) |
 
 ## Healer
-
-The hands of the king are the hands of a healer. Cure the poisoned and wounded with a touch, and mend all who stand near you.
 
 **Impact:** Low · **Icon:** `glistering_melon_slice` · **File:** `healer.json`
 
 | Power | What it does | From |
 |---|---|---|
-| [Hands of the Healer](powers.md#hands-of-the-healer) | Sneak and right-click an ally with an empty hand to grant Regeneration II and cure Poison and Wither, and hold back a Morgul wound (15s cooldown; a wound can be held back once every 10 minutes). Do the same in the air to channel healing light: you and players within 8 blocks heal 3 hearts, and the undead nearby are seared (60s). | ArdanBorn |
-| [Healing Presence](powers.md#healing-presence) | Your presence mends those around you. Every 10 seconds, you and every player within 6 blocks heal 1 heart. | ArdanBorn |
+| [Hands of the Healer](powers.md#hands-of-the-healer) | Two uses, both sneaking and right-clicking with an empty main hand. Cooldowns are separate and show on your action bar. | ArdanBorn |
+| [Healing Presence](powers.md#healing-presence) | Every 10 seconds, you and players within 6 blocks heal 1 heart. Players at full health are skipped. Several Healers stack. | ArdanBorn |
 
 ## Loremaster
-
-A student of the deep lore, bearing a staff of light. Smite the shadow and hold it at bay and recover your strength through stillness.
 
 **Impact:** Medium · **Icon:** `blaze_rod` · **File:** `loremaster.json`
 
 | Power | What it does | From |
 |---|---|---|
-| [Light of the Staff](powers.md#light-of-the-staff) | Right-click with a Blaze Rod as your staff to drive back the shadow: hostile creatures within 6 blocks take 3 hearts of damage and are thrown back and revealed, and the undead take double and are set alight. 15 second cooldown. | ArdanBorn |
-| [Healing Focus](powers.md#healing-focus) | When standing still you focus your energy to regenerate health. | [Origins-Magic](https://modrinth.com/plugin/origins-magic) |
+| [Light of the Staff](powers.md#light-of-the-staff) | Right-click with a blaze rod: hostile mobs within 6 blocks take 3 hearts of magic damage, are thrown back and glow for 5 seconds. Undead take 6 hearts and burn for 4 seconds. 15-second cooldown. | ArdanBorn |
+| [Healing Focus](powers.md#healing-focus) | Regeneration I after standing still for a moment. Any movement ends it. | [Origins-Magic](https://modrinth.com/plugin/origins-magic) |
 
 ## Beastfriend
-
-Like Beren and Luthien, a friend to wild things. Beasts do not trouble you, the animals in your care are hardy, and Huan the hound of Valinor answers your call.
 
 **Impact:** Low · **Icon:** `bone` · **File:** `beastfriend.json`
 
 | Power | What it does | From |
 |---|---|---|
-| [Friend of Beasts](powers.md#friend-of-beasts) | Wild beasts such as wolves, bees and bears won't pick you as a target unless you strike first. Your tamed animals take half damage and heal 1 heart every 10 seconds while near you. | ArdanBorn |
-| [Call of Huan](powers.md#call-of-huan) | Right-click with a bone to call Huan, the great hound of Valinor, to your side for 60 seconds. 3 minute cooldown. | ArdanBorn |
+| [Friend of Beasts](powers.md#friend-of-beasts) | Wild beasts don't target you unless you strike first. Your tamed animals take half damage, and heal 1 heart every 10 seconds within 16 blocks of you. | ArdanBorn |
+| [Call of Huan](powers.md#call-of-huan) | Right-click with a bone, in the air or at a block, to call Huan for 60 seconds. 3-minute cooldown, from when you call him. The bone isn't used up. | ArdanBorn |
 
 ## Herbalist
-
-A gatherer of herbs and brewer of draughts. Your potions are stronger, and green things grow quickly in your care.
 
 **Impact:** Low · **Icon:** `brewing_stand` · **File:** `herbalist.json`
 
 | Power | What it does | From |
 |---|---|---|
-| [Potion Master](powers.md#potion-master) | Potions you drink and throw are much stronger. | [Origins-Magic](https://modrinth.com/plugin/origins-magic) |
-| [Green Thumb](powers.md#green-thumb) | Living things flourish around you. Crops, berries and saplings within 5 blocks grow much faster. | ArdanBorn |
+| [Potion Master](powers.md#potion-master) | Potions you drink or throw are one level stronger and last twice as long. | [Origins-Magic](https://modrinth.com/plugin/origins-magic) |
+| [Green Thumb](powers.md#green-thumb) | Each second, crops within 5 blocks (2 up or down) have a 5% chance to grow a stage, and saplings and mangrove propagules a 1% chance to grow as if bone-mealed. | ArdanBorn |
 
 ## Smith
-
-A smith in the tradition of Aule and Feanor. Your own work mends itself, and everything you forge is made to last.
 
 **Impact:** Low · **Icon:** `anvil` · **File:** `smith.json`
 
 | Power | What it does | From |
 |---|---|---|
-| [Mending Craft](powers.md#mending-craft) | Your own good work endures. Your held item and worn armor slowly repair themselves (1 durability every 10 seconds). | ArdanBorn |
-| [Smith's Mark](powers.md#smiths-mark) | Only you can inscribe Cirth runes onto weapons and tools. Twice each full moon, a tool or weapon you forge under its open sky gains an enchantment beyond its usual maximum, by up to 5 levels. | ArdanBorn |
+| [Mending Craft](powers.md#mending-craft) | The item in your main hand and each worn armor piece regain 1 durability every 10 seconds. Stacks with Mending. | ArdanBorn |
+| [Smith's Mark](powers.md#smiths-mark) | Only you can inscribe [Cirth runes](cirth-runes.md). Twice per full moon, a tool or weapon you craft under open sky gains an enchantment up to 5 levels above its usual maximum. | ArdanBorn |

@@ -4,11 +4,12 @@
 #
 # Sources:
 #   src/main/resources/origins/*.json  origins (name, description, layer, order, impact, icon, powers)
-#   OriginAbilities.java               ArdanBorn's own powers: super("id", "Title", "Description")
-#   external-powers.tsv                powers from Origins-Reborn and its addons (key, title, description)
+#   OriginAbilities.java               titles of ArdanBorn's own powers: super("id", "Title", ...)
+#   external-powers.tsv                titles of powers from Origins-Reborn and its addons (key, title)
+#   power-effects.tsv                  what each power does, plainly (key, effect); the in-game text isn't used
 #   power-details.md                   extra detail per power for the Powers page ("## <key>" sections)
 #   race-items.tsv                     each ancestry's race-item page (origin id, page, item name)
-# Stops with an error if an origin uses a power with no description, or an ancestry has no race item,
+# Stops with an error if an origin uses a power with no effect, or an ancestry has no race item,
 # so pages never have gaps.
 use strict;
 use warnings;
@@ -24,6 +25,7 @@ my $out = shift // "$root/docs/content";
 my $origins_dir = "$root/src/main/resources/origins";
 my $abilities_java = "$root/src/main/java/dev/grapeofwrath/ardanborn/origins/OriginAbilities.java";
 my $powers_tsv = "$here/external-powers.tsv";
+my $effects_tsv = "$here/power-effects.tsv";
 my $details_md = "$here/power-details.md";
 my $race_items_tsv = "$here/race-items.tsv";
 my %details;
@@ -68,8 +70,8 @@ open my $tsv, '<:utf8', $powers_tsv or die $!;
 while (<$tsv>) {
     chomp;
     next unless length;
-    my ($key, $title, $desc) = split /\t/;
-    $power{$key} = { title => $title, desc => $desc };
+    my ($key, $title) = split /\t/;
+    $power{$key} = { title => $title };
 }
 close $tsv;
 
@@ -79,11 +81,22 @@ my $src = do { local $/; <$java> };
 my $string = qr/"((?:[^"\\]|\\.)*)"/;
 my $found = 0;
 while ($src =~ /super\(\s*$string\s*,\s*$string\s*,\s*$string\s*\)/g) {
-    my ($id, $title, $desc) = map { s/\\(.)/$1/gr } ($1, $2, $3);
-    $power{"ardanborn:$id"} = { title => $title, desc => $desc };
+    my ($id, $title) = map { s/\\(.)/$1/gr } ($1, $2);
+    $power{"ardanborn:$id"} = { title => $title };
     $found++;
 }
 die "No powers found in $abilities_java; has the Base constructor changed?\n" unless $found;
+
+# What each power does.
+open my $eff, '<:utf8', $effects_tsv or die "$effects_tsv: $!";
+while (<$eff>) {
+    chomp;
+    next unless length;
+    my ($key, $effect) = split /\t/;
+    die "power-effects.tsv: unknown power $key\n" unless $power{$key};
+    $power{$key}{desc} = $effect;
+}
+close $eff;
 
 # Extra detail for the Powers page: "## <key>" sections, each copied as Markdown.
 open my $det, '<:utf8', $details_md or die "$details_md: $!";
@@ -103,7 +116,7 @@ for my $file (sort grep { /\.json$/ } readdir $dh) {
     $o->{id} = $file =~ s/\.json$//r;
     push @{ $by_layer{ $o->{layer} } }, $o;
     for my $key (@{ $o->{powers} }) {
-        die "No description for power $key (origin $o->{id})\n" unless $power{$key};
+        die "No effect for power $key (origin $o->{id})\n" unless $power{$key} && $power{$key}{desc};
         push @{ $used_by{$key} }, $o;
     }
 }
@@ -116,24 +129,17 @@ sub power_link {
 
 sub source_of { my ($ns) = split /:/, shift; $SOURCE{$ns} // $ns }
 
-my %INTRO = (
-    origin => "Your **ancestry** is the people you were born to. It is chosen first, in the `origin` layer.",
-    class  => "Your **class** is the calling you follow. It is chosen second, in the `class` layer, and combines with any ancestry.",
-    size   => "Your **size** is chosen last, in the `size` layer. It defaults to Normal Size.",
-);
-
 for my $layer (sort keys %LAYER_PAGE) {
     my @list = sort { $a->{order} <=> $b->{order} } @{ $by_layer{$layer} || [] };
     my $page = $LAYER_PAGE{$layer};
     open my $md, '>:utf8', "$out/" . page_file($page) or die $!;
-    print $md "---\ntitle: \"$page\"\n---\n$INTRO{$layer}\n\n";
+    print $md "---\ntitle: \"$page\"\n---\n";
     print $md "| | Impact | Powers |\n|---|---|---|\n";
     for my $o (@list) {
         printf $md "| [%s](#%s) | %s | %d |\n", $o->{name}, anchor($o->{name}), $IMPACT[$o->{impact}], scalar @{ $o->{powers} };
     }
     for my $o (@list) {
         print $md "\n## $o->{name}\n\n";
-        print $md "$o->{description}\n\n";
         printf $md "**Impact:** %s · **Icon:** `%s` · **File:** `%s.json`\n\n",
             $IMPACT[$o->{impact}], $o->{icon}{item} =~ s/^minecraft://r, $o->{id};
         if ($layer eq 'origin') {
@@ -154,7 +160,7 @@ for my $layer (sort keys %LAYER_PAGE) {
 
 open my $md, '>:utf8', "$out/" . page_file('Powers') or die $!;
 my @keys = sort { lc $power{$a}{title} cmp lc $power{$b}{title} } grep { $used_by{$_} } keys %power;
-print $md "---\ntitle: \"Powers\"\nentries: true\n---\nEvery power an ArdanBorn origin can have, in two lists, each A–Z: [ArdanBorn's own](#ardanborn-powers), and [the ones it borrows](#origins-reborn-and-addon-powers) from Origins-Reborn and its addons. See [Installation](installation.md) for which addons to install.\n\n";
+print $md "---\ntitle: \"Powers\"\nentries: true\n---\n";
 my @own = grep { /^ardanborn:/ } @keys;
 my @borrowed = grep { !/^ardanborn:/ } @keys;
 for my $group (['ArdanBorn powers', @own], ['Origins-Reborn and addon powers', @borrowed]) {
@@ -168,8 +174,6 @@ for my $group (['ArdanBorn powers', @own], ['Origins-Reborn and addon powers', @
         print $md "$p->{desc}\n\n";
         if ($details{$key}) {
             print $md "$details{$key}\n\n";
-        } elsif (!exists $details{$key}) {
-            warn "No details for power $key in power-details.md\n";
         }
         printf $md "`%s` · from %s · used by %s\n\n", $key, source_of($key), join(', ', @origins);
     }

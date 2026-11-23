@@ -1,13 +1,9 @@
 ---
 title: "Feather of Thorondor"
 ---
-*Shed by the King of Eagles.* The Eagles' template, made to suit the [Great Eagle](ancestries.md#great-eagle). It makes the **Thorondor armor**, **Aeglos** and the **Breath of Manwë**.
+Mightiest of all birds was Thorondor, King of [Eagles](ancestries.md#great-eagle), and where his feathers fell they were kept. From them are made the Thorondor armor, the spear Aeglos, and the Breath of Manwë.
 
-Like every [race item](race-items.md), anyone can use these; Eagles get extra.
-
-## Crafting the Feather of Thorondor
-
-Shaped recipe in a crafting table. See [Templates](race-items.md#templates).
+## The making of the Feather
 
 | | | |
 |:-:|:-:|:-:|
@@ -15,45 +11,40 @@ Shaped recipe in a crafting table. See [Templates](race-items.md#templates).
 | Gold Ingot | Diamond | Gold Ingot |
 | Feather | Breeze Rod | Feather |
 
-The Feather of Thorondor looks like a feather. It can't be used in any other recipe.
+When it is made it has the likeness of a feather.
 
 ## Thorondor armor
 
-Made at a smithing table from the Feather and any **diamond or netherite** armor piece. See [Armor](race-items.md#armor) for making, repairing and upgrading it.
+Any [armor](race-items.md#armor) of diamond or netherite may be joined with the Feather.
 
 | Piece | Effect |
 |---|---|
-| Helmet | **Hawk-sight:** hostile creatures you look at (up to 32 blocks) glow for 5 seconds. **Eagles:** Night Vision while airborne above Y 100. Hold it and right-click to zoom like a spyglass. |
-| Chestplate | **Storm-feathers:** 15% chance that a mob that strikes you is pushed back. **Eagles:** 25%. |
-| Leggings | **Talon-grip:** melee hits have a 15% chance to lift the foe about 2 blocks (not bosses). **Eagles:** 25%. |
-| Boots | **Updraft:** sneak in mid-air to leap again. 8-second cooldown. **Eagles:** sneak while gliding to surge forward. 12-second cooldown. |
-| Full set | **Windlord:** +15% melee damage for 3 seconds after landing from a glide or a fall of 3 blocks or more. **Eagles:** 5 seconds. |
+| Helmet | **Hawk-sight:** the hostile mobs at which you look, as far as 32 blocks away, glow for 5 seconds. The **Eagles** have Night Vision while airborne above Y 100. Anyone who holds it in hand may zoom with it. |
+| Chestplate | **Storm-feathers:** there is a 15% chance that a mob that strikes you is pushed back. For the **Eagles** it is 25%. |
+| Leggings | **Talon-grip:** your melee hits have a 15% chance to lift the foe about 2 blocks, unless it is a boss. For the **Eagles** it is 25%. |
+| Boots | **Updraft:** sneak in mid-air to leap again, once in 8 seconds. The **Eagles** may sneak while gliding to surge forward, once in 12 seconds. |
+| Full set | **Windlord:** for 3 seconds after you land from a glide, or from a fall of 3 blocks or more, your melee hits deal 15% more damage. For the **Eagles** it is 5 seconds. |
 
 ### The helmet
 
-The game only zooms the view while you use a real spyglass, so the Thorondor helmet **is a spyglass**, worn as a helmet.
-
-- **Worn**, it has the full diamond or netherite helmet stats and looks like a diamond or netherite helmet.
-- **In your hand**, right-click to zoom with the true spyglass view. Put it on through your inventory (shift-click works); right-click zooms rather than equipping it.
-- **Enchant the helmet before applying the Feather.** A spyglass isn't armor to the enchanting table or anvil, so new armor enchantments can't be added afterwards. Enchantments it already has keep working.
-- Repair it with diamonds or netherite ingots, or another Thorondor helmet of the same tier. Upgrade diamond to netherite as usual.
+The helmet is a spyglass, but worn upon the head it has the full stats and the look of the diamond or netherite helmet from which it was made. In the hand, right-click zooms, and so it must be put on through your inventory, where shift-click will serve. It should be enchanted before the Feather is applied, for armor enchantments cannot be added after, though those it has already remain. It may be mended with diamonds or netherite ingots, or with a Thorondor helmet of the same tier.
 
 ## Aeglos
 
-*Snow-point*, the spear of Gil-galad. Made at a smithing table from the Feather and a **diamond or netherite spear**. See [Weapons](race-items.md#weapons).
+Aeglos is made from a [spear](race-items.md#weapons) of diamond or netherite.
 
 | Who | Effect |
 |---|---|
-| Anyone | **+25% damage to glowing foes**, whether swung or charged. Pairs with the helmet's Hawk-sight. |
-| Eagles | Hits while gliding make the foe **glow** for 5 seconds. |
+| Anyone | Swung or charged, it deals 25% more damage to foes that glow. |
+| Eagles | Foes struck while you glide are made to glow for 5 seconds. |
 
 ## Breath of Manwë
 
-Made at a smithing table from the Feather and a **breeze rod**. See [Tools](race-items.md#tools).
+The Breath is made from a [breeze rod](race-items.md#tools).
 
 | Who | Effect |
 |---|---|
-| Anyone | Monsters within 8 blocks are thrown back, and you and players there get Slow Falling for 10 seconds. 45-second cooldown. |
-| Eagles | Range 12. |
+| Anyone | Monsters within 8 blocks are thrown back, and you and the players there have Slow Falling for 10 seconds. It may not be used again until 45 seconds have passed. |
+| Eagles | It reaches 12 blocks. |
 
-A resource pack can give these items their own look via `custom_model_data` strings `feather_of_thorondor`, `thorondor`, `aeglos` and `breath_of_manwe`.
+`custom_model_data`: `feather_of_thorondor`, `thorondor`, `aeglos`, `breath_of_manwe`

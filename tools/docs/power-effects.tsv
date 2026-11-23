@@ -1,0 +1,67 @@
+ardanborn:axe_of_durin	Axes deal 20% more damage and give Slowness I for 2 seconds.
+ardanborn:backstab	Melee hits from behind deal 35% more damage, or 50% more to a mob that isn't targeting you.
+ardanborn:bane_of_mirkwood	Arrows and thrown tridents deal 20% more damage while you're in a [woodland biome](powers.md#woodland-stride), and 50% more to spiders and cave spiders.
+ardanborn:battle_fury	A kill gives Speed I for 8 seconds and Strength I for 5. Killing players counts. New kills refresh the timers.
+ardanborn:breath_of_the_sea	Breathe underwater indefinitely.
+ardanborn:call_of_huan	Right-click with a bone, in the air or at a block, to call Huan for 60 seconds. 3-minute cooldown, from when you call him. The bone isn't used up.
+ardanborn:cleave	Sword and axe hits also deal half damage to one hostile mob within 2.5 blocks of the target. Never hits players, pets or villagers.
+ardanborn:deep_lore	Enchanting costs 1 fewer level, but never less than the option's slot number (1, 2 or 3). Lapis cost and enchantments don't change.
+ardanborn:delvers_instinct	Haste I and Night Vision below Y 50 where sky light is under 4.
+ardanborn:elven_wrought	Tools, weapons, armor, shields, elytra and fishing rods have a 40% chance to lose no durability when used. Stacks with Unbreaking.
+ardanborn:first_strike	A melee hit after 3 seconds without one deals 50% more damage. Every melee hit that lands restarts the timer.
+ardanborn:forge_hardened	40% less damage from fire, burning, lava and magma blocks. You can still catch fire. Works alongside Fire Resistance.
+ardanborn:fortunate_folk	Permanent Luck I: better fishing treasure and some chest loot.
+ardanborn:friend_of_beasts	Wild beasts don't target you unless you strike first. Your tamed animals take half damage, and heal 1 heart every 10 seconds within 16 blocks of you.
+ardanborn:gift_of_men	25% more experience from all sources, rounded up per orb or reward (a 1-point orb gives 2).
+ardanborn:green_thumb	Each second, crops within 5 blocks (2 up or down) have a 5% chance to grow a stage, and saplings and mangrove propagules a 1% chance to grow as if bone-mealed.
+ardanborn:hands_of_the_healer	Two uses, both sneaking and right-clicking with an empty main hand. Cooldowns are separate and show on your action bar.
+ardanborn:hardened_veteran	+2 hearts and +25% knockback resistance, which stacks with netherite armor. The new hearts start empty.
+ardanborn:healer_of_imladris	Instant Health, Regeneration and golden apples heal you 50% more.
+ardanborn:healing_presence	Every 10 seconds, you and players within 6 blocks heal 1 heart. Players at full health are skipped. Several Healers stack.
+ardanborn:hope_unquenched	Damage that leaves you alive at or below 30% health gives Resistance I and Regeneration I for 8 seconds. 90-second cooldown, from when it triggers.
+ardanborn:hunt_prey	The last mob your arrow hit glows for 60 seconds, through walls, and takes 20% more damage from you, from any source.
+ardanborn:iron_stomach	Food never gives you Hunger, Poison or Nausea, including raw chicken, pufferfish and suspicious stew. Potions and mobs still can.
+ardanborn:leaf_walker	No fall damage landing on leaves. Speed II and Jump Boost II while on leaves and for 2 seconds after.
+ardanborn:lembas	Bread fills hunger and saturation and gives Regeneration I for 5 seconds. 60-second cooldown; until then bread is ordinary.
+ardanborn:light_of_the_staff	Right-click with a blaze rod: hostile mobs within 6 blocks take 3 hearts of magic damage, are thrown back and glow for 5 seconds. Undead take 6 hearts and burn for 4 seconds. 15-second cooldown.
+ardanborn:mending_craft	The item in your main hand and each worn armor piece regain 1 durability every 10 seconds. Stacks with Mending.
+ardanborn:moonbound	At night in the Overworld (time 13000-23000): Strength I. Gibbous moon (either): also Speed I. Full moon: Strength II, Speed I and Resistance I.
+ardanborn:pearls_of_alqualonde	Luck I while holding a fishing rod in either hand. Each catch has a 25% chance to be doubled. Stacks with Luck of the Sea.
+ardanborn:quiet_steps	Speed I while sneaking.
+ardanborn:seas_vigor	+2 hearts while in water or rain. They start empty and are lost, with any health in them, when you leave.
+ardanborn:second_breakfast	Food restores 1 more hunger point and 2 more saturation, up to full.
+ardanborn:shield_wall	While holding a shield in either hand, you take 15% less damage and other players within 5 blocks take 10% less. Several Defenders don't stack. Not void or `/kill`.
+ardanborn:silver_tongue	Hero of the Village I within 8 blocks of a villager or wandering trader, and for 3 seconds after.
+ardanborn:smiths_mark	Only you can inscribe [Cirth runes](cirth-runes.md). Twice per full moon, a tool or weapon you craft under open sky gains an enchantment up to 5 levels above its usual maximum.
+ardanborn:songs_of_power	Sound a goat horn to play its song, within 24 blocks. 90-second cooldown shared by all songs.
+ardanborn:star_of_earendil	Regeneration I and Night Vision at night in the Overworld, with open sky overhead. Glass counts as open; leaves don't.
+ardanborn:swift_messenger	Horses, donkeys, mules, camels and llamas you ride have Speed I and take no fall damage.
+ardanborn:tides_fury	Melee and trident hits, thrown included, deal 25% more damage while you're in water or rain. Stacks with the [Spear of the Havens](pearl-of-osse.md#spear-of-the-havens).
+ardanborn:tough_as_old_tree_roots	30% less damage from the Wither effect, Slowness lasts half as long, and immune to Darkness.
+ardanborn:undying_body	Immune to Poison and Hunger from every source.
+ardanborn:unseen	While you sneak, hostile mobs more than 6 blocks away don't notice you.
+ardanborn:wayfarer	25% chance not to lose a hunger point. Saturation drains as usual.
+ardanborn:woodland_stride	Speed I in woodland biomes and for 3 seconds after leaving.
+ardanborn:wrath_of_the_noldor	Melee hits deal 25% more damage to the [undead](lore-and-items.md#undead) and to creatures of the Nether. Not projectiles.
+origins:fall_immunity	No fall damage. Landing on a magma block still burns.
+origins:aerial_combatant	Double damage while gliding. Stacks with [Aeglos](feather-of-thorondor.md#aeglos).
+origins:aqua_affinity	Mine underwater at normal speed, with no helmet enchantment.
+moborigins:rideable_creature	Players can right-click you to ride on your back, including while you glide.
+moborigins:queen_bee	Bees don't attack when you take honey or honeycomb, with or without a campfire.
+fantasyorigins:fortune_increaser	Ores drop as if your tool had 2 more levels of Fortune.
+monsterorigins:infinite_arrows	Arrows aren't used up, including tipped and spectral.
+origins:launch_into_air	Sneak while gliding to launch about 20 blocks up. 30-second cooldown. Doesn't work from the ground.
+magicorigins:regeneration_when_still	Regeneration I after standing still for a moment. Any movement ends it.
+origins:shulker_inventory	9 extra inventory slots, kept on death. By default, right-click your chestplate slot to open them.
+origins:extra_reach	+1.5 blocks of reach for blocks and entities.
+fantasyorigins:double_health	+10 hearts, for 20 in all.
+origins:cat_vision	Night Vision while not in water. Milk removes it only briefly.
+magicorigins:potion_master	Potions you drink or throw are one level stronger and last twice as long.
+fantasyorigins:small_body	One block tall. You fit through 1-block gaps.
+magicorigins:silent	Sculk sensors and shriekers don't detect you walking, landing, eating or drinking.
+magicorigins:kill_boost	Kills give extra health, more from stronger creatures, up to 30 extra hearts.
+origins:sprint_jump	Jump Boost II while sprinting.
+origins:strong_arms	Mine natural stone without a pickaxe and still get its drop: stone, deepslate, tuff, granite, diorite, andesite, sandstones, blackstone, netherrack.
+origins:tailwind	+20% walking speed.
+fantasyorigins:strong_skin	Arrows and other projectiles deal a quarter of their damage.
+origins:elytra	Glide without an elytra: jump, then jump again in mid-air. Firework rockets work, and you can wear a chestplate.

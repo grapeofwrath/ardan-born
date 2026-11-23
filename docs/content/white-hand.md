@@ -1,13 +1,9 @@
 ---
 title: "White Hand"
 ---
-*The sign of Saruman, daubed on Uruk shields.* The Uruk-hai's template, made to suit the [Uruk-hai](ancestries.md#uruk-hai-orc). It makes the **Isengard armor**, the **Scimitar of Isengard** and **Orc-draught**.
+The sign of Saruman was a white hand, and the [Uruk-hai](ancestries.md#uruk-hai-orc) bore it upon their shields. Under that sign are made the Isengard armor, the Scimitar of Isengard, and the Orc-draught.
 
-Like every [race item](race-items.md), anyone can use these; the Uruk-hai get extra.
-
-## Crafting the White Hand
-
-Shaped recipe in a crafting table. See [Templates](race-items.md#templates).
+## The making of the White Hand
 
 | | | |
 |:-:|:-:|:-:|
@@ -15,39 +11,36 @@ Shaped recipe in a crafting table. See [Templates](race-items.md#templates).
 | Gold Ingot | Diamond | Gold Ingot |
 | Block of Coal | White Dye | Block of Coal |
 
-The White Hand looks like white dye. It can't be used in any other recipe.
+When it is made it has the likeness of white dye.
 
 ## Isengard armor
 
-Made at a smithing table from the White Hand and any **diamond or netherite** armor piece. See [Armor](race-items.md#armor) for making, repairing and upgrading it.
+Any [armor](race-items.md#armor) of diamond or netherite may be joined with the White Hand.
 
 | Piece | Effect |
 |---|---|
-| Helmet | **Dread:** melee hits have a 10% chance to give a mob Weakness I for 3 seconds. **Uruk-hai:** 20%. |
-| Chestplate | **Spiked Plate:** mobs that strike you take back 15% of the damage. **Uruk-hai:** 25%. |
-| Leggings | **Forced March:** sprinting uses 25% less hunger. **Uruk-hai:** 50%. |
-| Boots | **Fury's Tread:** kills give Speed I for 4 seconds. **Uruk-hai:** no knockback during [Battle-fury](powers.md#battle-fury). |
-| Full set | **Berserker:** below half health, 20% more attack speed. **Uruk-hai:** also 10% faster. |
+| Helmet | **Dread:** your melee hits have a 10% chance to give a mob Weakness I for 3 seconds. For the **Uruk-hai** it is 20%. |
+| Chestplate | **Spiked Plate:** mobs that strike you take back 15% of the damage, or 25% from the **Uruk-hai**. |
+| Leggings | **Forced March:** sprinting takes 25% less hunger, and from the **Uruk-hai** 50% less. |
+| Boots | **Fury's Tread:** a kill gives you Speed I for 4 seconds. The **Uruk-hai** are not knocked back during [Battle-fury](powers.md#battle-fury). |
+| Full set | **Berserker:** below half health you have 20% more attack speed, and the **Uruk-hai** go 10% faster besides. |
 
 ## Scimitar of Isengard
 
-Made at a smithing table from the White Hand and a **diamond or netherite sword**. See [Weapons](race-items.md#weapons).
+The scimitar is made from a [sword](race-items.md#weapons) of diamond or netherite.
 
 | Who | Effect |
 |---|---|
-| Anyone | **Finishing blows:** +25% melee damage against foes below half health. |
-| Uruk-hai | During [Battle-fury](powers.md#battle-fury) (the 8 seconds after a kill), each hit heals you half a heart. |
-
-- Sweeping-edge hits count as melee hits.
-- Cirth runes can be inscribed on it like any sword; see [Cirth Runes](cirth-runes.md).
+| Anyone | To foes below half health it deals 25% more melee damage, and its sweeping hits also. |
+| Uruk-hai | During [Battle-fury](powers.md#battle-fury), in the 8 seconds after a kill, each hit heals you half a heart. |
 
 ## Orc-draught
 
-Made at a smithing table from the White Hand and a **glass bottle**. See [Tools](race-items.md#tools).
+The draught is made from a [glass bottle](race-items.md#tools), and it is not used up.
 
 | Who | Effect |
 |---|---|
-| Anyone | Costs 2 hearts (and can't be used with 2 or fewer). Gives Speed I and 20% more attack speed for 10 seconds. 60-second cooldown. |
-| Uruk-hai | Costs nothing. |
+| Anyone | At the price of 2 hearts you have Speed I and 20% more attack speed for 10 seconds; but one who has 2 hearts or fewer cannot drink. It may not be used again until 60 seconds have passed. |
+| Uruk-hai | There is no price. |
 
-A resource pack can give these items their own look via `custom_model_data` strings `white_hand`, `scimitar_of_isengard`, `isengard` and `orc_draught`.
+`custom_model_data`: `white_hand`, `scimitar_of_isengard`, `isengard`, `orc_draught`

@@ -1,8 +1,6 @@
 ---
 title: "Sizes"
 ---
-Your **size** is chosen last, in the `size` layer. It defaults to Normal Size.
-
 | | Impact | Powers |
 |---|---|---|
 | [Normal Size](#normal-size) | None | 0 |
@@ -10,18 +8,14 @@ Your **size** is chosen last, in the `size` layer. It defaults to Normal Size.
 
 ## Normal Size
 
-Stand at the ordinary height of your people.
-
 **Impact:** None · **Icon:** `oak_log` · **File:** `normal_size.json`
 
 No powers.
 
 ## Small Size
 
-You are only one block tall, half the height of a regular player. Slip through low gaps and small spaces.
-
 **Impact:** Low · **Icon:** `oak_sapling` · **File:** `small_size.json`
 
 | Power | What it does | From |
 |---|---|---|
-| [Small Body](powers.md#small-body) | You're only one block tall, half the height of most folk. | [Origins-Fantasy](https://modrinth.com/plugin/origins-fantasy) |
+| [Small Body](powers.md#small-body) | One block tall. You fit through 1-block gaps. | [Origins-Fantasy](https://modrinth.com/plugin/origins-fantasy) |

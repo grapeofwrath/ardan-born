@@ -1,13 +1,9 @@
 ---
 title: "Mallorn Leaf"
 ---
-*Gold from the trees of Lothlórien.* The Sindar's template, made to suit the [Sindar](ancestries.md#sindar-wood-elf). It makes the **Lórien armor**, the **Bow of the Galadhrim** and **Hithlain**.
+Golden were the leaves of the mallorn trees in Lothlórien, where many of the [Sindar](ancestries.md#sindar-wood-elf) dwelt. From such a leaf are made the Lórien armor, the Bow of the Galadhrim, and the rope Hithlain.
 
-Like every [race item](race-items.md), anyone can use these; the Sindar get extra.
-
-## Crafting the Mallorn Leaf
-
-Shaped recipe in a crafting table. See [Templates](race-items.md#templates).
+## The making of the Leaf
 
 | | | |
 |:-:|:-:|:-:|
@@ -15,43 +11,40 @@ Shaped recipe in a crafting table. See [Templates](race-items.md#templates).
 | Gold Ingot | Diamond | Gold Ingot |
 | Any Leaves | String | Any Leaves |
 
-Any kind of leaves works. The Mallorn Leaf can't be used in any other recipe.
+The leaves may be of any kind, and of several kinds together. When it is made it has the likeness of a lily pad.
 
 ## Lórien armor
 
-Made at a smithing table from the Mallorn Leaf and any **diamond or netherite** armor piece. See [Armor](race-items.md#armor) for making, repairing and upgrading it.
+Any [armor](race-items.md#armor) of diamond or netherite may be joined with the Leaf.
 
 | Piece | Effect |
 |---|---|
-| Helmet | **Far-sighted:** arrows that hit 20 or more blocks away deal 10% more damage. **Sindar:** 20%. |
-| Chestplate | **Cloak of Lórien: Elusive.** Anyone: 10% chance that a mob's melee hit or arrow misses you entirely, in a swirl of leaves (15% in a woodland biome). **Sindar:** the attacker is tangled with Slowness II for 3 seconds. |
-| Leggings | **Leaf-light:** Speed I for 3 seconds after an arrow hit. **Sindar:** Speed II in woodland. |
-| Boots | **Bough-runner:** step up full blocks without jumping. **Sindar:** Jump Boost I in woodland. |
-| Full set | **Galadhrim Volley:** an arrow hit has a 15% chance to strike a second monster within 8 blocks for half the damage. **Sindar:** 25%. |
+| Helmet | **Far-sighted:** arrows that hit from 20 or more blocks away deal 10% more damage, and those of the **Sindar** 20% more. |
+| Chestplate | **Elusive:** there is a 10% chance that the melee hit or projectile of a mob misses you, and 15% in [woodland](powers.md#woodland-stride). If you are of the **Sindar**, the attacker is tangled with Slowness II for 3 seconds. |
+| Leggings | **Leaf-light:** after an arrow hit you have Speed I for 3 seconds. In woodland the **Sindar** have Speed II. |
+| Boots | **Bough-runner:** you step up full blocks without jumping. In woodland the **Sindar** have Jump Boost I. |
+| Full set | **Galadhrim Volley:** an arrow hit has a 15% chance to strike a second monster within 8 blocks for half the damage. For the **Sindar** it is 25%. |
 
 ### The Cloak of Lórien
 
-- It's a **leather tunic** with full diamond or netherite chestplate stats, dyed the grey-green of the elven cloaks (darker for netherite). You can re-dye it.
-- Repair it with another Lórien chestplate of the same tier at an anvil. Upgrade diamond to netherite as usual, with a netherite upgrade template and a netherite ingot.
-- Only mobs' attacks can be dodged: melee hits and their arrows or other projectiles. Players' attacks, falls, fire and so on always land.
-- Woodland biomes are the same ones as for the Sindar's [Woodland Stride](powers.md#woodland-stride).
+The chestplate has the form of a leather tunic, yet it has the full stats of the diamond or netherite from which it was made. Its color is grey-green, and darker in netherite, and it may be dyed anew. It may be mended at an anvil with another Lórien chestplate of the same tier. Only the melee hits and projectiles of mobs can miss the wearer; the attacks of players, and falls, and fire do not.
 
 ## Bow of the Galadhrim
 
-Made at a smithing table from the Mallorn Leaf and a **bow**. See [Weapons](race-items.md#weapons).
+The bow is made from a [bow](race-items.md#weapons).
 
 | Who | Effect |
 |---|---|
-| Anyone | Full-draw arrows deal **20% more damage to unhurt foes**. |
-| Sindar | The foe also gets Slowness II for 3 seconds. |
+| Anyone | Arrows shot at full draw deal 20% more damage to foes that are unhurt. |
+| Sindar | Such a foe has also Slowness II for 3 seconds. |
 
 ## Hithlain
 
-*The grey rope of Lórien.* Made at a smithing table from the Mallorn Leaf and a **lead**. See [Tools](race-items.md#tools).
+The rope is made from a [lead](race-items.md#tools).
 
 | Who | Effect |
 |---|---|
-| Anyone | Right-click a block within 16 blocks and you're pulled to it. Your next fall within 4 seconds does no harm. 10-second cooldown. |
-| Sindar | 24 blocks, 6-second cooldown. |
+| Anyone | Right-click a block within 16 blocks and you are drawn to it, and your next fall within 4 seconds does you no harm. It may not be used again until 10 seconds have passed. |
+| Sindar | It reaches 24 blocks, and may be used again after 6 seconds. |
 
-A resource pack can give these items their own look via `custom_model_data` strings `mallorn_leaf`, `lorien`, `bow_of_the_galadhrim` and `hithlain`.
+`custom_model_data`: `mallorn_leaf`, `lorien`, `bow_of_the_galadhrim`, `hithlain`

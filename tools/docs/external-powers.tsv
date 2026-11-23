@@ -1,22 +1,22 @@
-origins:aerial_combatant	Aerial Combatant	You deal substantially more damage while in Elytra flight.
-origins:aqua_affinity	Aqua Affinity	You may break blocks underwater as others do on land.
-origins:cat_vision	Nocturnal	You can slightly see in the dark when not in water.
-origins:elytra	Winged	You have wings of your own and can glide without equipping an Elytra.
-origins:extra_reach	Long Reach	You can reach blocks and entities further away than others can.
-origins:fall_immunity	Acrobatics	You never take fall damage, no matter from which height you fall.
-origins:launch_into_air	Gift of the Winds	Every 30 seconds, you are able to launch about 20 blocks up into the air.
-origins:shulker_inventory	Hoarder	You have access to an additional 9 slots of inventory, which keep the items on death.
-origins:sprint_jump	Strong Ankles	You are able to jump higher by jumping while sprinting.
-origins:strong_arms	Strong Arms	You are strong enough to break natural stones without using a pickaxe.
-origins:tailwind	Tailwind	You are a little bit quicker on foot than others.
-fantasyorigins:double_health	Mighty Frame	Your great frame gives you twice the health of others.
-fantasyorigins:fortune_increaser	Careful Miner	Your care and mastery in the art of extracting minerals results in a much higher yield from ores than other creatures.
-fantasyorigins:small_body	Small Body	You're only one block tall, half the height of most folk.
-fantasyorigins:strong_skin	Thick Skin	Your hide is tough enough that arrows do much less damage to you.
-magicorigins:kill_boost	Spoils of Victory	Whenever you kill something, you take in some of its vitality as extra health, up to 30 extra hearts.
-magicorigins:potion_master	Potion Master	Potions you drink and throw are much stronger.
-magicorigins:regeneration_when_still	Healing Focus	When standing still you focus your energy to regenerate health.
-magicorigins:silent	Soft-footed	You move so softly that Sculk Sensors never notice you walking or eating.
-moborigins:queen_bee	Bee-friend	Bees won't turn on you when you collect honey.
-moborigins:rideable_creature	Bearer	Other players can ride on your back.
-monsterorigins:infinite_arrows	Endless Quiver	Arrows you shoot are never used up.
+origins:aerial_combatant	Aerial Combatant
+origins:aqua_affinity	Aqua Affinity
+origins:cat_vision	Nocturnal
+origins:elytra	Winged
+origins:extra_reach	Long Reach
+origins:fall_immunity	Acrobatics
+origins:launch_into_air	Gift of the Winds
+origins:shulker_inventory	Hoarder
+origins:sprint_jump	Strong Ankles
+origins:strong_arms	Strong Arms
+origins:tailwind	Tailwind
+fantasyorigins:double_health	Mighty Frame
+fantasyorigins:fortune_increaser	Careful Miner
+fantasyorigins:small_body	Small Body
+fantasyorigins:strong_skin	Thick Skin
+magicorigins:kill_boost	Spoils of Victory
+magicorigins:potion_master	Potion Master
+magicorigins:regeneration_when_still	Healing Focus
+magicorigins:silent	Soft-footed
+moborigins:queen_bee	Bee-friend
+moborigins:rideable_creature	Bearer
+monsterorigins:infinite_arrows	Endless Quiver

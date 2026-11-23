@@ -1,7 +1,7 @@
 ---
 title: "Race items"
 ---
-Each ancestry has a **template**, and each template makes a set of armor, a weapon and a tool. **Anyone** can craft and use them all; the ancestry they were made for gets extra.
+Each ancestry has a template, which makes a set of armor, a weapon and a tool. Anyone can craft and use them, but they do more for the ancestry they belong to.
 
 | Ancestry | Template | Armor | Weapon | Tool |
 |---|---|---|---|---|
@@ -16,11 +16,11 @@ Each ancestry has a **template**, and each template makes a set of armor, a weap
 | Hobbit | [Mathom](mathom.md) | Mithril | Sting | Longbottom Pipe |
 | Uruk-hai | [White Hand](white-hand.md) | Isengard | Scimitar of Isengard | Orc-draught |
 
-The numbers on these pages are at power 1.0. Server owners can change the power or disable items; see [Configuration](configuration.md#race-items).
+The numbers on these pages are at power 1.0. Server owners can change the power or disable items in the [Configuration](configuration.md#race-items).
 
 ## Templates
 
-Every template is a shaped recipe in a crafting table, and shows in the recipe book. Only the two ingredients **A** and **B** differ:
+Every template is crafted in the same pattern at a crafting table and shows in the recipe book. Only the ingredients **A** and **B** change.
 
 | | | |
 |:-:|:-:|:-:|
@@ -28,40 +28,42 @@ Every template is a shaped recipe in a crafting table, and shows in the recipe b
 | Gold Ingot | Diamond | Gold Ingot |
 | A | B | A |
 
-Templates, and the weapons and tools made from them, can't be used as ingredients in other recipes, as furnace fuel or in brewing.
+Templates, and the weapons and tools made from them, can't be used in other recipes, as furnace fuel or in brewing.
 
 ## Smithing
 
-At a **smithing table**, put in:
+Use a smithing table, and fill the slots like this:
 
-1. the template, in the template slot,
-2. the item to change, in the middle slot,
-3. nothing in the third slot.
+| Slot | Item |
+|---|---|
+| Template | The template |
+| Middle | The item you want to change |
+| Last | Nothing |
 
-Each template makes one item, and an item can only be changed once: one that's already a race item can't be changed again. (A race weapon or pickaxe can still take runes.)
+Each template makes one item. Once something is a race item it can't be changed again, though a race weapon or pickaxe can still take [runes](cirth-runes.md).
 
 ## Armor
 
-Any **diamond or netherite** helmet, chestplate, leggings or boots can become a set piece. Each piece therefore comes in two tiers.
+Any diamond or netherite helmet, chestplate, leggings or boots can become a set piece, so every piece comes in two tiers.
 
-- It keeps its enchantments, trim, damage and any custom name.
-- It's still normal armor, so it can be enchanted, trimmed and repaired at an anvil with diamonds (or netherite ingots). Combining two pieces only works within the same set and tier.
-- A diamond piece can be upgraded to netherite at a smithing table as usual, with a netherite upgrade template and a netherite ingot.
-- Set pieces can't be used in crafting recipes, because those would strip their set data. Dyeing is the exception.
-- The **full set** effect needs all four pieces.
+- It keeps its enchantments, trim, damage and any custom name, and it can still be enchanted and trimmed.
+- It can be repaired at an anvil with diamonds or netherite ingots. Two pieces only combine if they are from the same set and tier.
+- A diamond piece can be upgraded to netherite at a smithing table, with a netherite upgrade template and a netherite ingot.
+- It can't be used in crafting recipes, except to dye it.
+- You need all four pieces for the full set effect.
 
-Some pieces look and behave like another item but have the full diamond or netherite stats: the [Arkenstone boots](arkenstone.md#the-boots), [Alqualondë helmet](pearl-of-osse.md#the-helmet), [Thorondor helmet](feather-of-thorondor.md#the-helmet), [Cloak of Lórien](mallorn-leaf.md#the-cloak-of-lórien) and [Mithril Coat](mathom.md#the-mithril-coat). Their pages have the differences.
+Some pieces look like another item but have full diamond or netherite stats: the [Arkenstone boots](arkenstone.md#the-boots), [Alqualondë helmet](pearl-of-osse.md#the-helmet), [Thorondor helmet](feather-of-thorondor.md#the-helmet), [Cloak of Lórien](mallorn-leaf.md#the-cloak-of-lórien) and [Mithril Coat](mathom.md#the-mithril-coat). Their pages explain what is different about them.
 
 ## Weapons
 
-- A weapon keeps its enchantments, damage, any custom name and any [runes](cirth-runes.md).
-- It's still a normal weapon, so it can be enchanted and repaired at an anvil.
-- A diamond one can still be upgraded to netherite as usual.
+These rules also apply to the Arkenstone Pickaxe.
 
-The **Arkenstone Pickaxe** follows these rules too.
+- A weapon keeps its enchantments, damage, any custom name and any [runes](cirth-runes.md).
+- It can still be enchanted, and repaired at an anvil.
+- A diamond weapon can still be upgraded to netherite.
 
 ## Tools
 
-The **Net of the Havens**, **Breath of Manwë**, **Skin-changer's Claw**, **Hithlain**, **Longbottom Pipe** and **Orc-draught** are used by **right-clicking with them in your main hand**. They don't stack, aren't used up, and no longer do what their base item does.
+The Net of the Havens, Breath of Manwë, Skin-changer's Claw, Hithlain, Longbottom Pipe and Orc-draught are used by right-clicking with them in your main hand. They don't stack and aren't used up, and they no longer do what their base item does.
 
-The **Arkenstone Pickaxe**, **Phial of Galadriel**, **Horn of Gondor** and **Miruvor** each work in their own way; see their pages.
+The Arkenstone Pickaxe, Phial of Galadriel, Horn of Gondor and Miruvor each work differently, as described on their pages.

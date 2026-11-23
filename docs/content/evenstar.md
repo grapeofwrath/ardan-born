@@ -1,13 +1,9 @@
 ---
 title: "Evenstar"
 ---
-*Undómiel's jewel, white as starlight.* The Peredhil's template, made to suit the [Peredhil](ancestries.md#peredhil-half-elf). It makes the **Imladris armor**, **Hadhafang** and **Miruvor**.
+White as starlight was the jewel of Undómiel, who was of the [Peredhil](ancestries.md#peredhil-half-elf). From it are made the Imladris armor, the sword Hadhafang, and the cordial Miruvor.
 
-Like every [race item](race-items.md), anyone can use these; the Peredhil get extra.
-
-## Crafting the Evenstar
-
-Shaped recipe in a crafting table. See [Templates](race-items.md#templates).
+## The making of the Evenstar
 
 | | | |
 |:-:|:-:|:-:|
@@ -15,43 +11,39 @@ Shaped recipe in a crafting table. See [Templates](race-items.md#templates).
 | Gold Ingot | Diamond | Gold Ingot |
 | Ender Pearl | Glow Ink Sac | Ender Pearl |
 
-The Evenstar looks like a heart of the sea. It can't be used in any other recipe.
+When it is made it has the likeness of a heart of the sea.
 
 ## Imladris armor
 
-Made at a smithing table from the Evenstar and any **diamond or netherite** armor piece. See [Armor](race-items.md#armor) for making, repairing and upgrading it.
+Any [armor](race-items.md#armor) of diamond or netherite may be joined with the Evenstar.
 
 | Piece | Effect |
 |---|---|
-| Helmet | **Foresight:** halves one hit of 1 heart or more every 45 seconds. **Peredhil:** every 30 seconds. |
-| Chestplate | **Star-woven:** 12% less damage at night under open sky. **Peredhil:** anywhere in the Overworld at night. |
-| Leggings | **Rider's Grace:** you and your mount take 15% less damage while riding. **Peredhil:** your mount heals 1 heart every 5 seconds. |
-| Boots | **Soft Landing:** half fall damage, for your mount too. **Peredhil:** 75% less. |
-| Full set | **House of Elrond:** you and players within 8 blocks heal 1 heart every 8 seconds. **Peredhil:** every 6 seconds. |
+| Helmet | **Foresight:** once in 45 seconds a hit of 1 heart or more is halved. For the **Peredhil** it is once in 30 seconds. |
+| Chestplate | **Star-woven:** at night under the open sky you take 12% less damage, and the **Peredhil** anywhere in the Overworld at night. |
+| Leggings | **Rider's Grace:** while you ride, you and your mount take 15% less damage. The mount of the **Peredhil** heals 1 heart every 5 seconds. |
+| Boots | **Soft Landing:** falls deal half their damage to you and to your mount. To the **Peredhil** they deal 75% less. |
+| Full set | **House of Elrond:** you and all players within 8 blocks heal 1 heart every 8 seconds, or every 6 seconds if the wearer is of the **Peredhil**. |
 
 ## Hadhafang
 
-Made at a smithing table from the Evenstar and a **diamond or netherite sword**. See [Weapons](race-items.md#weapons).
+Hadhafang is made from a [sword](race-items.md#weapons) of diamond or netherite.
 
 | Who | Effect |
 |---|---|
-| Anyone | Kills heal you **1 heart**. |
-| Peredhil | +15% damage while riding. |
+| Anyone | With each kill you are healed 1 heart. |
+| Peredhil | While you ride it deals 15% more damage. |
 
 ## Miruvor
 
-*The cordial of Imladris.* Made at a smithing table from the Evenstar and a **honey bottle**. See [Tools](race-items.md#tools). Each Evenstar makes **one** draught.
+The cordial is made from a [honey bottle](race-items.md#tools), and one Evenstar makes one draught.
 
-| Who | Effect when drunk |
+| Who | Effect when it is drunk |
 |---|---|
-| Anyone | Fills your hunger completely, gives Regeneration II for 8 seconds, and lifts Slowness, Weakness and Mining Fatigue. |
-| Peredhil | Regeneration II lasts 16 seconds. |
+| Anyone | Your hunger is filled, you have Regeneration II for 8 seconds, and you are cured of Slowness, Weakness and Mining Fatigue. |
+| Anyone | Your [Shadow](rings-of-power.md#shadow) is lowered by 15. |
+| Anyone | A [Morgul wound](morgul-wound.md#treatment) is eased by one stage, and one of the first stage is cured. |
+| Anyone | As with any honey bottle, Poison is cured and the bottle is returned to you. |
+| Peredhil | Regeneration II lasts for 16 seconds. |
 
-Miruvor also:
-
-- lowers your [Shadow](rings-of-power.md#shadow) by 15
-- eases a [Morgul wound](morgul-wound.md) by one stage (a first-stage wound is cured)
-
-It's still a honey bottle underneath, so it also cures Poison and gives back the glass bottle.
-
-A resource pack can give these items their own look via `custom_model_data` strings `evenstar`, `miruvor`, `imladris` and `hadhafang`.
+`custom_model_data`: `evenstar`, `miruvor`, `imladris`, `hadhafang`

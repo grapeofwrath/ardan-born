@@ -9,7 +9,7 @@ title: "Commands"
 
 ## `/ardanborn give`
 
-ArdanBorn's items are vanilla items with extra data, so vanilla `/give` can't create them. Use this command instead. Tab completion lists every item.
+Vanilla `/give` can't create ArdanBorn items. Tab completion lists every item.
 
 | Item id | Item |
 |---|---|
@@ -30,8 +30,8 @@ ArdanBorn's items are vanilla items with extra data, so vanilla `/give` can't cr
 | `ring_<ring>`, e.g. `ring_one` | A [Ring of Power](rings-of-power.md). Rings: `seven`, `nine`, `narya`, `nenya`, `vilya`, `one`. Giving a unique ring (the Three or the One) makes that copy the current one, and any older copy crumbles |
 | `athelas` | A sprig of [athelas](morgul-wound.md#athelas) |
 
-- `amount` is 1–64 and defaults to 1. Armor pieces don't stack, so you get that many separate pieces.
-- Anything that doesn't fit in the player's inventory drops at their feet.
+- `amount` is 1-64 and defaults to 1. Armor pieces come separately.
+- What doesn't fit in the inventory drops at the player's feet.
 
 Example: `/ardanborn give @s arkenstone_netherite_boots`
 
@@ -39,4 +39,4 @@ Example: `/ardanborn give @s arkenstone_netherite_boots`
 
 `/ardanborn ring release <narya|nenya|vilya|one>` sends a unique [Ring of Power](rings-of-power.md#unique-rings) back into the loot pool, so it can be found in chests again. Any copy still in the world crumbles: right away if it's dropped or carried by an online player, otherwise the first time it's seen.
 
-Use it when a unique ring is stuck somewhere nobody can reach. `/kill` won't do it: a unique ring that's killed or cleared is put straight back where it was.
+For a unique ring nobody can reach. `/kill` doesn't work: a ring that is killed or cleared is put back where it was.

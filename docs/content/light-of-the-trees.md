@@ -1,13 +1,9 @@
 ---
 title: "Light of the Trees"
 ---
-*A glimmer of Laurelin and Telperion.* The Noldor's template, made to suit the [Noldor](ancestries.md#noldor-high-elf). It makes the **Gondolin armor**, **Orcrist** and the **Phial of Galadriel**.
+When the Two Trees were no more there remained some glimmer of Laurelin and Telperion, and the [Noldor](ancestries.md#noldor-high-elf) did not forget it. From that light are made the Gondolin armor, the sword Orcrist, and the Phial of Galadriel.
 
-Like every [race item](race-items.md), anyone can use these; the Noldor get extra.
-
-## Crafting the Light of the Trees
-
-Shaped recipe in a crafting table. See [Templates](race-items.md#templates).
+## The making of the Light
 
 | | | |
 |:-:|:-:|:-:|
@@ -15,45 +11,41 @@ Shaped recipe in a crafting table. See [Templates](race-items.md#templates).
 | Gold Ingot | Diamond | Gold Ingot |
 | Glowstone Dust | Glow Berries | Glowstone Dust |
 
-The Light of the Trees looks like glinting glowstone dust. It can't be used in any other recipe.
+When it is made it has the likeness of glowstone dust that glints.
 
 ## Gondolin armor
 
-Made at a smithing table from the Light of the Trees and any **diamond or netherite** armor piece. See [Armor](race-items.md#armor) for making, repairing and upgrading it.
+Any [armor](race-items.md#armor) of diamond or netherite may be joined with the Light.
 
 | Piece | Effect |
 |---|---|
-| Helmet | **Unclouded:** immune to Blindness and Darkness. **Noldor:** Night Vision in the Nether. |
-| Chestplate | **Spell-ward:** 20% less magic, Wither and dragon's-breath damage. **Noldor:** 30%. |
-| Leggings | **Lore-wise:** race item and armor cooldowns are 10% shorter. Origin and class powers aren't affected. **Noldor:** 20%. |
-| Boots | **Helcaraxë:** immune to freezing, and 10% faster on snow and ice. **Noldor:** 20%. |
-| Full set | **Wrath of Fingolfin:** after 5 kills of undead or creatures of the Nether, your next melee hit bursts for 4 hearts to monsters within 5 blocks. **Noldor:** 3 kills. |
+| Helmet | **Unclouded:** you are immune to Blindness and Darkness. The **Noldor** have Night Vision in the Nether. |
+| Chestplate | **Spell-ward:** you take 20% less damage from magic, Wither and dragon's breath, and the **Noldor** 30% less. |
+| Leggings | **Lore-wise:** the cooldowns of race items and armor are 10% shorter, and for the **Noldor** 20%. The powers of origin and class are not changed. |
+| Boots | **Helcaraxë:** you are immune to freezing, and go 10% faster on snow and ice. The **Noldor** go 20% faster. |
+| Full set | **Wrath of Fingolfin:** when you have slain 5 of the undead or the creatures of the Nether, your next melee hit bursts forth, and deals 4 hearts to the monsters within 5 blocks. The **Noldor** need slay but 3. |
 
 ## Orcrist
 
-Made at a smithing table from the Light of the Trees and a **diamond or netherite sword**. See [Weapons](race-items.md#weapons).
+Orcrist is made from a [sword](race-items.md#weapons) of diamond or netherite.
 
 | Who | Effect |
 |---|---|
-| Anyone | **+20% damage** to illagers and piglins (zombified ones too). |
-| Noldor | They also get Weakness I for 3 seconds. |
+| Anyone | It deals 20% more damage to illagers and piglins, and to the zombified also. |
+| Noldor | Those it strikes have Weakness I for 3 seconds. |
 
 ## Phial of Galadriel
 
-*A light to you in dark places.* Made at a smithing table from the Light of the Trees and a **glass bottle**. See [Tools](race-items.md#tools). The Phial doesn't stack, and it never fills with water.
+The phial is made from a [glass bottle](race-items.md#tools). It does not stack, and it is never filled with water.
 
 | Who | Effect |
 |---|---|
-| Anyone | **Raise it:** right-click with the Phial in your main hand. Monsters within 10 blocks glow for 10 seconds, spiders and cave spiders take 2 hearts of magic damage and are thrown back, and you're cured of Darkness and Blindness. 60-second cooldown. |
-| Anyone | **Light the way:** held in your **off-hand**, it lights the space around you (light level 15). |
-| Noldor | Range 16, every player in range is also cured of Darkness and Blindness, and the cooldown is 40 seconds. |
+| Anyone | **Raise it:** right-click with it in your main hand. Monsters within 10 blocks glow for 10 seconds; spiders and cave spiders take 2 hearts of magic damage and are thrown back; and you are cured of Darkness and Blindness. It may not be raised again until 60 seconds have passed. |
+| Anyone | **Light the way:** held in your off-hand, it sheds light of level 15 about you. |
+| Noldor | It reaches 16 blocks, the players within that reach are cured also, and it may be raised again after 40 seconds. |
 
 ### The off-hand light
 
-- The light follows you, updating as you move from block to block.
-- Everyone within 48 blocks sees it.
-- It's only shown to players' game clients. The world itself never changes, so no light blocks are ever left behind, even after a crash or restart.
-- It shines from your head's block, or your feet if your head is in something (such as water). If both are blocked, there's no light until you move.
-- Right-clicking with something else in your main hand never raises an off-hand Phial; only a Phial in the main hand can be raised.
+The light goes with you from block to block, and all within 48 blocks behold it. It is shown to the eyes of players only, and no block in the world is changed by it. It shines from the place of your head, or of your feet if your head is in something such as water; and if both are blocked there is no light until you move. From the off-hand the phial cannot be raised.
 
-A resource pack can give these items their own look via `custom_model_data` strings `light_of_the_trees`, `phial_of_galadriel`, `gondolin` and `orcrist`.
+`custom_model_data`: `light_of_the_trees`, `phial_of_galadriel`, `gondolin`, `orcrist`
