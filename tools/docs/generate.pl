@@ -168,7 +168,7 @@ for my $group (['ArdanBorn powers', @own], ['Origins-Reborn and addon powers', @
         print $md "$p->{desc}\n\n";
         if ($details{$key}) {
             print $md "$details{$key}\n\n";
-        } else {
+        } elsif (!exists $details{$key}) {
             warn "No details for power $key in power-details.md\n";
         }
         printf $md "`%s` · from %s · used by %s\n\n", $key, source_of($key), join(', ', @origins);

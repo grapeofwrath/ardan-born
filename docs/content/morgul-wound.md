@@ -11,7 +11,7 @@ Each **melee hit** from an eligible mob has a **10% chance** to wound you. You c
 - **Without it:** wither skeletons can wound.
 - Either way, the **Servants of the Enemy** and **Ringwraiths** can always wound, and far more often: **50%** of their melee hits. They come for those who carry the [Rings of Power](rings-of-power.md#those-who-hunt-the-rings).
 
-Undead are zombies and their kin, skeletons and their kin, the Wither, phantoms, zoglins, zombified piglins and undead horses. Server owners can change the chance and the level; see [below](#for-server-owners).
+Undead are zombies and their kin, skeletons and their kin, the Wither, phantoms, zoglins, zombified piglins and undead horses. Server owners can change the chance and the level; see [Configuration](configuration.md#morgul-wound).
 
 ## The stages
 
@@ -53,18 +53,6 @@ Dying **doesn't** cure the wound. You come back with it, and its timer starts ov
 
 ## For server owners
 
-Settings are in `plugins/ArdanBorn/config.yml`, created on first start. Restart the server after changing them.
-
-```yaml
-morgul-wound:
-  enabled: true
-  chance: 0.10        # per melee hit from an eligible mob
-  servant-chance: 0.50 # per melee hit from a Servant of the Enemy or a Ringwraith
-  min-level: 30       # LevelledMobs level needed to wound
-  stage-minutes: 3    # online minutes before the wound worsens
-```
-
-- **LevelledMobs** is optional, and ArdanBorn has no code dependency on it: it reads the level LevelledMobs stores on each mob. Set `min-level` to suit your LevelledMobs rules. If its levels rarely reach 30 on your server (with weighted-random levels most mobs are low), lower it.
-- Set `enabled: false` to turn wounds off entirely.
+The chances, level and timing can be changed, or wounds turned off, in [Configuration](configuration.md#morgul-wound).
 
 A resource pack can give athelas its own look via `custom_model_data` string `athelas`.

@@ -113,17 +113,8 @@ After that, the One Ring can be found again. Fire won't unmake it, and only the 
 
 ## For server owners
 
-- Unique rings are tracked in `plugins/ArdanBorn/rings.yml`. Don't edit it while the server is running.
-- Chests that have already been looted don't get new loot. To let rings keep turning up, turn on Paper's loot refills in `config/paper-world-defaults.yml` (no plugin needed):
-
-  ```yaml
-  lootables:
-    auto-replenish: true
-  ```
-
-  Looted chests then refill between `refresh-min` and `refresh-max` after being looted (12 hours to 2 days by default), and `restrict-player-reloot` stops one player farming the same chest. Refilled chests can hold rings too, and unique rings still can't be duplicated.
+- For ring tracking, item-clearing plugins and loot refills, see [Configuration](configuration.md#rings-of-power).
 - `/ardanborn give` can give any ring; see [Commands](commands.md). Giving a unique ring makes that copy the current one.
 - `/ardanborn ring release <ring>` sends a unique ring back into the loot pool if it's stuck somewhere nobody can reach; see [Commands](commands.md#ardanborn-ring-release).
-- Item-clearing plugins and scheduled `/kill` commands can't get rid of unique rings; they're put back where they were.
 
 A resource pack can give rings their own look via `custom_model_data` strings `ring_<ring>`, e.g. `ring_one`, `ring_narya`.

@@ -4,7 +4,7 @@ linkTitle: "Home"
 ---
 > **Use at your own risk.** ArdanBorn was vibe coded with Claude. It's published here on GitHub only, and I have no plans to release it on any other platform.
 
-**ArdanBorn** is a Paper plugin for a Tolkien-themed Minecraft server. Server owners should start with [Installation](installation.md); [Commands](commands.md) covers players and admins. It adds:
+**ArdanBorn** is a Paper plugin for a Tolkien-themed Minecraft server. Server owners should start with [Installation](installation.md) and [Configuration](configuration.md); [Commands](commands.md) covers players and admins. It adds:
 
 - **Origins** for [Origins-Reborn](https://modrinth.com/plugin/origins-reborn): every player picks three, one from each layer, and gets all of their [powers](powers.md).
   1. [Ancestries](ancestries.md)

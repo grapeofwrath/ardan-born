@@ -1,5 +1,5 @@
 # Sidebar order, and the order the prev/next arrows walk. Every page in content/ must be listed once.
-top = ["/", "/installation", "/commands"]
+top = ["/", "/installation", "/configuration", "/commands"]
 
 [[group]]
 name = "Origins"
