@@ -17,6 +17,8 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.Ageable;
+import org.bukkit.damage.DamageSource;
+import org.bukkit.damage.DamageType;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.attribute.AttributeModifier;
@@ -27,9 +29,11 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Mob;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Spider;
+import org.bukkit.entity.Tameable;
 import org.bukkit.entity.Trident;
 import org.bukkit.entity.Villager;
 import org.bukkit.entity.WanderingTrader;
@@ -105,9 +109,9 @@ public final class OriginAbilities {
                 new PearlsOfAlqualonde(), new TidesFury(), new AxeOfDurin(),
                 new TreeRoots(), new WrathOfTheNoldor(), new HealerOfImladris(), new LeafWalker(),
                 // Classes
-                new FirstStrike(), new Cleave(), new KeenTracker(), new Wayfarer(),
+                new FirstStrike(), new HardenedVeteran(), new Cleave(), new KeenTracker(), new Wayfarer(),
                 new ShieldWall(), new KingsHands(), new WizardStaff(), new GentleFriend(),
-                new MasterSmith(), new Backstab(), new QuietSteps(), new SongOfValor(), new SilverTongue(),
+                new MasterSmith(), new Backstab(), new QuietSteps(), new Unseen(), new SongOfValor(), new SilverTongue(),
                 new HealingPresence(), new CallOfHuan(), new GreenThumb(), new SmithsMark()
         );
     }
@@ -761,7 +765,7 @@ public final class OriginAbilities {
 
         public FirstStrike() {
             super("first_strike", "First Strike",
-                    "Your opening blow after 5 seconds without attacking deals 20% more damage.");
+                    "Your opening blow after 3 seconds without attacking deals 50% more damage.");
         }
 
         @EventHandler
@@ -770,10 +774,42 @@ public final class OriginAbilities {
             runForAbility(damager, p -> {
                 long now = System.currentTimeMillis();
                 Long last = lastAttack.put(p.getUniqueId(), now);
-                if (last == null || now - last >= 5000) {
-                    e.setDamage(e.getDamage() * 1.2);
+                if (last == null || now - last >= 3000) {
+                    e.setDamage(e.getDamage() * 1.5);
                 }
             });
+        }
+    }
+
+    /** Fighter / Warrior: years of battle have toughened you. */
+    public static final class HardenedVeteran extends Base implements Tickable {
+        private static final NamespacedKey HEALTH = Keys.key("hardened_veteran_health");
+        private static final NamespacedKey KNOCKBACK = Keys.key("hardened_veteran_knockback");
+        private static final double BONUS_HEALTH = 4.0; // 2 hearts
+        private static final double BONUS_KNOCKBACK = 0.25;
+
+        public HardenedVeteran() {
+            super("hardened_veteran", "Hardened Veteran",
+                    "Long years of war have toughened you. You have 2 extra hearts and are harder to knock back.");
+        }
+
+        /// Runs for every player, so the bonus goes away when someone stops being a Warrior. The modifiers
+        /// are transient: they are never saved with the player.
+        @Override
+        public void tick(Player player) {
+            boolean wanted = hasAbility(player);
+            apply(player.getAttribute(Attribute.MAX_HEALTH), HEALTH, BONUS_HEALTH, wanted);
+            apply(player.getAttribute(Attribute.KNOCKBACK_RESISTANCE), KNOCKBACK, BONUS_KNOCKBACK, wanted);
+        }
+
+        private static void apply(@Nullable AttributeInstance attr, NamespacedKey key, double amount, boolean wanted) {
+            if (attr == null) return;
+            boolean present = attr.getModifier(key) != null;
+            if (wanted && !present) {
+                attr.addTransientModifier(new AttributeModifier(key, amount, AttributeModifier.Operation.ADD_NUMBER));
+            } else if (!wanted && present) {
+                attr.removeModifier(key);
+            }
         }
     }
 
@@ -919,7 +955,7 @@ public final class OriginAbilities {
 
         public WizardStaff() {
             super("wizard_staff", "Light of the Staff",
-                    "Right-click with a Blaze Rod as your staff to drive back the shadow: hostile creatures within 6 blocks are thrown back and revealed, and the undead are set alight. 20 second cooldown.");
+                    "Right-click with a Blaze Rod as your staff to drive back the shadow: hostile creatures within 6 blocks take 3 hearts of damage and are thrown back and revealed, and the undead take double and are set alight. 15 second cooldown.");
         }
 
         @EventHandler
@@ -927,32 +963,68 @@ public final class OriginAbilities {
             if (e.getHand() != EquipmentSlot.HAND || !isRightClick(e.getAction())) return;
             if (e.getItem() == null || e.getItem().getType() != Material.BLAZE_ROD) return;
             runForAbility(e.getPlayer(), p -> {
-                if (!cooldown.tryUse(p, 20_000)) return;
+                if (!cooldown.tryUse(p, 15_000)) return;
                 World world = p.getWorld();
                 world.spawnParticle(Particle.END_ROD, p.getLocation().add(0, 1, 0), 60, 2.5, 0.8, 2.5, 0.05);
                 world.playSound(p.getLocation(), Sound.BLOCK_BEACON_ACTIVATE, 1f, 1.4f);
                 for (Entity near : p.getNearbyEntities(6, 3, 6)) {
                     if (!(near instanceof Monster monster)) continue;
+                    boolean undead = UNDEAD.contains(monster.getType());
+                    // Magic, not a melee hit, so melee powers (Cleave, Wrath of the Noldor...) don't apply.
+                    monster.damage(undead ? 12.0 : 6.0, DamageSource.builder(DamageType.INDIRECT_MAGIC)
+                            .withCausingEntity(p).withDirectEntity(p).build());
                     Vector away = monster.getLocation().toVector().subtract(p.getLocation().toVector()).setY(0);
                     if (away.lengthSquared() > 0) {
                         monster.setVelocity(away.normalize().multiply(1.2).setY(0.35));
                     }
                     effect(monster, PotionEffectType.GLOWING, 100, 0);
-                    if (UNDEAD.contains(monster.getType())) monster.setFireTicks(80);
+                    if (undead) monster.setFireTicks(80);
                 }
             });
         }
     }
 
     /** Druid / Beastfriend: Beren, Huan and the Eagles. */
-    public static final class GentleFriend extends Base implements Listener {
+    public static final class GentleFriend extends Base implements Listener, Tickable {
         private static final Set<EntityType> BEASTS = EnumSet.of(
                 EntityType.WOLF, EntityType.BEE, EntityType.POLAR_BEAR, EntityType.LLAMA,
                 EntityType.TRADER_LLAMA, EntityType.PANDA, EntityType.GOAT);
+        private static final long PULSE_MS = 10_000;
+        private static final double HEAL = 2.0; // 1 heart
+        private static final double PET_RANGE = 16.0;
+        private final Map<UUID, Long> lastPulse = new HashMap<>();
 
         public GentleFriend() {
             super("gentle_friend", "Friend of Beasts",
-                    "Wolves, bees, bears, llamas and other wild beasts will not pick you as a target unless you strike first.");
+                    "Wild beasts such as wolves, bees and bears won't pick you as a target unless you strike first. Your tamed animals take half damage and heal 1 heart every 10 seconds while near you.");
+        }
+
+        @EventHandler(ignoreCancelled = true)
+        public void onPetDamage(EntityDamageEvent e) {
+            if (!(e.getEntity() instanceof Tameable pet) || !pet.isTamed()) return;
+            if (ShieldWall.IGNORED.contains(e.getCause())) return;
+            if (!(pet.getOwner() instanceof Player owner)) return;
+            runForAbility(owner, p -> e.setDamage(e.getDamage() * 0.5));
+        }
+
+        @Override
+        public void tick(Player player) {
+            runForAbility(player, p -> {
+                long now = System.currentTimeMillis();
+                Long last = lastPulse.get(p.getUniqueId());
+                if (last != null && now - last < PULSE_MS) return;
+                lastPulse.put(p.getUniqueId(), now);
+                for (Entity near : p.getNearbyEntities(PET_RANGE, 8, PET_RANGE)) {
+                    if (!(near instanceof Tameable pet) || !pet.isTamed() || pet.isDead()) continue;
+                    if (!p.getUniqueId().equals(pet.getOwnerUniqueId())) continue;
+                    var attr = pet.getAttribute(Attribute.MAX_HEALTH);
+                    double max = attr == null ? pet.getHealth() : attr.getValue();
+                    if (pet.getHealth() >= max) continue;
+                    pet.heal(HEAL, EntityRegainHealthEvent.RegainReason.MAGIC);
+                    pet.getWorld().spawnParticle(Particle.HEART, pet.getLocation().add(0, pet.getHeight() + 0.3, 0),
+                            2, 0.3, 0.2, 0.3, 0);
+                }
+            });
         }
 
         @EventHandler
@@ -1001,7 +1073,7 @@ public final class OriginAbilities {
     public static final class Backstab extends Base implements Listener {
         public Backstab() {
             super("backstab", "Backstab",
-                    "Melee hits from behind your target deal 35% more damage.");
+                    "Melee hits from behind your target deal 35% more damage, or 50% more if it hasn't noticed you.");
         }
 
         @EventHandler
@@ -1013,7 +1085,8 @@ public final class OriginAbilities {
                 Vector v = victim.getLocation().getDirection().setY(0);
                 if (a.lengthSquared() == 0 || v.lengthSquared() == 0) return;
                 if (a.normalize().dot(v.normalize()) > 0.5) {
-                    e.setDamage(e.getDamage() * 1.35);
+                    boolean unaware = victim instanceof Mob mob && mob.getTarget() != p;
+                    e.setDamage(e.getDamage() * (unaware ? 1.5 : 1.35));
                     victim.getWorld().spawnParticle(Particle.CRIT, victim.getLocation().add(0, 1, 0), 12, 0.3, 0.4, 0.3, 0.1);
                 }
             });
@@ -1038,6 +1111,28 @@ public final class OriginAbilities {
             runForAbility(player, p -> {
                 if (p.isSneaking()) effect(p, PotionEffectType.SPEED, 40, 0);
             });
+        }
+    }
+
+    /** Rogue / Burglar: Bilbo slipping past the trolls, the spiders and Smaug. */
+    public static final class Unseen extends Base implements Listener {
+        private static final double RANGE = 6.0;
+
+        public Unseen() {
+            super("unseen", "Unseen",
+                    "While you sneak, hostile creatures more than 6 blocks away don't notice you.");
+        }
+
+        @EventHandler(ignoreCancelled = true)
+        public void onTarget(EntityTargetLivingEntityEvent e) {
+            if (!(e.getEntity() instanceof Monster monster)) return;
+            if (!(e.getTarget() instanceof Player player) || !player.isSneaking()) return;
+            EntityTargetEvent.TargetReason reason = e.getReason();
+            if (reason == EntityTargetEvent.TargetReason.TARGET_ATTACKED_ENTITY
+                    || reason == EntityTargetEvent.TargetReason.CUSTOM) return;
+            if (!monster.getWorld().equals(player.getWorld())) return;
+            if (monster.getLocation().distanceSquared(player.getLocation()) <= RANGE * RANGE) return;
+            runForAbility(player, p -> e.setCancelled(true));
         }
     }
 

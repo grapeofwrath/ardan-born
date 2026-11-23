@@ -124,8 +124,12 @@ numbers in step with the code (`OriginAbilities.java`) or, for borrowed powers, 
 - It takes no fall damage while you ride it.
 
 ## ardanborn:first_strike
-- Your first melee hit after 5 seconds without attacking deals ×1.2 damage.
-- Every melee hit that lands restarts the 5-second timer.
+- Your first melee hit after 3 seconds without attacking deals ×1.5 damage.
+- Every melee hit that lands restarts the 3-second timer.
+
+## ardanborn:hardened_veteran
+- +2 max hearts (4 health), always. The new hearts start empty and fill as you heal.
+- +25% knockback resistance, so hits push you back less. Stacks with netherite armor's own resistance.
 
 ## ardanborn:cleave
 - Sword and axe hits splash half the damage dealt onto one other hostile mob next to the target (within 2.5 blocks).
@@ -150,13 +154,17 @@ numbers in step with the code (`OriginAbilities.java`) or, for borrowed powers, 
 - The two cooldowns are separate, and your action bar shows the time left.
 
 ## ardanborn:wizard_staff
-- Right-click with a blaze rod. Every hostile mob within 6 blocks is knocked away from you and glows for 5 seconds.
-- Undead among them are set on fire for 4 seconds.
-- 20-second cooldown, shown on your action bar.
+- Right-click with a blaze rod. Every hostile mob within 6 blocks takes 3 hearts of magic damage, is knocked away from you and glows for 5 seconds.
+- Undead among them take 6 hearts instead and are set on fire for 4 seconds.
+- The damage is magic, so it ignores armor and melee bonuses such as [Wrath of the Noldor](#wrath-of-the-noldor) don't apply. Kills still count as yours.
+- 15-second cooldown, shown on your action bar.
 
 ## ardanborn:gentle_friend
 - Wolves, bees, polar bears, llamas, trader llamas, pandas and goats won't target you on their own.
 - If you hit one, it can fight back as normal.
+- Every animal you've tamed (wolves, cats, parrots, horses, donkeys, mules, llamas, camels…) takes ×0.5 damage from any source while you're online, wherever it is. Void and `/kill` damage aren't reduced.
+- Every 10 seconds, your tamed animals within 16 blocks heal 1 heart, with a few heart particles. Pets at full health are skipped.
+- [Huan](#call-of-huan) counts as your pet, so he gets both.
 
 ## ardanborn:master_smith
 - Every 10 seconds, the item in your main hand and each worn armor piece regain 1 durability.
@@ -164,10 +172,17 @@ numbers in step with the code (`OriginAbilities.java`) or, for borrowed powers, 
 
 ## ardanborn:backstab
 - ×1.35 damage on melee hits when you face the same way as your target, within about 60°: in other words, from behind.
+- ×1.5 instead if the target is a mob that isn't targeting you: it hasn't noticed you, or it's chasing someone else.
 - Critical-hit particles show when it lands.
+- Pairs with [Unseen](#unseen): sneak up on a mob that hasn't seen you for the bigger bonus.
 
 ## ardanborn:quiet_steps
 - Speed I while sneaking, which offsets part of the sneaking slowdown.
+
+## ardanborn:unseen
+- While you sneak, hostile mobs more than 6 blocks away can't pick you as a target.
+- Within 6 blocks they notice you as normal, and a mob you hit can always fight back.
+- It stops mobs from noticing you; one that's already chasing you may keep chasing after you start sneaking.
 
 ## ardanborn:song_of_valor
 - Use any goat horn. You and every player within 16 blocks get Speed I for 20 seconds and Regeneration I for 8 seconds.

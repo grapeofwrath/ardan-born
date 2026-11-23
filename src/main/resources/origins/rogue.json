@@ -1,7 +1,8 @@
 {
     "powers": [
         "ardanborn:backstab",
-        "ardanborn:quiet_steps"
+        "ardanborn:quiet_steps",
+        "ardanborn:unseen"
     ],
     "icon": {
         "item": "minecraft:shears"
@@ -10,5 +11,5 @@
     "impact": 1,
     "layer": "class",
     "name": "Burglar",
-    "description": "A quiet, quick-fingered scout. Strike from behind for extra harm and slip along unseen on soft feet."
+    "description": "A quiet, quick-fingered scout. Strike the unwary from behind for extra harm, and slip along on soft feet where foes far off never see you."
 }

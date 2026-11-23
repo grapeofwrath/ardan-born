@@ -1,7 +1,8 @@
 {
     "powers": [
         "ardanborn:first_strike",
-        "ardanborn:cleave"
+        "ardanborn:cleave",
+        "ardanborn:hardened_veteran"
     ],
     "icon": {
         "item": "minecraft:diamond_sword"
@@ -10,5 +11,5 @@
     "impact": 2,
     "layer": "class",
     "name": "Warrior",
-    "description": "A veteran soldier of the free peoples. Your first blow lands hard, and your blade carries through to the next foe."
+    "description": "A veteran soldier of the free peoples. Your first blow lands hard, your blade carries through to the next foe, and long years of war have made you tough."
 }
