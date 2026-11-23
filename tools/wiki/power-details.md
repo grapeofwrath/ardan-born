@@ -150,7 +150,8 @@ numbers in step with the code (`OriginAbilities.java`) or, for borrowed powers, 
 
 ## ardanborn:kings_hands
 - **Heal an ally:** sneak and right-click a player with an empty main hand. They get Regeneration II for 8 seconds and are cured of Poison and Wither. 15-second cooldown.
-- **Heal yourself:** sneak and right-click the air with an empty hand. Same effect, 45-second cooldown.
+- **Channel:** sneak and right-click the air with an empty hand. You and every player within 8 blocks instantly heal 3 hearts, and undead within 8 blocks take 3 hearts of magic damage. 60-second cooldown.
+- Channel's healing counts as magic, so a Peredhil's [Healer of Imladris](#healer-of-imladris) makes it heal 4.5 hearts for them. It doesn't cure Poison or Wither; the ally touch does.
 - The two cooldowns are separate, and your action bar shows the time left.
 
 ## ardanborn:wizard_staff
@@ -184,10 +185,28 @@ numbers in step with the code (`OriginAbilities.java`) or, for borrowed powers, 
 - Within 6 blocks they notice you as normal, and a mob you hit can always fight back.
 - It stops mobs from noticing you; one that's already chasing you may keep chasing after you start sneaking.
 
-## ardanborn:song_of_valor
-- Use any goat horn. You and every player within 16 blocks get Speed I for 20 seconds and Regeneration I for 8 seconds.
-- 60-second cooldown, shown on your action bar.
-- Hearing the horn isn't required; range is measured from you.
+## ardanborn:songs_of_power
+- Use a goat horn. The song depends on the horn's tune. "Allies" means you and every player within 24 blocks.
+- One 90-second cooldown covers every song, shown on your action bar. The song's name shows when you play it.
+- Hearing the horn isn't required; range is measured from you. Custom horns such as the Horn of Gondor don't play songs.
+
+**Common songs** (horns from goats ramming trees and stone)
+
+| Horn | Song | Effect |
+|---|---|---|
+| Ponder | Song of Rest | Allies: Regeneration I for 12s |
+| Sing | Song of Valor | Allies: Speed I for 20s and Regeneration I for 8s |
+| Seek | Song of Seeking | Monsters within 32 blocks glow for 10s |
+| Feel | The Walking Song | Allies: +3 hunger and Speed I for 30s |
+
+**Greater songs** (horns from screaming goats)
+
+| Horn | Song | Effect |
+|---|---|---|
+| Admire | Song of Courage | Allies: Strength I for 15s and Resistance I for 8s |
+| Call | Gathering Call | Allies: Speed II and Jump Boost I for 15s |
+| Yearn | Song of Hope | Allies: Poison, Wither, Weakness, Slowness, Mining Fatigue, Hunger, Blindness and Darkness are cleared, then Regeneration I for 5s |
+| Dream | Lullaby of Lúthien | Monsters within 10 blocks: Slowness IV for 5s, and they forget who they were chasing |
 
 ## ardanborn:silver_tongue
 - Hero of the Village I while a villager or wandering trader is within 8 blocks, so their prices drop.

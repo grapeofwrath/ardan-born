@@ -2,12 +2,15 @@ package dev.grapeofwrath.ardanborn.origins;
 
 import dev.grapeofwrath.ardanborn.ArdanBorn;
 import dev.grapeofwrath.ardanborn.Keys;
+import dev.grapeofwrath.ardanborn.armor.CustomItems;
+import io.papermc.paper.datacomponent.DataComponentTypes;
 import com.starshootercity.abilities.types.Ability;
 import com.starshootercity.abilities.types.VisibleAbility;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Material;
+import org.bukkit.MusicInstrument;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
@@ -111,7 +114,7 @@ public final class OriginAbilities {
                 // Classes
                 new FirstStrike(), new HardenedVeteran(), new Cleave(), new KeenTracker(), new Wayfarer(),
                 new ShieldWall(), new KingsHands(), new WizardStaff(), new GentleFriend(),
-                new MasterSmith(), new Backstab(), new QuietSteps(), new Unseen(), new SongOfValor(), new SilverTongue(),
+                new MasterSmith(), new Backstab(), new QuietSteps(), new Unseen(), new SongsOfPower(), new SilverTongue(),
                 new HealingPresence(), new CallOfHuan(), new GreenThumb(), new SmithsMark()
         );
     }
@@ -912,11 +915,13 @@ public final class OriginAbilities {
     /** Cleric / Healer: "the hands of the king are the hands of a healer". */
     public static final class KingsHands extends Base implements Listener {
         private final Cooldown others = new Cooldown();
-        private final Cooldown self = new Cooldown();
+        private final Cooldown channel = new Cooldown();
+        private static final double CHANNEL_RANGE = 8;
+        private static final double CHANNEL_AMOUNT = 6.0; // 3 hearts
 
         public KingsHands() {
             super("kings_hands", "Hands of the Healer",
-                    "Sneak and right-click an ally with an empty hand to grant Regeneration II and cure Poison and Wither (15s cooldown). Do the same in the air to heal yourself (45s).");
+                    "Sneak and right-click an ally with an empty hand to grant Regeneration II and cure Poison and Wither (15s cooldown). Do the same in the air to channel healing light: you and players within 8 blocks heal 3 hearts, and the undead nearby are seared (60s).");
         }
 
         private void heal(Player target) {
@@ -943,9 +948,33 @@ public final class OriginAbilities {
             if (e.getAction() != Action.RIGHT_CLICK_AIR) return;
             runForAbility(e.getPlayer(), p -> {
                 if (!p.isSneaking() || !p.getInventory().getItemInMainHand().getType().isAir()) return;
-                if (!self.tryUse(p, 45_000)) return;
-                heal(p);
+                if (!channel.tryUse(p, 60_000)) return;
+                channel(p);
             });
+        }
+
+        /// Channel: an instant burst of healing for you and the players around you, and searing light for
+        /// the undead. Heals through the regain event, so Healer of Imladris boosts it.
+        private static void channel(Player p) {
+            World world = p.getWorld();
+            world.spawnParticle(Particle.END_ROD, p.getLocation().add(0, 1, 0), 50, 3, 0.6, 3, 0.02);
+            world.playSound(p.getLocation(), Sound.BLOCK_AMETHYST_BLOCK_RESONATE, 1f, 1.2f);
+            mend(p);
+            DamageSource sear = DamageSource.builder(DamageType.INDIRECT_MAGIC)
+                    .withCausingEntity(p).withDirectEntity(p).build();
+            for (Entity near : p.getNearbyEntities(CHANNEL_RANGE, 4, CHANNEL_RANGE)) {
+                if (near instanceof Player ally) {
+                    mend(ally);
+                } else if (near instanceof LivingEntity living && UNDEAD.contains(living.getType())) {
+                    living.damage(6.0, sear);
+                }
+            }
+        }
+
+        private static void mend(Player target) {
+            if (target.isDead()) return;
+            target.heal(CHANNEL_AMOUNT, EntityRegainHealthEvent.RegainReason.MAGIC);
+            target.getWorld().spawnParticle(Particle.HEART, target.getLocation().add(0, 1.8, 0), 3, 0.3, 0.2, 0.3, 0);
         }
     }
 
@@ -1137,29 +1166,125 @@ public final class OriginAbilities {
     }
 
     /** Bard / Minstrel: the Music of the Ainur. */
-    public static final class SongOfValor extends Base implements Listener {
+    public static final class SongsOfPower extends Base implements Listener {
+        private static final long COOLDOWN_MS = 90_000;
+        private static final double ALLY_RANGE = 24;
+        /** Harmful effects the Song of Hope lifts. */
+        private static final List<PotionEffectType> HOPE_CLEARS = List.of(
+                PotionEffectType.POISON, PotionEffectType.WITHER, PotionEffectType.WEAKNESS,
+                PotionEffectType.SLOWNESS, PotionEffectType.MINING_FATIGUE, PotionEffectType.HUNGER,
+                PotionEffectType.BLINDNESS, PotionEffectType.DARKNESS);
         private final Cooldown cooldown = new Cooldown();
 
-        public SongOfValor() {
-            super("song_of_valor", "Song of Valor",
-                    "Sound a Goat Horn to lift every player within 16 blocks (including you) with Speed for 20 seconds and Regeneration for 8 seconds. 60 second cooldown.");
+        public SongsOfPower() {
+            super("songs_of_power", "Songs of Power",
+                    "Sound a Goat Horn to play the song its tune carries: rest, valor, seeking or the walking song from common horns, and courage, gathering, hope or Lúthien's lullaby from a screaming goat's. Songs reach players within 24 blocks. 90 second cooldown shared by all songs.");
         }
 
         @EventHandler
         public void onHorn(PlayerInteractEvent e) {
             if (!isRightClick(e.getAction())) return;
-            if (e.getItem() == null || e.getItem().getType() != Material.GOAT_HORN) return;
+            ItemStack horn = e.getItem();
+            if (horn == null || horn.getType() != Material.GOAT_HORN) return;
+            // Custom horns (the Horn of Gondor) have their own power.
+            if (CustomItems.isCustom(horn)) return;
+            MusicInstrument instrument = horn.getData(DataComponentTypes.INSTRUMENT);
+            if (instrument == null) return;
+            String tune = tuneOf(instrument);
+            // A tune from a datapack or a future version: leave it to vanilla.
+            if (tune == null) return;
             runForAbility(e.getPlayer(), p -> {
-                if (!cooldown.tryUse(p, 60_000)) return;
-                effect(p, PotionEffectType.SPEED, 400, 0);
-                effect(p, PotionEffectType.REGENERATION, 160, 0);
-                for (Entity near : p.getNearbyEntities(16, 16, 16)) {
-                    if (near instanceof Player ally) {
-                        effect(ally, PotionEffectType.SPEED, 400, 0);
-                        effect(ally, PotionEffectType.REGENERATION, 160, 0);
-                    }
-                }
+                if (!cooldown.tryUse(p, COOLDOWN_MS)) return;
+                String song = play(p, tune);
+                if (song != null) p.sendActionBar(Component.text("♪ " + song, NamedTextColor.GOLD));
             });
+        }
+
+        /// The vanilla tune's name, e.g. "ponder_goat_horn", or null for any other instrument. Compares with the
+        /// constants because `MusicInstrument`'s key methods are deprecated for removal.
+        private static @Nullable String tuneOf(MusicInstrument instrument) {
+            if (instrument.equals(MusicInstrument.PONDER_GOAT_HORN)) return "ponder_goat_horn";
+            if (instrument.equals(MusicInstrument.SING_GOAT_HORN)) return "sing_goat_horn";
+            if (instrument.equals(MusicInstrument.SEEK_GOAT_HORN)) return "seek_goat_horn";
+            if (instrument.equals(MusicInstrument.FEEL_GOAT_HORN)) return "feel_goat_horn";
+            if (instrument.equals(MusicInstrument.ADMIRE_GOAT_HORN)) return "admire_goat_horn";
+            if (instrument.equals(MusicInstrument.CALL_GOAT_HORN)) return "call_goat_horn";
+            if (instrument.equals(MusicInstrument.YEARN_GOAT_HORN)) return "yearn_goat_horn";
+            if (instrument.equals(MusicInstrument.DREAM_GOAT_HORN)) return "dream_goat_horn";
+            return null;
+        }
+
+        /** Plays the song for a horn's tune and returns its name. */
+        private static @Nullable String play(Player p, String tune) {
+            List<Player> allies = alliesOf(p);
+            switch (tune) {
+                case "ponder_goat_horn" -> {
+                    allies.forEach(a -> effect(a, PotionEffectType.REGENERATION, 240, 0));
+                    return "Song of Rest";
+                }
+                case "sing_goat_horn" -> {
+                    allies.forEach(a -> {
+                        effect(a, PotionEffectType.SPEED, 400, 0);
+                        effect(a, PotionEffectType.REGENERATION, 160, 0);
+                    });
+                    return "Song of Valor";
+                }
+                case "seek_goat_horn" -> {
+                    for (Entity near : p.getNearbyEntities(32, 16, 32)) {
+                        if (near instanceof Monster m) effect(m, PotionEffectType.GLOWING, 200, 0);
+                    }
+                    return "Song of Seeking";
+                }
+                case "feel_goat_horn" -> {
+                    allies.forEach(a -> {
+                        a.setFoodLevel(Math.min(20, a.getFoodLevel() + 3));
+                        effect(a, PotionEffectType.SPEED, 600, 0);
+                    });
+                    return "The Walking Song";
+                }
+                case "admire_goat_horn" -> {
+                    allies.forEach(a -> {
+                        effect(a, PotionEffectType.STRENGTH, 300, 0);
+                        effect(a, PotionEffectType.RESISTANCE, 160, 0);
+                    });
+                    return "Song of Courage";
+                }
+                case "call_goat_horn" -> {
+                    allies.forEach(a -> {
+                        effect(a, PotionEffectType.SPEED, 300, 1);
+                        effect(a, PotionEffectType.JUMP_BOOST, 300, 0);
+                    });
+                    return "Gathering Call";
+                }
+                case "yearn_goat_horn" -> {
+                    allies.forEach(a -> {
+                        HOPE_CLEARS.forEach(a::removePotionEffect);
+                        effect(a, PotionEffectType.REGENERATION, 100, 0);
+                    });
+                    return "Song of Hope";
+                }
+                case "dream_goat_horn" -> {
+                    for (Entity near : p.getNearbyEntities(10, 5, 10)) {
+                        if (!(near instanceof Monster m)) continue;
+                        effect(m, PotionEffectType.SLOWNESS, 100, 3);
+                        m.setTarget(null);
+                    }
+                    return "Lullaby of Lúthien";
+                }
+                default -> {
+                    return null;
+                }
+            }
+        }
+
+        /** You and every player within range. */
+        private static List<Player> alliesOf(Player p) {
+            List<Player> allies = new ArrayList<>();
+            allies.add(p);
+            for (Entity near : p.getNearbyEntities(ALLY_RANGE, ALLY_RANGE, ALLY_RANGE)) {
+                if (near instanceof Player ally) allies.add(ally);
+            }
+            return allies;
         }
     }
 
