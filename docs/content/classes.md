@@ -68,7 +68,7 @@ title: "Classes"
 
 | Power | What it does | From |
 |---|---|---|
-| [Staff of Rest](powers.md#staff-of-rest) | Two uses, both with a stick named "Staff of Rest" at an anvil (capitals don't matter) in your main hand. The stick isn't used up. Cooldowns are separate and show on your action bar. | ArdanBorn |
+| [Staff of Rest](powers.md#staff-of-rest) | Right-click a player with a stick named "Staff of Rest" at an anvil: they gain Regeneration II for 8 seconds, are cured of Poison and Wither, and any [Morgul wound](morgul-wound.md#treatment) is held back. 15-second cooldown. Sneak and right-click: you and players within 8 blocks heal 3 hearts, and undead within 8 blocks take 3 hearts of magic damage. 60-second cooldown. | ArdanBorn |
 | [Healing Presence](powers.md#healing-presence) | Every 10 seconds, you and players within 6 blocks heal 1 heart. Players at full health are skipped. Several Healers stack. | ArdanBorn |
 
 ## Loremaster

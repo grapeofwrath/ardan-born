@@ -36,9 +36,9 @@ Each section starts with `## <power key>`; everything until the next `## ` is co
 - Wheat takes about 2-3 minutes from seed to ripe.
 
 ## ardanborn:hands_of_the_healer
-- **Right-click a player**, not sneaking: Regeneration II for 8 seconds, cures Poison and Wither, and holds back a [Morgul wound](morgul-wound.md#treatment). 15-second cooldown.
-- Holding back restarts the wound's timer; it doesn't cure it. Once every 10 minutes per wounded player, by any Healer.
-- **Sneak and right-click**, at anything: you and players within 8 blocks heal 3 hearts, and undead within 8 blocks take 3 hearts of magic damage. Doesn't cure Poison or Wither. 60-second cooldown.
+- The staff must be in your main hand, and isn't used up. Capitals in its name don't matter. The two cooldowns are separate and show on your action bar.
+- Holding back a Morgul wound restarts its timer; it doesn't cure it. Once every 10 minutes per wounded player, by any Healer.
+- Sneak and right-click works at anything, and doesn't cure Poison or Wither.
 - [Healer of Imladris](#healer-of-imladris) raises the heal to 4.5 hearts for a Peredhil.
 - `custom_model_data` for resource packs: `staff_of_rest`. The anvil adds it, as does the first use of a staff that lacks it. Naming the stick anything else takes it off.
 
