@@ -1,0 +1,45 @@
+# Ancestry and class powers, and food.
+use FindBin;use lib $FindBin::Bin;use Playtest;
+setup();
+sect 'ancestries';
+for my$o('noldor','peredhil'){origin($o);wear();here();r("effect give $P minecraft:poison 10","effect give $P minecraft:hunger 10");has($P,$_,"$o Undying Body no $_",0)for'poison','hunger'}
+origin('dwarf');here();for my$d('lava'){heal();near(hurt(10,$d),6,"dwarf Forge-hardened $d")}
+for my$b('magma_block','fire'){my%l;for my$o('human','dwarf'){origin($o);here();heal();nap(.7);r($b eq'fire'?"setblock 0 -61 0 netherrack":"setblock 0 -61 0 magma_block");r("setblock 0 -60 0 fire")if$b eq'fire';my$h=hp($P);nap(4);$l{$o}=$h-hp($P);r("setblock 0 -60 0 air","setblock 0 -61 0 grass_block");nap(9)}ok($l{human}>0&&$l{dwarf}<$l{human}*.75,"Forge-hardened $b","human $l{human} dwarf $l{dwarf}")}
+origin('hobbit');here();heal();near(hurt(10,'wither'),7,'hobbit Roots wither');r("effect give $P minecraft:darkness 10","effect give $P minecraft:slowness 20");nap(.3);has($P,'darkness','hobbit no darkness',0);ev($P,'slowness')=~/duration: (\d+)/;near($1,200,'hobbit slowness halved',.06);nap(1);has($P,'luck','hobbit Luck');
+origin('peredhil');here();r("damage $P 100 minecraft:generic");my$b=hp($P);r("effect give $P minecraft:instant_health 1 0");nap(.2);near(hp($P)-$b,6,'peredhil Healer of Imladris');
+r("time set midnight");nap(1.3);has($P,'regeneration','Star of Earendil regen');has($P,'night_vision','Star of Earendil NV');r("time set noon");
+horse();nap(1.2);has('@e[tag=h,limit=1]','speed','Swift Messenger');my$x=hp('@e[tag=h,limit=1]');r("damage \@e[tag=h,limit=1] 10 minecraft:fall");near($x-hp('@e[tag=h,limit=1]'),0,'Swift Messenger no fall');unhorse();
+origin('beorning');here();r("time set 18000");nap(1.3);my$e;ok(amp($P,'strength')==1,'Moonbound full moon Strength II');has($P,'resistance','Moonbound resistance');has($P,'speed','Moonbound speed');r("time set 114000","effect clear $P");nap(1.3);ok(amp($P,'strength')==0,'Moonbound new moon Strength I');has($P,'speed','Moonbound new moon no speed',0);r("time set noon");
+origin('silvan');r("fillbiome -20 -61 -20 20 -50 20 minecraft:forest");here();nap(1.2);has($P,'speed','Woodland Stride');r("fillbiome -20 -61 -20 20 -50 20 minecraft:plains","effect clear $P");nap(1.2);has($P,'speed','no Stride in plains',0);
+r("setblock 0 -61 0 oak_leaves[persistent=true]");nap(1.3);ok(amp($P,'speed')==1,'Leaf-walker Speed II');has($P,'jump_boost','Leaf-walker jump');heal();near(hurt(20,'fall'),0,'Leaf-walker fall');r("setblock 0 -61 0 grass_block");heal();near(hurt(20,'fall'),20,'control fall off leaves');
+origin('teleri');here();r("weather rain");nap(8);near(attr('max_health'),404,"Sea's Vigor +4",.001);mob('husk');near(hit(10),12.5,"Tide's Fury rain");r("weather clear");nap(12);near(attr('max_health'),400,"Sea's Vigor ends",.001);mob('husk');near(hit(10),10,"Tide's Fury dry");hold('minecraft:fishing_rod');nap(1.2);has($P,'luck','Pearls rod luck');hold('');
+r("fill -1 -63 -1 1 -61 1 water","tp $P 0.5 -63 0.5");nap(8);my$air=r("data get entity $P Air");ok($air=~/data: 300/,'Breath of the Sea',$air);here();r("fill -1 -63 -1 1 -62 1 dirt","fill -1 -61 -1 1 -61 1 grass_block");
+origin('dunedain');here();r("experience set $P 0 points","experience set $P 0 levels");r("summon experience_orb 0.5 -60 0.5 {Value:8}");nap(1.5);my$xp=r("experience query $P points");my$lv=r("experience query $P levels");print "  Gift of Men: 8 -> $xp / $lv (want 10 total: level 1 + 3)\n";
+origin('uruk_hai');here();mob('husk',hp=>1);r("damage \@e[tag=v,limit=1] 20 minecraft:player_attack by $P");nap(.2);has($P,'speed','Battle-fury speed');has($P,'strength','Battle-fury strength');
+hold('scimitar_of_isengard_diamond');r("damage $P 100 minecraft:generic");mob('husk');my$h=hp($P);hit(4);near(hp($P)-$h,1,'Scimitar fury heal',.2);
+origin('rohirrim');here();mob('evoker');near(hit(10),12,'Bane of the Dunlendings');
+sect 'eating';
+origin('silvan');here();r("effect give $P minecraft:hunger 25 250");nap(4);r("effect clear $P");hold('minecraft:bread');my$f0=food();face(0,-30);eat();print "  lembas food $f0 -> ",food(),"\n";ok(food()==20,'Lembas fills');has($P,'regeneration','Lembas regen');
+origin('hobbit');here();r("effect give $P minecraft:hunger 25 250");nap(4);r("effect clear $P");hold('minecraft:bread');$f0=food();eat();ok(food()-$f0==6||food()==20,'Second Breakfast +1 (5+1)',"$f0 -> ".food());
+origin('uruk_hai');here();r("effect give $P minecraft:hunger 25 250");nap(4);r("effect clear $P");hold('minecraft:spider_eye');eat();has($P,'poison','Iron Stomach no poison',0);hold('');
+origin('human');for my$s(['mithril','bread','regeneration']){wear('mithril');here();r("effect give $P minecraft:hunger 25 250");nap(3);r("effect clear $P");hold('minecraft:bread');eat();has($P,'regeneration','Merry Heart regen')}
+wear('carrock');here();r("damage $P 100 minecraft:generic");hold('minecraft:honey_bottle');$h=hp($P);eat();near(hp($P)-$h,4,'human Honey-fed',.1);nap(10);origin('beorning');r("attribute $P minecraft:max_health base set 20");nap(3);r("damage $P 8 minecraft:generic");hold('minecraft:honey_bottle');nap(1);$h=hp($P);eat();near(hp($P)-$h,6,'beorning Honey-fed',.1);r("attribute $P minecraft:max_health base set 400"); # their health powers clash with a raised base
+
+origin('human');wear();here();r("effect give $P slowness 60","effect give $P weakness 60");hold('miruvor');eat();has($P,'slowness','Miruvor clears slowness',0);ok(ev($P,'regeneration')=~/amplifier: 1/,'Miruvor Regen II');
+sect 'classes';
+class('warrior');here();nap(1.3);near(attr('max_health'),404,'Hardened Veteran hp',.001);hold('');nap(3.2);mob('husk');near(hit(10),15,'First Strike');mob('husk');near(hit(10),10,'First Strike spent');
+class('herbalist');nap(1.3);near(attr('max_health'),400,'Hardened Veteran removed',.001);
+class('ranger');here();mob('husk');arrow(10);has('@e[tag=v,limit=1]','glowing','Hunt prey glow');nap(.6);near(hit(10),12,'Hunt prey +20%');
+class('defender');here();r("item replace entity $P weapon.offhand with shield");nap(.3);heal();mob('husk');near(dmg(10,'mob_attack'),8.5,'Shield Wall self');r("item replace entity $P weapon.offhand with air");
+class('healer');here();nap(1);r("damage $P 100 minecraft:generic");$h=hp($P);nap(30.3);near(hp($P)-$h,6,'Healing Presence 30s',.4);
+r("clear $P");v1('husk');r("tp \@e[tag=v] 3.5 -60 0.5");here();r("damage $P 100 minecraft:generic");nap(.8);
+sub st{my($n,$item,$sn,$pitch,$gain,$sear)=@_;r("effect clear $P");hold($item);face(0,$pitch);nap(.7);my$a=hp($P);my$b=hp();sneak(1)if$sn;rc();sneak(0)if$sn;my$g=hp($P)-$a;ok($gain?$g>=5.9&&$g<=8.1:$g<5,"Staff $n heal",$g);near($b-hp(),$sear,"Staff $n sear")}
+my$staff='minecraft:stick[custom_name="Staff of Rest"]';st('plain stick','minecraft:stick',1,-60,0,0);st('another name','minecraft:stick[custom_name="Staff"]',1,-60,0,0);st('not sneaking',$staff,0,-60,0,0);st('empty hand','',1,-60,0,0);st('Longbottom Pipe','longbottom_pipe',1,-60,0,0);st('not a stick','minecraft:bone[custom_name="Staff of Rest"]',1,-60,0,0);st('in the air',$staff,1,-60,6,6);st('on cooldown',$staff,1,-60,0,0);
+nap(60);st('at a block, name in lower case','minecraft:stick[custom_name="staff of rest"]',1,80,6,6);class('warrior');nap(60);hold($staff);face(0,-60);my$sb=hp();sneak(1);rc();sneak(0);near($sb-hp(),0,'Staff needs a Healer');
+class('loremaster');here();mob('husk');r("tp \@e[tag=v] 3.5 -60 0.5");hold('minecraft:blaze_rod');face(0,-60);my$vh=hp();rc();near($vh-hp(),12,'Light of the Staff undead',.1);has('@e[tag=v,limit=1]','glowing','Staff glow');
+class('burglar');here();hold('');r("kill \@e[type=!player]","summon husk 0.5 -60 4.5 {Tags:[\"v\"],NoAI:1b,Rotation:[0f,0f],Health:1000f,attributes:[{id:\"minecraft:max_health\",base:1000},{id:\"minecraft:armor\",base:0}]}");nap(.2);near(hit(10),15,'Backstab unaware');r("execute as \@e[tag=v] at \@s run tp \@s ~ ~ ~ 180 0");nap(.7);near(hit(10),10,'Backstab from front none');sneak(1);nap(.5);has($P,'speed','Quiet Steps');sneak(0);
+class('smith');here();hold('minecraft:diamond_sword[damage=100]');nap(21);my$dm=r("data get entity $P SelectedItem.components.\"minecraft:damage\"");print "  Mending Craft 100 -> $dm\n";
+class('beastfriend');here();r("kill \@e[type=!player]");nap(.3);r("summon husk 9 -60 9 {Tags:[\"a\"],NoAI:1b}","summon wolf 2.5 -60 2.5 {Tags:[\"v\"],Owner:[I;$U],Sitting:1b,NoAI:1b,Health:30f,attributes:[{id:\"minecraft:max_health\",base:40},{id:\"minecraft:armor\",base:0}]}");nap(.5);$vh=hp();r("damage \@e[tag=v,limit=1] 10 minecraft:mob_attack by \@e[tag=a,limit=1]");near($vh-hp(),5,'Friend of Beasts pet half');r("kill \@e[tag=v]");hold('minecraft:bone');face(0,-40);rc();nap(.5);my$n=r('execute if entity @e[type=wolf]');ok($n=~/passed/,'Call of Huan summons',$n);r("kill \@e[type=wolf]");
+class('minstrel');for my$i(['ponder','regeneration'],['sing','speed']){my($t,$ef)=@$i;nap($t eq'sing'?92:0);here();hold("minecraft:goat_horn[instrument=\"minecraft:${t}_goat_horn\"]");face(0,-40);rc();nap(.3);has($P,$ef,"Song $t $ef")}
+class('herbalist');hold('');
+summary();

@@ -30,7 +30,7 @@
 
         # Tools for tools/playtest: a hidden display, input, screenshots and RCON.
         devShells.playtest = pkgs.mkShell {
-          packages = [ jdk gradle pkgs.xvfb pkgs.xdotool pkgs.imagemagick pkgs.mcrcon ];
+          packages = [ jdk gradle pkgs.xvfb pkgs.xdotool pkgs.imagemagick pkgs.mcrcon pkgs.perl ];
 
           JAVA_HOME = "${jdk}/lib/openjdk";
 

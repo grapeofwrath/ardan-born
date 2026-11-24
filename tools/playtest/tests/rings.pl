@@ -1,0 +1,13 @@
+# Rings of Power, betrayal and the Morgul wound.
+use FindBin;use lib $FindBin::Bin;use Playtest;
+setup();
+sect 'ring powers';origin('human');
+sub ring{my$id=shift;r("clear $P");nap(2.5);r("ardanborn ring release $id");hold("ring_$id");r("item replace entity $P weapon.offhand from entity $P weapon.mainhand","item replace entity $P weapon.mainhand with air");here();face(0,-40);rc();nap(1.6)}
+my%w=(narya=>['fire_resistance','strength'],nenya=>['water_breathing','dolphins_grace','resistance'],vilya=>['speed','slow_falling'],one=>['strength','resistance']);
+for my$id(qw(narya nenya vilya one)){ring($id);has($P,$_,"ring $id $_")for@{$w{$id}};if($id eq'narya'){v1('husk');hit(5);ok(r('data get entity @e[tag=v,limit=1] Fire')=~/data: [1-9]/,'Narya sets alight')}if($id eq'vilya'){r("damage $P 100 minecraft:generic");my$x=hp($P);nap(10.2);near(hp($P)-$x,4,'Vilya heals 10s',.1)}}
+sect 'deathless';origin('human');
+for my$id('one','nine'){r("clear $P");nap(2.5);r("ardanborn ring release $id");hold("ring_$id");r("item replace entity $P weapon.offhand from entity $P weapon.mainhand","item replace entity $P weapon.mainhand with air");here();face(0,-40);rc();nap(3.5);heal();my$s0=pdc('shadow');v1('husk');r("damage $P 5000 minecraft:mob_attack by \@e[tag=v,limit=1]");my$h=hp($P);heal();near($h,2,"$id Deathless leaves 1 heart");nap(.1);my$s1=pdc('shadow');ok($s1>=100||$s1-$s0>39&&$s1-$s0<45,"$id +40 Shadow",sprintf'%.1f -> %.1f',$s0,$s1)}
+my$t=0;while($t++<45){nap(2);heal();last if cnt('@e[type=wither_skeleton]')}print "  betrayal after ~",$t*2,"s\n";ok(cnt('@e[type=wither_skeleton]')==2,'Nine betrays: 2 servants');ok(r("data get entity $P equipment.offhand.id")!~/nugget/,'ring left the hand');ok(cnt('@e[type=item]')>=1,'ring dropped in the world');
+die "dead" if hp($P)<=0;sect 'morgul';r("clear $P","effect clear $P");my$got=0;for(1..25){heal();r("damage $P 4 minecraft:mob_attack by \@e[type=wither_skeleton,limit=1]");nap(.55);if(defined pdc('morgul_stage')){$got=$_;last}}ok($got,'servant wounds (50%)',"after $got hit(s)");nap(1.2);has($P,'slowness','stage 1 Slowness');r("kill \@e[type=!player]","effect clear $P");hold('miruvor');face(0,-40);eat();ok(!defined pdc('morgul_stage'),'Miruvor cures stage 1');
+r("summon wither_skeleton 0.5 -60 4.5 {Tags:[\"v\"],NoAI:1b}");my$n=0;for(1..60){heal();r("damage $P 4 minecraft:mob_attack by \@e[tag=v,limit=1]");nap(.55);$n=$_;last if defined pdc('morgul_stage')}print "  wild wither skeleton wounded after $n hits (10% each)\n";r("kill \@e[tag=v]");r("clear $P");if(defined pdc('morgul_stage')){hold('athelas');face(0,-40);rc();ok(!defined pdc('morgul_stage'),'Athelas cures')}
+r("clear $P");summary();
