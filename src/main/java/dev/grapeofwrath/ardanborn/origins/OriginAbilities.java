@@ -10,9 +10,11 @@ import dev.grapeofwrath.ardanborn.items.Effects;
 import dev.grapeofwrath.ardanborn.mounts.Riding;
 import dev.grapeofwrath.ardanborn.mounts.RohirrimDamage;
 import io.papermc.paper.datacomponent.DataComponentTypes;
+import io.papermc.paper.datacomponent.item.CustomModelData;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.MusicInstrument;
@@ -59,6 +61,7 @@ import org.bukkit.event.entity.EntityBreedEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.EntityMountEvent;
 import org.bukkit.event.entity.EntityPotionEffectEvent;
 import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.bukkit.event.entity.EntityTargetEvent;
@@ -67,6 +70,7 @@ import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
+import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.event.player.PlayerExpChangeEvent;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
@@ -122,7 +126,7 @@ public final class OriginAbilities {
                 new ChargeOfTheMark(), new BreederOfTheMark(), new SpearHardy(), new BaneOfTheDunlendings(),
                 // Classes
                 new FirstStrike(), new HardenedVeteran(), new Cleave(), new HuntPrey(), new Wayfarer(),
-                new ShieldWall(), new HandsOfTheHealer(), new LightOfTheStaff(), new FriendOfBeasts(),
+                new ShieldWall(), new StaffOfRest(), new LightOfTheStaff(), new FriendOfBeasts(),
                 new MendingCraft(), new Backstab(), new QuietSteps(), new Unseen(), new SongsOfPower(), new SilverTongue(),
                 new HealingPresence(), new CallOfHuan(), new GreenThumb(), new SmithsMark()
         );
@@ -427,8 +431,7 @@ public final class OriginAbilities {
         private static final Set<EntityDamageEvent.DamageCause> FIRE_CAUSES = EnumSet.of(
                 EntityDamageEvent.DamageCause.FIRE,
                 EntityDamageEvent.DamageCause.FIRE_TICK,
-                EntityDamageEvent.DamageCause.LAVA,
-                EntityDamageEvent.DamageCause.HOT_FLOOR);
+                EntityDamageEvent.DamageCause.LAVA);
 
         public ForgeHardened() {
             super("forge_hardened", "Forge-hardened",
@@ -438,7 +441,9 @@ public final class OriginAbilities {
         @EventHandler
         public void onDamage(EntityDamageEvent e) {
             if (!(e.getEntity() instanceof Player victim)) return;
-            if (!FIRE_CAUSES.contains(e.getCause())) return;
+            // Magma blocks: Paper gives their damage the cause CONTACT.
+            if (!FIRE_CAUSES.contains(e.getCause())
+                    && !DamageType.HOT_FLOOR.equals(e.getDamageSource().getDamageType())) return;
             runForAbility(victim, p -> e.setDamage(e.getDamage() * 0.6));
         }
     }
@@ -938,7 +943,9 @@ public final class OriginAbilities {
 
     /** Warrior. */
     public static final class Cleave extends Base implements Listener {
-        private static boolean cleaving = false;
+        /// The mob being cleaved right now and the damage it is to take, or null.
+        private static @Nullable LivingEntity cleaved;
+        private static double splash;
 
         public Cleave() {
             super("cleave", "Cleave",
@@ -947,25 +954,31 @@ public final class OriginAbilities {
 
         @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
         public void onHit(EntityDamageByEntityEvent e) {
-            if (cleaving) return;
+            if (cleaved != null) return;
             if (!(e.getDamager() instanceof Player damager) || !isMelee(e)) return;
             if (!(e.getEntity() instanceof LivingEntity victim)) return;
             runForAbility(damager, p -> {
                 String weapon = p.getInventory().getItemInMainHand().getType().name();
                 if (!weapon.endsWith("_SWORD") && !weapon.endsWith("_AXE")) return;
-                double splash = e.getFinalDamage() * 0.5;
                 for (Entity near : victim.getNearbyEntities(2.5, 1.5, 2.5)) {
                     if (near instanceof Monster other && other != victim) {
-                        cleaving = true;
+                        cleaved = other;
+                        splash = e.getFinalDamage() * 0.5;
                         try {
                             other.damage(splash, p);
                         } finally {
-                            cleaving = false;
+                            cleaved = null;
                         }
                         break;
                     }
                 }
             });
+        }
+
+        /// The splash already has the first hit's bonuses in it, so undo any that were added again.
+        @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+        public void onSplash(EntityDamageByEntityEvent e) {
+            if (cleaved != null && e.getEntity().equals(cleaved) && isMelee(e)) e.setDamage(splash);
         }
     }
 
@@ -1056,46 +1069,103 @@ public final class OriginAbilities {
     }
 
     /** Healer: "the hands of the king are the hands of a healer". */
-    public static final class HandsOfTheHealer extends Base implements Listener {
+    public static final class StaffOfRest extends Base implements Listener {
         private final Cooldown others = new Cooldown();
         private final Cooldown channel = new Cooldown();
+        /// The tick of each player's last staff click on another player.
+        private final Map<UUID, Integer> touched = new HashMap<>();
+        private static final String STAFF_NAME = "Staff of Rest";
+        private static final String STAFF_MODEL = "staff_of_rest";
         private static final double CHANNEL_RANGE = 8;
         private static final double CHANNEL_AMOUNT = 6.0; // 3 hearts
 
-        public HandsOfTheHealer() {
-            super("hands_of_the_healer", "Hands of the Healer",
-                    "Sneak and right-click an ally with an empty hand, and you grant Regeneration II, cure Poison and Wither, and hold back a Morgul wound (15 seconds must pass ere you do so again, and 10 minutes for the same wound). Do likewise to the air, and you and players within 8 blocks are healed 3 hearts, and the undead nearby are seared (60 seconds).");
+        public StaffOfRest() {
+            super("hands_of_the_healer", "Staff of Rest",
+                    "Name a Stick \"Staff of Rest\" at an anvil, and in your hand it is a staff of healing. Right-click a player, and you grant Regeneration II, cure Poison and Wither, and hold back a Morgul wound (15 seconds must pass ere you do so again, and 10 minutes for the same wound). Sneak and right-click, and you and players within 8 blocks are healed 3 hearts, and the undead nearby are seared (60 seconds).");
         }
 
         private void heal(Player healer, Player target) {
             target.removePotionEffect(PotionEffectType.POISON);
             target.removePotionEffect(PotionEffectType.WITHER);
             if (MorgulWound.isWounded(target) && !MorgulWound.holdBack(target)) {
-                healer.sendActionBar(Component.text("The wound will not yet heed your hands.", NamedTextColor.GRAY));
+                healer.sendActionBar(Component.text("The wound will not yet heed your staff.", NamedTextColor.GRAY));
             }
             effect(target, PotionEffectType.REGENERATION, 160, 1);
             target.getWorld().spawnParticle(Particle.HEART, target.getLocation().add(0, 1.8, 0), 6, 0.3, 0.3, 0.3, 0);
         }
 
+        /// A stick named "Staff of Rest" at an anvil, so ordinary sticks never set it off. Capitals don't matter.
+        private static boolean isStaff(ItemStack item) {
+            if (item.getType() != Material.STICK || CustomItems.isCustom(item)) return false;
+            Component name = item.getData(DataComponentTypes.CUSTOM_NAME);
+            return name != null && PlainTextComponentSerializer.plainText().serialize(name).strip()
+                    .equalsIgnoreCase(STAFF_NAME);
+        }
+
+        /// Holding one in the main hand.
+        private static boolean holdsStaff(Player p) {
+            return isStaff(p.getInventory().getItemInMainHand());
+        }
+
+        private static boolean marked(ItemStack item) {
+            CustomModelData data = item.getData(DataComponentTypes.CUSTOM_MODEL_DATA);
+            return data != null && data.strings().contains(STAFF_MODEL);
+        }
+
+        /// Lets a resource pack give the staff a look of its own. Done on use too, for a staff named before
+        /// staffs were marked, or by a command.
+        private static void mark(ItemStack item) {
+            if (item.hasData(DataComponentTypes.CUSTOM_MODEL_DATA)) return;
+            item.setData(DataComponentTypes.CUSTOM_MODEL_DATA, CustomModelData.customModelData().addString(STAFF_MODEL).build());
+        }
+
+        /// Marks a stick as it is named, and takes the mark off one that is named something else.
         @EventHandler
+        public void onRename(PrepareAnvilEvent e) {
+            ItemStack result = e.getResult();
+            if (result == null || result.getType() != Material.STICK || CustomItems.isCustom(result)) return;
+            ItemStack stick = result.clone();
+            if (isStaff(stick)) mark(stick);
+            else if (marked(stick)) stick.unsetData(DataComponentTypes.CUSTOM_MODEL_DATA);
+            else return;
+            e.setResult(stick);
+        }
+
+        /// Sneaking is left to the channel: the client reports a click on a player as a use of the item too.
+        @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
         public void onTouch(PlayerInteractEntityEvent e) {
             if (e.getHand() != EquipmentSlot.HAND) return;
-            if (!(e.getRightClicked() instanceof Player target)) return;
+            if (!(e.getRightClicked() instanceof Player target) || !holdsStaff(e.getPlayer())) return;
             runForAbility(e.getPlayer(), p -> {
-                if (!p.isSneaking() || !p.getInventory().getItemInMainHand().getType().isAir()) return;
-                if (!others.tryUse(p, 15_000)) return;
-                heal(p, target);
+                mark(p.getInventory().getItemInMainHand());
+                touched.put(p.getUniqueId(), Bukkit.getCurrentTick());
+                if (p.isSneaking()) return;
+                e.setCancelled(true);
+                if (others.tryUse(p, 15_000)) heal(p, target);
             });
+        }
+
+        /// A click with the staff doesn't mount a Great Eagle. Origins-Mobs mounts even if the click is cancelled.
+        @EventHandler(ignoreCancelled = true)
+        public void onMount(EntityMountEvent e) {
+            if (!(e.getMount() instanceof Player)) return;
+            Integer tick = touched.get(e.getEntity().getUniqueId());
+            // The off-hand's part of the click can come a tick later.
+            if (tick != null && Bukkit.getCurrentTick() - tick <= 1) e.setCancelled(true);
+        }
+
+        @EventHandler
+        public void onQuit(PlayerQuitEvent e) {
+            touched.remove(e.getPlayer().getUniqueId());
         }
 
         @EventHandler
         public void onSelf(PlayerInteractEvent e) {
-            if (e.getHand() != EquipmentSlot.HAND) return;
-            if (e.getAction() != Action.RIGHT_CLICK_AIR) return;
+            if (e.getHand() != EquipmentSlot.HAND || !isRightClick(e.getAction())) return;
+            if (!e.getPlayer().isSneaking() || !holdsStaff(e.getPlayer())) return;
             runForAbility(e.getPlayer(), p -> {
-                if (!p.isSneaking() || !p.getInventory().getItemInMainHand().getType().isAir()) return;
-                if (!channel.tryUse(p, 60_000)) return;
-                channel(p);
+                mark(p.getInventory().getItemInMainHand());
+                if (channel.tryUse(p, 60_000)) channel(p);
             });
         }
 

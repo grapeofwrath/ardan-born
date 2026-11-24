@@ -68,7 +68,7 @@ title: "Classes"
 
 | Power | What it does | From |
 |---|---|---|
-| [Hands of the Healer](powers.md#hands-of-the-healer) | Two uses, both sneaking and right-clicking with an empty main hand. Cooldowns are separate and show on your action bar. | ArdanBorn |
+| [Staff of Rest](powers.md#staff-of-rest) | Two uses, both with a stick named "Staff of Rest" at an anvil (capitals don't matter) in your main hand. The stick isn't used up. Cooldowns are separate and show on your action bar. | ArdanBorn |
 | [Healing Presence](powers.md#healing-presence) | Every 10 seconds, you and players within 6 blocks heal 1 heart. Players at full health are skipped. Several Healers stack. | ArdanBorn |
 
 ## Loremaster

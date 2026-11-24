@@ -1,7 +1,7 @@
 ---
 title: "White Hand"
 ---
-The sign of Saruman was a white hand, and the [Uruk-hai](ancestries.md#uruk-hai-orc) bore it upon their shields. Under that sign are made the Isengard armor, the Scimitar of Isengard, and the Orc-draught.
+The sign of Saruman was a white hand, and the [Uruk-hai](ancestries.md#uruk-hai) bore it upon their shields. Under that sign are made the Isengard armor, the Scimitar of Isengard, and the Orc-draught.
 
 ## The making of the White Hand
 

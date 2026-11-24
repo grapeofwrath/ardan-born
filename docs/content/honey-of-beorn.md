@@ -1,7 +1,7 @@
 ---
 title: "Honey of Beorn"
 ---
-About the hall of Beorn there were great hives, and the [Beornings](ancestries.md#beorning-skin-changer) who came after kept them still. From their honey are made the Carrock armor, the Hunting Bow and the Skin-changer's Claw.
+About the hall of Beorn there were great hives, and the [Beornings](ancestries.md#beorning) who came after kept them still. From their honey are made the Carrock armor, the Hunting Bow and the Skin-changer's Claw.
 
 ## The making of the Honey
 

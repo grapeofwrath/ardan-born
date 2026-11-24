@@ -26,7 +26,7 @@ Arrows and thrown tridents deal 20% more damage while you're in a [woodland biom
 
 - The two bonuses stack: ×1.8 against a spider in woodland.
 
-`ardanborn:bane_of_mirkwood` · from ArdanBorn · used by [Silvan (Wood Elf)](ancestries.md#silvan-wood-elf)
+`ardanborn:bane_of_mirkwood` · from ArdanBorn · used by [Silvan](ancestries.md#silvan)
 
 ### Bane of the Dunlendings
 
@@ -35,19 +35,19 @@ Melee hits and projectiles deal 20% more damage to illagers.
 - Illagers: pillagers, vindicators, evokers and illusioners. Not ravagers, vexes or witches.
 - Not part of the 60% cap; multiplies with it.
 
-`ardanborn:bane_of_the_dunlendings` · from ArdanBorn · used by [Rohirrim (Horse-lord)](ancestries.md#rohirrim-horse-lord)
+`ardanborn:bane_of_the_dunlendings` · from ArdanBorn · used by [Rohirrim](ancestries.md#rohirrim)
 
 ### Battle-fury
 
 A kill gives Speed I for 8 seconds and Strength I for 5. Killing players counts. New kills refresh the timers.
 
-`ardanborn:battle_fury` · from ArdanBorn · used by [Uruk-hai (Orc)](ancestries.md#uruk-hai-orc)
+`ardanborn:battle_fury` · from ArdanBorn · used by [Uruk-hai](ancestries.md#uruk-hai)
 
 ### Breath of the Sea
 
 Breathe underwater indefinitely.
 
-`ardanborn:breath_of_the_sea` · from ArdanBorn · used by [Teleri (Sea Elf)](ancestries.md#teleri-sea-elf)
+`ardanborn:breath_of_the_sea` · from ArdanBorn · used by [Teleri](ancestries.md#teleri)
 
 ### Breeder of the Mark
 
@@ -56,7 +56,7 @@ Foals you breed have speed, jump and health no lower than the average of their p
 - Each quality is the better of the foal's own and its parents' average.
 - Works on mules, but only horses can be Mearas.
 
-`ardanborn:breeder_of_the_mark` · from ArdanBorn · used by [Rohirrim (Horse-lord)](ancestries.md#rohirrim-horse-lord)
+`ardanborn:breeder_of_the_mark` · from ArdanBorn · used by [Rohirrim](ancestries.md#rohirrim)
 
 ### Call of Huan
 
@@ -77,7 +77,7 @@ Melee hits while riding deal 20% more damage. After 3 seconds of galloping, the 
 - A hit that knocks a monster back starts the 3 seconds again. Bosses aren't knocked back.
 - Adds to Spear-hardy, the [Spear of the Mark](banner-of-the-mark.md#spear-of-the-mark) and Death!, up to [60%](configuration.md#rohirrim) together.
 
-`ardanborn:charge_of_the_mark` · from ArdanBorn · used by [Rohirrim (Horse-lord)](ancestries.md#rohirrim-horse-lord)
+`ardanborn:charge_of_the_mark` · from ArdanBorn · used by [Rohirrim](ancestries.md#rohirrim)
 
 ### Cleave
 
@@ -89,7 +89,7 @@ Sword and axe hits also deal half damage to one hostile mob within 2.5 blocks of
 
 Enchanting costs 1 fewer level, but never less than the option's slot number (1, 2 or 3). Lapis cost and enchantments don't change.
 
-`ardanborn:deep_lore` · from ArdanBorn · used by [Noldor (High Elf)](ancestries.md#noldor-high-elf)
+`ardanborn:deep_lore` · from ArdanBorn · used by [Noldor](ancestries.md#noldor)
 
 ### Delver's Instinct
 
@@ -103,7 +103,7 @@ Haste I and Night Vision below Y 50 where sky light is under 4.
 
 Tools, weapons, armor, shields, elytra and fishing rods have a 40% chance to lose no durability when used. Stacks with Unbreaking.
 
-`ardanborn:elven_wrought` · from ArdanBorn · used by [Noldor (High Elf)](ancestries.md#noldor-high-elf)
+`ardanborn:elven_wrought` · from ArdanBorn · used by [Noldor](ancestries.md#noldor)
 
 ### First Strike
 
@@ -121,7 +121,7 @@ A melee hit after 3 seconds without one deals 50% more damage. Every melee hit t
 
 Permanent Luck I: better fishing treasure and some chest loot.
 
-`ardanborn:fortunate_folk` · from ArdanBorn · used by [Hobbit (Halfling)](ancestries.md#hobbit-halfling)
+`ardanborn:fortunate_folk` · from ArdanBorn · used by [Hobbit](ancestries.md#hobbit)
 
 ### Friend of Beasts
 
@@ -139,7 +139,7 @@ Wild beasts don't target you unless you strike first. Your tamed animals take ha
 
 - Sources include mobs, ore, smelting, breeding, fishing and trading.
 
-`ardanborn:gift_of_men` · from ArdanBorn · used by [Dúnedain (Man of the West)](ancestries.md#dúnedain-man-of-the-west)
+`ardanborn:gift_of_men` · from ArdanBorn · used by [Dúnedain](ancestries.md#dúnedain)
 
 ### Green Thumb
 
@@ -149,17 +149,6 @@ Each second, crops within 5 blocks (2 up or down) have a 5% chance to grow a sta
 - Wheat takes about 2-3 minutes from seed to ripe.
 
 `ardanborn:green_thumb` · from ArdanBorn · used by [Herbalist](classes.md#herbalist)
-
-### Hands of the Healer
-
-Two uses, both sneaking and right-clicking with an empty main hand. Cooldowns are separate and show on your action bar.
-
-- **On a player:** Regeneration II for 8 seconds, cures Poison and Wither, and holds back a [Morgul wound](morgul-wound.md#treatment). 15-second cooldown.
-- Holding back restarts the wound's timer; it doesn't cure it. Once every 10 minutes per wounded player, by any Healer.
-- **In the air:** you and players within 8 blocks heal 3 hearts, and undead within 8 blocks take 3 hearts of magic damage. Doesn't cure Poison or Wither. 60-second cooldown.
-- [Healer of Imladris](#healer-of-imladris) raises the heal to 4.5 hearts for a Peredhil.
-
-`ardanborn:hands_of_the_healer` · from ArdanBorn · used by [Healer](classes.md#healer)
 
 ### Hardened Veteran
 
@@ -171,10 +160,10 @@ Two uses, both sneaking and right-clicking with an empty main hand. Cooldowns ar
 
 Instant Health, Regeneration and golden apples heal you 50% more.
 
-- Any source: beacons, [Star of Eärendil](#star-of-eärendil), [Hands of the Healer](#hands-of-the-healer), [Healing Presence](#healing-presence).
+- Any source: beacons, [Star of Eärendil](#star-of-eärendil), [Staff of Rest](#staff-of-rest), [Healing Presence](#healing-presence).
 - Not natural regeneration from hunger.
 
-`ardanborn:healer_of_imladris` · from ArdanBorn · used by [Peredhil (Half-elf)](ancestries.md#peredhil-half-elf)
+`ardanborn:healer_of_imladris` · from ArdanBorn · used by [Peredhil](ancestries.md#peredhil)
 
 ### Healing Presence
 
@@ -188,7 +177,7 @@ Every 10 seconds, you and players within 6 blocks heal 1 heart. Players at full 
 
 Damage that leaves you alive at or below 30% health gives Resistance I and Regeneration I for 8 seconds. 90-second cooldown, from when it triggers.
 
-`ardanborn:hope_unquenched` · from ArdanBorn · used by [Dúnedain (Man of the West)](ancestries.md#dúnedain-man-of-the-west)
+`ardanborn:hope_unquenched` · from ArdanBorn · used by [Dúnedain](ancestries.md#dúnedain)
 
 ### Hunt Prey
 
@@ -204,7 +193,7 @@ The last mob your arrow hit glows for 60 seconds, through walls, and takes 20% m
 
 Food never gives you Hunger, Poison or Nausea, including raw chicken, pufferfish and suspicious stew. Potions and mobs still can.
 
-`ardanborn:iron_stomach` · from ArdanBorn · used by [Uruk-hai (Orc)](ancestries.md#uruk-hai-orc)
+`ardanborn:iron_stomach` · from ArdanBorn · used by [Uruk-hai](ancestries.md#uruk-hai)
 
 ### Leaf-walker
 
@@ -212,13 +201,13 @@ No fall damage landing on leaves. Speed II and Jump Boost II while on leaves and
 
 - Any leaves, including azalea and mangrove. You can't pass through them.
 
-`ardanborn:leaf_walker` · from ArdanBorn · used by [Silvan (Wood Elf)](ancestries.md#silvan-wood-elf)
+`ardanborn:leaf_walker` · from ArdanBorn · used by [Silvan](ancestries.md#silvan)
 
 ### Lembas
 
 Bread fills hunger and saturation and gives Regeneration I for 5 seconds. 60-second cooldown; until then bread is ordinary.
 
-`ardanborn:lembas` · from ArdanBorn · used by [Silvan (Wood Elf)](ancestries.md#silvan-wood-elf)
+`ardanborn:lembas` · from ArdanBorn · used by [Silvan](ancestries.md#silvan)
 
 ### Light of the Staff
 
@@ -242,13 +231,13 @@ At night in the Overworld (time 13000-23000): Strength I. Gibbous moon (either):
 - The sky needn't be visible.
 - Moon phase: `/time query day`, divided by 8; a remainder of 0 is full.
 
-`ardanborn:moonbound` · from ArdanBorn · used by [Beorning (Skin-changer)](ancestries.md#beorning-skin-changer)
+`ardanborn:moonbound` · from ArdanBorn · used by [Beorning](ancestries.md#beorning)
 
 ### Pearls of Alqualondë
 
 Luck I while holding a fishing rod in either hand. Each catch has a 25% chance to be doubled. Stacks with Luck of the Sea.
 
-`ardanborn:pearls_of_alqualonde` · from ArdanBorn · used by [Teleri (Sea Elf)](ancestries.md#teleri-sea-elf)
+`ardanborn:pearls_of_alqualonde` · from ArdanBorn · used by [Teleri](ancestries.md#teleri)
 
 ### Quiet Steps
 
@@ -260,13 +249,13 @@ Speed I while sneaking.
 
 +2 hearts while in water or rain. They start empty and are lost, with any health in them, when you leave.
 
-`ardanborn:seas_vigor` · from ArdanBorn · used by [Teleri (Sea Elf)](ancestries.md#teleri-sea-elf)
+`ardanborn:seas_vigor` · from ArdanBorn · used by [Teleri](ancestries.md#teleri)
 
 ### Second Breakfast
 
 Food restores 1 more hunger point and 2 more saturation, up to full.
 
-`ardanborn:second_breakfast` · from ArdanBorn · used by [Hobbit (Halfling)](ancestries.md#hobbit-halfling)
+`ardanborn:second_breakfast` · from ArdanBorn · used by [Hobbit](ancestries.md#hobbit)
 
 ### Shield Wall
 
@@ -350,25 +339,37 @@ Spears deal 15% more damage, mounted or on foot.
 
 - Adds to [Charge of the Mark](#charge-of-the-mark) and the Rohirrim's items, up to [60%](configuration.md#rohirrim) together.
 
-`ardanborn:spear_hardy` · from ArdanBorn · used by [Rohirrim (Horse-lord)](ancestries.md#rohirrim-horse-lord)
+`ardanborn:spear_hardy` · from ArdanBorn · used by [Rohirrim](ancestries.md#rohirrim)
+
+### Staff of Rest
+
+Two uses, both with a stick named "Staff of Rest" at an anvil (capitals don't matter) in your main hand. The stick isn't used up. Cooldowns are separate and show on your action bar.
+
+- **Right-click a player**, not sneaking: Regeneration II for 8 seconds, cures Poison and Wither, and holds back a [Morgul wound](morgul-wound.md#treatment). 15-second cooldown.
+- Holding back restarts the wound's timer; it doesn't cure it. Once every 10 minutes per wounded player, by any Healer.
+- **Sneak and right-click**, at anything: you and players within 8 blocks heal 3 hearts, and undead within 8 blocks take 3 hearts of magic damage. Doesn't cure Poison or Wither. 60-second cooldown.
+- [Healer of Imladris](#healer-of-imladris) raises the heal to 4.5 hearts for a Peredhil.
+- `custom_model_data` for resource packs: `staff_of_rest`. The anvil adds it, as does the first use of a staff that lacks it. Naming the stick anything else takes it off.
+
+`ardanborn:hands_of_the_healer` · from ArdanBorn · used by [Healer](classes.md#healer)
 
 ### Star of Eärendil
 
 Regeneration I and Night Vision at night in the Overworld, with open sky overhead. Glass counts as open; leaves don't.
 
-`ardanborn:star_of_earendil` · from ArdanBorn · used by [Peredhil (Half-elf)](ancestries.md#peredhil-half-elf)
+`ardanborn:star_of_earendil` · from ArdanBorn · used by [Peredhil](ancestries.md#peredhil)
 
 ### Swift Messenger
 
 Horses, donkeys, mules, camels and llamas you ride have Speed I and take no fall damage.
 
-`ardanborn:swift_messenger` · from ArdanBorn · used by [Peredhil (Half-elf)](ancestries.md#peredhil-half-elf)
+`ardanborn:swift_messenger` · from ArdanBorn · used by [Peredhil](ancestries.md#peredhil)
 
 ### Tide's Fury
 
 Melee and trident hits, thrown included, deal 25% more damage while you're in water or rain. Stacks with the [Spear of the Havens](pearl-of-osse.md#spear-of-the-havens).
 
-`ardanborn:tides_fury` · from ArdanBorn · used by [Teleri (Sea Elf)](ancestries.md#teleri-sea-elf)
+`ardanborn:tides_fury` · from ArdanBorn · used by [Teleri](ancestries.md#teleri)
 
 ### Tough as Old Tree-roots
 
@@ -376,13 +377,13 @@ Melee and trident hits, thrown included, deal 25% more damage while you're in wa
 
 - Slowness from other ArdanBorn or Origins powers isn't shortened.
 
-`ardanborn:tough_as_old_tree_roots` · from ArdanBorn · used by [Hobbit (Halfling)](ancestries.md#hobbit-halfling)
+`ardanborn:tough_as_old_tree_roots` · from ArdanBorn · used by [Hobbit](ancestries.md#hobbit)
 
 ### Undying Body
 
 Immune to Poison and Hunger from every source.
 
-`ardanborn:undying_body` · from ArdanBorn · used by [Noldor (High Elf)](ancestries.md#noldor-high-elf), [Peredhil (Half-elf)](ancestries.md#peredhil-half-elf)
+`ardanborn:undying_body` · from ArdanBorn · used by [Noldor](ancestries.md#noldor), [Peredhil](ancestries.md#peredhil)
 
 ### Unseen
 
@@ -404,7 +405,7 @@ Speed I in woodland biomes and for 3 seconds after leaving.
 
 - Woodland: any biome with *forest*, *taiga*, *jungle*, *grove* or *woods* in its name.
 
-`ardanborn:woodland_stride` · from ArdanBorn · used by [Silvan (Wood Elf)](ancestries.md#silvan-wood-elf)
+`ardanborn:woodland_stride` · from ArdanBorn · used by [Silvan](ancestries.md#silvan)
 
 ### Wrath of the Noldor
 
@@ -412,7 +413,7 @@ Melee hits deal 25% more damage to the [undead](lore-and-items.md#undead) and to
 
 - Creatures of the Nether: blazes, ghasts, magma cubes, hoglins, piglins, piglin brutes.
 
-`ardanborn:wrath_of_the_noldor` · from ArdanBorn · used by [Noldor (High Elf)](ancestries.md#noldor-high-elf)
+`ardanborn:wrath_of_the_noldor` · from ArdanBorn · used by [Noldor](ancestries.md#noldor)
 
 ## Origins-Reborn and addon powers
 
@@ -432,7 +433,7 @@ Double damage while gliding. Stacks with [Aeglos](feather-of-thorondor.md#aeglos
 
 Mine underwater at normal speed, with no helmet enchantment.
 
-`origins:aqua_affinity` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Teleri (Sea Elf)](ancestries.md#teleri-sea-elf)
+`origins:aqua_affinity` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Teleri](ancestries.md#teleri)
 
 ### Bearer
 
@@ -444,7 +445,7 @@ Players can right-click you to ride on your back, including while you glide.
 
 Bees don't attack when you take honey or honeycomb, with or without a campfire.
 
-`moborigins:queen_bee` · from [Origins-Mobs](https://modrinth.com/plugin/origins-mobs) · used by [Beorning (Skin-changer)](ancestries.md#beorning-skin-changer)
+`moborigins:queen_bee` · from [Origins-Mobs](https://modrinth.com/plugin/origins-mobs) · used by [Beorning](ancestries.md#beorning)
 
 ### Careful Miner
 
@@ -474,25 +475,25 @@ Regeneration I after standing still for a moment. Any movement ends it.
 
 9 extra inventory slots, kept on death. By default, right-click your chestplate slot to open them.
 
-`origins:shulker_inventory` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Hobbit (Halfling)](ancestries.md#hobbit-halfling)
+`origins:shulker_inventory` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Hobbit](ancestries.md#hobbit)
 
 ### Long Reach
 
 +1.5 blocks of reach for blocks and entities.
 
-`origins:extra_reach` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Dúnedain (Man of the West)](ancestries.md#dúnedain-man-of-the-west)
+`origins:extra_reach` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Dúnedain](ancestries.md#dúnedain)
 
 ### Mighty Frame
 
 +10 hearts, for 20 in all.
 
-`fantasyorigins:double_health` · from [Origins-Fantasy](https://modrinth.com/plugin/origins-fantasy) · used by [Beorning (Skin-changer)](ancestries.md#beorning-skin-changer)
+`fantasyorigins:double_health` · from [Origins-Fantasy](https://modrinth.com/plugin/origins-fantasy) · used by [Beorning](ancestries.md#beorning)
 
 ### Nocturnal
 
 Night Vision while not in water. Milk removes it only briefly.
 
-`origins:cat_vision` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Noldor (High Elf)](ancestries.md#noldor-high-elf), [Uruk-hai (Orc)](ancestries.md#uruk-hai-orc)
+`origins:cat_vision` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Noldor](ancestries.md#noldor), [Uruk-hai](ancestries.md#uruk-hai)
 
 ### Potion Master
 
@@ -510,31 +511,31 @@ One block tall. You fit through 1-block gaps.
 
 Sculk sensors and shriekers don't detect you walking, landing, eating or drinking.
 
-`magicorigins:silent` · from [Origins-Magic](https://modrinth.com/plugin/origins-magic) · used by [Hobbit (Halfling)](ancestries.md#hobbit-halfling), [Silvan (Wood Elf)](ancestries.md#silvan-wood-elf)
+`magicorigins:silent` · from [Origins-Magic](https://modrinth.com/plugin/origins-magic) · used by [Hobbit](ancestries.md#hobbit), [Silvan](ancestries.md#silvan)
 
 ### Spoils of Victory
 
 Kills give extra health, more from stronger creatures, up to 30 extra hearts.
 
-`magicorigins:kill_boost` · from [Origins-Magic](https://modrinth.com/plugin/origins-magic) · used by [Beorning (Skin-changer)](ancestries.md#beorning-skin-changer)
+`magicorigins:kill_boost` · from [Origins-Magic](https://modrinth.com/plugin/origins-magic) · used by [Beorning](ancestries.md#beorning)
 
 ### Strong Ankles
 
 Jump Boost II while sprinting.
 
-`origins:sprint_jump` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Dúnedain (Man of the West)](ancestries.md#dúnedain-man-of-the-west)
+`origins:sprint_jump` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Dúnedain](ancestries.md#dúnedain)
 
 ### Strong Arms
 
 Mine natural stone without a pickaxe and still get its drop: stone, deepslate, tuff, granite, diorite, andesite, sandstones, blackstone, netherrack.
 
-`origins:strong_arms` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Uruk-hai (Orc)](ancestries.md#uruk-hai-orc)
+`origins:strong_arms` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Uruk-hai](ancestries.md#uruk-hai)
 
 ### Tailwind
 
 +20% walking speed.
 
-`origins:tailwind` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Peredhil (Half-elf)](ancestries.md#peredhil-half-elf)
+`origins:tailwind` · from [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) · used by [Peredhil](ancestries.md#peredhil)
 
 ### Thick Skin
 

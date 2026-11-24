@@ -1,7 +1,7 @@
 ---
 title: "Mallorn Leaf"
 ---
-Golden were the leaves of the mallorn trees in Lothlórien, where many of the [Silvan Elves](ancestries.md#silvan-wood-elf) dwelt. From such a leaf are made the Lórien armor, the Bow of the Galadhrim, and the rope Hithlain.
+Golden were the leaves of the mallorn trees in Lothlórien, where many of the [Silvan Elves](ancestries.md#silvan) dwelt. From such a leaf are made the Lórien armor, the Bow of the Galadhrim, and the rope Hithlain.
 
 ## The making of the Leaf
 

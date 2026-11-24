@@ -1,7 +1,7 @@
 ---
 title: "Banner of the Mark"
 ---
-A white horse upon a green field was the banner of the Mark, and the [Rohirrim](ancestries.md#rohirrim-horse-lord) followed it out of the North and into every war. From it are made the Edoras armor, the Spear of the Mark, and the Barding of the Mark.
+A white horse upon a green field was the banner of the Mark, and the [Rohirrim](ancestries.md#rohirrim) followed it out of the North and into every war. From it are made the Edoras armor, the Spear of the Mark, and the Barding of the Mark.
 
 ## The making of the Banner
 

@@ -1,7 +1,7 @@
 ---
 title: "Mathom"
 ---
-Of the things that the [Hobbits](ancestries.md#hobbit-halfling) kept and could not bring themselves to part with, the Mathom was the chief; and from it are made the Mithril armor, the blade Sting, and the Longbottom Pipe.
+Of the things that the [Hobbits](ancestries.md#hobbit) kept and could not bring themselves to part with, the Mathom was the chief; and from it are made the Mithril armor, the blade Sting, and the Longbottom Pipe.
 
 ## The making of the Mathom
 

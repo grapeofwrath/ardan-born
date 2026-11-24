@@ -97,7 +97,7 @@ public final class MorgulWound implements Listener {
                 .decoration(TextDecoration.ITALIC, true));
     }
 
-    /** Heals the wound completely (a Healer's hands, athelas). True if there was one. */
+    /** Heals the wound completely (athelas). True if there was one. */
     public static boolean cure(Player player) {
         if (!isWounded(player)) return false;
         setStage(player, 0);
@@ -107,7 +107,7 @@ public final class MorgulWound implements Listener {
         return true;
     }
 
-    /// A Healer's hands: the wound's timer starts over, but the wound stays. Each wounded player can be held
+    /// A Healer's Staff of Rest: the wound's timer starts over, but the wound stays. Each wounded player can be held
     /// back once every [#HOLD_COOLDOWN_MS], whoever the Healer is. Returns false if it's too soon (or there's
     /// no wound).
     public static boolean holdBack(Player player) {
@@ -117,7 +117,7 @@ public final class MorgulWound implements Listener {
         if (pdc.getOrDefault(HELD_UNTIL, PersistentDataType.LONG, 0L) > now) return false;
         pdc.set(HELD_UNTIL, PersistentDataType.LONG, now + HOLD_COOLDOWN_MS);
         pdc.set(LEFT, PersistentDataType.LONG, stageMs);
-        player.sendActionBar(Component.text("The cold is stayed beneath healing hands.", NamedTextColor.AQUA));
+        player.sendActionBar(Component.text("The cold is stayed by the Staff of Rest.", NamedTextColor.AQUA));
         return true;
     }
 

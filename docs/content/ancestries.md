@@ -3,19 +3,19 @@ title: "Ancestries"
 ---
 | | Impact | Powers |
 |---|---|---|
-| [Dúnedain (Man of the West)](#dúnedain-man-of-the-west) | Low | 4 |
-| [Rohirrim (Horse-lord)](#rohirrim-horse-lord) | Medium | 4 |
-| [Noldor (High Elf)](#noldor-high-elf) | Low | 5 |
-| [Silvan (Wood Elf)](#silvan-wood-elf) | Medium | 5 |
-| [Teleri (Sea Elf)](#teleri-sea-elf) | Medium | 5 |
-| [Peredhil (Half-elf)](#peredhil-half-elf) | Low | 5 |
+| [Dúnedain](#dúnedain) | Low | 4 |
+| [Rohirrim](#rohirrim) | Medium | 4 |
+| [Noldor](#noldor) | Low | 5 |
+| [Silvan](#silvan) | Medium | 5 |
+| [Teleri](#teleri) | Medium | 5 |
+| [Peredhil](#peredhil) | Low | 5 |
 | [Dwarf](#dwarf) | Medium | 4 |
-| [Hobbit (Halfling)](#hobbit-halfling) | Low | 5 |
-| [Uruk-hai (Orc)](#uruk-hai-orc) | Medium | 4 |
+| [Hobbit](#hobbit) | Low | 5 |
+| [Uruk-hai](#uruk-hai) | Medium | 4 |
 | [Great Eagle](#great-eagle) | High | 5 |
-| [Beorning (Skin-changer)](#beorning-skin-changer) | High | 4 |
+| [Beorning](#beorning) | High | 4 |
 
-## Dúnedain (Man of the West)
+## Dúnedain
 
 **Impact:** Low · **Icon:** `white_banner` · **File:** `dunedain.json`
 
@@ -28,7 +28,7 @@ title: "Ancestries"
 | [Long Reach](powers.md#long-reach) | +1.5 blocks of reach for blocks and entities. | [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) |
 | [Strong Ankles](powers.md#strong-ankles) | Jump Boost II while sprinting. | [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) |
 
-## Rohirrim (Horse-lord)
+## Rohirrim
 
 **Impact:** Medium · **Icon:** `saddle` · **File:** `rohirrim.json`
 
@@ -41,7 +41,7 @@ title: "Ancestries"
 | [Spear-hardy](powers.md#spear-hardy) | Spears deal 15% more damage, mounted or on foot. | ArdanBorn |
 | [Bane of the Dunlendings](powers.md#bane-of-the-dunlendings) | Melee hits and projectiles deal 20% more damage to illagers. | ArdanBorn |
 
-## Noldor (High Elf)
+## Noldor
 
 **Impact:** Low · **Icon:** `amethyst_shard` · **File:** `noldor.json`
 
@@ -55,7 +55,7 @@ title: "Ancestries"
 | [Elven-wrought](powers.md#elven-wrought) | Tools, weapons, armor, shields, elytra and fishing rods have a 40% chance to lose no durability when used. Stacks with Unbreaking. | ArdanBorn |
 | [Wrath of the Noldor](powers.md#wrath-of-the-noldor) | Melee hits deal 25% more damage to the [undead](lore-and-items.md#undead) and to creatures of the Nether. Not projectiles. | ArdanBorn |
 
-## Silvan (Wood Elf)
+## Silvan
 
 **Impact:** Medium · **Icon:** `oak_leaves` · **File:** `silvan.json`
 
@@ -69,7 +69,7 @@ title: "Ancestries"
 | [Lembas](powers.md#lembas) | Bread fills hunger and saturation and gives Regeneration I for 5 seconds. 60-second cooldown; until then bread is ordinary. | ArdanBorn |
 | [Leaf-walker](powers.md#leaf-walker) | No fall damage landing on leaves. Speed II and Jump Boost II while on leaves and for 2 seconds after. | ArdanBorn |
 
-## Teleri (Sea Elf)
+## Teleri
 
 **Impact:** Medium · **Icon:** `nautilus_shell` · **File:** `teleri.json`
 
@@ -83,7 +83,7 @@ title: "Ancestries"
 | [Breath of the Sea](powers.md#breath-of-the-sea) | Breathe underwater indefinitely. | ArdanBorn |
 | [Sea's Vigor](powers.md#seas-vigor) | +2 hearts while in water or rain. They start empty and are lost, with any health in them, when you leave. | ArdanBorn |
 
-## Peredhil (Half-elf)
+## Peredhil
 
 **Impact:** Low · **Icon:** `nether_star` · **File:** `peredhil.json`
 
@@ -110,7 +110,7 @@ title: "Ancestries"
 | [Forge-hardened](powers.md#forge-hardened) | 40% less damage from fire, burning, lava and magma blocks. You can still catch fire. Works alongside Fire Resistance. | ArdanBorn |
 | [Careful Miner](powers.md#careful-miner) | Ores drop as if your tool had 2 more levels of Fortune. | [Origins-Fantasy](https://modrinth.com/plugin/origins-fantasy) |
 
-## Hobbit (Halfling)
+## Hobbit
 
 **Impact:** Low · **Icon:** `bread` · **File:** `hobbit.json`
 
@@ -124,7 +124,7 @@ title: "Ancestries"
 | [Tough as Old Tree-roots](powers.md#tough-as-old-tree-roots) | 30% less damage from the Wither effect, Slowness lasts half as long, and immune to Darkness. | ArdanBorn |
 | [Hoarder](powers.md#hoarder) | 9 extra inventory slots, kept on death. By default, right-click your chestplate slot to open them. | [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) |
 
-## Uruk-hai (Orc)
+## Uruk-hai
 
 **Impact:** Medium · **Icon:** `rotten_flesh` · **File:** `uruk_hai.json`
 
@@ -151,7 +151,7 @@ title: "Ancestries"
 | [Aerial Combatant](powers.md#aerial-combatant) | Double damage while gliding. Stacks with [Aeglos](feather-of-thorondor.md#aeglos). | [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) |
 | [Acrobatics](powers.md#acrobatics) | No fall damage. Landing on a magma block still burns. | [Origins-Reborn](https://modrinth.com/plugin/origins-reborn) |
 
-## Beorning (Skin-changer)
+## Beorning
 
 **Impact:** High · **Icon:** `honey_bottle` · **File:** `beorning.json`
 

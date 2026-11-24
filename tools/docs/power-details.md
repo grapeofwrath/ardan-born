@@ -36,13 +36,14 @@ Each section starts with `## <power key>`; everything until the next `## ` is co
 - Wheat takes about 2-3 minutes from seed to ripe.
 
 ## ardanborn:hands_of_the_healer
-- **On a player:** Regeneration II for 8 seconds, cures Poison and Wither, and holds back a [Morgul wound](morgul-wound.md#treatment). 15-second cooldown.
+- **Right-click a player**, not sneaking: Regeneration II for 8 seconds, cures Poison and Wither, and holds back a [Morgul wound](morgul-wound.md#treatment). 15-second cooldown.
 - Holding back restarts the wound's timer; it doesn't cure it. Once every 10 minutes per wounded player, by any Healer.
-- **In the air:** you and players within 8 blocks heal 3 hearts, and undead within 8 blocks take 3 hearts of magic damage. Doesn't cure Poison or Wither. 60-second cooldown.
+- **Sneak and right-click**, at anything: you and players within 8 blocks heal 3 hearts, and undead within 8 blocks take 3 hearts of magic damage. Doesn't cure Poison or Wither. 60-second cooldown.
 - [Healer of Imladris](#healer-of-imladris) raises the heal to 4.5 hearts for a Peredhil.
+- `custom_model_data` for resource packs: `staff_of_rest`. The anvil adds it, as does the first use of a staff that lacks it. Naming the stick anything else takes it off.
 
 ## ardanborn:healer_of_imladris
-- Any source: beacons, [Star of Eärendil](#star-of-eärendil), [Hands of the Healer](#hands-of-the-healer), [Healing Presence](#healing-presence).
+- Any source: beacons, [Star of Eärendil](#star-of-eärendil), [Staff of Rest](#staff-of-rest), [Healing Presence](#healing-presence).
 - Not natural regeneration from hunger.
 
 ## ardanborn:healing_presence

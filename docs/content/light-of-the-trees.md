@@ -1,7 +1,7 @@
 ---
 title: "Light of the Trees"
 ---
-When the Two Trees were no more there remained some glimmer of Laurelin and Telperion, and the [Noldor](ancestries.md#noldor-high-elf) did not forget it. From that light are made the Gondolin armor, the sword Orcrist, and the Phial of Galadriel.
+When the Two Trees were no more there remained some glimmer of Laurelin and Telperion, and the [Noldor](ancestries.md#noldor) did not forget it. From that light are made the Gondolin armor, the sword Orcrist, and the Phial of Galadriel.
 
 ## The making of the Light
 

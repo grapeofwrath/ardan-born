@@ -14,7 +14,7 @@ ardanborn:fortunate_folk	Permanent Luck I: better fishing treasure and some ches
 ardanborn:friend_of_beasts	Wild beasts don't target you unless you strike first. Your tamed animals take half damage, and heal 1 heart every 10 seconds within 16 blocks of you.
 ardanborn:gift_of_men	25% more experience from all sources, rounded up per orb or reward (a 1-point orb gives 2).
 ardanborn:green_thumb	Each second, crops within 5 blocks (2 up or down) have a 5% chance to grow a stage, and saplings and mangrove propagules a 1% chance to grow as if bone-mealed.
-ardanborn:hands_of_the_healer	Two uses, both sneaking and right-clicking with an empty main hand. Cooldowns are separate and show on your action bar.
+ardanborn:hands_of_the_healer	Two uses, both with a stick named "Staff of Rest" at an anvil (capitals don't matter) in your main hand. The stick isn't used up. Cooldowns are separate and show on your action bar.
 ardanborn:hardened_veteran	+2 hearts and +25% knockback resistance, which stacks with netherite armor. The new hearts start empty.
 ardanborn:healer_of_imladris	Instant Health, Regeneration and golden apples heal you 50% more.
 ardanborn:healing_presence	Every 10 seconds, you and players within 6 blocks heal 1 heart. Players at full health are skipped. Several Healers stack.

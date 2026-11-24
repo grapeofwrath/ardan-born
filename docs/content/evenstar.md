@@ -1,7 +1,7 @@
 ---
 title: "Evenstar"
 ---
-White as starlight was the jewel of Undómiel, who was of the [Peredhil](ancestries.md#peredhil-half-elf). From it are made the Imladris armor, the sword Hadhafang, and the cordial Miruvor.
+White as starlight was the jewel of Undómiel, who was of the [Peredhil](ancestries.md#peredhil). From it are made the Imladris armor, the sword Hadhafang, and the cordial Miruvor.
 
 ## The making of the Evenstar
 

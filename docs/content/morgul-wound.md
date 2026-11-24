@@ -36,7 +36,7 @@ Death itself is no cure. The wounded return with the cold still in them, and the
 |---|---|
 | [Athelas](#athelas) | The wound is wholly cured. |
 | [Miruvor](evenstar.md#miruvor) | The wound is eased by one stage and the timer begins anew. A wound of the first stage is cured. |
-| [Hands of the Healer](powers.md#hands-of-the-healer) | The timer begins anew, and so the wound is held back, but it is not cured. This may be done once every 10 minutes for each of the wounded, whoever the Healer may be. |
+| [Staff of Rest](powers.md#staff-of-rest) | The timer begins anew, and so the wound is held back, but it is not cured. This may be done once every 10 minutes for each of the wounded, whoever the Healer may be. |
 
 ## Athelas
 

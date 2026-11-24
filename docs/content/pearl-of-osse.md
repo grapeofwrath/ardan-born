@@ -1,7 +1,7 @@
 ---
 title: "Pearl of Ossë"
 ---
-On the shores of Alqualondë the [Teleri](ancestries.md#teleri-sea-elf) gathered pearls, and Ossë was their friend. From the pearl that bears his name are made the Alqualondë armor, the Spear of the Havens and the Net of the Havens.
+On the shores of Alqualondë the [Teleri](ancestries.md#teleri) gathered pearls, and Ossë was their friend. From the pearl that bears his name are made the Alqualondë armor, the Spear of the Havens and the Net of the Havens.
 
 ## The making of the Pearl
 

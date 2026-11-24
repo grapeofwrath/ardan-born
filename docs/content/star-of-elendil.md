@@ -1,7 +1,7 @@
 ---
 title: "Star of Elendil"
 ---
-The Elendilmir was borne upon the brow of the kings of Arnor, who were of the [Dúnedain](ancestries.md#dúnedain-man-of-the-west). From its light are made the Citadel armor, the sword Andúril, and the Horn of Gondor.
+The Elendilmir was borne upon the brow of the kings of Arnor, who were of the [Dúnedain](ancestries.md#dúnedain). From its light are made the Citadel armor, the sword Andúril, and the Horn of Gondor.
 
 ## The making of the Star
 
