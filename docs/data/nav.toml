@@ -9,8 +9,8 @@ pages = ["/ancestries", "/classes", "/sizes", "/powers"]
 [[group]]
 page = "/race-items"
 pages = [
-  "/arkenstone", "/pearl-of-osse", "/feather-of-thorondor", "/honey-of-beorn", "/light-of-the-trees",
-  "/mallorn-leaf", "/star-of-elendil", "/banner-of-the-mark", "/evenstar", "/mathom", "/white-hand",
+  "/star-of-elendil", "/banner-of-the-mark", "/light-of-the-trees", "/mallorn-leaf", "/pearl-of-osse",
+  "/evenstar", "/arkenstone", "/mathom", "/white-hand", "/feather-of-thorondor", "/honey-of-beorn",
 ]
 
 [[group]]
