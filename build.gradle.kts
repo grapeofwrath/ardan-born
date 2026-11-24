@@ -47,6 +47,8 @@ tasks {
 
     processResources {
         filteringCharset = "UTF-8"
+        // For the hash of the resource pack; players get it from the docs site.
+        from("docs/static/pack") { into("pack") }
         val props = mapOf("version" to project.version, "apiVersion" to minecraftVersion)
         inputs.properties(props)
         filesMatching("paper-plugin.yml") {

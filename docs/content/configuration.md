@@ -21,6 +21,9 @@ rohirrim:
 mearas:
   chance: 0.02
   shadowfax-chance: 0.20
+adornments:
+  drop-on-death: true
+  resource-pack: true
 ```
 
 ### Morgul wound
@@ -66,6 +69,17 @@ These settings control the [Mearas](banner-of-the-mark.md#the-mearas).
 |---|---|---|
 | `chance` | `0.02` | Chance that an eligible foal or wild horse is one of the Mearas (0.02 is 2%). Each horse is rolled once |
 | `shadowfax-chance` | `0.20` | Chance that a new Meara is Shadowfax, while there is none in the world |
+
+### Adornments
+
+These settings are for [adornments](adornments.md). Their effects also follow the `race-items` settings above, under ids such as `sams_pack`.
+
+| Setting | Default | What it does |
+|---|---|---|
+| `drop-on-death` | `true` | Whether worn adornments drop when a player dies, as armor does. The `keep_inventory` game rule still applies |
+| `resource-pack` | `true` | Offers players the resource pack of the adornments screen, along with the Origins-Reborn pack |
+
+The pack is sent only if Origins-Reborn sends its own (`resource-pack: enabled` in its config).
 
 ## Shadowfax
 

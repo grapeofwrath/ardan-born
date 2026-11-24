@@ -15,4 +15,4 @@ pages = [
 
 [[group]]
 page = "/lore-and-items"
-pages = ["/cirth-runes", "/rings-of-power", "/morgul-wound"]
+pages = ["/cirth-runes", "/rings-of-power", "/adornments", "/morgul-wound"]

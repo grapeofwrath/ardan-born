@@ -3,6 +3,7 @@ title: "Commands"
 ---
 | Command | Who can use it | What it does |
 |---|---|---|
+| `/adornments` | Everyone | Opens your [adornments](adornments.md) |
 | `/ardanborn` | Everyone | Shows the plugin version |
 | `/ardanborn give <players> <item> [amount]` | Ops (permission `ardanborn.give`) | Gives ArdanBorn items |
 | `/ardanborn ring release <ring>` | Ops (permission `ardanborn.rings`) | Sends a unique Ring of Power back into the loot pool |
@@ -29,6 +30,7 @@ Vanilla `/give` can't create ArdanBorn items. Tab completion lists every item.
 | `hithlain`, `net_of_the_havens`, `longbottom_pipe`, `orc_draught`, `breath_of_manwe`, `skin_changers_claw` | That artifact |
 | `rune_stone_<rune>`, e.g. `rune_stone_westernesse` | A [rune-stone](cirth-runes.md). Runes: `westernesse`, `warning`, `frost`, `delving`, `harvest`, `vein` |
 | `ring_<ring>`, e.g. `ring_one` | A [Ring of Power](rings-of-power.md). Rings: `seven`, `nine`, `narya`, `nenya`, `vilya`, `one`. Giving a unique ring (the Three or the One) makes that copy the current one, and any older copy crumbles |
+| `white_gem_of_arwen`, `emeralds_of_girion`, `quiver_of_legolas`, `sams_pack`, `belt_of_boromir`, `sheath_belt_of_anduril` | That [adornment](adornments.md) |
 | `athelas` | A sprig of [athelas](morgul-wound.md#athelas) |
 
 - `amount` is 1-64 and defaults to 1. Armor pieces come separately.

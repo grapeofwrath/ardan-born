@@ -2,6 +2,7 @@ package dev.grapeofwrath.ardanborn.items.rings;
 
 import dev.grapeofwrath.ardanborn.Keys;
 import dev.grapeofwrath.ardanborn.Ores;
+import dev.grapeofwrath.ardanborn.adornments.AdornmentEffects;
 import dev.grapeofwrath.ardanborn.origins.OriginCheck;
 import dev.grapeofwrath.ardanborn.weapons.Miruvor;
 import net.kyori.adventure.text.Component;
@@ -184,7 +185,7 @@ public final class RingBearer implements Listener {
             }
             return;
         }
-        addShadow(player, gain(player, ring.shadowPerSecond() + (eye ? EYE_SHADOW_PER_SECOND : 0)));
+        addShadow(player, gain(player, ring.shadowPerSecond() * AdornmentEffects.ringShadow(player) + (eye ? EYE_SHADOW_PER_SECOND : 0)));
         double shadow = shadow(player);
         applyPowers(player, ring);
         applyCurse(player, shadow);

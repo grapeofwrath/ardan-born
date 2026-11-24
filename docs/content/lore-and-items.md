@@ -7,6 +7,7 @@ These pages cover things that aren't tied to any one ancestry.
 |---|---|
 | [Cirth Runes](cirth-runes.md) | Anyone can craft and use them, but only a [Smith](classes.md#smith) can inscribe them. |
 | [Rings of Power](rings-of-power.md) | Anyone can wear them. |
+| [Adornments](adornments.md) | Anyone can wear them. |
 | [Morgul Wound](morgul-wound.md) | Anyone can be wounded. |
 
 ## Undead

@@ -6,6 +6,7 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.tree.LiteralCommandNode;
+import dev.grapeofwrath.ardanborn.adornments.Adornment;
 import dev.grapeofwrath.ardanborn.afflictions.Athelas;
 import dev.grapeofwrath.ardanborn.armor.ArmorSets;
 import dev.grapeofwrath.ardanborn.items.rings.RingType;
@@ -107,6 +108,7 @@ public final class ArdanBornBootstrap implements PluginBootstrap {
         items.putAll(ToolUpgrades.giveableItems());
         items.putAll(Runes.giveableItems());
         items.putAll(Rings.giveableItems());
+        items.putAll(Adornment.giveableItems());
         items.put(Athelas.ID, Athelas::create);
         return items;
     }

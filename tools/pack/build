@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# Draw the resource pack of the adornments screen and zip it: tools/pack/build (in the playtest shell).
+# Never rebuild a zip that has been published. Raise the number here and in AdornmentPack.java instead.
+set -euo pipefail
+ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)
+OUT=$ROOT/docs/static/pack/adornments-1.zip
+P=$(mktemp -d); trap 'rm -rf "$P"' EXIT
+A=$P/assets/ardanborn
+mkdir -p "$A"/{items,models/item,textures/item,textures/font,font} "$(dirname "$OUT")"
+echo '{"pack":{"description":"ArdanBorn adornments","min_format":97,"max_format":97}}' > "$P/pack.mcmeta"
+echo '{"model":{"type":"minecraft:empty"}}' > "$A/items/empty.json"
+
+# The screen's background is a glyph in its title:  steps back to the edge,  back to the title.
+cat > "$A/font/screen.json" <<'J'
+{"providers":[
+{"type":"space","advances":{"":-8,"":-165}},
+{"type":"bitmap","file":"ardanborn:font/adornments.png","ascent":13,"height":35,"chars":[""]}]}
+J
+slots=()
+for c in 2 4 6; do x=$((7 + 18 * c))
+  slots+=(-fill '#373737' -draw "rectangle $x,17 $((x+17)),34" -fill white -draw "rectangle $((x+1)),18 $((x+17)),34"
+    -fill '#8b8b8b' -draw "rectangle $((x+1)),18 $((x+16)),33")
+done
+magick -size 176x35 xc:none +antialias -fill '#c6c6c6' -draw 'rectangle 4,4 171,34' "${slots[@]}" -strip "PNG32:$A/textures/font/adornments.png"
+
+item() { # name, then magick drawing arguments
+  local n=$1; shift
+  magick -size 16x16 xc:none +antialias "$@" -strip "PNG32:$A/textures/item/$n.png"
+  echo "{\"model\":{\"type\":\"minecraft:model\",\"model\":\"ardanborn:item/$n\"}}" > "$A/items/$n.json"
+  echo "{\"parent\":\"minecraft:item/generated\",\"textures\":{\"layer0\":\"ardanborn:item/$n\"}}" > "$A/models/item/$n.json"
+}
+G='#5a5a5a'
+item slot_necklace -fill none -stroke $G -draw 'polyline 3,2 3,6 7,10 8,10 12,6 12,2' -stroke none -fill $G -draw 'rectangle 6,11 9,13'
+item slot_back -fill $G -draw 'polygon 5,2 10,2 13,13 2,13' -draw 'rectangle 5,2 10,3'
+item slot_belt -fill $G -draw 'rectangle 1,6 14,9' -fill none -stroke $G -draw 'rectangle 5,5 10,10'
+item adornments_button -fill none -stroke '#6b4a12' -strokewidth 3 -draw 'polyline 3,2 3,6 7,10 8,10 12,6 12,2' \
+  -strokewidth 1 -stroke '#f0c24b' -draw 'polyline 3,2 3,6 7,10 8,10 12,6 12,2' \
+  -stroke none -fill '#1f5f74' -draw 'rectangle 5,10 10,14' -fill '#7fd4e8' -draw 'rectangle 6,11 9,13'
+
+cd "$P"
+rm -f "$OUT"
+# Fixed dates, so that the same pack makes the same file.
+jar --create --file "$OUT" --no-manifest --date 2026-01-01T00:00:00Z pack.mcmeta assets
+sha1sum "$OUT"

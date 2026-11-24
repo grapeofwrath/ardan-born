@@ -37,3 +37,10 @@ mearas:
   chance: 0.02
   # Chance that a new Meara is Shadowfax, while there is no Shadowfax in the world (0.20 = 20%).
   shadowfax-chance: 0.20
+
+adornments:
+  # Whether worn adornments drop when a player dies, as armor does. The keep_inventory game rule still applies.
+  drop-on-death: true
+  # Offer players the resource pack of the adornments screen, along with the Origins-Reborn pack. Without it the
+  # screen is plain, and works the same.
+  resource-pack: true

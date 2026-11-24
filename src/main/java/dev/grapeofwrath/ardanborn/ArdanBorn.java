@@ -2,6 +2,9 @@ package dev.grapeofwrath.ardanborn;
 
 import com.starshootercity.OriginsAddon;
 import com.starshootercity.abilities.types.Ability;
+import com.starshootercity.version.ResourcePackInfo;
+import dev.grapeofwrath.ardanborn.adornments.AdornmentPack;
+import dev.grapeofwrath.ardanborn.adornments.Adornments;
 import dev.grapeofwrath.ardanborn.afflictions.Athelas;
 import dev.grapeofwrath.ardanborn.afflictions.MorgulWound;
 import dev.grapeofwrath.ardanborn.armor.ArmorEffectManager;
@@ -47,6 +50,11 @@ public final class ArdanBorn extends OriginsAddon {
     }
 
     @Override
+    public ResourcePackInfo getResourcePackInfo() {
+        return AdornmentPack.info(this);
+    }
+
+    @Override
     public void onRegister() {
         // Must run before Origins-Reborn reads plugins/ArdanBorn/origins/.
         OriginFiles.syncBundled(this);
@@ -78,8 +86,10 @@ public final class ArdanBorn extends OriginsAddon {
         ToolUpgrades.registerAll(this);
         Runes.registerAll(this);
         Rings.registerAll(this);
+        Adornments.register(this);
         Set<String> ids = ArmorSets.effectIds();
         ids.addAll(ToolUpgrades.ids());
+        ids.addAll(Adornments.ids());
         ItemPower.warnUnknown(ids, getLogger());
         MorgulWound.register(this);
         Athelas.register(this);

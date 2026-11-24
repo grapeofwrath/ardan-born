@@ -36,6 +36,7 @@ perl tools/playtest/tests/items.pl
 | `powers.pl` | Ancestry and class powers, food |
 | `artifacts.pl` | Artifacts used by right-click, the Arkenstone pickaxe |
 | `rings.pl` | Rings of Power, betrayal, the Morgul wound |
+| `adornments.pl` | The adornments screen, wearing, death, effects and loot (about 15 minutes) |
 
 - Run one at a time, and leave the client alone meanwhile: they move its mouse. Each ends with the counts and a list of failures.
 - They erase the tester's inventory and kill nearby mobs, and raise the tester's health to 400 so that hits can be measured.
